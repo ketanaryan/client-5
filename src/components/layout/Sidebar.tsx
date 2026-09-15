@@ -42,7 +42,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
     { name: "Dashboard", icon: LayoutDashboard, href: `/${role.toLowerCase()}`, roles: ["ADMIN", "STAFF", "CLIENT", "ASSOCIATE"] },
     
     // Admin & Associate & Client specific
-    { name: "Work Requests", icon: Briefcase, href: `/${role.toLowerCase()}/work-requests`, roles: ["ADMIN", "CLIENT", "ASSOCIATE"] },
+    { name: "Work Requests", icon: Briefcase, href: role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/work-requests`, roles: ["ADMIN", "CLIENT", "ASSOCIATE"] },
     { name: "Leads/Enquiries", icon: Users, href: "/admin/enquiries", roles: ["ADMIN"] },
     
     // Staff specific
@@ -55,8 +55,8 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
     { name: "Staff", icon: UserCog, href: `/${role.toLowerCase()}/staff`, roles: ["ADMIN"] },
     
     // Finance
-    { name: "Invoices", icon: FileText, href: `/${role.toLowerCase()}/invoices`, roles: ["ADMIN", "CLIENT"] },
-    { name: "Payments", icon: CreditCard, href: `/${role.toLowerCase()}/payments`, roles: ["ADMIN", "CLIENT"] },
+    { name: "Invoices", icon: FileText, href: role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/invoices`, roles: ["ADMIN", "CLIENT"] },
+    { name: "Payments", icon: CreditCard, href: role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/payments`, roles: ["ADMIN", "CLIENT"] },
     
     // Common Ops
     { name: "Reminders", icon: Bell, href: `/${role.toLowerCase()}/reminders`, roles: ["ADMIN", "STAFF"] },
@@ -125,10 +125,14 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
               <DropdownMenuLabel className="text-slate-800 font-semibold text-xs uppercase tracking-wider">My Account</DropdownMenuLabel>
             </DropdownMenuGroup>
             <DropdownMenuSeparator className="bg-slate-100" />
-            <DropdownMenuItem className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">Profile</DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">Settings</DropdownMenuItem>
+            <DropdownMenuItem asChild className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
+              <Link href={role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/profile`}>Profile</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
+              <Link href={role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/settings`}>Settings</Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-slate-100" />
-            <DropdownMenuItem className="text-red-600 font-medium cursor-pointer text-[13px] hover:bg-red-50" onClick={() => signOut({ callbackUrl: "/login" })}>
+            <DropdownMenuItem className="text-red-600 font-medium cursor-pointer text-[13px] hover:bg-red-50" onClick={() => signOut({ callbackUrl: window?.location?.origin + "/login" })}>
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
