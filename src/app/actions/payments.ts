@@ -26,7 +26,7 @@ export async function recordPayment(formData: FormData) {
         invoiceId,
         amount,
         method,
-        utrNumber: utrNumber || null,
+        utrNumber: utrNumber || "",
         status: "VERIFIED", // Admin is recording it, so it's verified
       }
     }),
