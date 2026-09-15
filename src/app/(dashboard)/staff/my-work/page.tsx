@@ -104,7 +104,7 @@ export default function MyWorkPage() {
                   <Badge className={
                     work.status === "Completed" ? "bg-emerald-50 text-emerald-600" :
                     work.status === "In Progress" ? "bg-blue-50 text-blue-600" :
-                    "bg-orange-50 text-orange-600"
+                    "bg-slate-100 text-slate-700"
                   }>{work.status}</Badge>
                 </div>
                 <CardTitle className="text-lg">{work.title}</CardTitle>
@@ -144,10 +144,8 @@ export default function MyWorkPage() {
 
               <CardFooter className="border-t border-slate-100 p-4 bg-slate-50/50 flex gap-2">
                 <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="outline" className="flex-1 bg-white text-slate-600 hover:text-blue-600 hover:border-blue-200">
-                      <MessageSquare className="h-4 w-4 mr-2" /> Notes ({work.notes.length})
-                    </Button>
+                  <DialogTrigger className="flex-1 bg-white text-slate-600 hover:text-blue-600 hover:border-blue-200 border border-input h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
+                    <MessageSquare className="h-4 w-4 mr-2" /> Notes ({work.notes.length})
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>

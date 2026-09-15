@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button"
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts'
 
 const PIE_DATA = [
-  { name: 'In Progress', value: 30, color: '#3b82f6' },
-  { name: 'Awaiting Client', value: 10, color: '#f59e0b' },
-  { name: 'For Review', value: 8, color: '#8b5cf6' },
-  { name: 'Completed', value: 52, color: '#10b981' },
+  { name: 'In Progress', value: 30, color: '#2563eb' }, // blue-600
+  { name: 'Awaiting Client', value: 10, color: '#94a3b8' }, // slate-400
+  { name: 'For Review', value: 8, color: '#0f172a' }, // slate-900
+  { name: 'Completed', value: 52, color: '#059669' }, // emerald-600
 ]
 
 const BAR_DATA = [
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="tasks" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="tasks" fill="#1e3a8a" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
@@ -127,7 +127,7 @@ export default function AdminDashboard() {
                   <TableCell>John Doe</TableCell>
                   <TableCell>Audit & Assurance</TableCell>
                   <TableCell className="max-w-xs truncate">We are looking for a complete audit...</TableCell>
-                  <TableCell><Badge className="bg-blue-600">NEW</Badge></TableCell>
+                  <TableCell><Badge className="bg-emerald-600">NEW</Badge></TableCell>
                   <TableCell className="text-right">
                     <Button size="sm" variant="outline" className="mr-2">Contacted</Button>
                     <Button size="sm">Convert to Client</Button>

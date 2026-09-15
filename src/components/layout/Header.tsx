@@ -17,11 +17,9 @@ export function Header({ role = "ADMIN" }: { userName?: string, role?: any }) {
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between bg-[#f8fafc] px-4 sm:px-6">
       <div className="flex items-center gap-4">
         <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="lg:hidden bg-white border-slate-200">
-              <Menu className="h-5 w-5 text-slate-700" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
+          <SheetTrigger className="lg:hidden bg-white border border-slate-200 h-10 w-10 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+            <Menu className="h-5 w-5 text-slate-700" />
+            <span className="sr-only">Toggle Menu</span>
           </SheetTrigger>
           <SheetContent side="left" className="w-72 p-0 border-none bg-[#1e293b]">
             <Sidebar role={role} className="border-none" />

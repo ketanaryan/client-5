@@ -123,8 +123,8 @@ export default function ClientPortal() {
                       <TableCell><Badge variant="destructive" className="shadow-none">Overdue</Badge></TableCell>
                       <TableCell className="text-right">
                         <Dialog>
-                          <DialogTrigger asChild>
-                            <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 shadow-sm"><IndianRupee className="h-3 w-3 mr-1"/> Pay Now</Button>
+                          <DialogTrigger className="bg-emerald-600 text-primary-foreground hover:bg-emerald-700 shadow-sm h-8 rounded-md px-3 text-xs inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
+                            <IndianRupee className="h-3 w-3 mr-1"/> Pay Now
                           </DialogTrigger>
                           <DialogContent className="sm:max-w-md">
                             <DialogHeader>

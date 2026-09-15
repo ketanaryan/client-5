@@ -1,9 +1,7 @@
 "use server"
 
 import { z } from "zod"
-import { PrismaClient } from "@prisma/client"
-
-const prisma = new PrismaClient()
+import { prisma } from "@/lib/prisma"
 
 const EnquirySchema = z.object({
   name: z.string().min(2, "Name is too short"),
@@ -30,9 +28,9 @@ export async function submitEnquiry(formData: FormData) {
     })
 
     return { success: true, message: "Your enquiry has been submitted successfully. We will contact you soon." }
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return { success: false, message: error.errors[0].message }
+  } catch (error: any) {
+    if (error?.name === "ZodError") {
+      return { success: false, message: error.errors?.[0]?.message || "Validation Error" }
     }
     return { success: false, message: "An error occurred while submitting your enquiry." }
   }

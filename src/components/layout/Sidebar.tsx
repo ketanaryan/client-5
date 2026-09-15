@@ -17,28 +17,53 @@ import {
   Settings,
 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { signOut } from "next-auth/react"
 type Role = "ADMIN" | "STAFF" | "CLIENT" | "ASSOCIATE"
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   role?: Role
+  userName?: string
 }
 
-export function Sidebar({ className, role = "ADMIN" }: SidebarProps) {
+export function Sidebar({ className, role = "ADMIN", userName = "User" }: SidebarProps) {
   const pathname = usePathname()
 
-  // Define full routes array
+  // Define full routes array tailored for each role
   const routes = [
     { name: "Dashboard", icon: LayoutDashboard, href: `/${role.toLowerCase()}`, roles: ["ADMIN", "STAFF", "CLIENT", "ASSOCIATE"] },
-    { name: "Work Requests", icon: Briefcase, href: `/${role.toLowerCase()}/work-requests`, roles: ["ADMIN", "STAFF", "CLIENT", "ASSOCIATE"] },
-    { name: "Clients", icon: Users, href: `/${role.toLowerCase()}/clients`, roles: ["ADMIN", "STAFF", "ASSOCIATE"] },
+    
+    // Admin & Associate & Client specific
+    { name: "Work Requests", icon: Briefcase, href: `/${role.toLowerCase()}/work-requests`, roles: ["ADMIN", "CLIENT", "ASSOCIATE"] },
+    
+    // Staff specific
+    { name: "My Work", icon: FileText, href: `/staff/my-work`, roles: ["STAFF"] },
+    { name: "All Requests", icon: Briefcase, href: `/staff/requests`, roles: ["STAFF"] },
+
+    // CRM
+    { name: "Clients", icon: Users, href: `/${role.toLowerCase()}/clients`, roles: ["ADMIN", "ASSOCIATE"] },
     { name: "Associates", icon: UserPlus, href: `/${role.toLowerCase()}/associates`, roles: ["ADMIN"] },
     { name: "Staff", icon: UserCog, href: `/${role.toLowerCase()}/staff`, roles: ["ADMIN"] },
+    
+    // Finance
     { name: "Invoices", icon: FileText, href: `/${role.toLowerCase()}/invoices`, roles: ["ADMIN", "CLIENT"] },
     { name: "Payments", icon: CreditCard, href: `/${role.toLowerCase()}/payments`, roles: ["ADMIN", "CLIENT"] },
+    
+    // Common Ops
     { name: "Reminders", icon: Bell, href: `/${role.toLowerCase()}/reminders`, roles: ["ADMIN", "STAFF"] },
-    { name: "Reports", icon: BarChart, href: `/${role.toLowerCase()}/reports`, roles: ["ADMIN"] },
     { name: "Calendar", icon: CalendarDays, href: `/${role.toLowerCase()}/calendar`, roles: ["ADMIN", "STAFF"] },
+    
+    // Communications & Reports
+    { name: "Messages", icon: Bell, href: `/${role.toLowerCase()}/messages`, roles: ["STAFF"] },
+    { name: "Reports", icon: BarChart, href: `/${role.toLowerCase()}/reports`, roles: ["ADMIN", "STAFF"] },
+    { name: "Profile", icon: UserCog, href: `/${role.toLowerCase()}/profile`, roles: ["STAFF"] },
     { name: "Settings", icon: Settings, href: `/${role.toLowerCase()}/settings`, roles: ["ADMIN", "STAFF", "CLIENT", "ASSOCIATE"] },
   ]
 
@@ -80,16 +105,30 @@ export function Sidebar({ className, role = "ADMIN" }: SidebarProps) {
       </div>
 
       <div className="p-4 mt-auto">
-        <div className="flex items-center gap-3 rounded-xl p-3 hover:bg-slate-800 cursor-pointer transition-colors border border-transparent hover:border-slate-700">
-          <Avatar className="h-10 w-10 border-2 border-slate-700">
-            <AvatarImage src="" alt="User" />
-            <AvatarFallback className="bg-slate-700 text-white">SD</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col">
-            <span className="text-sm font-semibold text-white leading-tight">Shantanu Deshpande</span>
-            <span className="text-xs text-blue-400 mt-0.5 capitalize">{role.toLowerCase()}</span>
-          </div>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="w-full text-left flex items-center gap-3 rounded-xl p-3 hover:bg-slate-800 cursor-pointer transition-colors border border-transparent hover:border-slate-700 outline-none">
+            <Avatar className="h-10 w-10 border-2 border-slate-700">
+              <AvatarImage src="" alt="User" />
+              <AvatarFallback className="bg-slate-700 text-white">
+                {userName.substring(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-white leading-tight">{userName}</span>
+              <span className="text-xs text-blue-400 mt-0.5 capitalize">{role.toLowerCase()}</span>
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56 bg-white border-slate-200" align="end" side="top">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="text-red-600 cursor-pointer" onClick={() => signOut({ callbackUrl: "/login" })}>
+              Log out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   )

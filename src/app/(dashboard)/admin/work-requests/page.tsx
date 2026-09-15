@@ -90,7 +90,7 @@ export default function WorkRequestsPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "In Progress": return <Badge className="bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-medium px-3 py-1 rounded-full shadow-sm">{status}</Badge>
-      case "Awaiting Client": return <Badge className="bg-orange-50 hover:bg-orange-100 text-orange-600 border border-orange-200 font-medium px-3 py-1 rounded-full shadow-sm">{status}</Badge>
+      case "Awaiting Client": return <Badge className="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 font-medium px-3 py-1 rounded-full shadow-sm">{status}</Badge>
       case "Completed": return <Badge className="bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 font-medium px-3 py-1 rounded-full shadow-sm">{status}</Badge>
       case "Not Started": return <Badge className="bg-slate-50 hover:bg-slate-100 text-slate-500 border border-slate-200 font-medium px-3 py-1 rounded-full shadow-sm">{status}</Badge>
       default: return <Badge variant="outline">{status}</Badge>
@@ -100,7 +100,7 @@ export default function WorkRequestsPage() {
   const getPriorityStyle = (priority: string) => {
     switch (priority) {
       case "High": return "text-red-500 font-semibold"
-      case "Medium": return "text-orange-500 font-semibold"
+      case "Medium": return "text-blue-600 font-semibold"
       case "Low": return "text-emerald-500 font-semibold"
       default: return "text-slate-500 font-semibold"
     }

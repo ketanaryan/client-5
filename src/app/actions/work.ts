@@ -4,8 +4,7 @@ import { PrismaClient } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 import { auth } from "@/auth"
 import { z } from "zod"
-
-const prisma = new PrismaClient()
+import { prisma } from "@/lib/prisma"
 
 // Zod Schemas for Runtime Validation
 const ToggleTaskSchema = z.object({

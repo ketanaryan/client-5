@@ -1,18 +1,24 @@
 import { Sidebar } from "@/components/layout/Sidebar"
 import { Header } from "@/components/layout/Header"
+import { auth } from "@/auth"
+import { redirect } from "next/navigation"
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const userRole = "ADMIN" // hardcoded for scaffolding
+  const session = await auth()
+  if (!session?.user) redirect("/login")
+  const userRole = session.user.role as "ADMIN" | "STAFF" | "CLIENT" | "ASSOCIATE"
+  const userName = session.user.name || "User"
+
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-[#f8fafc]">
       {/* Desktop Sidebar */}
       <div className="hidden lg:block lg:w-64 lg:shrink-0 bg-[#1e293b]">
-        <Sidebar role={userRole as any} />
+        <Sidebar role={userRole} userName={userName} />
       </div>
       
       {/* Main Content Area */}
