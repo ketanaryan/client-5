@@ -6,14 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { submitEnquiry } from "./actions/enquiry"
 import { 
-  Building2, 
-  Calculator, 
-  Landmark, 
-  ArrowRight,
-  ShieldCheck,
-  TrendingUp,
-  Briefcase,
-  Users
+  Building2, Calculator, Landmark, ArrowRight, ShieldCheck, TrendingUp, 
+  Briefcase, Users, Target, ThumbsUp, Handshake, Clock,
+  Globe, BookOpen, PieChart, Monitor, Activity, HardHat, Book, 
+  Plane, ShoppingCart, Home, Anchor, Truck, Car, Film, Factory, FlaskConical, FileText
 } from "lucide-react"
 import { Navbar } from "@/components/public/Navbar"
 
@@ -36,7 +32,7 @@ export default function LandingPage() {
       <Navbar />
 
       <main className="flex-1">
-        {/* HERO SECTION - 2-Column Corporate Layout */}
+        {/* 1. HERO SECTION */}
         <section className="relative w-full py-20 lg:py-32 px-6 lg:px-12 bg-gradient-to-br from-slate-50 to-blue-50">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column: Text */}
@@ -73,8 +69,7 @@ export default function LandingPage() {
 
             {/* Right Column: Image Placeholder */}
             <div className="relative w-full aspect-[4/3] rounded-lg shadow-2xl overflow-hidden bg-slate-200 border-4 border-white flex items-center justify-center">
-              {/* This is a visual placeholder for the requested corporate image (e.g. handshake, skyscraper) */}
-              <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/office-skyscraper-corporate/800/600')] bg-cover bg-center mix-blend-overlay opacity-60"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80')] bg-cover bg-center mix-blend-overlay opacity-60"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 to-transparent"></div>
               <div className="relative z-10 flex flex-col items-center justify-center text-center p-6 mt-auto mb-6">
                 <ShieldCheck className="h-12 w-12 text-emerald-400 mb-3" />
@@ -84,77 +79,138 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* METRICS GRID - Corporate Style */}
-        <section className="w-full py-16 px-6 lg:px-12 bg-blue-950 border-y border-slate-200 shadow-inner">
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-center gap-6 p-4">
-              <div className="h-14 w-14 rounded-md bg-slate-800/50 flex items-center justify-center border border-slate-700">
-                <ShieldCheck className="h-7 w-7 text-emerald-400" />
-              </div>
-              <div>
-                <h4 className="text-4xl font-bold tracking-tight text-white mb-1">20+</h4>
-                <p className="text-slate-400 font-medium text-sm uppercase tracking-wider">Years of Integrity</p>
-              </div>
+        {/* 2. ABOUT US */}
+        <section id="about" className="w-full py-24 px-6 lg:px-12 bg-white">
+          <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div className="flex-1 space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-800">About Us-Chartered Accountant In Pune</h2>
+              <p className="text-slate-600 leading-relaxed text-sm md:text-base text-justify">
+                Shantanu & Associates, Chartered Accountant in Pune is a professionally managed firm catering to domestic and international clients with wide range of services in domestic and international taxation, regulatory and advisory services and cross border transaction related services. The team at S&A is a Firm of CA in Pune and has dedicated, experienced and expert professionals and associates like Chartered Accountants, Company Secretary and Consultants and high-end infrastructure to provide end to end services to your business. With effort of gaining deep understanding of your business, our qualified team is committed to provide valuable, consistent and efficient services based on its in-depth knowledge and wide experience in the areas of audit, taxation, regulatory compliances and related business services. Our objective is to help our clients to focus on and achieve their business and financial goals by providing them services that is personalized and tailored to meet our client's requirements and suit their business the best.
+              </p>
+              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4">
+                Read more
+              </Button>
             </div>
-            <div className="flex items-center gap-6 p-4 border-t md:border-t-0 md:border-l border-slate-800">
-              <div className="h-14 w-14 rounded-md bg-slate-800/50 flex items-center justify-center border border-slate-700">
-                <Briefcase className="h-7 w-7 text-emerald-400" />
+            <div className="w-full md:w-[500px] shrink-0">
+              <div className="relative w-full aspect-square bg-slate-200">
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80')] bg-cover bg-center"></div>
               </div>
-              <div>
-                <h4 className="text-4xl font-bold tracking-tight text-white mb-1">500+</h4>
-                <p className="text-slate-400 font-medium text-sm uppercase tracking-wider">Corporate Audits</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-6 p-4 border-t md:border-t-0 md:border-l border-slate-800">
-              <div className="h-14 w-14 rounded-md bg-slate-800/50 flex items-center justify-center border border-slate-700">
-                <TrendingUp className="h-7 w-7 text-emerald-400" />
-              </div>
-              <div>
-                <h4 className="text-4xl font-bold tracking-tight text-white mb-1">₹2K Cr+</h4>
-                <p className="text-slate-400 font-medium text-sm uppercase tracking-wider">Assets Under Advisory</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* PRACTICE AREAS - Card Grid */}
-        <section id="services" className="w-full py-24 px-6 lg:px-12 bg-slate-50">
-          <div className="max-w-[1200px] mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-              <div>
-                <div className="text-emerald-700 font-bold tracking-widest text-sm uppercase mb-3">Core Expertise</div>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-blue-950 mb-4">Practice Areas</h2>
-                <p className="text-slate-600 max-w-md text-lg">Specialized financial disciplines handled by domain experts with decades of experience.</p>
-              </div>
-              <Link href="#contact" className="text-blue-950 font-bold hover:text-emerald-700 hover:underline underline-offset-4 flex items-center gap-1 group transition-colors">
-                Discuss your requirements <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { title: 'Audit & Assurance', icon: ShieldCheck, desc: 'Statutory, Internal, and Tax Audits ensuring strict compliance and risk mitigation.' },
-                { title: 'Direct & Indirect Taxation', icon: Landmark, desc: 'Corporate tax planning, GST advisory, representations, and international taxation.' },
-                { title: 'Corporate Advisory', icon: Building2, desc: 'M&A structuring, valuation, due diligence, and capital market advisory services.' },
-                { title: 'Outsourced CFO', icon: Calculator, desc: 'End-to-end accounting, payroll, and MIS reporting for scaling startups.' }
-              ].map((service, i) => (
-                <div key={i} className="bg-white p-8 rounded-lg shadow-md border border-slate-100 hover:shadow-lg transition-shadow group">
-                  <div className="h-14 w-14 rounded-md bg-emerald-50 flex items-center justify-center mb-6 group-hover:bg-emerald-600 transition-colors">
-                    <service.icon className="h-7 w-7 text-emerald-600 group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold text-blue-950 mb-3">{service.title}</h3>
-                  <p className="text-slate-600 leading-relaxed text-sm">{service.desc}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
 
-        {/* CONTACT / LEAD GEN */}
+        {/* 3. SERVICES */}
+        <section id="services" className="w-full py-24 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
+          <div className="max-w-[1200px] mx-auto text-center mb-16">
+            <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">OUR SERVICES</div>
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Committed to Excellence</h2>
+            <p className="text-slate-600 text-lg">One Stop Destination to provide unified and agile solutions to manage all your business complexities and regulatory compliances</p>
+          </div>
+          
+          <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 shadow-sm border border-slate-200 bg-slate-200">
+            {[
+              { title: 'Company Registration', icon: Briefcase },
+              { title: 'Business Setup India', icon: Building2 },
+              { title: 'Company And LLP Compliances', icon: ShieldCheck },
+              { title: 'Auditing & Assurance', icon: Calculator },
+              { title: 'Tax Advisory', icon: Landmark },
+              { title: 'GST Advisory Services', icon: FileText },
+              { title: 'NRI Taxation', icon: Globe },
+              { title: 'Transfer Pricing', icon: TrendingUp },
+              { title: 'Registration of Indian Subsidiary Company', icon: Building2 },
+              { title: 'Foreign Company Registration in India', icon: Globe },
+              { title: 'Account Outsourcing & Bookkeeping', icon: BookOpen },
+              { title: 'Tax Investment & Financial Advisory', icon: PieChart }
+            ].map((srv, i) => (
+              <div key={i} className="group relative bg-white border border-slate-100 p-6 flex flex-col items-center justify-center text-center aspect-square hover:z-10 transition-all overflow-hidden cursor-pointer">
+                {/* Hover Background */}
+                <div className="absolute inset-0 bg-blue-950 opacity-0 group-hover:opacity-90 transition-opacity z-0 flex flex-col items-center justify-center">
+                  <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
+                </div>
+                
+                <div className="relative z-10 flex flex-col items-center">
+                  <srv.icon className="h-10 w-10 text-emerald-600 mb-4 group-hover:text-white transition-colors stroke-[1.5]" />
+                  <h3 className="font-bold text-blue-950 text-[13px] leading-snug group-hover:text-white transition-colors">{srv.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 4. CORE VALUES */}
+        <section className="w-full py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
+          <div className="max-w-[1200px] mx-auto text-center mb-16">
+            <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">BELIEFS THAT SHAPE OUR CULTURE</div>
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Our Core Values</h2>
+            <p className="text-slate-600 text-lg max-w-4xl mx-auto">
+              Our firm believe and follow the culture to maintain faith, integrity and ethics in all levels during deliver services to every client. Our profession is our faith and our people always pursue this journey.
+            </p>
+          </div>
+          
+          <div className="max-w-[1000px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">
+            {[
+              { title: 'Commitment', icon: Target },
+              { title: 'Integrity', icon: TrendingUp },
+              { title: 'Accountability', icon: FileText },
+              { title: 'Quality', icon: ThumbsUp },
+              { title: 'Respect', icon: Handshake },
+              { title: 'Time Value', icon: Clock }
+            ].map((val, i) => (
+              <div key={i} className="flex flex-col items-center gap-4">
+                <div className="w-24 h-24 rounded-full bg-emerald-600 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                  <val.icon className="w-10 h-10 text-white stroke-[1.5]" />
+                </div>
+                <span className="font-bold text-slate-800">{val.title}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 5. INDUSTRIES */}
+        <section className="w-full py-24 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
+          <div className="max-w-[1200px] mx-auto text-center mb-16">
+            <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">OUR INDUSTRIES</div>
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Business We Served</h2>
+          </div>
+          
+          <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-slate-200 bg-slate-200 shadow-sm">
+            {[
+              { title: 'Information Technology', icon: Monitor },
+              { title: 'Pharmaceuticals & Healthcare', icon: Activity },
+              { title: 'Engineering & Infra Services', icon: HardHat },
+              { title: 'Education Sector', icon: Book },
+              { title: 'Banking & Financial Services', icon: Landmark },
+              { title: 'Import & Export', icon: Plane },
+              { title: 'E-Commerce & Retail', icon: ShoppingCart },
+              { title: 'Real Estate', icon: Home },
+              { title: 'Vessels & Marine', icon: Anchor },
+              { title: 'Logistics Services', icon: Truck },
+              { title: 'Automobiles Industry', icon: Car },
+              { title: 'Media & Entertainment', icon: Film },
+              { title: 'Manufacturing & Trading', icon: Factory },
+              { title: 'Non Profit Organisation', icon: Users },
+              { title: 'Chemical Sector', icon: FlaskConical }
+            ].map((ind, i) => (
+              <div key={i} className="group relative bg-slate-100 border border-slate-200/50 p-6 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 transition-all overflow-hidden cursor-pointer">
+                {/* Subtle Image Background */}
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-[0.03] group-hover:opacity-0 transition-all z-0"></div>
+                {/* Hover Blue Overlay */}
+                <div className="absolute inset-0 bg-blue-950 opacity-0 group-hover:opacity-90 transition-opacity z-0"></div>
+                
+                <div className="relative z-10 flex flex-col items-center">
+                  <ind.icon className="h-10 w-10 text-emerald-600 mb-3 group-hover:text-white transition-colors stroke-[1.5]" />
+                  <h3 className="font-semibold text-slate-700 text-sm leading-snug group-hover:text-white transition-colors px-2">{ind.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 6. CONTACT / LEAD GEN */}
         <section id="contact" className="w-full py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="flex flex-col justify-center">
-              <div className="text-emerald-700 font-bold tracking-widest text-sm uppercase mb-3">Connect With Us</div>
+              <div className="text-emerald-500 font-bold tracking-widest text-sm uppercase mb-3">Connect With Us</div>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-blue-950 mb-6">Initiate a Conversation.</h2>
               <p className="text-slate-600 text-lg max-w-md mb-12">
                 Whether you need a comprehensive audit or strategic tax restructuring, our partners are ready to assist.
