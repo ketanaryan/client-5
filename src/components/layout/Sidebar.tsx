@@ -42,6 +42,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
     
     // Admin & Associate & Client specific
     { name: "Work Requests", icon: Briefcase, href: `/${role.toLowerCase()}/work-requests`, roles: ["ADMIN", "CLIENT", "ASSOCIATE"] },
+    { name: "Leads/Enquiries", icon: Users, href: "/admin/enquiries", roles: ["ADMIN"] },
     
     // Staff specific
     { name: "My Work", icon: FileText, href: `/staff/my-work`, roles: ["STAFF"] },

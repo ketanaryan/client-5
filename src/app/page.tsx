@@ -9,9 +9,12 @@ import {
   Building2, Calculator, Landmark, ArrowRight, ShieldCheck, TrendingUp, 
   Briefcase, Users, Target, ThumbsUp, Handshake, Clock,
   Globe, BookOpen, PieChart, Monitor, Activity, HardHat, Book, 
-  Plane, ShoppingCart, Home, Anchor, Truck, Car, Film, Factory, FlaskConical, FileText
+  Plane, ShoppingCart, Home, Anchor, Truck, Car, Film, Factory, FlaskConical, FileText,
+  Star, MapPin, Mail, Phone, Check,
+  Settings
 } from "lucide-react"
 import { Navbar } from "@/components/public/Navbar"
+import ServiceCarousel from "@/components/public/ServiceCarousel"
 
 export default function LandingPage() {
   const [loading, setLoading] = useState(false)
@@ -33,49 +36,31 @@ export default function LandingPage() {
 
       <main className="flex-1">
         {/* 1. HERO SECTION */}
-        <section className="relative w-full py-20 lg:py-32 px-6 lg:px-12 bg-gradient-to-br from-slate-50 to-blue-50">
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column: Text */}
-            <div className="flex flex-col items-start text-left space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white shadow-sm border border-slate-200 text-xs font-bold text-emerald-700 tracking-wide uppercase">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
-                </span>
-                Accepting New Corporate Clients for FY 2026-27
-              </div>
-              
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-blue-950 leading-[1.15]">
-                Financial Clarity for the Modern Enterprise.
-              </h1>
-              
-              <p className="text-slate-600 text-lg md:text-xl leading-relaxed max-w-[45ch]">
-                We are a legacy Chartered Accountancy firm delivering precise audit, compliance, and strategic tax advisory to high-growth businesses across India.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto pt-4">
-                <Link href="#contact" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full h-14 px-8 rounded-md bg-blue-950 hover:bg-slate-900 text-base font-bold shadow-md">
-                    Request Consultation
-                  </Button>
-                </Link>
-                <Link href="#services" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="w-full h-14 px-8 rounded-md border-slate-300 text-blue-950 hover:bg-slate-100 hover:text-emerald-700 font-bold bg-white shadow-sm group">
-                    Explore Practice Areas <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Column: Image Placeholder */}
-            <div className="relative w-full aspect-[4/3] rounded-lg shadow-2xl overflow-hidden bg-slate-200 border-4 border-white flex items-center justify-center">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80')] bg-cover bg-center mix-blend-overlay opacity-60"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 to-transparent"></div>
-              <div className="relative z-10 flex flex-col items-center justify-center text-center p-6 mt-auto mb-6">
-                <ShieldCheck className="h-12 w-12 text-emerald-400 mb-3" />
-                <span className="text-white font-bold text-xl drop-shadow-md">Trust. Precision. Excellence.</span>
-              </div>
-            </div>
+        <section className="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center bg-slate-900 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80')] bg-cover bg-center bg-no-repeat opacity-50 mix-blend-luminosity"></div>
+          <div className="absolute inset-0 bg-blue-950/60 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/40"></div>
+          
+          <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto mt-16">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4 uppercase drop-shadow-lg">
+              Service Beyond Trust
+            </h1>
+            <p className="text-xl md:text-2xl text-white font-medium mb-10 drop-shadow-md max-w-2xl">
+              We serve every size and type company from startups to Fortune 50.
+            </p>
+            <Link href="#about">
+              <Button size="lg" className="bg-[#15803d] hover:bg-emerald-700 text-white font-bold px-10 py-7 text-lg rounded-md shadow-[0_4px_14px_0_rgba(21,128,61,0.39)] transition-transform hover:scale-105">
+                About Us
+              </Button>
+            </Link>
+          </div>
+          
+          {/* Carousel Indicators (Mock) */}
+          <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-10">
+            <div className="w-3 h-3 rounded-full border-2 border-white bg-transparent"></div>
+            <div className="w-3 h-3 rounded-full bg-white/50"></div>
+            <div className="w-3 h-3 rounded-full bg-white/50"></div>
+            <div className="w-3 h-3 rounded-full bg-white/50"></div>
           </div>
         </section>
 
@@ -99,38 +84,55 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* 3. SERVICES */}
-        <section id="services" className="w-full py-24 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto text-center mb-16">
-            <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">OUR SERVICES</div>
-            <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Committed to Excellence</h2>
-            <p className="text-slate-600 text-lg">One Stop Destination to provide unified and agile solutions to manage all your business complexities and regulatory compliances</p>
+        {/* 3A. CA SERVICES WE OFFER - CAROUSEL */}
+        <section id="services" className="w-full pt-24 pb-16 px-6 lg:px-12 bg-white border-t border-slate-200">
+          <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
+            <h2 className="text-3xl font-bold text-slate-900">CA Services We Offer</h2>
           </div>
-          
-          <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 shadow-sm border border-slate-200 bg-slate-200">
+          <ServiceCarousel />
+        </section>
+
+        {/* 3B. BUSINESS REGISTRATION */}
+        <section className="w-full py-16 px-6 lg:px-12 bg-white">
+          <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
+            <h2 className="text-3xl font-bold text-slate-900">Business Registration Services We Offer</h2>
+          </div>
+          <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { title: 'Company Registration', icon: Briefcase },
-              { title: 'Business Setup India', icon: Building2 },
-              { title: 'Company And LLP Compliances', icon: ShieldCheck },
-              { title: 'Auditing & Assurance', icon: Calculator },
-              { title: 'Tax Advisory', icon: Landmark },
-              { title: 'GST Advisory Services', icon: FileText },
-              { title: 'NRI Taxation', icon: Globe },
-              { title: 'Transfer Pricing', icon: TrendingUp },
-              { title: 'Registration of Indian Subsidiary Company', icon: Building2 },
-              { title: 'Foreign Company Registration in India', icon: Globe },
-              { title: 'Account Outsourcing & Bookkeeping', icon: BookOpen },
-              { title: 'Tax Investment & Financial Advisory', icon: PieChart }
+              { title: 'Professional Tax Registration', img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80' },
+              { title: 'Professional Tax Registration', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80' },
+              { title: 'FSSAI Registration', img: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&q=80' },
+              { title: 'Rera Registration -Real Estate Agent', img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80' },
+              { title: 'Shop Act Registration', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80' }
             ].map((srv, i) => (
-              <div key={i} className="group relative bg-white border border-slate-100 p-6 flex flex-col items-center justify-center text-center aspect-square hover:z-10 transition-all overflow-hidden cursor-pointer">
-                {/* Hover Background */}
-                <div className="absolute inset-0 bg-blue-950 opacity-0 group-hover:opacity-90 transition-opacity z-0 flex flex-col items-center justify-center">
-                  <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
+              <div key={i} className="flex flex-col rounded-xl overflow-hidden shadow-md cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-shadow">
+                <div className="h-[140px] bg-cover bg-center" style={{ backgroundImage: `url('${srv.img}')` }}></div>
+                <div className="bg-[#1c3a5e] text-white p-4 h-24 flex items-center justify-center text-center">
+                  <h3 className="font-semibold text-[15px] leading-tight">{srv.title}</h3>
                 </div>
-                
-                <div className="relative z-10 flex flex-col items-center">
-                  <srv.icon className="h-10 w-10 text-emerald-600 mb-4 group-hover:text-white transition-colors stroke-[1.5]" />
-                  <h3 className="font-bold text-blue-950 text-[13px] leading-snug group-hover:text-white transition-colors">{srv.title}</h3>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 3C. COMPANY FORMATION */}
+        <section className="w-full pt-16 pb-24 px-6 lg:px-12 bg-white">
+          <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
+            <h2 className="text-3xl font-bold text-slate-900">Company Formation Services We Offer</h2>
+          </div>
+          <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'Private Limited Company', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80' },
+              { title: 'One Person Company', img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80' },
+              { title: 'Limited Liability Partnership Firm (LLP)', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80' },
+              { title: 'Partnership Firm Registration', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&q=80' }
+            ].map((srv, i) => (
+              <div key={i} className="bg-white border border-slate-300 rounded-[24px] p-5 flex flex-col hover:shadow-lg transition-shadow cursor-pointer">
+                <div className="h-44 rounded-xl overflow-hidden mb-5 relative">
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${srv.img}')` }}></div>
+                </div>
+                <div className="flex-1 flex items-center justify-center text-center px-2 mb-2">
+                  <h3 className="font-bold text-slate-800 text-[17px]">{srv.title}</h3>
                 </div>
               </div>
             ))}
@@ -138,16 +140,16 @@ export default function LandingPage() {
         </section>
 
         {/* 4. CORE VALUES */}
-        <section className="w-full py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto text-center mb-16">
+        <section className="w-full py-28 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
+          <div className="max-w-[1200px] mx-auto text-center mb-20">
             <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">BELIEFS THAT SHAPE OUR CULTURE</div>
             <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Our Core Values</h2>
-            <p className="text-slate-600 text-lg max-w-4xl mx-auto">
+            <p className="text-slate-600 text-[17px] leading-relaxed max-w-4xl mx-auto">
               Our firm believe and follow the culture to maintain faith, integrity and ethics in all levels during deliver services to every client. Our profession is our faith and our people always pursue this journey.
             </p>
           </div>
           
-          <div className="max-w-[1000px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 justify-items-center">
             {[
               { title: 'Commitment', icon: Target },
               { title: 'Integrity', icon: TrendingUp },
@@ -156,141 +158,267 @@ export default function LandingPage() {
               { title: 'Respect', icon: Handshake },
               { title: 'Time Value', icon: Clock }
             ].map((val, i) => (
-              <div key={i} className="flex flex-col items-center gap-4">
-                <div className="w-24 h-24 rounded-full bg-emerald-600 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
-                  <val.icon className="w-10 h-10 text-white stroke-[1.5]" />
+              <div key={i} className="group flex flex-col items-center gap-6 p-6 w-full max-w-[200px] rounded-lg hover:bg-white hover:shadow-xl transition-all cursor-pointer border border-transparent hover:border-slate-100">
+                <div className="w-28 h-28 rounded-full bg-transparent border-[3px] border-emerald-500 flex items-center justify-center group-hover:bg-[#1a5b81] group-hover:border-[#1a5b81] transition-colors duration-300 shadow-sm">
+                  <val.icon className="w-12 h-12 text-emerald-500 group-hover:text-white stroke-[1.5] transition-colors duration-300" />
                 </div>
-                <span className="font-bold text-slate-800">{val.title}</span>
+                <span className="font-bold text-slate-800 text-[17px] group-hover:text-blue-950 transition-colors">{val.title}</span>
               </div>
             ))}
           </div>
         </section>
 
         {/* 5. INDUSTRIES */}
-        <section className="w-full py-24 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
+        <section className="w-full py-24 px-6 lg:px-12 bg-white">
           <div className="max-w-[1200px] mx-auto text-center mb-16">
             <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">OUR INDUSTRIES</div>
             <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Business We Served</h2>
           </div>
           
-          <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-slate-200 bg-slate-200 shadow-sm">
+          <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-slate-100 shadow-sm">
             {[
-              { title: 'Information Technology', icon: Monitor },
-              { title: 'Pharmaceuticals & Healthcare', icon: Activity },
-              { title: 'Engineering & Infra Services', icon: HardHat },
-              { title: 'Education Sector', icon: Book },
-              { title: 'Banking & Financial Services', icon: Landmark },
-              { title: 'Import & Export', icon: Plane },
-              { title: 'E-Commerce & Retail', icon: ShoppingCart },
-              { title: 'Real Estate', icon: Home },
-              { title: 'Vessels & Marine', icon: Anchor },
-              { title: 'Logistics Services', icon: Truck },
-              { title: 'Automobiles Industry', icon: Car },
-              { title: 'Media & Entertainment', icon: Film },
-              { title: 'Manufacturing & Trading', icon: Factory },
-              { title: 'Non Profit Organisation', icon: Users },
-              { title: 'Chemical Sector', icon: FlaskConical }
+              { title: 'Information Technology', icon: Monitor, img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80' },
+              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&q=80' },
+              { title: 'Engineering & Infra Services', icon: HardHat, img: 'https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&q=80' },
+              { title: 'Education Sector', icon: Book, img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80' },
+              { title: 'Banking & Financial Services', icon: Landmark, img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&q=80' },
+              { title: 'Import & Export', icon: Plane, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80' },
+              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80' },
+              { title: 'Real Estate', icon: Home, img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80' },
+              { title: 'Vessels & Marine', icon: Anchor, img: 'https://images.unsplash.com/photo-1559441164-9646b9a89c4d?auto=format&fit=crop&q=80' },
+              { title: 'Logistics Services', icon: Truck, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80' },
+              { title: 'Automobiles Industry', icon: Car, img: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&q=80' },
+              { title: 'Media & Entertainment', icon: Film, img: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&q=80' },
+              { title: 'Manufacturing & Trading', icon: Factory, img: 'https://images.unsplash.com/photo-1565439390237-770ce818c39e?auto=format&fit=crop&q=80' },
+              { title: 'Non Profit Organisation', icon: Users, img: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80' },
+              { title: 'Chemical Sector', icon: FlaskConical, img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80' }
             ].map((ind, i) => (
-              <div key={i} className="group relative bg-slate-100 border border-slate-200/50 p-6 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 transition-all overflow-hidden cursor-pointer">
-                {/* Subtle Image Background */}
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-[0.03] group-hover:opacity-0 transition-all z-0"></div>
-                {/* Hover Blue Overlay */}
-                <div className="absolute inset-0 bg-blue-950 opacity-0 group-hover:opacity-90 transition-opacity z-0"></div>
+              <div key={i} className="group relative p-8 border border-slate-100 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 cursor-pointer bg-white">
+                <div className="absolute inset-0 bg-cover bg-center z-0 transition-opacity duration-300 opacity-100 group-hover:opacity-0" style={{ backgroundImage: `url('${ind.img}')` }}></div>
+                <div className="absolute inset-0 bg-slate-50/90 transition-opacity duration-300 opacity-100 group-hover:opacity-0 z-0"></div>
+                <div className="absolute inset-0 bg-[#1c4b68] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
                 
                 <div className="relative z-10 flex flex-col items-center">
-                  <ind.icon className="h-10 w-10 text-emerald-600 mb-3 group-hover:text-white transition-colors stroke-[1.5]" />
-                  <h3 className="font-semibold text-slate-700 text-sm leading-snug group-hover:text-white transition-colors px-2">{ind.title}</h3>
+                  <ind.icon className="h-11 w-11 text-emerald-500 mb-4 group-hover:text-white transition-colors duration-300 stroke-[1.5]" />
+                  <h3 className="font-semibold text-slate-800 text-[14px] leading-snug group-hover:text-white transition-colors duration-300 px-2">{ind.title}</h3>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 6. CONTACT / LEAD GEN */}
-        <section id="contact" className="w-full py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="flex flex-col justify-center">
-              <div className="text-emerald-500 font-bold tracking-widest text-sm uppercase mb-3">Connect With Us</div>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-blue-950 mb-6">Initiate a Conversation.</h2>
-              <p className="text-slate-600 text-lg max-w-md mb-12">
-                Whether you need a comprehensive audit or strategic tax restructuring, our partners are ready to assist.
-              </p>
-              
-              <div className="space-y-8">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-slate-50 rounded-md border border-slate-100">
-                    <Building2 className="h-6 w-6 text-blue-950" />
+        {/* 6. HAPPY CLIENTS */}
+        <section className="w-full py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
+          <div className="max-w-[1200px] mx-auto text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-800 mb-8">Happy Clients</h2>
+            <div className="flex flex-col items-center justify-center gap-1">
+              <span className="font-bold text-xl text-slate-800">EXCELLENT</span>
+              <div className="flex gap-1 mb-1">
+                {[1,2,3,4,5].map(star => <Star key={star} className="h-7 w-7 fill-yellow-400 text-yellow-400" />)}
+              </div>
+              <span className="text-sm text-slate-600 mt-2">Based on <strong>100 reviews</strong></span>
+              <div className="mt-3 text-3xl font-bold text-blue-500 tracking-tighter">Google</div>
+            </div>
+          </div>
+          
+          <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+            {[
+              { name: 'Haresh Dudani', initial: 'H', bg: 'bg-[#007acc]', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
+              { name: 'Sunil Kamble', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Viman Nagar, Pune, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
+              { name: 'Parth Patel', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' }
+            ].map((rev, i) => (
+              <div key={i} className="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm flex flex-col relative group hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    {rev.img ? (
+                      <img src={rev.img} alt={rev.name} className="w-10 h-10 rounded-full object-cover" />
+                    ) : (
+                      <div className={`w-10 h-10 rounded-full ${rev.bg} flex items-center justify-center text-white font-bold text-lg`}>{rev.initial}</div>
+                    )}
+                    <div className="flex flex-col text-left">
+                      <span className="font-semibold text-[15px] text-slate-900 leading-tight">{rev.name}</span>
+                      <span className="text-xs text-slate-500 mt-0.5">{rev.time}</span>
+                    </div>
                   </div>
-                  <div>
-                    <h5 className="font-bold text-blue-950">Pune Headquarters</h5>
-                    <p className="text-slate-600 text-sm mt-1">101, Alpha Financial Center,<br/>Koregaon Park, Pune 411001</p>
-                  </div>
+                  <div className="text-2xl font-bold text-blue-500 tracking-tighter absolute right-6 top-6">G</div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-slate-50 rounded-md border border-slate-100">
-                    <Users className="h-6 w-6 text-blue-950" />
-                  </div>
-                  <div>
-                    <h5 className="font-bold text-blue-950">Direct Contact</h5>
-                    <p className="text-slate-600 text-sm mt-1">Phone: +91 98765 43210<br/>Email: contact@shantanuassociates.com</p>
-                  </div>
+                <div className="flex gap-1 mb-4">
+                  {[1,2,3,4,5].map(star => <Star key={star} className="h-[14px] w-[14px] fill-yellow-400 text-yellow-400" />)}
+                  <div className="h-4 w-4 rounded-full bg-blue-500 flex items-center justify-center ml-1"><Check className="h-2.5 w-2.5 text-white stroke-[3]" /></div>
                 </div>
+                <p className="text-[14.5px] text-slate-700 leading-relaxed mb-4 flex-1">"{rev.review}"</p>
+                <button className="text-slate-400 text-[13px] font-medium text-left hover:text-slate-600 transition-colors">Read more</button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 7. CONTACT / QUERIES OVERLAY */}
+        <section id="contact" className="relative w-full py-24 px-6 lg:px-12 bg-slate-900">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80')] bg-cover bg-center z-0 mix-blend-overlay opacity-60"></div>
+          <div className="absolute inset-0 bg-blue-950/80 z-0"></div>
+          
+          <div className="max-w-[1200px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-white space-y-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-white/40 mb-2">
+                <span className="text-2xl font-bold">24</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight max-w-[15ch]">
+                Do You Have Any Queries To Discuss? Let's Talk.
+              </h2>
+              <div className="pt-4">
+                <a href="tel:+919322949820" className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 transition-colors border border-white/20 rounded-md px-8 py-4 text-xl font-bold backdrop-blur-sm">
+                  <Phone className="h-5 w-5 opacity-70" /> +91 93229 49820
+                </a>
               </div>
             </div>
-
-            <div className="bg-slate-50 border border-slate-200 p-8 md:p-10 rounded-lg shadow-sm">
-              <h3 className="text-2xl font-bold text-blue-950 mb-8">Service Request Form</h3>
-              <form id="enquiry-form" action={onSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Full Name</label>
-                    <Input name="name" required placeholder="John Doe" className="bg-white border-slate-300 h-12 shadow-sm focus:border-emerald-600" />
+            
+            <div className="bg-transparent">
+              <form id="enquiry-form" action={onSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="relative">
+                    <input name="name" required placeholder="Name*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-emerald-400 transition-colors" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Work Email</label>
-                    <Input name="email" type="email" required placeholder="john@company.com" className="bg-white border-slate-300 h-12 shadow-sm focus:border-emerald-600" />
+                  <div className="relative flex items-center">
+                    <span className="absolute left-0 text-white/60 text-lg">IN +91 ▾</span>
+                    <input name="phone" required placeholder="Phone Number*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 pl-20 text-lg outline-none focus:border-emerald-400 transition-colors" />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Phone (Optional)</label>
-                    <Input name="phone" type="tel" placeholder="+91 98765 43210" className="bg-white border-slate-300 h-12 shadow-sm focus:border-emerald-600" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="relative">
+                    <input name="email" type="email" required placeholder="Email ID*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-emerald-400 transition-colors" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Service Category</label>
-                    <select name="serviceRequested" className="w-full h-12 px-3 border border-slate-300 bg-white rounded-md text-sm shadow-sm outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent font-medium">
-                      <option value="Audit & Assurance">Audit & Assurance</option>
-                      <option value="Direct Taxation">Direct Taxation</option>
-                      <option value="Indirect Taxation (GST)">Indirect Taxation (GST)</option>
-                      <option value="Corporate Advisory">Corporate Advisory</option>
-                      <option value="Other">Other</option>
-                    </select>
+                  <div className="relative">
+                    <input name="serviceRequested" placeholder="Service Interested In" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-emerald-400 transition-colors" />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700">Message / Context</label>
-                  <textarea name="message" required className="w-full p-4 border border-slate-300 bg-white rounded-md text-sm shadow-sm outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent resize-none" rows={4} placeholder="Briefly describe your firm's requirement..."></textarea>
+                <div className="relative">
+                  <input name="message" required placeholder="Enter Message" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-emerald-400 transition-colors" />
                 </div>
-                <Button type="submit" className="w-full h-14 rounded-md bg-blue-950 hover:bg-slate-900 text-white text-base font-bold shadow-md transition-colors" disabled={loading}>
-                  {loading ? "Submitting Request..." : "Submit Secure Request"}
-                </Button>
+                
+                <div>
+                  <Button type="submit" className="bg-[#0f4a7b] hover:bg-[#0c3c63] text-white font-medium px-10 py-6 rounded-md text-lg transition-colors border border-blue-400/20 shadow-lg" disabled={loading}>
+                    {loading ? "Submitting..." : "Submit →"}
+                  </Button>
+                </div>
               </form>
             </div>
           </div>
         </section>
       </main>
       
-      <footer className="w-full py-12 px-6 lg:px-12 bg-blue-950 text-slate-300 border-t-4 border-emerald-600">
-        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col">
-            <span className="font-bold text-xl text-white">Shantanu & Associates</span>
-            <p className="text-sm mt-1">© {new Date().getFullYear()} All rights reserved.</p>
+      {/* 8. MEGA FOOTER */}
+      <footer className="w-full bg-[#032b4e] text-white pt-20 pb-6">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          
+          <div className="space-y-6 pr-4">
+            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">ABOUT SHANTANU & ASSOCIATES</h4>
+            <p className="text-slate-300 text-sm leading-relaxed text-justify">
+              Businesses Are Changing And We Need To Keep Up! At Shantanu & Associates Our Object Is To Create Confidence And Trust In The Economic Realm And To Deliver The Best Quality Of Services, When It Comes To Business Setup Advisory, Audits, Taxation And Assurance.
+            </p>
+            <div className="flex gap-3 pt-2">
+              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer">f</Link>
+              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer">in</Link>
+              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer">X</Link>
+              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer">P</Link>
+            </div>
           </div>
-          <nav className="flex gap-8">
-            <Link className="text-sm font-medium hover:text-emerald-400 transition-colors" href="#">Privacy Policy</Link>
-            <Link className="text-sm font-medium hover:text-emerald-400 transition-colors" href="#">Terms of Engagement</Link>
-            <Link className="text-sm font-medium hover:text-emerald-400 transition-colors" href="/login">Portal Login</Link>
-          </nav>
+          
+          <div className="space-y-6">
+            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">CONTACT INFO</h4>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <MapPin className="w-5 h-5 mt-1 text-white shrink-0" />
+                <div className="flex flex-col gap-1">
+                  <strong className="text-[15px] font-bold tracking-wide">Shantanu & Associates Head Office</strong>
+                  <span className="text-slate-300 text-sm leading-relaxed">101, Alpha Financial Center, Koregaon Park, Pune, Maharashtra, India - 411001.</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 text-slate-300 text-sm">
+                <Mail className="w-5 h-5 text-white shrink-0" /> <a href="mailto:contact@shantanuassociates.com" className="hover:text-emerald-400 cursor-pointer">contact@shantanuassociates.com</a>
+              </div>
+              <div className="flex items-center gap-4 text-slate-300 text-sm">
+                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:+919876543210" className="hover:text-emerald-400 cursor-pointer">+91 98765 43210</a>
+              </div>
+              <div className="flex items-center gap-4 text-slate-300 text-sm">
+                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:+919322949820" className="hover:text-emerald-400 cursor-pointer">+91 93229 49820</a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-8 lg:gap-4">
+            <div className="space-y-6">
+              <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">EXPLORE</h4>
+              <ul className="space-y-4">
+                {[
+                  { name: 'Home', href: '#' }, 
+                  { name: 'About Us', href: '#about' }, 
+                  { name: 'Services', href: '#services' }, 
+                  { name: 'Knowledge Center', href: '#' }, 
+                  { name: 'Career', href: '#' }, 
+                  { name: 'Gallery', href: '#' }, 
+                  { name: 'Contact Us', href: '#contact' }
+                ].map(l => (
+                  <li key={l.name}>
+                    <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 transition-colors">
+                      <div className="w-[4px] h-[4px] bg-slate-300 rounded-full"></div> {l.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-6">
+              <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">COMPANY</h4>
+              <ul className="space-y-4">
+                {[
+                  { name: 'Overview', href: '#about' }, 
+                  { name: 'Our Team', href: '#' }
+                ].map(l => (
+                  <li key={l.name}>
+                    <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 transition-colors">
+                      <div className="w-[4px] h-[4px] bg-slate-300 rounded-full"></div> {l.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+          <div className="space-y-6">
+            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">SERVICES</h4>
+            <ul className="space-y-4">
+              {[
+                { name: 'Company Registration', href: '#services' }, 
+                { name: 'Tax Advisory', href: '#services' }, 
+                { name: 'Company and LLP Compliances', href: '#services' },
+                { name: 'Auditing & Assurance', href: '#services' }, 
+                { name: 'Project Finance & Fund Raising', href: '#services' },
+                { name: 'Account Outsourcing & Bookkeeping', href: '#services' }, 
+                { name: 'Insolvency Services', href: '#services' }
+              ].map(l => (
+                <li key={l.name}>
+                  <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 leading-tight transition-colors">
+                    <div className="w-[4px] h-[4px] shrink-0 bg-slate-300 rounded-full mt-[5px] self-start"></div> 
+                    <span>{l.name}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+        </div>
+        
+        <div className="border-t border-white/10">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col lg:flex-row justify-between items-center text-[12px] text-slate-400 gap-4 tracking-wide">
+            <div>© 2026 Shantanu & Associates. All Rights Reserved.</div>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
+              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Sitemap</Link>|
+              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Disclaimer</Link>|
+              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Terms & Conditions</Link>|
+              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Privacy Policy</Link>
+            </div>
+            <div>Designed & Developed by <strong className="text-white">AGY AI</strong></div>
+          </div>
         </div>
       </footer>
     </div>
