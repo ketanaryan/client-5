@@ -1,0 +1,67 @@
+"use server"
+
+import { prisma } from "@/lib/prisma"
+import { revalidatePath } from "next/cache"
+import { auth } from "@/auth"
+
+export async function createWorkRequest(formData: FormData) {
+  const session = await auth()
+  if (!session?.user || session.user.role !== "ADMIN") {
+    throw new Error("Unauthorized")
+  }
+
+  const clientId = formData.get("clientId") as string
+  const title = formData.get("title") as string
+  const priority = formData.get("priority") as "LOW" | "MEDIUM" | "HIGH"
+  const feeAmount = formData.get("feeAmount") ? parseFloat(formData.get("feeAmount") as string) : null
+  const dueDateStr = formData.get("dueDate") as string
+  
+  if (!clientId || !title || !priority) {
+    throw new Error("Missing required fields")
+  }
+
+  let dueDate: Date | undefined
+  if (dueDateStr) {
+    dueDate = new Date(dueDateStr)
+  }
+
+  await prisma.workRequest.create({
+    data: {
+      clientId,
+      title,
+      priority,
+      feeAmount,
+      dueDate,
+      status: "PENDING",
+    }
+  })
+
+  revalidatePath("/admin/work-requests")
+  return { success: true }
+}
+
+export async function updateWorkRequestStatus(id: string, status: "PENDING" | "IN_PROGRESS" | "AWAITING_CLIENT" | "FOR_REVIEW" | "COMPLETED") {
+  const session = await auth()
+  if (!session?.user) {
+    throw new Error("Unauthorized")
+  }
+
+  await prisma.workRequest.update({
+    where: { id },
+    data: { status }
+  })
+
+  revalidatePath("/admin/work-requests")
+  return { success: true }
+}
+
+export async function getClients() {
+  const session = await auth()
+  if (!session?.user || session.user.role !== "ADMIN") {
+    throw new Error("Unauthorized")
+  }
+  
+  return prisma.clientProfile.findMany({
+    include: { user: true }
+  })
+}
