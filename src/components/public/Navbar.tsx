@@ -10,94 +10,94 @@ const SERVICE_CATEGORIES = [
     name: "Business Registration",
     href: "/services/business-registration",
     subItems: [
-      { name: "GST Registration", href: "/services/business-registration" },
-      { name: "MSME Udyam Registration", href: "/services/business-registration" },
-      { name: "PF Registration", href: "/services/business-registration" },
-      { name: "ESIC Registration", href: "/services/business-registration" },
-      { name: "Professional Tax Registration", href: "/services/business-registration" },
-      { name: "FSSAI Registration", href: "/services/business-registration" },
-      { name: "Rera Registration", href: "/services/business-registration" },
-      { name: "Shop Act Registration", href: "/services/business-registration" },
-      { name: "IEC Registration", href: "/services/business-registration" },
-      { name: "Trademark Registration", href: "/services/business-registration" },
+      { name: "GST Registration", href: "/services/gst-registration" },
+      { name: "MSME Udyam Registration", href: "/services/msme-udyam-registration" },
+      { name: "PF Registration", href: "/services/pf-registration" },
+      { name: "ESIC Registration", href: "/services/esic-registration" },
+      { name: "Professional Tax Registration", href: "/services/professional-tax-registration" },
+      { name: "FSSAI Registration", href: "/services/fssai-registration" },
+      { name: "Rera Registration", href: "/services/rera-registration" },
+      { name: "Shop Act Registration", href: "/services/shop-act-registration" },
+      { name: "IEC Registration", href: "/services/iec-registration" },
+      { name: "Trademark Registration", href: "/services/trademark-registration" },
     ]
   },
   {
     name: "Company Formation",
     href: "/services/corporate-laws",
     subItems: [
-      { name: "Private Limited Company", href: "/services/corporate-laws" },
-      { name: "One Person Company (OPC)", href: "/services/corporate-laws" },
-      { name: "Limited Liability Partnership (LLP)", href: "/services/corporate-laws" },
-      { name: "Partnership Firm Registration", href: "/services/corporate-laws" },
-      { name: "Section 8 Company / NGO", href: "/services/corporate-laws" },
-      { name: "Sole Proprietorship Registration", href: "/services/corporate-laws" },
+      { name: "Private Limited Company", href: "/services/private-limited-company" },
+      { name: "One Person Company (OPC)", href: "/services/one-person-company" },
+      { name: "Limited Liability Partnership (LLP)", href: "/services/llp-registration" },
+      { name: "Partnership Firm Registration", href: "/services/partnership-firm-registration" },
+      { name: "Section 8 Company / NGO", href: "/services/section-8-company" },
+      { name: "Sole Proprietorship Registration", href: "/services/sole-proprietorship" },
     ]
   },
   {
     name: "Audit & Assurance",
     href: "/services/audit-and-assurance",
     subItems: [
-      { name: "Statutory Audit", href: "/services/audit-and-assurance" },
-      { name: "Internal Audit", href: "/services/audit-and-assurance" },
-      { name: "Tax Audit", href: "/services/audit-and-assurance" },
-      { name: "GST Audit", href: "/services/audit-and-assurance" },
-      { name: "Bank Audit", href: "/services/audit-and-assurance" },
-      { name: "Concurrent Audit", href: "/services/audit-and-assurance" },
+      { name: "Statutory Audit", href: "/services/statutory-audit" },
+      { name: "Internal Audit", href: "/services/internal-audit" },
+      { name: "Tax Audit", href: "/services/tax-audit" },
+      { name: "GST Audit", href: "/services/gst-audit" },
+      { name: "Bank Audit", href: "/services/bank-audit" },
+      { name: "Concurrent Audit", href: "/services/concurrent-audit" },
     ]
   },
   {
     name: "Direct Tax",
     href: "/services/taxation-services",
     subItems: [
-      { name: "Income Tax Return Filing", href: "/services/taxation-services" },
-      { name: "Advance Tax Planning", href: "/services/taxation-services" },
-      { name: "TDS Compliance & Returns", href: "/services/taxation-services" },
-      { name: "Tax Litigation Support", href: "/services/taxation-services" },
-      { name: "Capital Gains Advisory", href: "/services/taxation-services" },
+      { name: "Income Tax Return Filing", href: "/services/income-tax-return-filing" },
+      { name: "Advance Tax Planning", href: "/services/advance-tax-planning" },
+      { name: "TDS Compliance & Returns", href: "/services/tds-compliance" },
+      { name: "Tax Litigation Support", href: "/services/tax-litigation" },
+      { name: "Capital Gains Advisory", href: "/services/capital-gains-advisory" },
     ]
   },
   {
     name: "Indirect Tax",
     href: "/services/taxation-services",
     subItems: [
-      { name: "GST Return Filing", href: "/services/taxation-services" },
-      { name: "GST Compliance & Advisory", href: "/services/taxation-services" },
-      { name: "GST Refund", href: "/services/taxation-services" },
-      { name: "GST Audit & Assessment", href: "/services/taxation-services" },
-      { name: "Input Tax Credit Advisory", href: "/services/taxation-services" },
+      { name: "GST Return Filing", href: "/services/gst-return-filing" },
+      { name: "GST Compliance & Advisory", href: "/services/gst-compliance" },
+      { name: "GST Refund", href: "/services/gst-refund" },
+      { name: "GST Audit & Assessment", href: "/services/gst-audit-assessment" },
+      { name: "Input Tax Credit Advisory", href: "/services/input-tax-credit" },
     ]
   },
   {
     name: "NRI Tax and Allied Services",
     href: "/services/nri-tax-services",
     subItems: [
-      { name: "NRI Income Tax Filing", href: "/services/nri-tax-services" },
-      { name: "FEMA Compliance", href: "/services/nri-tax-services" },
-      { name: "Repatriation of Funds", href: "/services/nri-tax-services" },
-      { name: "DTAA Advisory", href: "/services/nri-tax-services" },
-      { name: "NRI Property Tax", href: "/services/nri-tax-services" },
+      { name: "NRI Income Tax Filing", href: "/services/nri-income-tax-filing" },
+      { name: "FEMA Compliance", href: "/services/fema-compliance" },
+      { name: "Repatriation of Funds", href: "/services/repatriation-of-funds" },
+      { name: "DTAA Advisory", href: "/services/dtaa-advisory" },
+      { name: "NRI Property Tax", href: "/services/nri-property-tax" },
     ]
   },
   {
     name: "Corporate Laws",
     href: "/services/corporate-laws",
     subItems: [
-      { name: "Annual ROC Filings", href: "/services/corporate-laws" },
-      { name: "Board Meeting Compliance", href: "/services/corporate-laws" },
-      { name: "Director KYC & Appointments", href: "/services/corporate-laws" },
-      { name: "Corporate Governance", href: "/services/corporate-laws" },
+      { name: "Annual ROC Filings", href: "/services/annual-roc-filings" },
+      { name: "Board Meeting Compliance", href: "/services/board-meeting-compliance" },
+      { name: "Director KYC & Appointments", href: "/services/director-kyc" },
+      { name: "Corporate Governance", href: "/services/corporate-governance" },
     ]
   },
   {
     name: "Consultancy",
     href: "/services/consultancy",
     subItems: [
-      { name: "Business Advisory", href: "/services/consultancy" },
-      { name: "M&A Advisory", href: "/services/consultancy" },
-      { name: "Due Diligence", href: "/services/consultancy" },
-      { name: "Valuation Services", href: "/services/consultancy" },
-      { name: "Strategic Planning", href: "/services/consultancy" },
+      { name: "Business Advisory", href: "/services/business-advisory" },
+      { name: "M&A Advisory", href: "/services/ma-advisory" },
+      { name: "Due Diligence", href: "/services/due-diligence" },
+      { name: "Valuation Services", href: "/services/valuation-services" },
+      { name: "Strategic Planning", href: "/services/strategic-planning" },
     ]
   },
 ]
@@ -182,7 +182,7 @@ export function Navbar() {
             )}
           </div>
 
-          <Link className="text-sm font-bold text-blue-950 px-4 h-full flex items-center border-b-2 border-transparent hover:border-emerald-600 hover:text-emerald-700 transition-colors" href="/#about">About Firm</Link>
+          <Link className="text-sm font-bold text-blue-950 px-4 h-full flex items-center border-b-2 border-transparent hover:border-emerald-600 hover:text-emerald-700 transition-colors" href="/about">About Us</Link>
           <Link className="text-sm font-bold text-blue-950 px-4 h-full flex items-center border-b-2 border-transparent hover:border-emerald-600 hover:text-emerald-700 transition-colors" href="/#contact">Contact</Link>
           <div className="w-px h-6 bg-slate-300 mx-4"></div>
           <Link href="/login">

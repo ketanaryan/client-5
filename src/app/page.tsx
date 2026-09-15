@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { submitEnquiry } from "./actions/enquiry"
@@ -16,8 +16,48 @@ import {
 import { Navbar } from "@/components/public/Navbar"
 import ServiceCarousel from "@/components/public/ServiceCarousel"
 
+const HERO_SLIDES = [
+  {
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80",
+    title: "Service Beyond Trust",
+    subtitle: "We serve every size and type company from startups to Fortune 50.",
+    buttonText: "About Us",
+    buttonLink: "/about"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80",
+    title: "Expertise Through Experience",
+    subtitle: "Expert Consultancy Service for direct and indirect taxes",
+    buttonText: "Click Here",
+    buttonLink: "/#services"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80",
+    title: "Partnering You All The Way",
+    subtitle: "Your trusted partners in financial growth and compliance.",
+    buttonText: "Know How",
+    buttonLink: "/about"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
+    title: "Leading Tax & Advisory Firm",
+    subtitle: "Unparalleled Excellence in Tax and Advisory Services",
+    buttonText: "Get Started",
+    buttonLink: "/#contact"
+  }
+];
+
 export default function LandingPage() {
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
 
   async function onSubmit(formData: FormData) {
     setLoading(true)
@@ -37,30 +77,54 @@ export default function LandingPage() {
       <main className="flex-1">
         {/* 1. HERO SECTION */}
         <section className="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center bg-slate-900 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80')] bg-cover bg-center bg-no-repeat opacity-50 mix-blend-luminosity"></div>
-          <div className="absolute inset-0 bg-blue-950/60 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/40"></div>
+          {HERO_SLIDES.map((slide, idx) => (
+            <div 
+              key={idx} 
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            >
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 mix-blend-luminosity"
+                style={{ backgroundImage: `url('${slide.image}')` }}
+              ></div>
+              <div className="absolute inset-0 bg-blue-950/60 mix-blend-multiply"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/40"></div>
+              
+              <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto h-full mt-8">
+                <h1 
+                  className={`text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4 uppercase drop-shadow-lg transition-all duration-700 delay-300 ${idx === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                >
+                  {slide.title}
+                </h1>
+                <p 
+                  className={`text-xl md:text-2xl text-white font-medium mb-10 drop-shadow-md max-w-2xl transition-all duration-700 delay-500 ${idx === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                >
+                  {slide.subtitle}
+                </p>
+                <div className={`transition-all duration-700 delay-700 ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+                  <Link href={slide.buttonLink}>
+                    <Button size="lg" className="bg-[#15803d] hover:bg-emerald-700 text-white font-bold px-10 py-7 text-lg rounded-md shadow-[0_4px_14px_0_rgba(21,128,61,0.39)] transition-transform hover:scale-105">
+                      {slide.buttonText}
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
           
-          <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto mt-16">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4 uppercase drop-shadow-lg">
-              Service Beyond Trust
-            </h1>
-            <p className="text-xl md:text-2xl text-white font-medium mb-10 drop-shadow-md max-w-2xl">
-              We serve every size and type company from startups to Fortune 50.
-            </p>
-            <Link href="#about">
-              <Button size="lg" className="bg-[#15803d] hover:bg-emerald-700 text-white font-bold px-10 py-7 text-lg rounded-md shadow-[0_4px_14px_0_rgba(21,128,61,0.39)] transition-transform hover:scale-105">
-                About Us
-              </Button>
-            </Link>
-          </div>
-          
-          {/* Carousel Indicators (Mock) */}
-          <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-10">
-            <div className="w-3 h-3 rounded-full border-2 border-white bg-transparent"></div>
-            <div className="w-3 h-3 rounded-full bg-white/50"></div>
-            <div className="w-3 h-3 rounded-full bg-white/50"></div>
-            <div className="w-3 h-3 rounded-full bg-white/50"></div>
+          {/* Carousel Indicators */}
+          <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-20">
+            {HERO_SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
+                  idx === currentSlide 
+                    ? 'bg-transparent border-2 border-emerald-500 scale-125' 
+                    : 'bg-white/50 hover:bg-white/80'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </section>
 
@@ -70,11 +134,13 @@ export default function LandingPage() {
             <div className="flex-1 space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-800">About Us-Chartered Accountant In Pune</h2>
               <p className="text-slate-600 leading-relaxed text-sm md:text-base text-justify">
-                Shantanu & Associates, Chartered Accountant in Pune is a professionally managed firm catering to domestic and international clients with wide range of services in domestic and international taxation, regulatory and advisory services and cross border transaction related services. The team at S&A is a Firm of CA in Pune and has dedicated, experienced and expert professionals and associates like Chartered Accountants, Company Secretary and Consultants and high-end infrastructure to provide end to end services to your business. With effort of gaining deep understanding of your business, our qualified team is committed to provide valuable, consistent and efficient services based on its in-depth knowledge and wide experience in the areas of audit, taxation, regulatory compliances and related business services. Our objective is to help our clients to focus on and achieve their business and financial goals by providing them services that is personalized and tailored to meet our client's requirements and suit their business the best.
+                Shantanu & Associates, Chartered Accountant in Pune is a professionally managed firm catering to domestic and international clients with wide range of services in domestic and international taxation, regulatory and advisory services and cross border transaction related services. The team at S&A is a Firm of CA in Pune and has dedicated, experienced and expert professionals and associates like Chartered Accountants, Company Secretary and Consultants and high-end infrastructure to provide end to end services to your business. With effort of gaining deep understanding of your business, our qualified team is committed to provide valuable, consistent and efficient services based on its in-depth knowledge and wide experience in the areas of audit, taxation, regulatory compliances and related business services. Our objective is to help our clients to focus on and achieve their business and financial goals by providing them services that is personalized and tailored to meet our client&apos;s requirements and suit their business the best.
               </p>
-              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4">
-                Read more
-              </Button>
+              <Link href="/about">
+                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4">
+                  Read more
+                </Button>
+              </Link>
             </div>
             <div className="w-full md:w-[500px] shrink-0">
               <div className="relative w-full aspect-square bg-slate-200">
@@ -351,13 +417,13 @@ export default function LandingPage() {
               <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">EXPLORE</h4>
               <ul className="space-y-4">
                 {[
-                  { name: 'Home', href: '#' }, 
-                  { name: 'About Us', href: '#about' }, 
-                  { name: 'Services', href: '#services' }, 
+                  { name: 'Home', href: '/' }, 
+                  { name: 'About Us', href: '/about' }, 
+                  { name: 'Services', href: '/#services' }, 
                   { name: 'Knowledge Center', href: '#' }, 
                   { name: 'Career', href: '#' }, 
                   { name: 'Gallery', href: '#' }, 
-                  { name: 'Contact Us', href: '#contact' }
+                  { name: 'Contact Us', href: '/#contact' }
                 ].map(l => (
                   <li key={l.name}>
                     <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 transition-colors">
@@ -371,8 +437,8 @@ export default function LandingPage() {
               <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">COMPANY</h4>
               <ul className="space-y-4">
                 {[
-                  { name: 'Overview', href: '#about' }, 
-                  { name: 'Our Team', href: '#' }
+                  { name: 'Overview', href: '/about' }, 
+                  { name: 'Our Team', href: '/about#team' }
                 ].map(l => (
                   <li key={l.name}>
                     <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 transition-colors">
