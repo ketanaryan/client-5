@@ -13,6 +13,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Plus, IndianRupee, CreditCard, Hash } from "lucide-react"
 import { format } from "date-fns"
+import { RecordPaymentDialog } from "@/components/payments/RecordPaymentDialog"
+import { getUnpaidInvoices } from "@/app/actions/payments"
 
 export default async function PaymentsPage() {
   const session = await auth()
@@ -33,6 +35,8 @@ export default async function PaymentsPage() {
     }
   })
 
+  const unpaidInvoices = await getUnpaidInvoices()
+
   return (
     <div className="flex-1 space-y-6 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
@@ -41,9 +45,7 @@ export default async function PaymentsPage() {
           <p className="text-slate-500">Track all incoming payments, UTR numbers, and cash receipts.</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-[#1e293b] hover:bg-[#334155]">
-            <Plus className="mr-2 h-4 w-4" /> Record Manual Payment
-          </Button>
+          <RecordPaymentDialog unpaidInvoices={unpaidInvoices} />
         </div>
       </div>
 
