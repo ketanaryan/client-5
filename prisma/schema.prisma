@@ -1,0 +1,174 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  STAFF
+  CLIENT
+  ASSOCIATE
+}
+
+enum WorkStatus {
+  PENDING
+  IN_PROGRESS
+  AWAITING_CLIENT
+  FOR_REVIEW
+  COMPLETED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum InvoiceStatus {
+  PAID
+  UNPAID
+  OVERDUE
+}
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  CONVERTED
+}
+
+model User {
+  id               String            @id @default(uuid())
+  name             String
+  email            String            @unique
+  passwordHash     String
+  role             Role              @default(CLIENT)
+  phone            String?
+  isActive         Boolean           @default(true)
+  createdAt        DateTime          @default(now())
+  
+  clientProfile    ClientProfile?
+  associateProfile AssociateProfile?
+  activityLogs     ActivityLog[]
+  sentMessages     Message[]         @relation("SentMessages")
+  receivedMessages Message[]         @relation("ReceivedMessages")
+  internalNotes    InternalNote[]
+  documents        Document[]
+}
+
+model ClientProfile {
+  id             String        @id @default(uuid())
+  userId         String        @unique
+  user           User          @relation(fields: [userId], references: [id])
+  encryptedPan   String?
+  encryptedGst   String?
+  companyName    String?
+  address        String?
+  workRequests   WorkRequest[]
+}
+
+model AssociateProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model WorkRequest {
+  id              String         @id @default(uuid())
+  clientId        String
+  client          ClientProfile  @relation(fields: [clientId], references: [id])
+  title           String
+  status          WorkStatus     @default(PENDING)
+  priority        Priority       @default(MEDIUM)
+  assignedStaffId String?
+  feeAmount       Float?
+  createdAt       DateTime       @default(now())
+  dueDate         DateTime?
+  
+  invoices        Invoice[]
+  tasks           Task[]
+  notes           InternalNote[]
+  documents       Document[]
+}
+
+model Task {
+  id            String      @id @default(uuid())
+  workRequestId String
+  workRequest   WorkRequest @relation(fields: [workRequestId], references: [id])
+  description   String
+  isCompleted   Boolean     @default(false)
+}
+
+model InternalNote {
+  id            String      @id @default(uuid())
+  workRequestId String
+  workRequest   WorkRequest @relation(fields: [workRequestId], references: [id])
+  authorId      String
+  author        User        @relation(fields: [authorId], references: [id])
+  content       String
+  createdAt     DateTime    @default(now())
+}
+
+model ActivityLog {
+  id                String   @id @default(uuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  actionDescription String
+  timestamp         DateTime @default(now())
+}
+
+model Invoice {
+  id            String        @id @default(uuid())
+  workRequestId String
+  workRequest   WorkRequest   @relation(fields: [workRequestId], references: [id])
+  amount        Float
+  status        InvoiceStatus @default(UNPAID)
+  issuedDate    DateTime      @default(now())
+  
+  payments      Payment[]
+}
+
+model Payment {
+  id         String   @id @default(uuid())
+  invoiceId  String
+  invoice    Invoice  @relation(fields: [invoiceId], references: [id])
+  amount     Float
+  utrNumber  String
+  receiptUrl String?
+  status     WorkStatus @default(PENDING)
+  createdAt  DateTime @default(now())
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  senderId   String
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId String
+  receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  content    String
+  createdAt  DateTime @default(now())
+}
+
+model Enquiry {
+  id               String        @id @default(uuid())
+  name             String
+  email            String
+  phone            String?
+  serviceRequested String?
+  message          String
+  status           EnquiryStatus @default(NEW)
+  createdAt        DateTime      @default(now())
+}
+
+model Document {
+  id            String       @id @default(uuid())
+  title         String
+  fileUrl       String
+  uploadedById  String
+  uploadedBy    User         @relation(fields: [uploadedById], references: [id])
+  workRequestId String?
+  workRequest   WorkRequest? @relation(fields: [workRequestId], references: [id])
+  createdAt     DateTime     @default(now())
+}
