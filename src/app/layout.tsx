@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "Enterprise Practice Management for Chartered Accountants",
 };
 
+import { SessionProvider } from "@/components/providers/session-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,7 +25,9 @@ export default function RootLayout({
           inter.variable
         )}
       >
-        {children}
+        <SessionProvider>
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
