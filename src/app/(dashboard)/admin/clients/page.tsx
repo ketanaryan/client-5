@@ -12,6 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Plus, Building2, UserCircle, Briefcase, FileText } from "lucide-react"
+import { CreateClientDialog } from "@/components/clients/CreateClientDialog"
 
 export default async function ClientsPage() {
   const session = await auth()
@@ -39,9 +40,7 @@ export default async function ClientsPage() {
           <p className="text-slate-500">Manage your chartered accountancy clients and entities.</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-[#1e293b] hover:bg-[#334155]">
-            <Plus className="mr-2 h-4 w-4" /> Onboard Client
-          </Button>
+          <CreateClientDialog />
         </div>
       </div>
 

@@ -12,6 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Plus, MoreHorizontal, Mail, Phone } from "lucide-react"
+import { CreateStaffDialog } from "@/components/staff/CreateStaffDialog"
 
 export default async function StaffPage() {
   const session = await auth()
@@ -35,9 +36,7 @@ export default async function StaffPage() {
           <p className="text-slate-500">Manage your internal team members and access.</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-[#1e293b] hover:bg-[#334155]">
-            <Plus className="mr-2 h-4 w-4" /> Add Staff Member
-          </Button>
+          <CreateStaffDialog roleType="STAFF" />
         </div>
       </div>
 

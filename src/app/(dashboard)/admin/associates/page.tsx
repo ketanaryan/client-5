@@ -12,6 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Plus, Users, Mail, Phone } from "lucide-react"
+import { CreateStaffDialog } from "@/components/staff/CreateStaffDialog"
 
 export default async function AssociatesPage() {
   const session = await auth()
@@ -33,9 +34,7 @@ export default async function AssociatesPage() {
           <p className="text-slate-500">Manage external partners, specialized consultants, and outsourced work.</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-[#1e293b] hover:bg-[#334155]">
-            <Plus className="mr-2 h-4 w-4" /> Add Associate
-          </Button>
+          <CreateStaffDialog roleType="ASSOCIATE" />
         </div>
       </div>
 
