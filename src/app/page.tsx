@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -18,28 +19,28 @@ import ServiceCarousel from "@/components/public/ServiceCarousel"
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1920&q=75",
     title: "Service Beyond Trust",
     subtitle: "We serve every size and type company from startups to Fortune 50.",
     buttonText: "About Us",
     buttonLink: "/about"
   },
   {
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=75",
     title: "Expertise Through Experience",
     subtitle: "Expert Consultancy Service for direct and indirect taxes",
     buttonText: "Click Here",
     buttonLink: "/#services"
   },
   {
-    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=75",
     title: "Partnering You All The Way",
     subtitle: "Your trusted partners in financial growth and compliance.",
     buttonText: "Know How",
     buttonLink: "/about"
   },
   {
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=75",
     title: "Leading Tax & Advisory Firm",
     subtitle: "Unparalleled Excellence in Tax and Advisory Services",
     buttonText: "Get Started",
@@ -82,10 +83,15 @@ export default function LandingPage() {
               key={idx} 
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             >
-              <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 mix-blend-luminosity"
-                style={{ backgroundImage: `url('${slide.image}')` }}
-              ></div>
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                sizes="100vw"
+                className="object-cover opacity-50 mix-blend-luminosity"
+                priority={idx === 0}
+                quality={75}
+              />
               <div className="absolute inset-0 bg-blue-950/60 mix-blend-multiply"></div>
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/40"></div>
               
@@ -143,8 +149,15 @@ export default function LandingPage() {
               </Link>
             </div>
             <div className="w-full md:w-[500px] shrink-0">
-              <div className="relative w-full aspect-square bg-slate-200">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80')] bg-cover bg-center"></div>
+              <div className="relative w-full aspect-square">
+                <Image
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=75"
+                  alt="About Shantanu & Associates"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  className="object-cover"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -165,14 +178,23 @@ export default function LandingPage() {
           </div>
           <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { title: 'Professional Tax Registration', img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80' },
-              { title: 'Professional Tax Registration', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80' },
-              { title: 'FSSAI Registration', img: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&q=80' },
-              { title: 'Rera Registration -Real Estate Agent', img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80' },
-              { title: 'Shop Act Registration', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80' }
+              { title: 'Professional Tax Registration', img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=400&q=75' },
+              { title: 'Professional Tax Registration', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=75' },
+              { title: 'FSSAI Registration', img: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=400&q=75' },
+              { title: 'Rera Registration -Real Estate Agent', img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=75' },
+              { title: 'Shop Act Registration', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=75' }
             ].map((srv, i) => (
               <div key={i} className="flex flex-col rounded-xl overflow-hidden shadow-md cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-shadow">
-                <div className="h-[140px] bg-cover bg-center" style={{ backgroundImage: `url('${srv.img}')` }}></div>
+                <div className="h-[140px] relative overflow-hidden">
+                  <Image
+                    src={srv.img}
+                    alt={srv.title}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 20vw"
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </div>
                 <div className="bg-[#1c3a5e] text-white p-4 h-24 flex items-center justify-center text-center">
                   <h3 className="font-semibold text-[15px] leading-tight">{srv.title}</h3>
                 </div>
@@ -188,14 +210,21 @@ export default function LandingPage() {
           </div>
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Private Limited Company', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80' },
-              { title: 'One Person Company', img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80' },
-              { title: 'Limited Liability Partnership Firm (LLP)', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80' },
-              { title: 'Partnership Firm Registration', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&q=80' }
+              { title: 'Private Limited Company', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=75' },
+              { title: 'One Person Company', img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=500&q=75' },
+              { title: 'Limited Liability Partnership Firm (LLP)', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=500&q=75' },
+              { title: 'Partnership Firm Registration', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&w=500&q=75' }
             ].map((srv, i) => (
               <div key={i} className="bg-white border border-slate-300 rounded-[24px] p-5 flex flex-col hover:shadow-lg transition-shadow cursor-pointer">
                 <div className="h-44 rounded-xl overflow-hidden mb-5 relative">
-                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${srv.img}')` }}></div>
+                  <Image
+                    src={srv.img}
+                    alt={srv.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="flex-1 flex items-center justify-center text-center px-2 mb-2">
                   <h3 className="font-bold text-slate-800 text-[17px]">{srv.title}</h3>
@@ -243,24 +272,31 @@ export default function LandingPage() {
           
           <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-slate-100 shadow-sm">
             {[
-              { title: 'Information Technology', icon: Monitor, img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80' },
-              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&q=80' },
-              { title: 'Engineering & Infra Services', icon: HardHat, img: 'https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&q=80' },
-              { title: 'Education Sector', icon: Book, img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80' },
-              { title: 'Banking & Financial Services', icon: Landmark, img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&q=80' },
-              { title: 'Import & Export', icon: Plane, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80' },
-              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80' },
-              { title: 'Real Estate', icon: Home, img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80' },
-              { title: 'Vessels & Marine', icon: Anchor, img: 'https://images.unsplash.com/photo-1559441164-9646b9a89c4d?auto=format&fit=crop&q=80' },
-              { title: 'Logistics Services', icon: Truck, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80' },
-              { title: 'Automobiles Industry', icon: Car, img: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&q=80' },
-              { title: 'Media & Entertainment', icon: Film, img: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&q=80' },
-              { title: 'Manufacturing & Trading', icon: Factory, img: 'https://images.unsplash.com/photo-1565439390237-770ce818c39e?auto=format&fit=crop&q=80' },
-              { title: 'Non Profit Organisation', icon: Users, img: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80' },
-              { title: 'Chemical Sector', icon: FlaskConical, img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80' }
+              { title: 'Information Technology', icon: Monitor, img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Engineering & Infra Services', icon: HardHat, img: 'https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Education Sector', icon: Book, img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Banking & Financial Services', icon: Landmark, img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Import & Export', icon: Plane, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=300&q=60' },
+              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Real Estate', icon: Home, img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Vessels & Marine', icon: Anchor, img: 'https://images.unsplash.com/photo-1559441164-9646b9a89c4d?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Logistics Services', icon: Truck, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Automobiles Industry', icon: Car, img: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Media & Entertainment', icon: Film, img: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Manufacturing & Trading', icon: Factory, img: 'https://images.unsplash.com/photo-1565439390237-770ce818c39e?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Non Profit Organisation', icon: Users, img: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Chemical Sector', icon: FlaskConical, img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=300&q=60' }
             ].map((ind, i) => (
               <div key={i} className="group relative p-8 border border-slate-100 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 cursor-pointer bg-white">
-                <div className="absolute inset-0 bg-cover bg-center z-0 transition-opacity duration-300 opacity-100 group-hover:opacity-0" style={{ backgroundImage: `url('${ind.img}')` }}></div>
+                <Image
+                  src={ind.img}
+                  alt={ind.title}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  className="object-cover z-0 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-slate-50/90 transition-opacity duration-300 opacity-100 group-hover:opacity-0 z-0"></div>
                 <div className="absolute inset-0 bg-[#1c4b68] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
                 
@@ -290,14 +326,14 @@ export default function LandingPage() {
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 relative">
             {[
               { name: 'Haresh Dudani', initial: 'H', bg: 'bg-[#007acc]', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
-              { name: 'Sunil Kamble', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Viman Nagar, Pune, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
-              { name: 'Parth Patel', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' }
+              { name: 'Sunil Kamble', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Viman Nagar, Pune, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
+              { name: 'Parth Patel', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' }
             ].map((rev, i) => (
               <div key={i} className="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm flex flex-col relative group hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-3">
                     {rev.img ? (
-                      <img src={rev.img} alt={rev.name} className="w-10 h-10 rounded-full object-cover" />
+                      <Image src={rev.img} alt={rev.name} width={40} height={40} className="rounded-full object-cover" loading="lazy" />
                     ) : (
                       <div className={`w-10 h-10 rounded-full ${rev.bg} flex items-center justify-center text-white font-bold text-lg`}>{rev.initial}</div>
                     )}
@@ -321,7 +357,14 @@ export default function LandingPage() {
 
         {/* 7. CONTACT / QUERIES OVERLAY */}
         <section id="contact" className="relative w-full py-24 px-6 lg:px-12 bg-slate-900">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80')] bg-cover bg-center z-0 mix-blend-overlay opacity-60"></div>
+          <Image
+            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1920&q=60"
+            alt="Contact background"
+            fill
+            sizes="100vw"
+            className="object-cover z-0 mix-blend-overlay opacity-60"
+            loading="lazy"
+          />
           <div className="absolute inset-0 bg-blue-950/80 z-0"></div>
           
           <div className="max-w-[1200px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Navbar } from '@/components/public/Navbar';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
@@ -966,10 +967,13 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
       {/* Hero Section */}
       <section className="relative bg-[#032b4e] text-white py-20 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
-          <img
+          <Image
             src={service.image}
             alt={service.title}
-            className="w-full h-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
           />
         </div>
         <div className="relative z-10 container mx-auto px-4 max-w-6xl">
@@ -1019,11 +1023,14 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
 
             {/* Right side image */}
             <div className="sticky top-24">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img 
+              <div className="rounded-2xl overflow-hidden shadow-xl relative aspect-video w-full">
+                <Image 
                   src={service.image} 
                   alt={service.title}
-                  className="w-full h-auto aspect-video object-cover hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
                 />
               </div>
               

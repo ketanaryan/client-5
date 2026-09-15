@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Navbar } from "@/components/public/Navbar"
 import { Button } from "@/components/ui/button"
 import { 
@@ -13,9 +14,13 @@ export default function AboutPage() {
 
       {/* Hero Banner */}
       <section className="relative w-full h-[320px] bg-[#032b4e] overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-25" 
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&auto=format&fit=crop&q=80')` }}
+        <Image
+          src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&auto=format&fit=crop&q=75"
+          alt="About page hero"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-25"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#032b4e] via-[#032b4e]/85 to-transparent" />
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-12 h-full flex flex-col justify-end pb-12">
@@ -115,11 +120,14 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             {/* Sole Partner */}
             <div className="flex flex-col md:flex-row bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-[400px] md:h-auto md:w-[350px] shrink-0 overflow-hidden bg-slate-100">
-                <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=80" 
+              <div className="h-[400px] md:h-auto md:w-[350px] shrink-0 overflow-hidden bg-slate-100 relative">
+                <Image 
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=75" 
                   alt="CA Shantanu Sharma" 
-                  className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 350px"
+                  className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
                 />
               </div>
               <div className="p-8 md:p-10 flex flex-col justify-center flex-1 space-y-4">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -16,37 +17,37 @@ const services: Service[] = [
   {
     title: "Audit And Assurance",
     slug: "audit-and-assurance",
-    img: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&q=80",
+    img: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=600&q=75",
     desc: "Our audit and assurance services provide independent, objective evaluations of your financial statements and internal controls. We help organizations maintain transparency, comply with regulatory standards, and build stakeholder confidence.",
   },
   {
     title: "Consultancy",
     slug: "consultancy",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80",
+    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=75",
     desc: "We offer strategic consultancy services tailored to drive business growth and operational efficiency. Our experienced advisors work closely with you to identify opportunities, mitigate risks, and implement solutions that deliver measurable results.",
   },
   {
     title: "NRI Tax And Allied Services",
     slug: "nri-tax-services",
-    img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80",
+    img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=75",
     desc: "Navigating cross-border taxation can be complex. Our dedicated NRI tax services simplify compliance for non-resident Indians, covering income tax filings, DTAA benefits, repatriation guidance, and FEMA advisory.",
   },
   {
     title: "Corporate Laws",
     slug: "corporate-laws",
-    img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80",
+    img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=75",
     desc: "Stay compliant with ever-evolving corporate legislation. We assist with company law matters including board governance, annual filings, regulatory approvals, and statutory compliance under the Companies Act and allied regulations.",
   },
   {
     title: "Taxation Services",
     slug: "taxation-services",
-    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80",
+    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=75",
     desc: "From direct to indirect taxes, our comprehensive taxation services cover GST, income tax planning, return filings, assessments, and dispute resolution. We ensure you stay compliant while optimizing your overall tax position.",
   },
   {
     title: "Business Registration",
     slug: "business-registration",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=75",
     desc: "Kickstart your entrepreneurial journey with our end-to-end business registration services. We handle company incorporation, LLP registration, partnership deeds, GST registration, and all necessary licences to get you operational swiftly.",
   },
 ];
@@ -92,11 +93,14 @@ export default function ServiceCarousel() {
               className="rounded-xl overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col"
             >
               {/* Image */}
-              <div className="h-[220px] overflow-hidden">
-                <img
+              <div className="h-[220px] overflow-hidden relative">
+                <Image
                   src={service.img}
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-500 hover:scale-110"
+                  loading="lazy"
                 />
               </div>
 

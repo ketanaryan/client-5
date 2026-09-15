@@ -1,6 +1,7 @@
 import type { NextAuthConfig } from "next-auth"
 
 export const authConfig = {
+  trustHost: true,
   providers: [], // providers will be added in auth.ts
   callbacks: {
     async session({ session, token }) {
