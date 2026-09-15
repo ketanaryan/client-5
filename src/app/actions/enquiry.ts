@@ -8,7 +8,7 @@ const EnquirySchema = z.object({
   email: z.string().email("Invalid email address"),
   phone: z.string().optional(),
   serviceRequested: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z.string().min(2, "Message must be at least 2 characters"),
 })
 
 export async function submitEnquiry(formData: FormData) {
@@ -29,8 +29,8 @@ export async function submitEnquiry(formData: FormData) {
 
     return { success: true, message: "Your enquiry has been submitted successfully. We will contact you soon." }
   } catch (error: any) {
-    if (error?.name === "ZodError") {
-      return { success: false, message: error.errors?.[0]?.message || "Validation Error" }
+    if (error instanceof z.ZodError) {
+      return { success: false, message: error.errors[0]?.message || "Validation Error" }
     }
     return { success: false, message: "An error occurred while submitting your enquiry." }
   }
