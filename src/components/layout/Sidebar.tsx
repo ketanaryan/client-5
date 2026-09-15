@@ -21,6 +21,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -72,18 +73,18 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
   const visibleRoutes = routes.filter((route) => route.roles.includes(role))
 
   return (
-    <div className={cn("flex h-full flex-col bg-[#1e293b] text-slate-300", className)}>
+    <div className={cn("flex h-full flex-col bg-white border-r border-slate-200 text-slate-700", className)}>
       <div className="flex h-16 items-center px-6 mt-4 mb-2">
-        <Link href="/" className="flex items-center gap-3 font-bold text-white">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500 text-white font-semibold text-sm shadow-sm">
+        <Link href="/" className="flex items-center gap-3 font-bold text-slate-900">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold text-sm shadow-sm">
             CA
           </div>
-          <span className="text-lg leading-tight tracking-wide font-medium">Chartered<br/>Accountants</span>
+          <span className="text-[17px] leading-tight tracking-tight font-semibold">Chartered<br/><span className="font-medium text-slate-500">Accountants</span></span>
         </Link>
       </div>
 
       <div className="flex-1 overflow-auto py-4 scrollbar-hide">
-        <nav className="grid gap-1 px-3">
+        <nav className="grid gap-1.5 px-4">
           {visibleRoutes.map((route) => {
             const isActive = pathname === route.href || pathname.startsWith(`${route.href}/`)
             return (
@@ -91,13 +92,13 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
                 key={route.href}
                 href={route.href}
                 className={cn(
-                  "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",
+                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[14px] font-medium transition-all duration-200",
                   isActive
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-900/20"
-                    : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                    ? "bg-slate-100 text-slate-900 shadow-sm border border-slate-200/60"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900 border border-transparent"
                 )}
               >
-                <route.icon className={cn("h-5 w-5", isActive ? "text-white" : "text-slate-400")} />
+                <route.icon className={cn("h-[18px] w-[18px]", isActive ? "text-blue-600" : "text-slate-400 group-hover:text-slate-600")} />
                 {route.name}
               </Link>
             )
@@ -105,27 +106,29 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
         </nav>
       </div>
 
-      <div className="p-4 mt-auto">
+      <div className="p-4 mt-auto border-t border-slate-100">
         <DropdownMenu>
-          <DropdownMenuTrigger className="w-full text-left flex items-center gap-3 rounded-xl p-3 hover:bg-slate-800 cursor-pointer transition-colors border border-transparent hover:border-slate-700 outline-none">
-            <Avatar className="h-10 w-10 border-2 border-slate-700">
+          <DropdownMenuTrigger className="w-full text-left flex items-center gap-3 rounded-lg p-2 hover:bg-slate-50 cursor-pointer transition-colors border border-transparent outline-none">
+            <Avatar className="h-9 w-9 border border-slate-200">
               <AvatarImage src="" alt="User" />
-              <AvatarFallback className="bg-slate-700 text-white">
+              <AvatarFallback className="bg-slate-100 text-slate-600 text-xs font-semibold">
                 {userName.substring(0, 2).toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-sm font-semibold text-white leading-tight">{userName}</span>
-              <span className="text-xs text-blue-400 mt-0.5 capitalize">{role.toLowerCase()}</span>
+              <span className="text-[13px] font-semibold text-slate-900 leading-tight">{userName}</span>
+              <span className="text-[11px] font-medium text-slate-500 mt-0.5 capitalize">{role.toLowerCase()}</span>
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56 bg-white border-slate-200" align="end" side="top">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600 cursor-pointer" onClick={() => signOut({ callbackUrl: "/login" })}>
+          <DropdownMenuContent className="w-56 bg-white border-slate-200 rounded-xl shadow-lg" align="end" side="top">
+            <DropdownMenuGroup>
+              <DropdownMenuLabel className="text-slate-800 font-semibold text-xs uppercase tracking-wider">My Account</DropdownMenuLabel>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator className="bg-slate-100" />
+            <DropdownMenuItem className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">Profile</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">Settings</DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-slate-100" />
+            <DropdownMenuItem className="text-red-600 font-medium cursor-pointer text-[13px] hover:bg-red-50" onClick={() => signOut({ callbackUrl: "/login" })}>
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

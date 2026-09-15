@@ -17,7 +17,7 @@ export default async function DashboardLayout({
   return (
     <div className="flex h-screen w-full overflow-hidden bg-[#f8fafc]">
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block lg:w-64 lg:shrink-0 bg-[#1e293b]">
+      <div className="hidden lg:block lg:w-64 lg:shrink-0 bg-white">
         <Sidebar role={userRole} userName={userName} />
       </div>
       

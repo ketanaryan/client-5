@@ -21,7 +21,7 @@ export function Header({ role = "ADMIN" }: { userName?: string, role?: any }) {
             <Menu className="h-5 w-5 text-slate-700" />
             <span className="sr-only">Toggle Menu</span>
           </SheetTrigger>
-          <SheetContent side="left" className="w-72 p-0 border-none bg-[#1e293b]">
+          <SheetContent side="left" className="w-72 p-0 border-none bg-white">
             <Sidebar role={role} className="border-none" />
           </SheetContent>
         </Sheet>
