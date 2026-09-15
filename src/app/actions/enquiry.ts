@@ -30,7 +30,7 @@ export async function submitEnquiry(formData: FormData) {
     return { success: true, message: "Your enquiry has been submitted successfully. We will contact you soon." }
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      return { success: false, message: error.errors[0]?.message || "Validation Error" }
+      return { success: false, message: error.issues[0]?.message || "Validation Error" }
     }
     return { success: false, message: "An error occurred while submitting your enquiry." }
   }
