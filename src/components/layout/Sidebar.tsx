@@ -133,7 +133,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
               Settings
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-slate-100" />
-            <DropdownMenuItem className="text-red-600 font-medium cursor-pointer text-[13px] hover:bg-red-50" onClick={() => signOut({ callbackUrl: window?.location?.origin + "/login" })}>
+            <DropdownMenuItem className="text-red-600 font-medium cursor-pointer text-[13px] hover:bg-red-50" onClick={() => signOut({ callbackUrl: "/login" })}>
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
