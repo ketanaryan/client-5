@@ -205,29 +205,36 @@ export default function LandingPage() {
 
         {/* 3C. COMPANY FORMATION */}
         <section className="w-full pt-16 pb-24 px-6 lg:px-12 bg-white">
-          <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
-            <h2 className="text-3xl font-bold text-slate-900">Company Formation Services We Offer</h2>
+          <div className="max-w-[1200px] mx-auto mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Company Formation</h2>
+              <p className="text-slate-500 mt-3 text-lg max-w-xl">Start your business with a solid legal foundation. We handle the entire incorporation process seamlessly.</p>
+            </div>
+            <Button variant="outline" className="hidden md:flex rounded-full px-6 h-12 text-[15px] border-slate-200 hover:bg-slate-50 font-medium">View All Services</Button>
           </div>
+          
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Private Limited Company', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=75' },
-              { title: 'One Person Company', img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=500&q=75' },
-              { title: 'Limited Liability Partnership Firm (LLP)', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=500&q=75' },
-              { title: 'Partnership Firm Registration', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&w=500&q=75' }
+              { title: 'Private Limited', subtitle: 'Most popular for startups', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80' },
+              { title: 'One Person Company', subtitle: 'For solo entrepreneurs', img: 'https://images.unsplash.com/photo-1554774853-719586f82d77?auto=format&fit=crop&w=600&q=80' },
+              { title: 'LLP Registration', subtitle: 'Flexible partnership model', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80' },
+              { title: 'Partnership Firm', subtitle: 'Traditional joint venture', img: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80' }
             ].map((srv, i) => (
-              <div key={i} className="bg-white border border-slate-300 rounded-[24px] p-5 flex flex-col hover:shadow-lg transition-shadow cursor-pointer">
-                <div className="h-44 rounded-xl overflow-hidden mb-5 relative">
+              <div key={i} className="group relative bg-white border border-slate-200/80 rounded-[2rem] p-3 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col">
+                <div className="h-56 w-full rounded-3xl overflow-hidden relative mb-5">
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                   <Image
                     src={srv.img}
                     alt={srv.title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover"
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
                 </div>
-                <div className="flex-1 flex items-center justify-center text-center px-2 mb-2">
-                  <h3 className="font-bold text-slate-800 text-[17px]">{srv.title}</h3>
+                <div className="px-3 pb-4">
+                  <h3 className="font-bold text-slate-900 text-lg tracking-tight mb-1">{srv.title}</h3>
+                  <p className="text-sm font-medium text-slate-500">{srv.subtitle}</p>
                 </div>
               </div>
             ))}
