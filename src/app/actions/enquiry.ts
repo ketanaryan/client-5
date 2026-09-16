@@ -4,6 +4,16 @@ import { z } from "zod"
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 
+export async function deleteEnquiry(enquiryId: string) {
+  try {
+    await prisma.enquiry.delete({ where: { id: enquiryId } })
+    revalidatePath("/admin/enquiries")
+    return { success: true }
+  } catch (error: any) {
+    return { success: false, error: error.message }
+  }
+}
+
 const EnquirySchema = z.object({
   name: z.string().min(2, "Name is too short"),
   email: z.string().email("Invalid email address"),

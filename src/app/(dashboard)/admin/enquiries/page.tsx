@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-import { ProvisionClientButton } from "@/components/enquiries/ProvisionClientButton"
+import { ProvisionClientButton, DeleteEnquiryButton } from "@/components/enquiries/ProvisionClientButton"
 
 // Server component
 export default async function EnquiriesPage() {
@@ -78,7 +78,10 @@ export default async function EnquiriesPage() {
                       </Badge>
                     </TableCell>
                     <TableCell className="pr-6 text-right py-4">
-                      <ProvisionClientButton enquiryId={enq.id} status={enq.status} />
+                      <div className="flex items-center justify-end gap-2">
+                        <ProvisionClientButton enquiryId={enq.id} status={enq.status} />
+                        <DeleteEnquiryButton enquiryId={enq.id} />
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))

@@ -2,10 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { convertEnquiryToClient } from "@/app/actions/enquiry"
+import { convertEnquiryToClient, deleteEnquiry } from "@/app/actions/enquiry"
 import { toast } from "sonner"
 import { useState } from "react"
-import { Loader2 } from "lucide-react"
+import { Loader2, Trash2 } from "lucide-react"
 
 export function ProvisionClientButton({ enquiryId, status }: { enquiryId: string, status: string }) {
   const [loading, setLoading] = useState(false)
@@ -44,6 +44,35 @@ export function ProvisionClientButton({ enquiryId, status }: { enquiryId: string
     >
       {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
       Provision Portal
+    </Button>
+  )
+}
+
+export function DeleteEnquiryButton({ enquiryId }: { enquiryId: string }) {
+  const [loading, setLoading] = useState(false)
+
+  const handleDelete = async () => {
+    if (!confirm("Are you sure you want to delete this enquiry?")) return
+    setLoading(true)
+    const result = await deleteEnquiry(enquiryId)
+    setLoading(false)
+
+    if (result.success) {
+      toast.success("Enquiry deleted")
+    } else {
+      toast.error("Failed to delete", { description: result.error })
+    }
+  }
+
+  return (
+    <Button 
+      onClick={handleDelete} 
+      disabled={loading} 
+      variant="ghost" 
+      size="icon"
+      className="text-red-500 hover:text-red-700 hover:bg-red-50 h-8 w-8"
+    >
+      {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
     </Button>
   )
 }
