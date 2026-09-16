@@ -36,7 +36,7 @@ export default function AdminRequestDetailClient({ workRequest, staffMembers }: 
       }
 
       toast.success("Admin settings saved successfully!")
-      router.refresh()
+      window.location.reload()
     } catch (err) {
       toast.error("Failed to update settings")
     } finally {
@@ -53,7 +53,7 @@ export default function AdminRequestDetailClient({ workRequest, staffMembers }: 
       setGeneratingInvoice(true)
       await generateInvoiceForRequest(workRequest.id, parseFloat(fee))
       toast.success("Invoice generated! Client can now pay.")
-      router.refresh()
+      window.location.reload()
     } catch (err: any) {
       toast.error(err.message || "Failed to generate invoice")
     } finally {
@@ -160,7 +160,7 @@ export default function AdminRequestDetailClient({ workRequest, staffMembers }: 
                   <SelectContent>
                     <SelectItem value="unassigned" className="text-slate-400 font-medium">Unassigned</SelectItem>
                     {staffMembers.map(staff => (
-                      <SelectItem key={staff.id} value={staff.id}>{staff.name}</SelectItem>
+                      <SelectItem key={staff.id} value={staff.id}>{staff.name || "Unnamed Staff"}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -214,3 +214,4 @@ export default function AdminRequestDetailClient({ workRequest, staffMembers }: 
     </div>
   )
 }
+
