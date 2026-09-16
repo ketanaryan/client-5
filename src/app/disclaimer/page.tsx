@@ -35,7 +35,7 @@ export default function Disclaimer() {
           <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">
             &larr; Back to Home
           </Link>
-          <a href="mailto:contact@shantanuassociates.com" className="text-sm text-slate-500 hover:text-slate-700">
+          <a href="mailto:shantanus.associates@gmail.com" className="text-sm text-slate-500 hover:text-slate-700">
             Contact Support
           </a>
         </div>

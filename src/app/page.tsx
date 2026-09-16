@@ -424,8 +424,8 @@ export default function LandingPage() {
                 Do You Have Any Queries To Discuss? Let's Talk.
               </h2>
               <div className="pt-4">
-                <a href="tel:+919322949820" className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 transition-colors border border-white/20 rounded-md px-8 py-4 text-xl font-bold backdrop-blur-sm">
-                  <Phone className="h-5 w-5 opacity-70" /> +91 93229 49820
+                <a href="tel:7219308077" className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 transition-colors border border-white/20 rounded-md px-8 py-4 text-xl font-bold backdrop-blur-sm">
+                  <Phone className="h-5 w-5 opacity-70" /> 7219308077
                 </a>
               </div>
             </div>
@@ -488,17 +488,17 @@ export default function LandingPage() {
                 <MapPin className="w-5 h-5 mt-1 text-white shrink-0" />
                 <div className="flex flex-col gap-1">
                   <strong className="text-[15px] font-bold tracking-wide">Shantanu & Associates Head Office</strong>
-                  <span className="text-slate-300 text-sm leading-relaxed">101, Alpha Financial Center, Indiranagar, Bangalore, Karnataka, India - 560001.</span>
+                  <span className="text-slate-300 text-sm leading-relaxed">No 1, 2nd Floor, 18th Cross Road, 23rd Main Road, JP Nagar 5th Phase, Bangalore - 560078</span>
                 </div>
               </div>
               <div className="flex items-center gap-4 text-slate-300 text-sm">
-                <Mail className="w-5 h-5 text-white shrink-0" /> <a href="mailto:contact@shantanuassociates.com" className="hover:text-emerald-400 cursor-pointer">contact@shantanuassociates.com</a>
+                <Mail className="w-5 h-5 text-white shrink-0" /> <a href="mailto:shantanus.associates@gmail.com" className="hover:text-emerald-400 cursor-pointer">shantanus.associates@gmail.com</a>
               </div>
               <div className="flex items-center gap-4 text-slate-300 text-sm">
-                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:+919876543210" className="hover:text-emerald-400 cursor-pointer">+91 98765 43210</a>
+                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:8668555246" className="hover:text-emerald-400 cursor-pointer">8668555246</a>
               </div>
               <div className="flex items-center gap-4 text-slate-300 text-sm">
-                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:+919322949820" className="hover:text-emerald-400 cursor-pointer">+91 93229 49820</a>
+                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:7219308077" className="hover:text-emerald-400 cursor-pointer">7219308077</a>
               </div>
             </div>
           </div>

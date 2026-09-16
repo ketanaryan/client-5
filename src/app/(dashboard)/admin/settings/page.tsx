@@ -51,7 +51,7 @@ export default async function SettingsPage() {
             </div>
             <div className="space-y-3">
               <Label htmlFor="address" className="text-slate-700 font-semibold">Registered Address</Label>
-              <Input id="address" defaultValue="123 Business Park, Mumbai" className="max-w-md bg-slate-50 focus:bg-white transition-colors" />
+              <Input id="address" defaultValue="No 1, 2nd Floor, 18th Cross Road, 23rd Main Road, JP Nagar 5th Phase, Bangalore - 560078" className="max-w-md bg-slate-50 focus:bg-white transition-colors" />
             </div>
             <div className="pt-2 border-t border-slate-100 mt-6">
               <Button className="mt-4 bg-[#032b4e] hover:bg-[#1c3a5e] text-white shadow-sm font-medium">

@@ -112,13 +112,13 @@ export function Navbar() {
       <div className="bg-slate-900 text-slate-100 py-2 px-6 lg:px-12 flex items-center justify-between text-xs sm:text-sm font-medium">
         <div>20+ Years of Excellence</div>
         <div className="flex items-center gap-6">
-          <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+          <a href="tel:8668555246" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
             <Phone className="h-4 w-4" />
-            <span className="hidden sm:inline">+91 98765 43210</span>
+            <span className="hidden sm:inline">8668555246</span>
           </a>
-          <a href="mailto:contact@shantanuassociates.com" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+          <a href="mailto:shantanus.associates@gmail.com" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
             <Mail className="h-4 w-4" />
-            <span className="hidden sm:inline">contact@shantanuassociates.com</span>
+            <span className="hidden sm:inline">shantanus.associates@gmail.com</span>
           </a>
         </div>
       </div>

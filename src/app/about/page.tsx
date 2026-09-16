@@ -208,15 +208,15 @@ export default function AboutPage() {
             <div className="space-y-3 text-sm text-slate-300">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-1" />
-                <span>101, Alpha Financial Center, Indiranagar, Bangalore, Karnataka, India - 560001</span>
+                <span>No 1, 2nd Floor, 18th Cross Road, 23rd Main Road, JP Nagar 5th Phase, Bangalore - 560078</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-white transition-colors">+91 98765 43210</a>
+                <a href="tel:8668555246" className="hover:text-white transition-colors">8668555246</a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
-                <a href="mailto:contact@shantanuassociates.com" className="hover:text-white transition-colors">contact@shantanuassociates.com</a>
+                <a href="mailto:shantanus.associates@gmail.com" className="hover:text-white transition-colors">shantanus.associates@gmail.com</a>
               </div>
             </div>
           </div>
@@ -232,3 +232,4 @@ export default function AboutPage() {
     </div>
   )
 }
+
