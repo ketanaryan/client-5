@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 import { SessionProvider } from "@/components/providers/session-provider";
+import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
@@ -28,6 +29,7 @@ export default function RootLayout({
         <SessionProvider>
           {children}
         </SessionProvider>
+        <Toaster position="top-right" />
       </body>
     </html>
   );
