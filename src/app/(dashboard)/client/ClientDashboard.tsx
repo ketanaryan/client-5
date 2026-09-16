@@ -136,9 +136,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-bold text-slate-900">Live Status Tracking</h3>
               <Dialog open={isRaiseRequestOpen} onOpenChange={setIsRaiseRequestOpen}>
-                <DialogTrigger asChild>
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-none">+ Raise New Request</Button>
-                </DialogTrigger>
+                <DialogTrigger render={<Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-none" />}>+ Raise New Request</DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Raise New Request</DialogTitle>
@@ -429,3 +427,4 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
     </div>
   )
 }
+
