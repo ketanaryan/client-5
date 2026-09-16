@@ -86,10 +86,21 @@ export async function convertEnquiryToClient(enquiryId: string) {
     // Generate secure temp password
     const tempPassword = crypto.randomBytes(4).toString("hex") // 8 characters
     const passwordHash = await bcrypt.hash(tempPassword, 10)
+
+    // Generate userCode (CLI-XXXX) safely avoiding unique constraint errors
+    const lastUser = await prisma.user.findFirst({
+      where: { role: "CLIENT", userCode: { startsWith: "CLI-" } },
+      orderBy: { userCode: "desc" }
+    })
     
-    // Generate userCode (CLI-XXXX)
-    const count = await prisma.user.count({ where: { role: "CLIENT" } })
-    const userCode = `CLI-${1000 + count}`
+    let nextNum = 1000
+    if (lastUser && lastUser.userCode) {
+      const parts = lastUser.userCode.split("-")
+      if (parts.length === 2 && !isNaN(parseInt(parts[1]))) {
+        nextNum = parseInt(parts[1]) + 1
+      }
+    }
+    const userCode = `CLI-${nextNum}`
 
     // Create User and ClientProfile
     await prisma.user.create({
