@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 const statusConfig: Record<string, { label: string; className: string }> = {
   PENDING: {
@@ -108,7 +109,7 @@ export default async function StaffRequestsPage() {
               <TableHead>Status</TableHead>
               <TableHead>Priority</TableHead>
               <TableHead>Due Date</TableHead>
-              <TableHead className="text-right">Fee Amount</TableHead>
+              <TableHead className="text-right">Fee Amount</TableHead>`n                <TableHead className="text-right">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -123,7 +124,7 @@ export default async function StaffRequestsPage() {
               }
 
               return (
-                <TableRow key={wr.id}>
+                <TableRow key={wr.id} className="hover:bg-slate-50">
                   <TableCell>
                     <p className="font-medium text-slate-900">{wr.title}</p>
                     <p className="text-xs text-slate-500 mt-0.5">
@@ -134,11 +135,14 @@ export default async function StaffRequestsPage() {
                     <p className="text-sm font-medium text-slate-900">
                       {wr.client.user.name ?? "—"}
                     </p>
+                    <p className="text-xs text-slate-500">
+                      {wr.client.companyName ?? "—"}
+                    </p>
                   </TableCell>
                   <TableCell>
                     <Badge
                       variant="outline"
-                      className={status.className}
+                      className={`${status.className} border-0 shadow-none font-medium px-2 py-0.5`}
                     >
                       {status.label}
                     </Badge>
@@ -146,16 +150,21 @@ export default async function StaffRequestsPage() {
                   <TableCell>
                     <Badge
                       variant="outline"
-                      className={priority.className}
+                      className={`${priority.className} font-medium px-2 py-0.5 shadow-none`}
                     >
                       {priority.label}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-sm text-slate-600">
-                    {formatDate(wr.dueDate)}
+                  <TableCell className="text-sm text-slate-500">
+                    {wr.dueDate ? formatDate(wr.dueDate) : "—"}
                   </TableCell>
                   <TableCell className="text-right text-sm font-medium text-slate-700">
                     {formatCurrency(wr.feeAmount)}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Link href={`/staff/requests/${wr.id}`} className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                      View Details &rarr;
+                    </Link>
                   </TableCell>
                 </TableRow>
               )
@@ -176,3 +185,5 @@ export default async function StaffRequestsPage() {
     </div>
   )
 }
+
+

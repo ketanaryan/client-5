@@ -97,3 +97,41 @@ export async function getClients() {
     include: { user: true }
   })
 }
+
+export async function updateWorkRequestFee(id: string, feeAmount: number) {
+  const session = await auth()
+  if (!session?.user || (session.user.role !== "STAFF" && session.user.role !== "ADMIN")) {
+    throw new Error("Unauthorized")
+  }
+  await prisma.workRequest.update({
+    where: { id },
+    data: { feeAmount }
+  })
+  revalidatePath("/staff/requests")
+  return { success: true }
+}
+
+export async function addTaskToRequest(workRequestId: string, description: string) {
+  const session = await auth()
+  if (!session?.user || (session.user.role !== "STAFF" && session.user.role !== "ADMIN")) {
+    throw new Error("Unauthorized")
+  }
+  await prisma.task.create({
+    data: {
+      workRequestId,
+      description,
+    }
+  })
+  return { success: true }
+}
+
+export async function toggleTaskStatus(taskId: string, isCompleted: boolean) {
+  const session = await auth()
+  if (!session?.user) throw new Error("Unauthorized")
+  
+  await prisma.task.update({
+    where: { id: taskId },
+    data: { isCompleted }
+  })
+  return { success: true }
+}

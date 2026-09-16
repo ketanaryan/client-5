@@ -197,8 +197,43 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                       </Badge>
                     </div>
                   </CardHeader>
-                  <CardContent className="pt-6 pb-6">
-                    <p className="text-sm text-slate-600 mb-6">{wr.description}</p>
+                  <CardContent className="pt-6 pb-6 space-y-6">
+                    {wr.tasks && wr.tasks.length > 0 && (
+                      <div className="space-y-3 border-t border-slate-100 pt-4 mt-2">
+                        <h4 className="text-sm font-semibold text-slate-900">Required Documents & Tasks</h4>
+                        <div className="space-y-2">
+                          {wr.tasks.map((task: any) => (
+                            <div key={task.id} className="flex items-center space-x-3 p-3 bg-slate-50/50 rounded-lg border border-slate-100">
+                              {task.isCompleted ? (
+                                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                              ) : (
+                                <Circle className="w-5 h-5 text-slate-300" />
+                              )}
+                              <span className={`text-sm ${task.isCompleted ? "text-slate-400 line-through" : "text-slate-700 font-medium"}`}>
+                                {task.description}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="flex justify-end pt-2">
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="text-blue-600 border-blue-200 bg-blue-50 hover:bg-blue-100 hover:text-blue-700"
+                            onClick={() => {
+                              setActiveTab("documents")
+                              setTimeout(() => documentUploadRef.current?.click(), 100)
+                            }}
+                          >
+                            <Upload className="w-4 h-4 mr-2" />
+                            Upload Documents for Request
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                    {(!wr.tasks || wr.tasks.length === 0) && (
+                      <p className="text-sm text-slate-500 mt-2">Your CA will review this request and provide a checklist of required documents shortly.</p>
+                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -482,5 +517,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
     </div>
   )
 }
+
+
 
 
