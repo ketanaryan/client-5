@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { ProvisionClientButton } from "@/components/enquiries/ProvisionClientButton"
 
 // Server component
 export default async function EnquiriesPage() {
@@ -28,14 +29,15 @@ export default async function EnquiriesPage() {
                 <TableHead className="text-slate-500 font-semibold text-xs tracking-wider uppercase py-4">Name</TableHead>
                 <TableHead className="text-slate-500 font-semibold text-xs tracking-wider uppercase py-4">Contact Info</TableHead>
                 <TableHead className="text-slate-500 font-semibold text-xs tracking-wider uppercase py-4">Service Interested In</TableHead>
-                <TableHead className="text-slate-500 font-semibold text-xs tracking-wider uppercase py-4 w-[30%]">Message</TableHead>
-                <TableHead className="text-slate-500 font-semibold text-xs tracking-wider uppercase py-4 text-right pr-6">Status</TableHead>
+                <TableHead className="text-slate-500 font-semibold text-xs tracking-wider uppercase py-4 w-[25%]">Message</TableHead>
+                <TableHead className="text-slate-500 font-semibold text-xs tracking-wider uppercase py-4">Status</TableHead>
+                <TableHead className="text-slate-500 font-semibold text-xs tracking-wider uppercase py-4 text-right pr-6">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {enquiries.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="text-center py-12 text-slate-500">
+                  <TableCell colSpan={7} className="text-center py-12 text-slate-500">
                     No enquiries found yet.
                   </TableCell>
                 </TableRow>
@@ -70,10 +72,13 @@ export default async function EnquiriesPage() {
                         {enq.message}
                       </p>
                     </TableCell>
-                    <TableCell className="pr-6 text-right py-4">
-                      <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2.5 py-0.5">
+                    <TableCell className="py-4">
+                      <Badge className={enq.status === "CONVERTED" ? "bg-blue-100 text-blue-700 hover:bg-blue-100 border-none px-2.5 py-0.5" : "bg-amber-100 text-amber-700 hover:bg-amber-100 border-none px-2.5 py-0.5"}>
                         {enq.status}
                       </Badge>
+                    </TableCell>
+                    <TableCell className="pr-6 text-right py-4">
+                      <ProvisionClientButton enquiryId={enq.id} status={enq.status} />
                     </TableCell>
                   </TableRow>
                 ))

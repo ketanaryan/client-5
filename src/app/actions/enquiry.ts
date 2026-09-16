@@ -2,6 +2,7 @@
 
 import { z } from "zod"
 import { prisma } from "@/lib/prisma"
+import { revalidatePath } from "next/cache"
 
 const EnquirySchema = z.object({
   name: z.string().min(2, "Name is too short"),
@@ -33,5 +34,35 @@ export async function submitEnquiry(formData: FormData) {
       return { success: false, message: error.issues[0]?.message || "Validation Error" }
     }
     return { success: false, message: "An error occurred while submitting your enquiry." }
+  }
+}
+
+export async function convertEnquiryToClient(enquiryId: string) {
+  try {
+    const enquiry = await prisma.enquiry.findUnique({
+      where: { id: enquiryId }
+    })
+    
+    if (!enquiry) {
+      throw new Error("Enquiry not found")
+    }
+
+    if (enquiry.status === "CONVERTED") {
+      throw new Error("Enquiry already converted")
+    }
+
+    // Update status
+    await prisma.enquiry.update({
+      where: { id: enquiryId },
+      data: { status: "CONVERTED" }
+    })
+
+    // Here we would normally provision the User and ClientProfile
+    // but the user requested mock functionality for now.
+    revalidatePath("/admin/enquiries")
+
+    return { success: true }
+  } catch (error: any) {
+    return { success: false, error: error.message }
   }
 }
