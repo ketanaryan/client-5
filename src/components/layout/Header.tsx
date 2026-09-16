@@ -43,16 +43,14 @@ export function Header({ role = "ADMIN", userName = "User", userImage = null, no
         </div>
 
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative hover:bg-slate-100 rounded-full h-10 w-10">
-              <Bell className="h-[22px] w-[22px] text-slate-600" />
-              {unreadCount > 0 && (
+          <DropdownMenuTrigger className="relative hover:bg-slate-100 rounded-full h-10 w-10 flex items-center justify-center outline-none transition-colors border-none cursor-pointer">
+            <Bell className="h-[22px] w-[22px] text-slate-600" />
+            {unreadCount > 0 && (
                 <Badge className="absolute right-1 top-1.5 flex h-4 w-4 items-center justify-center rounded-full p-0 text-[10px] bg-red-500 text-white border-2 border-[#f8fafc]">
                   {unreadCount}
                 </Badge>
               )}
               <span className="sr-only">Notifications</span>
-            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-80 bg-white border-slate-200 rounded-xl shadow-lg p-0" align="end" sideOffset={8}>
             <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
