@@ -23,7 +23,7 @@ export async function sendWelcomeEmail(toEmail: string, tempPassword: string, cl
           <p style="color: #475569; font-size: 14px;">
             <em>Note: You will be required to change this password immediately upon your first login to ensure the security of your financial data.</em>
           </p>
-          <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/login" style="display: inline-block; background-color: #059669; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; margin-top: 15px;">
+          <a href="http://ld9lmhwfryjdvsaopzuedrd4.187.127.150.158.sslip.io/login" style="display: inline-block; background-color: #059669; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; margin-top: 15px;">
             Access Secure Portal
           </a>
         </div>
