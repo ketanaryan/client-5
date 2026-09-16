@@ -569,10 +569,9 @@ export default function LandingPage() {
           <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col lg:flex-row justify-between items-center text-[12px] text-slate-400 gap-4 tracking-wide">
             <div>© 2026 Shantanu & Associates. All Rights Reserved.</div>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
-              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Sitemap</Link>|
-              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Disclaimer</Link>|
-              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Terms & Conditions</Link>|
-              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Privacy Policy</Link>
+              <Link href="/disclaimer" className="hover:text-white cursor-pointer transition-colors">Disclaimer</Link>|
+              <Link href="/terms-and-conditions" className="hover:text-white cursor-pointer transition-colors">Terms & Conditions</Link>|
+              <Link href="/privacy-policy" className="hover:text-white cursor-pointer transition-colors">Privacy Policy</Link>
             </div>
             <div>Designed & Developed by <strong className="text-white">Aryan</strong></div>
           </div>

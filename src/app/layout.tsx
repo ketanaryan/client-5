@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "CA Practice ERP",
-  description: "Enterprise Practice Management for Chartered Accountants",
+  title: "CA Shantanu & Associates",
+  description: "Official Portal for CA Shantanu & Associates. Expert Chartered Accountant services including Tax Advisory, Compliance, and Auditing.",
 };
 
 import { SessionProvider } from "@/components/providers/session-provider";
