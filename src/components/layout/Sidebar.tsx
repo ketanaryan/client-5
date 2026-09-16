@@ -125,10 +125,10 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
               <DropdownMenuLabel className="text-slate-800 font-semibold text-xs uppercase tracking-wider">My Account</DropdownMenuLabel>
             </DropdownMenuGroup>
             <DropdownMenuSeparator className="bg-slate-100" />
-            <DropdownMenuItem render={<Link href={role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/profile`} />} className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
+            <DropdownMenuItem render={<Link href={`/${role.toLowerCase()}/profile`} />} className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
               Profile
             </DropdownMenuItem>
-            <DropdownMenuItem render={<Link href={role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/settings`} />} className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
+            <DropdownMenuItem render={<Link href={`/${role.toLowerCase()}/settings`} />} className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
               Settings
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-slate-100" />
