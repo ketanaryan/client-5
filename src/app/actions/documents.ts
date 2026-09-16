@@ -3,9 +3,16 @@
 import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
-import { mkdir, writeFile } from "fs/promises"
-import { join } from "path"
+import { mkdir, writeFile, unlink } from "fs/promises"
+import { join, extname, basename } from "path"
 import { randomUUID } from "crypto"
+
+// Allowed extensions for high security
+const ALLOWED_EXTENSIONS = new Set([
+  ".pdf", ".jpg", ".jpeg", ".png", 
+  ".xls", ".xlsx", ".doc", ".docx", 
+  ".csv", ".txt", ".zip"
+])
 
 export async function uploadClientDocument(formData: FormData) {
   const session = await auth()
@@ -15,26 +22,37 @@ export async function uploadClientDocument(formData: FormData) {
   if (!file) throw new Error("No file provided")
 
   const buffer = Buffer.from(await file.arrayBuffer())
-  const filename = `${randomUUID()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`
+
+  // Backend Size Check (5MB)
+  if (buffer.length > 5 * 1024 * 1024) {
+    throw new Error("File size exceeds 5MB limit")
+  }
+
+  // Security Check: Extension Validation
+  const originalName = file.name || "unnamed_file"
+  const ext = extname(originalName).toLowerCase()
   
-  // Ensure storage directory exists
+  if (!ALLOWED_EXTENSIONS.has(ext)) {
+    throw new Error(`File type ${ext} is not allowed for security reasons.`)
+  }
+
+  // Sanitize filename to prevent Path Traversal
+  const safeName = basename(originalName).replace(/[^a-zA-Z0-9.\-_]/g, "_")
+  const filename = `${randomUUID()}-${safeName}`
+  
+  // Ensure storage directory exists securely outside public root
   const storageDir = join(process.cwd(), "storage", "documents")
   await mkdir(storageDir, { recursive: true })
   
   const filePath = join(storageDir, filename)
   await writeFile(filePath, buffer)
 
-  // Find if client profile
-  const clientProfile = await prisma.clientProfile.findUnique({
-    where: { userId: session.user.id }
-  })
-
+  // Link file to client
   await prisma.document.create({
     data: {
-      title: file.name,
-      fileUrl: filename, // Just store the filename, the API route will resolve it
+      title: safeName,
+      fileUrl: filename,
       uploadedById: session.user.id,
-      // If we wanted to tie it to a specific work request, we could accept workRequestId in formData
     }
   })
 
@@ -47,19 +65,27 @@ export async function deleteDocument(documentId: string) {
   if (!session?.user?.id) throw new Error("Unauthorized")
 
   const doc = await prisma.document.findUnique({
-    where: { id: documentId },
-    include: { uploadedBy: true }
+    where: { id: documentId }
   })
 
   if (!doc) throw new Error("Document not found")
 
-  // Only admin, staff, or the owner can delete
   if (session.user.role !== "ADMIN" && session.user.role !== "STAFF" && doc.uploadedById !== session.user.id) {
     throw new Error("Unauthorized")
   }
 
-  // NOTE: For safety in this demo, we'll just delete the DB record.
-  // In a real app, we'd also delete the file from the filesystem.
+  // Strictly delete from filesystem as well for data hygiene
+  try {
+    const storageDir = join(process.cwd(), "storage", "documents")
+    const filePath = join(storageDir, doc.fileUrl)
+    // Prevent traversal out of the documents folder
+    if (filePath.startsWith(storageDir)) {
+      await unlink(filePath).catch(() => console.log("File already missing from disk"))
+    }
+  } catch (e) {
+    console.error(e)
+  }
+
   await prisma.document.delete({
     where: { id: documentId }
   })

@@ -1,7 +1,7 @@
 import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 import { readFile } from "fs/promises"
-import { join } from "path"
+import { join, resolve } from "path"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
@@ -20,19 +20,17 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     return new NextResponse("Document not found", { status: 404 })
   }
 
-  // Security checks
+  // Strictly enforce authorization
   const isOwner = doc.uploadedById === session.user.id
   const isStaff = session.user.role === "STAFF" || session.user.role === "ADMIN"
   
   let hasAccess = isOwner || isStaff
 
   if (!hasAccess && session.user.role === "CLIENT") {
-    // Check if the client profile owns the document
     const clientProfile = await prisma.clientProfile.findUnique({
       where: { userId: session.user.id }
     })
     
-    // Allow access if the document belongs to a work request of this client
     if (doc.workRequest && clientProfile && doc.workRequest.clientId === clientProfile.id) {
       hasAccess = true
     }
@@ -43,15 +41,23 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 
   try {
-    const storageDir = join(process.cwd(), "storage", "documents")
-    const filePath = join(storageDir, doc.fileUrl)
+    const storageDir = resolve(process.cwd(), "storage", "documents")
+    const filePath = resolve(storageDir, doc.fileUrl)
+    
+    // Crucial: Prevent Directory Traversal Attack by ensuring the resolved path is within storageDir
+    if (!filePath.startsWith(storageDir)) {
+      console.warn("Security Alert: Path traversal attempt prevented")
+      return new NextResponse("Forbidden", { status: 403 })
+    }
+
     const fileBuffer = await readFile(filePath)
 
-    // Send the file down
     return new NextResponse(fileBuffer, {
       headers: {
         "Content-Disposition": `attachment; filename="${doc.title}"`,
         "Content-Type": "application/octet-stream",
+        // Enforce secure headers
+        "X-Content-Type-Options": "nosniff",
       }
     })
   } catch (error) {
