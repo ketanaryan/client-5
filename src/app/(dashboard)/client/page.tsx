@@ -11,10 +11,9 @@ export default async function ClientPage() {
   }
 
   if (session.user.role !== "CLIENT") {
-    redirect("/") // send non-clients to their respective dashboards
+    redirect("/") 
   }
 
-  // Fetch client data
   const clientData = await prisma.user.findUnique({
     where: { id: session.user.id },
     include: {
@@ -28,11 +27,15 @@ export default async function ClientPage() {
     }
   })
 
-  // Fetch invoices where the work request belongs to this client
+  if (!clientData || !clientData.clientProfile) {
+    redirect("/login")
+  }
+
+  // Correct invoice fetch (using clientProfile.id)
   const invoices = await prisma.invoice.findMany({
     where: {
       workRequest: {
-        clientId: session.user.id
+        clientId: clientData.clientProfile.id
       }
     },
     orderBy: { issuedDate: "desc" },
@@ -42,16 +45,25 @@ export default async function ClientPage() {
     }
   })
 
-  if (!clientData) {
-    redirect("/login")
-  }
+  // Fetch documents for the vault
+  const documents = await prisma.document.findMany({
+    where: {
+      OR: [
+        { uploadedById: session.user.id },
+        { workRequest: { clientId: clientData.clientProfile.id } }
+      ]
+    },
+    orderBy: { createdAt: "desc" },
+    include: { uploadedBy: true }
+  })
 
   return (
     <ClientPortal 
       user={clientData} 
       profile={clientData.clientProfile} 
-      workRequests={clientData.clientProfile?.workRequests || []} 
-      invoices={invoices} 
+      workRequests={clientData.clientProfile.workRequests || []} 
+      invoices={invoices}
+      documents={documents} 
     />
   )
 }

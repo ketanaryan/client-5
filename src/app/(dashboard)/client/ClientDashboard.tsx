@@ -15,8 +15,9 @@ import { updateUserAvatar } from "@/app/actions/users"
 import { toast } from "sonner"
 import { createClientWorkRequest } from "@/app/actions/work-requests"
 import { submitClientPayment } from "@/app/actions/payments"
+import { uploadClientDocument } from "@/app/actions/documents"
 
-export default function ClientPortal({ user, profile, workRequests, invoices }: { user: any, profile: any, workRequests: any[], invoices: any[] }) {
+export default function ClientPortal({ user, profile, workRequests, invoices, documents }: { user: any, profile: any, workRequests: any[], invoices: any[], documents?: any[] }) {
   const [utrNumber, setUtrNumber] = useState("")
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -26,6 +27,8 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
   const [loadingAvatar, setLoadingAvatar] = useState(false)
   const [avatar, setAvatar] = useState<string | null>(user.image || null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const documentUploadRef = useRef<HTMLInputElement>(null)
+  const [uploadingDoc, setUploadingDoc] = useState(false)
 
   const [isRaiseRequestOpen, setIsRaiseRequestOpen] = useState(false)
   const [creatingRequest, setCreatingRequest] = useState(false)
@@ -331,8 +334,43 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
           <TabsContent value="documents" className="m-0 space-y-6">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-bold text-slate-900">Secure Document Vault</h3>
-              <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-none" onClick={() => toast.info("Cloud storage configuration required to upload files.")}>
-                <Upload className="h-4 w-4 mr-2"/> Upload
+              <input
+                type="file"
+                ref={documentUploadRef}
+                className="hidden"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0]
+                  if (!file) return
+                  if (file.size > 5 * 1024 * 1024) {
+                    toast.error("File size must be less than 5MB")
+                    return
+                  }
+                  
+                  const formData = new FormData()
+                  formData.append("file", file)
+                  
+                  try {
+                    setUploadingDoc(true)
+                    toast.loading("Uploading document...", { id: "upload" })
+                    await uploadClientDocument(formData)
+                    toast.success("Document uploaded securely", { id: "upload" })
+                    router.refresh()
+                  } catch (err) {
+                    toast.error("Failed to upload document", { id: "upload" })
+                  } finally {
+                    setUploadingDoc(false)
+                    if (documentUploadRef.current) documentUploadRef.current.value = ""
+                  }
+                }}
+              />
+              <Button 
+                size="sm" 
+                className="bg-blue-600 hover:bg-blue-700 text-white shadow-none" 
+                disabled={uploadingDoc}
+                onClick={() => documentUploadRef.current?.click()}
+              >
+                {uploadingDoc ? <Loader2 className="h-4 w-4 mr-2 animate-spin"/> : <Upload className="h-4 w-4 mr-2"/>} 
+                {uploadingDoc ? "Uploading..." : "Upload Document"}
               </Button>
             </div>
             <Card className="shadow-sm border-slate-200/60">
@@ -347,22 +385,39 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow className="hover:bg-slate-50/40">
-                      <TableCell className="font-medium text-slate-900 flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> PAN_Card.pdf</TableCell>
-                      <TableCell className="text-[14px] text-slate-600">Rahul Sharma (Staff)</TableCell>
-                      <TableCell className="text-[14px] text-slate-500">05 Sep 2026</TableCell>
-                      <TableCell className="text-right">
-                        <Button variant="outline" size="sm" className="h-8 text-xs font-medium border-slate-200 hover:bg-slate-50 text-slate-700" onClick={() => toast.success("Downloading document...")}>Download</Button>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow className="hover:bg-slate-50/40">
-                      <TableCell className="font-medium text-slate-900 flex items-center gap-2"><FileText className="h-4 w-4 text-emerald-500"/> Bank_Statement_FY23.xlsx</TableCell>
-                      <TableCell className="text-[14px] text-slate-600">You</TableCell>
-                      <TableCell className="text-[14px] text-slate-500">01 Sep 2026</TableCell>
-                      <TableCell className="text-right">
-                        <Button variant="outline" size="sm" className="h-8 text-xs font-medium border-slate-200 hover:bg-slate-50 text-slate-700" onClick={() => toast.success("Downloading document...")}>Download</Button>
-                      </TableCell>
-                    </TableRow>
+                    {(!documents || documents.length === 0) ? (
+                      <TableRow>
+                        <TableCell colSpan={4} className="text-center py-8 text-slate-500">
+                          No documents in your secure vault yet.
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      documents.map((doc: any) => (
+                        <TableRow key={doc.id} className="hover:bg-slate-50/40">
+                          <TableCell className="font-medium text-slate-900 flex items-center gap-2">
+                            <FileText className="h-4 w-4 text-blue-500"/> {doc.title}
+                          </TableCell>
+                          <TableCell className="text-[14px] text-slate-600">
+                            {doc.uploadedById === user.id ? "You" : doc.uploadedBy?.name || "Staff"}
+                          </TableCell>
+                          <TableCell className="text-[14px] text-slate-500">
+                            {new Date(doc.createdAt).toLocaleDateString()}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="h-8 text-xs font-medium border-slate-200 hover:bg-slate-50 text-slate-700" 
+                              onClick={() => {
+                                window.open(`/api/documents/${doc.id}`, "_blank")
+                              }}
+                            >
+                              Download
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
                   </TableBody>
                 </Table>
               </CardContent>
@@ -427,4 +482,5 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
     </div>
   )
 }
+
 
