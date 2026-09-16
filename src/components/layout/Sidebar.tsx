@@ -42,7 +42,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
     { name: "Dashboard", icon: LayoutDashboard, href: `/${role.toLowerCase()}`, roles: ["ADMIN", "STAFF", "CLIENT", "ASSOCIATE"] },
     
     // Admin & Associate & Client specific
-    { name: "Work Requests", icon: Briefcase, href: role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/work-requests`, roles: ["ADMIN", "CLIENT", "ASSOCIATE"] },
+    { name: "Work Requests", icon: Briefcase, href: role === "CLIENT" ? "/client?tab=requests" : `/${role.toLowerCase()}/work-requests`, roles: ["ADMIN", "CLIENT", "ASSOCIATE"] },
     { name: "Leads/Enquiries", icon: Users, href: "/admin/enquiries", roles: ["ADMIN"] },
     
     // Staff specific
@@ -55,8 +55,8 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
     { name: "Staff", icon: UserCog, href: `/${role.toLowerCase()}/staff`, roles: ["ADMIN"] },
     
     // Finance
-    { name: "Invoices", icon: FileText, href: role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/invoices`, roles: ["ADMIN", "CLIENT"] },
-    { name: "Payments", icon: CreditCard, href: role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/payments`, roles: ["ADMIN", "CLIENT"] },
+    { name: "Invoices", icon: FileText, href: role === "CLIENT" ? "/client?tab=invoices" : `/${role.toLowerCase()}/invoices`, roles: ["ADMIN", "CLIENT"] },
+    { name: "Payments", icon: CreditCard, href: role === "CLIENT" ? "/client?tab=invoices" : `/${role.toLowerCase()}/payments`, roles: ["ADMIN", "CLIENT"] },
     
     // Common Ops
     { name: "Reminders", icon: Bell, href: `/${role.toLowerCase()}/reminders`, roles: ["ADMIN", "STAFF"] },

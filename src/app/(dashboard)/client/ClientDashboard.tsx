@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
@@ -12,6 +13,19 @@ import { CheckCircle2, Circle, AlertCircle, FileText, IndianRupee, MessageSquare
 
 export default function ClientPortal({ user, profile, workRequests, invoices }: { user: any, profile: any, workRequests: any[], invoices: any[] }) {
   const [utrNumber, setUtrNumber] = useState("")
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const tab = searchParams.get("tab") || "dashboard"
+  const [activeTab, setActiveTab] = useState(tab)
+
+  useEffect(() => {
+    setActiveTab(tab)
+  }, [tab])
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value)
+    router.push(`/client?tab=${value}`)
+  }
 
   return (
     <div className="flex flex-1 flex-col h-full bg-white overflow-hidden rounded-xl border border-slate-200/60 shadow-sm mx-auto w-full max-w-7xl my-2 sm:my-4">
@@ -22,7 +36,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
         </div>
       </div>
 
-      <Tabs defaultValue="dashboard" className="flex flex-col h-full">
+      <Tabs value={activeTab} onValueChange={handleTabChange} className="flex flex-col h-full">
         <div className="px-6 md:px-8 border-b border-slate-100">
           <TabsList className="bg-transparent h-14 w-full justify-start gap-6 p-0">
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none h-full px-1 text-[14px] font-medium text-slate-500 data-[state=active]:text-slate-900 transition-none">Overview</TabsTrigger>
