@@ -242,12 +242,12 @@ export default function LandingPage() {
         </section>
 
         {/* 4. CORE VALUES */}
-        <section className="w-full py-28 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto text-center mb-20">
+        <section className="w-full py-16 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
+          <div className="max-w-[1200px] mx-auto text-center mb-12">
             <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">BELIEFS THAT SHAPE OUR CULTURE</div>
-            <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Our Core Values</h2>
-            <p className="text-slate-600 text-[17px] leading-relaxed max-w-4xl mx-auto">
-              Our firm believe and follow the culture to maintain faith, integrity and ethics in all levels during deliver services to every client. Our profession is our faith and our people always pursue this journey.
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Our Core Values</h2>
+            <p className="text-slate-500 text-[17px] leading-relaxed max-w-3xl mx-auto">
+              Our firm believes in and follows a culture of faith, integrity, and ethics at all levels when delivering services to every client. Our profession is our faith.
             </p>
           </div>
           
@@ -260,11 +260,11 @@ export default function LandingPage() {
               { title: 'Respect', icon: Handshake },
               { title: 'Time Value', icon: Clock }
             ].map((val, i) => (
-              <div key={i} className="group flex flex-col items-center gap-6 p-6 w-full max-w-[200px] rounded-lg hover:bg-white hover:shadow-xl transition-all cursor-pointer border border-transparent hover:border-slate-100">
-                <div className="w-28 h-28 rounded-full bg-transparent border-[3px] border-emerald-500 flex items-center justify-center group-hover:bg-[#1a5b81] group-hover:border-[#1a5b81] transition-colors duration-300 shadow-sm">
-                  <val.icon className="w-12 h-12 text-emerald-500 group-hover:text-white stroke-[1.5] transition-colors duration-300" />
+              <div key={i} className="group bg-white flex flex-col items-center text-center gap-4 p-6 w-full rounded-[1.25rem] shadow-sm border border-slate-200/60 hover:shadow-xl hover:-translate-y-1 hover:border-emerald-500/30 transition-all duration-300 cursor-pointer">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+                  <val.icon className="w-7 h-7 stroke-[2]" />
                 </div>
-                <span className="font-bold text-slate-800 text-[17px] group-hover:text-blue-950 transition-colors">{val.title}</span>
+                <span className="font-bold text-slate-800 text-[15px]">{val.title}</span>
               </div>
             ))}
           </div>
@@ -317,48 +317,77 @@ export default function LandingPage() {
         </section>
 
         {/* 6. HAPPY CLIENTS */}
-        <section className="w-full py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-800 mb-8">Happy Clients</h2>
+        <section className="w-full py-24 bg-white border-t border-slate-200 overflow-hidden relative">
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+              animation: marquee 40s linear infinite;
+            }
+            .animate-marquee:hover {
+              animation-play-state: paused;
+            }
+          `}} />
+          <div className="max-w-[1200px] mx-auto text-center mb-16 px-6 lg:px-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 tracking-tight">Happy Clients</h2>
             <div className="flex flex-col items-center justify-center gap-1">
-              <span className="font-bold text-xl text-slate-800">EXCELLENT</span>
+              <span className="font-bold text-xl text-slate-900 tracking-tight">EXCELLENT</span>
               <div className="flex gap-1 mb-1">
                 {[1,2,3,4,5].map(star => <Star key={star} className="h-7 w-7 fill-yellow-400 text-yellow-400" />)}
               </div>
-              <span className="text-sm text-slate-600 mt-2">Based on <strong>100 reviews</strong></span>
+              <span className="text-sm text-slate-500 mt-2 font-medium">Based on <strong>100+ reviews</strong></span>
               <div className="mt-3 text-3xl font-bold text-blue-500 tracking-tighter">Google</div>
             </div>
           </div>
           
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-            {[
-              { name: 'Haresh Dudani', initial: 'H', bg: 'bg-[#007acc]', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
-              { name: 'Sunil Kamble', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Viman Nagar, Pune, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
-              { name: 'Parth Patel', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' }
-            ].map((rev, i) => (
-              <div key={i} className="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm flex flex-col relative group hover:shadow-md transition-shadow">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex items-center gap-3">
-                    {rev.img ? (
-                      <Image src={rev.img} alt={rev.name} width={40} height={40} className="rounded-full object-cover" loading="lazy" />
-                    ) : (
-                      <div className={`w-10 h-10 rounded-full ${rev.bg} flex items-center justify-center text-white font-bold text-lg`}>{rev.initial}</div>
-                    )}
-                    <div className="flex flex-col text-left">
-                      <span className="font-semibold text-[15px] text-slate-900 leading-tight">{rev.name}</span>
-                      <span className="text-xs text-slate-500 mt-0.5">{rev.time}</span>
+          <div className="relative w-full max-w-[100vw]">
+            {/* Gradient Masks for smooth fading edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            
+            <div className="flex w-[max-content] animate-marquee">
+              {/* Duplicate the array to create the infinite scroll effect */}
+              {[...[
+                { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
+                { name: 'Sunil Kamble', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Viman Nagar, Pune, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
+                { name: 'Parth Patel', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
+                { name: 'Sneha Rao', initial: 'S', bg: 'bg-emerald-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
+                { name: 'Kiran Desai', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=75', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
+                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-purple-600', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
+              ], ...[
+                { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
+                { name: 'Sunil Kamble', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Viman Nagar, Pune, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
+                { name: 'Parth Patel', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
+                { name: 'Sneha Rao', initial: 'S', bg: 'bg-emerald-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
+                { name: 'Kiran Desai', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=75', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
+                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-purple-600', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
+              ]].map((rev, i) => (
+                <div key={i} className="bg-white p-7 rounded-[1.5rem] border border-slate-200 shadow-sm flex flex-col relative mx-3 w-[380px] shrink-0 hover:shadow-xl transition-all cursor-grab active:cursor-grabbing">
+                  <div className="flex justify-between items-start mb-5">
+                    <div className="flex items-center gap-4">
+                      {rev.img ? (
+                        <Image src={rev.img} alt={rev.name} width={48} height={48} className="rounded-full object-cover" loading="lazy" />
+                      ) : (
+                        <div className={`w-12 h-12 rounded-full ${rev.bg} flex items-center justify-center text-white font-bold text-lg`}>{rev.initial}</div>
+                      )}
+                      <div className="flex flex-col text-left">
+                        <span className="font-bold text-[16px] text-slate-900 leading-tight">{rev.name}</span>
+                        <span className="text-[13px] text-slate-500 mt-0.5">{rev.time}</span>
+                      </div>
                     </div>
+                    <div className="text-2xl font-bold text-blue-500 tracking-tighter absolute right-6 top-6">G</div>
                   </div>
-                  <div className="text-2xl font-bold text-blue-500 tracking-tighter absolute right-6 top-6">G</div>
+                  <div className="flex gap-1 mb-4">
+                    {[1,2,3,4,5].map(star => <Star key={star} className="h-[15px] w-[15px] fill-yellow-400 text-yellow-400" />)}
+                    <div className="h-[18px] w-[18px] rounded-full bg-blue-500 flex items-center justify-center ml-1"><Check className="h-3 w-3 text-white stroke-[3]" /></div>
+                  </div>
+                  <p className="text-[15px] text-slate-600 leading-relaxed mb-4 flex-1">"{rev.review}"</p>
+                  <button className="text-slate-400 text-[14px] font-medium text-left hover:text-slate-900 transition-colors">Read more</button>
                 </div>
-                <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(star => <Star key={star} className="h-[14px] w-[14px] fill-yellow-400 text-yellow-400" />)}
-                  <div className="h-4 w-4 rounded-full bg-blue-500 flex items-center justify-center ml-1"><Check className="h-2.5 w-2.5 text-white stroke-[3]" /></div>
-                </div>
-                <p className="text-[14.5px] text-slate-700 leading-relaxed mb-4 flex-1">"{rev.review}"</p>
-                <button className="text-slate-400 text-[13px] font-medium text-left hover:text-slate-600 transition-colors">Read more</button>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
