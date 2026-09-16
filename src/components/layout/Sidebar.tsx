@@ -32,9 +32,10 @@ type Role = "ADMIN" | "STAFF" | "CLIENT" | "ASSOCIATE"
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   role?: Role
   userName?: string
+  userImage?: string | null
 }
 
-export function Sidebar({ className, role = "ADMIN", userName = "User" }: SidebarProps) {
+export function Sidebar({ className, role = "ADMIN", userName = "User", userImage = null }: SidebarProps) {
   const pathname = usePathname()
 
   // Define full routes array tailored for each role
@@ -110,7 +111,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
         <DropdownMenu>
           <DropdownMenuTrigger className="w-full text-left flex items-center gap-3 rounded-lg p-2 hover:bg-slate-50 cursor-pointer transition-colors border border-transparent outline-none">
             <Avatar className="h-9 w-9 border border-slate-200">
-              <AvatarImage src="" alt="User" />
+              <AvatarImage src={userImage || ""} alt={userName} className="object-cover" />
               <AvatarFallback className="bg-slate-100 text-slate-600 text-xs font-semibold">
                 {userName.substring(0, 2).toUpperCase()}
               </AvatarFallback>

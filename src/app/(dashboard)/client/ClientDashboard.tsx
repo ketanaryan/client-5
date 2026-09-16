@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -9,7 +9,9 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { CheckCircle2, Circle, AlertCircle, FileText, IndianRupee, MessageSquare, User, Check, CreditCard, Upload } from "lucide-react"
+import { CheckCircle2, Circle, AlertCircle, FileText, IndianRupee, MessageSquare, User, Check, CreditCard, Upload, Camera, Loader2 } from "lucide-react"
+import Image from "next/image"
+import { updateUserAvatar } from "@/app/actions/users"
 
 export default function ClientPortal({ user, profile, workRequests, invoices }: { user: any, profile: any, workRequests: any[], invoices: any[] }) {
   const [utrNumber, setUtrNumber] = useState("")
@@ -17,6 +19,35 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
   const searchParams = useSearchParams()
   const tab = searchParams.get("tab") || "dashboard"
   const [activeTab, setActiveTab] = useState(tab)
+  
+  const [loadingAvatar, setLoadingAvatar] = useState(false)
+  const [avatar, setAvatar] = useState<string | null>(user.image || null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert("File size must be less than 2MB")
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onload = async (event) => {
+      const base64String = event.target?.result as string
+      setAvatar(base64String)
+      setLoadingAvatar(true)
+      try {
+        await updateUserAvatar(base64String)
+      } catch (error) {
+        console.error(error)
+        alert("Failed to update avatar")
+      }
+      setLoadingAvatar(false)
+    }
+    reader.readAsDataURL(file)
+  }
 
   useEffect(() => {
     setActiveTab(tab)
@@ -278,15 +309,37 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
           <TabsContent value="profile" className="m-0 space-y-6">
              <Card className="shadow-sm border-slate-200/60 overflow-hidden">
               <CardHeader className="bg-slate-50/50 border-b border-slate-100 p-8">
-                <div className="flex items-center gap-5">
-                  <div className="h-16 w-16 bg-white border border-slate-200 shadow-sm rounded-2xl flex items-center justify-center text-blue-600 text-xl font-bold tracking-tight">
-                    {(profile?.companyName || user.name).substring(0, 3).toUpperCase()}
+                  <div className="flex items-center gap-5">
+                    <div className="relative group">
+                      <div className="h-16 w-16 bg-white border border-slate-200 shadow-sm rounded-2xl flex items-center justify-center text-blue-600 text-xl font-bold tracking-tight overflow-hidden transition-all relative">
+                        {avatar ? (
+                          <Image src={avatar} alt="Avatar" fill className="object-cover" />
+                        ) : (
+                          (profile?.companyName || user.name).substring(0, 3).toUpperCase()
+                        )}
+                        
+                        <div 
+                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
+                          onClick={() => fileInputRef.current?.click()}
+                        >
+                          {loadingAvatar ? <Loader2 className="h-5 w-5 text-white animate-spin" /> : <Camera className="h-5 w-5 text-white" />}
+                        </div>
+                      </div>
+                      <input 
+                        type="file" 
+                        ref={fileInputRef} 
+                        className="hidden" 
+                        accept="image/*" 
+                        onChange={handleFileChange}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <CardTitle className="text-xl">{profile?.companyName || user.name}</CardTitle>
+                      <CardDescription className="text-[14px]">
+                        {user.email} &bull; <span className="text-blue-600 cursor-pointer hover:underline" onClick={() => fileInputRef.current?.click()}>Update Logo</span>
+                      </CardDescription>
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <CardTitle className="text-xl">{profile?.companyName || user.name}</CardTitle>
-                    <CardDescription className="text-[14px]">{user.email}</CardDescription>
-                  </div>
-                </div>
               </CardHeader>
               <CardContent className="grid gap-6 md:grid-cols-2 p-8">
                 <div className="space-y-2">

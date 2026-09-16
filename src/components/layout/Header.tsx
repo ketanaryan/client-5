@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Badge } from "@/components/ui/badge"
 import { Sidebar } from "./Sidebar"
 
-export function Header({ role = "ADMIN" }: { userName?: string, role?: any }) {
+export function Header({ role = "ADMIN", userName = "User", userImage = null }: { userName?: string, role?: any, userImage?: string | null }) {
   const currentDate = new Date().toLocaleDateString('en-GB', {
     day: '2-digit',
     month: 'short',
@@ -22,7 +22,7 @@ export function Header({ role = "ADMIN" }: { userName?: string, role?: any }) {
             <span className="sr-only">Toggle Menu</span>
           </SheetTrigger>
           <SheetContent side="left" className="w-72 p-0 border-none bg-white">
-            <Sidebar role={role} className="border-none" />
+            <Sidebar role={role} userName={userName} userImage={userImage} className="border-none" />
           </SheetContent>
         </Sheet>
         {/* Empty left side for desktop as per Figma */}
