@@ -1036,7 +1036,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               
               {/* CTA Box */}
               <div className="mt-8 bg-[#032b4e] rounded-2xl p-8 text-center text-white shadow-xl">
-                <h3 className="text-2xl font-bold mb-4">Looking for {service.title} in Pune?</h3>
+                <h3 className="text-2xl font-bold mb-4">Looking for {service.title} in Bangalore?</h3>
                 <p className="text-slate-300 mb-8">
                   Get in touch with Shantanu & Associates today for expert, timely, and professional assistance.
                 </p>

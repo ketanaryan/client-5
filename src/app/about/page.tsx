@@ -38,11 +38,11 @@ export default function AboutPage() {
       <section className="w-full py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <h2 className="text-3xl font-bold text-slate-900 mb-8 border-b border-slate-100 pb-4">
-            About Us–CA In Pune
+            About Us–CA In Bangalore
           </h2>
           <div className="space-y-6 text-slate-700 text-[16px] leading-[1.8] text-justify">
             <p>
-              <strong className="text-slate-900 font-semibold">Shantanu & Associates</strong> is a Chartered Accountant firm in Pune, professionally managed and catering to both domestic and international corporate clients with a wide spectrum of services in domestic and international taxation, regulatory compliance, corporate governance, transaction advisory, and cross-border commercial structuring. The team at Shantanu & Associates is committed to being a top-tier CA Firm in Pune, equipped with experienced Chartered Accountants, Company Secretaries, legal consultants, and modern digital infrastructure to deliver end-to-end financial and statutory solutions for your growing enterprise.
+              <strong className="text-slate-900 font-semibold">Shantanu & Associates</strong> is a Chartered Accountant firm in Bangalore, professionally managed and catering to both domestic and international corporate clients with a wide spectrum of services in domestic and international taxation, regulatory compliance, corporate governance, transaction advisory, and cross-border commercial structuring. The team at Shantanu & Associates is committed to being a top-tier CA Firm in Bangalore, equipped with experienced Chartered Accountants, Company Secretaries, legal consultants, and modern digital infrastructure to deliver end-to-end financial and statutory solutions for your growing enterprise.
             </p>
             <p>
               With an unwavering commitment to cultivating a deep understanding of each client&apos;s unique operational model, our qualified advisory team delivers valuable, consistent, and prompt services grounded in rigorous technical proficiency and decades of cumulative industry experience across audit, direct tax planning, GST compliances, and business consulting. Our primary objective is to empower founders and business leaders to focus on scaling operations and achieving strategic milestones, while we shoulder their regulatory, financial, and compliance obligations with precision and ethical integrity.
@@ -58,7 +58,7 @@ export default function AboutPage() {
       <section className="w-full py-16 px-6 lg:px-12 bg-slate-50 border-y border-slate-200">
         <div className="max-w-[1200px] mx-auto">
           <h2 className="text-3xl font-bold text-slate-900 mb-10">
-            Why Choose Shantanu & Associates, CA in Pune?
+            Why Choose Shantanu & Associates, CA in Bangalore?
           </h2>
           <div className="space-y-5">
             {[
@@ -69,7 +69,7 @@ export default function AboutPage() {
               "We abide unconditionally by our commitments with absolute transparency and meticulous confidentiality.",
               "We understand our clients' challenges as if they were our own and commit to delivering solutions that yield constructive, quantifiable results.",
               "We provide a comprehensive range of accounting, audit, tax, and registration services under one roof, saving you the hassle of coordinating with multiple external agencies.",
-              "Even though our headquarters are in Pune, our advanced online consultation and 'No Need to Visit' digital approach allows us to serve prospective and existing clients located anywhere across India and the globe."
+              "Even though our headquarters are in Bangalore, our advanced online consultation and 'No Need to Visit' digital approach allows us to serve prospective and existing clients located anywhere across India and the globe."
             ].map((point, idx) => (
               <div key={idx} className="flex items-start gap-4">
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
@@ -156,7 +156,7 @@ export default function AboutPage() {
           <div className="bg-[#032b4e] rounded-xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
             <div className="flex-1 space-y-2">
               <h3 className="text-2xl md:text-3xl font-bold text-white">
-                Looking for a Chartered Accountant in Pune?
+                Looking for a Chartered Accountant in Bangalore?
               </h3>
               <p className="text-slate-300 text-[15px] leading-relaxed">
                 Connect with our advisory desk today. Whether you need statutory audit support, corporate registration, or comprehensive tax advisory, we deliver seamless, results-driven solutions.
@@ -208,7 +208,7 @@ export default function AboutPage() {
             <div className="space-y-3 text-sm text-slate-300">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-1" />
-                <span>101, Alpha Financial Center, Koregaon Park, Pune, Maharashtra, India - 411001</span>
+                <span>101, Alpha Financial Center, Indiranagar, Bangalore, Karnataka, India - 560001</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
