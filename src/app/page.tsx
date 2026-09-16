@@ -19,28 +19,28 @@ import ServiceCarousel from "@/components/public/ServiceCarousel"
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1920&q=75",
+    image: "/images/img_26d96e95a8.jpg",
     title: "Precision Driven Growth",
     subtitle: "Delivering strategic financial solutions for emerging startups and established enterprises.",
     buttonText: "About Us",
     buttonLink: "/about"
   },
   {
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=75",
+    image: "/images/img_d8e5aff3a2.jpg",
     title: "Mastery In Taxation",
     subtitle: "Comprehensive advisory and seamless compliance strategies for direct and indirect taxes.",
     buttonText: "Click Here",
     buttonLink: "/#services"
   },
   {
-    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=75",
+    image: "/images/img_b92d795e53.jpg",
     title: "Your Catalyst For Success",
     subtitle: "Dedicated partners accelerating your financial compliance and business scaling.",
     buttonText: "Know How",
     buttonLink: "/about"
   },
   {
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=75",
+    image: "/images/img_40577aafaa.jpg",
     title: "Excellence In Advisory",
     subtitle: "Uncompromising quality in statutory audit, business structuring, and corporate finance.",
     buttonText: "Get Started",
@@ -151,7 +151,7 @@ export default function LandingPage() {
             <div className="w-full md:w-[500px] shrink-0">
               <div className="relative w-full aspect-square">
                 <Image
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=75"
+                  src="/images/img_b45366581e.jpg"
                   alt="About Shantanu & Associates"
                   fill
                   sizes="(max-width: 768px) 100vw, 500px"
@@ -178,11 +178,11 @@ export default function LandingPage() {
           </div>
           <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { title: 'Professional Tax Registration', slug: 'professional-tax-registration', img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=400&q=75' },
-              { title: 'MSME Udyam Registration', slug: 'msme-udyam-registration', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=75' },
-              { title: 'FSSAI Registration', slug: 'fssai-registration', img: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=400&q=75' },
-              { title: 'RERA Registration', slug: 'rera-registration', img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=75' },
-              { title: 'Shop Act Registration', slug: 'shop-act-registration', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=75' }
+              { title: 'Professional Tax Registration', slug: 'professional-tax-registration', img: '/images/img_945b206a01.jpg' },
+              { title: 'MSME Udyam Registration', slug: 'msme-udyam-registration', img: '/images/img_c87e20c3b6.jpg' },
+              { title: 'FSSAI Registration', slug: 'fssai-registration', img: '/images/img_dcaac2e839.jpg' },
+              { title: 'RERA Registration', slug: 'rera-registration', img: '/images/img_9c1221ae6f.jpg' },
+              { title: 'Shop Act Registration', slug: 'shop-act-registration', img: '/images/img_2974d83ac5.jpg' }
             ].map((srv, i) => (
               <Link href={`/services/${srv.slug}`} key={i} className="flex flex-col rounded-xl overflow-hidden shadow-md cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all">
                 <div className="h-[140px] relative overflow-hidden">
@@ -217,10 +217,10 @@ export default function LandingPage() {
           
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Private Limited', subtitle: 'Most popular for startups', slug: 'private-limited-company', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80' },
-              { title: 'One Person Company', subtitle: 'For solo entrepreneurs', slug: 'one-person-company', img: 'https://images.unsplash.com/photo-1554774853-719586f82d77?auto=format&fit=crop&w=600&q=80' },
-              { title: 'LLP Registration', subtitle: 'Flexible partnership model', slug: 'llp-registration', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80' },
-              { title: 'Partnership Firm', subtitle: 'Traditional joint venture', slug: 'partnership-firm-registration', img: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80' }
+              { title: 'Private Limited', subtitle: 'Most popular for startups', slug: 'private-limited-company', img: '/images/img_9c5be9fd7a.jpg' },
+              { title: 'One Person Company', subtitle: 'For solo entrepreneurs', slug: 'one-person-company', img: '/images/img_8087159179.jpg' },
+              { title: 'LLP Registration', subtitle: 'Flexible partnership model', slug: 'llp-registration', img: '/images/img_f5258efe70.jpg' },
+              { title: 'Partnership Firm', subtitle: 'Traditional joint venture', slug: 'partnership-firm-registration', img: '/images/img_4e6adef9f0.jpg' }
             ].map((srv, i) => (
               <Link href={`/services/${srv.slug}`} key={i} className="group relative bg-white border border-slate-200/80 rounded-[2rem] p-3 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 overflow-hidden flex flex-col">
                 <div className="h-56 w-full rounded-3xl overflow-hidden relative mb-5">
@@ -286,21 +286,21 @@ export default function LandingPage() {
           
           <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-slate-100 shadow-sm">
             {[
-              { title: 'Information Technology', icon: Monitor, img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: 'https://images.unsplash.com/photo-1532938911-3511ebf42968?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Engineering & Infra', icon: HardHat, img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Education Sector', icon: Book, img: 'https://images.unsplash.com/photo-1524178232363-125b0cea1050?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Banking & Financial', icon: Landmark, img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Import & Export', icon: Plane, img: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=300&q=60' },
-              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: 'https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Real Estate', icon: Home, img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Vessels & Marine', icon: Anchor, img: 'https://images.unsplash.com/photo-1494414115160-f823a0fbffac?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Logistics Services', icon: Truck, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Automobiles Industry', icon: Car, img: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Media & Entertainment', icon: Film, img: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Manufacturing', icon: Factory, img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Non Profit Org', icon: Users, img: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Chemical Sector', icon: FlaskConical, img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=300&q=60' }
+              { title: 'Information Technology', icon: Monitor, img: '/images/img_040257aafd.jpg' },
+              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: '/images/finance_taxation.jpg' },
+              { title: 'Engineering & Infra', icon: HardHat, img: '/images/img_5945e74e47.jpg' },
+              { title: 'Education Sector', icon: Book, img: '/images/corporate_registration.jpg' },
+              { title: 'Banking & Financial', icon: Landmark, img: '/images/img_f89b625898.jpg' },
+              { title: 'Import & Export', icon: Plane, img: '/images/img_ba3ceb5181.jpg' },
+              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: '/images/img_eb1c0f1ffb.jpg' },
+              { title: 'Real Estate', icon: Home, img: '/images/img_b2b2b96a7f.jpg' },
+              { title: 'Vessels & Marine', icon: Anchor, img: '/images/audit_advisory.jpg' },
+              { title: 'Logistics Services', icon: Truck, img: '/images/img_cc67e33ce5.jpg' },
+              { title: 'Automobiles Industry', icon: Car, img: '/images/img_8b7a385dd4.jpg' },
+              { title: 'Media & Entertainment', icon: Film, img: '/images/img_1b0592f97b.jpg' },
+              { title: 'Manufacturing', icon: Factory, img: '/images/img_e029799d49.jpg' },
+              { title: 'Non Profit Org', icon: Users, img: '/images/img_d5604c9f88.jpg' },
+              { title: 'Chemical Sector', icon: FlaskConical, img: '/images/img_849418b560.jpg' }
             ].map((ind, i) => (
               <Link href="/#contact" key={i} className="group relative p-8 border border-slate-100 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 cursor-pointer bg-white overflow-hidden">
                 {/* Default State: Clean White Background (no ghost image) */}
@@ -363,17 +363,17 @@ export default function LandingPage() {
               {/* Duplicate the array to create the infinite scroll effect */}
               {[...[
                 { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
-                { name: 'Sunil Kamble', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
-                { name: 'Parth Patel', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
+                { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
+                { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
                 { name: 'Sneha Rao', initial: 'S', bg: 'bg-emerald-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
-                { name: 'Kiran Desai', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=75', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
+                { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
                 { name: 'Aditi Sharma', initial: 'A', bg: 'bg-purple-600', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
               ], ...[
                 { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
-                { name: 'Sunil Kamble', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
-                { name: 'Parth Patel', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=75', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
+                { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
+                { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
                 { name: 'Sneha Rao', initial: 'S', bg: 'bg-emerald-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
-                { name: 'Kiran Desai', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=75', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
+                { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
                 { name: 'Aditi Sharma', initial: 'A', bg: 'bg-purple-600', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
               ]].map((rev, i) => (
                 <div key={i} className="bg-white p-7 rounded-[1.5rem] border border-slate-200 shadow-sm flex flex-col relative mx-3 w-[380px] shrink-0 hover:shadow-xl transition-all cursor-grab active:cursor-grabbing">
@@ -406,7 +406,7 @@ export default function LandingPage() {
         {/* 7. CONTACT / QUERIES OVERLAY */}
         <section id="contact" className="relative w-full py-24 px-6 lg:px-12 bg-slate-900">
           <Image
-            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1920&q=60"
+            src="/images/img_adf3301b42.jpg"
             alt="Contact background"
             fill
             sizes="100vw"

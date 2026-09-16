@@ -17,37 +17,37 @@ const services: Service[] = [
   {
     title: "Audit And Assurance",
     slug: "audit-and-assurance",
-    img: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=600&q=75",
+    img: "/images/img_a9188b67db.jpg",
     desc: "Our audit and assurance services provide independent, objective evaluations of your financial statements and internal controls. We help organizations maintain transparency, comply with regulatory standards, and build stakeholder confidence.",
   },
   {
     title: "Consultancy",
     slug: "consultancy",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=75",
+    img: "/images/img_c1d747b9ff.jpg",
     desc: "We offer strategic consultancy services tailored to drive business growth and operational efficiency. Our experienced advisors work closely with you to identify opportunities, mitigate risks, and implement solutions that deliver measurable results.",
   },
   {
     title: "NRI Tax And Allied Services",
     slug: "nri-tax-services",
-    img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=75",
+    img: "/images/img_9a0700b554.jpg",
     desc: "Navigating cross-border taxation can be complex. Our dedicated NRI tax services simplify compliance for non-resident Indians, covering income tax filings, DTAA benefits, repatriation guidance, and FEMA advisory.",
   },
   {
     title: "Corporate Laws",
     slug: "corporate-laws",
-    img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=75",
+    img: "/images/img_7af04dbf3d.jpg",
     desc: "Stay compliant with ever-evolving corporate legislation. We assist with company law matters including board governance, annual filings, regulatory approvals, and statutory compliance under the Companies Act and allied regulations.",
   },
   {
     title: "Taxation Services",
     slug: "taxation-services",
-    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=75",
+    img: "/images/img_9cb98489ef.jpg",
     desc: "From direct to indirect taxes, our comprehensive taxation services cover GST, income tax planning, return filings, assessments, and dispute resolution. We ensure you stay compliant while optimizing your overall tax position.",
   },
   {
     title: "Business Registration",
     slug: "business-registration",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=75",
+    img: "/images/img_30da68060b.jpg",
     desc: "Kickstart your entrepreneurial journey with our end-to-end business registration services. We handle company incorporation, LLP registration, partnership deeds, GST registration, and all necessary licences to get you operational swiftly.",
   },
 ];

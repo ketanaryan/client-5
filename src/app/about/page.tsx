@@ -15,7 +15,7 @@ export default function AboutPage() {
       {/* Hero Banner */}
       <section className="relative w-full h-[320px] bg-[#032b4e] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&auto=format&fit=crop&q=75"
+          src="/images/img_2fb99a364f.jpg"
           alt="About page hero"
           fill
           sizes="100vw"
@@ -122,7 +122,7 @@ export default function AboutPage() {
             <div className="flex flex-col md:flex-row bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <div className="h-[400px] md:h-auto md:w-[350px] shrink-0 overflow-hidden bg-slate-100 relative">
                 <Image 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=75" 
+                  src="/images/img_fe87da49d2.jpg" 
                   alt="CA Shantanu Sharma" 
                   fill
                   sizes="(max-width: 768px) 100vw, 350px"
