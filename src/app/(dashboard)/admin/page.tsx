@@ -120,7 +120,7 @@ export default async function AdminDashboard() {
                   <TableRow key={wr.id} className="hover:bg-slate-50/50 transition-colors">
                     <TableCell className="pl-6 py-4 font-medium text-slate-900">{wr.title}</TableCell>
                     <TableCell className="py-4 text-slate-600">{wr.client.companyName || wr.client.user.name}</TableCell>
-                    <TableCell className="py-4 text-slate-600">{(staffMap.get(wr.assignedStaffId) || "Unassigned")}</TableCell>
+                    <TableCell className="py-4 text-slate-600">{(staffMap.get(wr.assignedStaffId || "") || "Unassigned")}</TableCell>
                     <TableCell className="py-4">
                       <Badge variant="secondary" className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-0">{wr.status.replace("_", " ")}</Badge>
                     </TableCell>
@@ -134,5 +134,6 @@ export default async function AdminDashboard() {
     </div>
   )
 }
+
 
 
