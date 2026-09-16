@@ -98,7 +98,7 @@ export default async function PaymentsPage() {
                   ₹{payment.amount.toLocaleString('en-IN')}
                 </TableCell>
                 <TableCell>
-                  {(payment.status as string) === "VERIFIED" ? (
+                  {(payment.status as string) === "COMPLETED" ? (
                     <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
                       Verified
                     </Badge>

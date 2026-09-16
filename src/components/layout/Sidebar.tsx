@@ -125,11 +125,11 @@ export function Sidebar({ className, role = "ADMIN", userName = "User" }: Sideba
               <DropdownMenuLabel className="text-slate-800 font-semibold text-xs uppercase tracking-wider">My Account</DropdownMenuLabel>
             </DropdownMenuGroup>
             <DropdownMenuSeparator className="bg-slate-100" />
-            <DropdownMenuItem asChild className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
-              <Link href={role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/profile`}>Profile</Link>
+            <DropdownMenuItem render={<Link href={role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/profile`} />} className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
+              Profile
             </DropdownMenuItem>
-            <DropdownMenuItem asChild className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
-              <Link href={role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/settings`}>Settings</Link>
+            <DropdownMenuItem render={<Link href={role === "CLIENT" ? "/client" : `/${role.toLowerCase()}/settings`} />} className="cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50">
+              Settings
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-slate-100" />
             <DropdownMenuItem className="text-red-600 font-medium cursor-pointer text-[13px] hover:bg-red-50" onClick={() => signOut({ callbackUrl: window?.location?.origin + "/login" })}>

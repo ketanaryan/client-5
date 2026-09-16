@@ -12,7 +12,7 @@ export async function recordPayment(formData: FormData) {
 
   const invoiceId = formData.get("invoiceId") as string
   const amount = parseFloat(formData.get("amount") as string)
-  const method = formData.get("method") as string || "ONLINE"
+
   const utrNumber = formData.get("utrNumber") as string
   
   if (!invoiceId || isNaN(amount)) {
@@ -25,9 +25,8 @@ export async function recordPayment(formData: FormData) {
       data: {
         invoiceId,
         amount,
-        method,
         utrNumber: utrNumber || "",
-        status: "VERIFIED", // Admin is recording it, so it's verified
+        status: "COMPLETED", // Admin is recording it, so it's completed
       }
     }),
     prisma.invoice.update({
