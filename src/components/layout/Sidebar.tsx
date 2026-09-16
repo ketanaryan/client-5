@@ -56,8 +56,13 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
     { name: "Staff", icon: UserCog, href: `/${role.toLowerCase()}/staff`, roles: ["ADMIN"] },
     
     // Finance
-    { name: "Invoices", icon: FileText, href: role === "CLIENT" ? "/client?tab=invoices" : `/${role.toLowerCase()}/invoices`, roles: ["ADMIN", "CLIENT"] },
-    { name: "Payments", icon: CreditCard, href: role === "CLIENT" ? "/client?tab=invoices" : `/${role.toLowerCase()}/payments`, roles: ["ADMIN", "CLIENT"] },
+    ...(role === "CLIENT" 
+      ? [{ name: "Billing", icon: FileText, href: "/client?tab=invoices", roles: ["CLIENT"] }]
+      : [
+          { name: "Invoices", icon: FileText, href: `/${role.toLowerCase()}/invoices`, roles: ["ADMIN"] },
+          { name: "Payments", icon: CreditCard, href: `/${role.toLowerCase()}/payments`, roles: ["ADMIN"] }
+        ]
+    ),
     
     // Common Ops
     { name: "Reminders", icon: Bell, href: `/${role.toLowerCase()}/reminders`, roles: ["ADMIN", "STAFF"] },
