@@ -178,27 +178,27 @@ export default function LandingPage() {
           </div>
           <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { title: 'Professional Tax Registration', img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=400&q=75' },
-              { title: 'Professional Tax Registration', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=75' },
-              { title: 'FSSAI Registration', img: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=400&q=75' },
-              { title: 'Rera Registration -Real Estate Agent', img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=75' },
-              { title: 'Shop Act Registration', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=75' }
+              { title: 'Professional Tax Registration', slug: 'professional-tax-registration', img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=400&q=75' },
+              { title: 'MSME Udyam Registration', slug: 'msme-udyam-registration', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=75' },
+              { title: 'FSSAI Registration', slug: 'fssai-registration', img: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=400&q=75' },
+              { title: 'RERA Registration', slug: 'rera-registration', img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=75' },
+              { title: 'Shop Act Registration', slug: 'shop-act-registration', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=75' }
             ].map((srv, i) => (
-              <div key={i} className="flex flex-col rounded-xl overflow-hidden shadow-md cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-shadow">
+              <Link href={`/services/${srv.slug}`} key={i} className="flex flex-col rounded-xl overflow-hidden shadow-md cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all">
                 <div className="h-[140px] relative overflow-hidden">
                   <Image
                     src={srv.img}
                     alt={srv.title}
                     fill
                     sizes="(max-width: 1024px) 50vw, 20vw"
-                    className="object-cover"
+                    className="object-cover hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
-                <div className="bg-[#1c3a5e] text-white p-4 h-24 flex items-center justify-center text-center">
-                  <h3 className="font-semibold text-[15px] leading-tight">{srv.title}</h3>
+                <div className="bg-[#1e3c5a] hover:bg-[#1a354f] transition-colors p-4 flex-1 flex items-center justify-center text-center">
+                  <h3 className="font-bold text-white text-[14px] leading-snug">{srv.title}</h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -210,17 +210,19 @@ export default function LandingPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Company Formation</h2>
               <p className="text-slate-500 mt-3 text-lg max-w-xl">Start your business with a solid legal foundation. We handle the entire incorporation process seamlessly.</p>
             </div>
-            <Button variant="outline" className="hidden md:flex rounded-full px-6 h-12 text-[15px] border-slate-200 hover:bg-slate-50 font-medium">View All Services</Button>
+            <Link href="/services/business-registration">
+              <Button variant="outline" className="hidden md:flex rounded-full px-6 h-12 text-[15px] border-slate-200 hover:bg-slate-50 font-medium">View All Services</Button>
+            </Link>
           </div>
           
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Private Limited', subtitle: 'Most popular for startups', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80' },
-              { title: 'One Person Company', subtitle: 'For solo entrepreneurs', img: 'https://images.unsplash.com/photo-1554774853-719586f82d77?auto=format&fit=crop&w=600&q=80' },
-              { title: 'LLP Registration', subtitle: 'Flexible partnership model', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80' },
-              { title: 'Partnership Firm', subtitle: 'Traditional joint venture', img: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80' }
+              { title: 'Private Limited', subtitle: 'Most popular for startups', slug: 'private-limited-company', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80' },
+              { title: 'One Person Company', subtitle: 'For solo entrepreneurs', slug: 'one-person-company', img: 'https://images.unsplash.com/photo-1554774853-719586f82d77?auto=format&fit=crop&w=600&q=80' },
+              { title: 'LLP Registration', subtitle: 'Flexible partnership model', slug: 'llp-registration', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80' },
+              { title: 'Partnership Firm', subtitle: 'Traditional joint venture', slug: 'partnership-firm-registration', img: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80' }
             ].map((srv, i) => (
-              <div key={i} className="group relative bg-white border border-slate-200/80 rounded-[2rem] p-3 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col">
+              <Link href={`/services/${srv.slug}`} key={i} className="group relative bg-white border border-slate-200/80 rounded-[2rem] p-3 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 overflow-hidden flex flex-col">
                 <div className="h-56 w-full rounded-3xl overflow-hidden relative mb-5">
                   <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                   <Image
@@ -236,8 +238,13 @@ export default function LandingPage() {
                   <h3 className="font-bold text-slate-900 text-lg tracking-tight mb-1">{srv.title}</h3>
                   <p className="text-sm font-medium text-slate-500">{srv.subtitle}</p>
                 </div>
-              </div>
+              </Link>
             ))}
+          </div>
+          <div className="mt-8 flex justify-center md:hidden">
+            <Link href="/services/business-registration" className="w-full">
+              <Button variant="outline" className="w-full rounded-full h-12 text-[15px] border-slate-200 hover:bg-slate-50 font-medium">View All Services</Button>
+            </Link>
           </div>
         </section>
 
@@ -279,39 +286,44 @@ export default function LandingPage() {
           
           <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-slate-100 shadow-sm">
             {[
-              { title: 'Information Technology', icon: Monitor, img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Engineering & Infra Services', icon: HardHat, img: 'https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Education Sector', icon: Book, img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Banking & Financial Services', icon: Landmark, img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Import & Export', icon: Plane, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=300&q=60' },
-              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Information Technology', icon: Monitor, img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: 'https://images.unsplash.com/photo-1532938911-3511ebf42968?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Engineering & Infra', icon: HardHat, img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Education Sector', icon: Book, img: 'https://images.unsplash.com/photo-1524178232363-125b0cea1050?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Banking & Financial', icon: Landmark, img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Import & Export', icon: Plane, img: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=300&q=60' },
+              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: 'https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=300&q=60' },
               { title: 'Real Estate', icon: Home, img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Vessels & Marine', icon: Anchor, img: 'https://images.unsplash.com/photo-1559441164-9646b9a89c4d?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Vessels & Marine', icon: Anchor, img: 'https://images.unsplash.com/photo-1494414115160-f823a0fbffac?auto=format&fit=crop&w=300&q=60' },
               { title: 'Logistics Services', icon: Truck, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=300&q=60' },
               { title: 'Automobiles Industry', icon: Car, img: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=300&q=60' },
               { title: 'Media & Entertainment', icon: Film, img: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Manufacturing & Trading', icon: Factory, img: 'https://images.unsplash.com/photo-1565439390237-770ce818c39e?auto=format&fit=crop&w=300&q=60' },
-              { title: 'Non Profit Organisation', icon: Users, img: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Manufacturing', icon: Factory, img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&q=60' },
+              { title: 'Non Profit Org', icon: Users, img: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=300&q=60' },
               { title: 'Chemical Sector', icon: FlaskConical, img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=300&q=60' }
             ].map((ind, i) => (
-              <div key={i} className="group relative p-8 border border-slate-100 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 cursor-pointer bg-white">
+              <Link href="/#contact" key={i} className="group relative p-8 border border-slate-100 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 cursor-pointer bg-white overflow-hidden">
+                {/* Default State: Clean White Background (no ghost image) */}
+                <div className="absolute inset-0 bg-white z-0 group-hover:opacity-0 transition-opacity duration-300" />
+                
+                {/* Hover State: Image fades in and scales */}
                 <Image
                   src={ind.img}
                   alt={ind.title}
                   fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                  className="object-cover z-0 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+                  sizes="(max-width: 1024px) 25vw, 20vw"
+                  className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 z-0"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-slate-50/90 transition-opacity duration-300 opacity-100 group-hover:opacity-0 z-0"></div>
-                <div className="absolute inset-0 bg-[#1c4b68] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+                {/* Hover Dark Overlay */}
+                <div className="absolute inset-0 bg-blue-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
                 
-                <div className="relative z-10 flex flex-col items-center">
-                  <ind.icon className="h-11 w-11 text-emerald-500 mb-4 group-hover:text-white transition-colors duration-300 stroke-[1.5]" />
-                  <h3 className="font-semibold text-slate-800 text-[14px] leading-snug group-hover:text-white transition-colors duration-300 px-2">{ind.title}</h3>
+                {/* Content (z-20 keeps it above the image/overlay) */}
+                <div className="relative z-20 flex flex-col items-center">
+                  <ind.icon className="h-10 w-10 text-emerald-500 mb-4 group-hover:text-white transition-colors duration-300 stroke-[1.5] group-hover:-translate-y-2 transform" />
+                  <h3 className="font-semibold text-slate-800 text-[14px] leading-snug group-hover:text-white transition-all duration-300 px-2 group-hover:translate-y-1 transform">{ind.title}</h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
