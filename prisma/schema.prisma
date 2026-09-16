@@ -49,6 +49,8 @@ model User {
   phone            String?
   image            String?
   isActive         Boolean           @default(true)
+  isFirstLogin     Boolean           @default(true)
+  kycStatus        String            @default("PENDING")
   createdAt        DateTime          @default(now())
   
   clientProfile    ClientProfile?

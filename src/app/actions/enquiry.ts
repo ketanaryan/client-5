@@ -37,6 +37,10 @@ export async function submitEnquiry(formData: FormData) {
   }
 }
 
+import bcrypt from "bcryptjs"
+import crypto from "crypto"
+import { sendWelcomeEmail } from "@/lib/email"
+
 export async function convertEnquiryToClient(enquiryId: string) {
   try {
     const enquiry = await prisma.enquiry.findUnique({
@@ -51,14 +55,51 @@ export async function convertEnquiryToClient(enquiryId: string) {
       throw new Error("Enquiry already converted")
     }
 
-    // Update status
+    // Check if user with this email already exists
+    const existingUser = await prisma.user.findUnique({
+      where: { email: enquiry.email }
+    })
+    
+    if (existingUser) {
+      throw new Error("User with this email already exists")
+    }
+
+    // Generate secure temp password
+    const tempPassword = crypto.randomBytes(4).toString("hex") // 8 characters
+    const passwordHash = await bcrypt.hash(tempPassword, 10)
+    
+    // Generate userCode (CLI-XXXX)
+    const count = await prisma.user.count({ where: { role: "CLIENT" } })
+    const userCode = `CLI-${1000 + count}`
+
+    // Create User and ClientProfile
+    await prisma.user.create({
+      data: {
+        name: enquiry.name,
+        email: enquiry.email,
+        phone: enquiry.phone,
+        passwordHash,
+        role: "CLIENT",
+        userCode,
+        isFirstLogin: true,
+        kycStatus: "PENDING",
+        clientProfile: {
+          create: {
+            companyName: enquiry.name
+          }
+        }
+      }
+    })
+
+    // Update Enquiry status
     await prisma.enquiry.update({
       where: { id: enquiryId },
       data: { status: "CONVERTED" }
     })
 
-    // Here we would normally provision the User and ClientProfile
-    // but the user requested mock functionality for now.
+    // Send Welcome Email
+    await sendWelcomeEmail(enquiry.email, tempPassword, enquiry.name)
+
     revalidatePath("/admin/enquiries")
 
     return { success: true }

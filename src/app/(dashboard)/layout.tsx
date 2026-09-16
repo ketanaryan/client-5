@@ -13,6 +13,9 @@ export default async function DashboardLayout({
   if (!session?.user) redirect("/login")
   
   const user = await prisma.user.findUnique({ where: { id: session.user.id } })
+  if (!user) redirect("/login")
+  if (user.isFirstLogin) redirect("/setup-password")
+  
   const notifications = await prisma.notification.findMany({
     where: { userId: session.user.id },
     orderBy: { createdAt: "desc" },
