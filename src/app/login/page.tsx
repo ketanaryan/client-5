@@ -19,10 +19,12 @@ export default function LoginPage() {
     const res = await signIn("credentials", { email, password, redirect: false })
     setLoading(false)
     if (res?.ok) {
-      if (email.includes("admin")) router.push("/admin")
-      else if (email.includes("client")) router.push("/client")
-      else if (email.includes("associate")) router.push("/associate")
-      else router.push("/staff")
+      // Fetch the actual session to get the real role
+      const sessionRes = await fetch("/api/auth/session")
+      const session = await sessionRes.json()
+      const role = session?.user?.role?.toLowerCase() || "client"
+      router.push(`/${role}`)
+      router.refresh()
     } else {
       alert("Invalid credentials")
     }
