@@ -23,7 +23,7 @@ export async function sendWelcomeEmail(toEmail: string, tempPassword: string, cl
           <p style="color: #475569; font-size: 14px;">
             <em>Note: You will be required to change this password immediately upon your first login to ensure the security of your financial data.</em>
           </p>
-          <a href="http://ld9lmhwfryjdvsaopzuedrd4.187.127.150.158.sslip.io/login" style="display: inline-block; background-color: #059669; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; margin-top: 15px;">
+          <a href="http://ld9lmhwfryjdvsaopzuedtd4.187.127.150.158.sslip.io/login" style="display: inline-block; background-color: #059669; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; margin-top: 15px;">
             Access Secure Portal
           </a>
         </div>
@@ -78,7 +78,7 @@ export async function sendAdminNotificationEmail(enquiry: { name: string, email:
           <div style="background-color: #ffffff; border: 1px solid #cbd5e1; padding: 15px; border-radius: 6px; color: #475569; font-size: 14px; white-space: pre-wrap;">${enquiry.message}</div>
           
           <div style="margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 15px;">
-            <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://ld9lmhwfryjdvsaopzuedrd4.187.127.150.158.sslip.io'}/admin/enquiries" style="display: inline-block; background-color: #032b4e; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 14px;">
+            <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://ld9lmhwfryjdvsaopzuedtd4.187.127.150.158.sslip.io'}/admin/enquiries" style="display: inline-block; background-color: #032b4e; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 14px;">
               View in Dashboard
             </a>
           </div>
