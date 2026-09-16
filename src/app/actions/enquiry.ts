@@ -22,6 +22,10 @@ const EnquirySchema = z.object({
   message: z.string().min(2, "Message must be at least 2 characters"),
 })
 
+import bcrypt from "bcryptjs"
+import crypto from "crypto"
+import { sendWelcomeEmail, sendAdminNotificationEmail } from "@/lib/email"
+
 export async function submitEnquiry(formData: FormData) {
   try {
     const rawData = {
@@ -38,6 +42,9 @@ export async function submitEnquiry(formData: FormData) {
       data: validated,
     })
 
+    // Instantly notify admin via Resend
+    await sendAdminNotificationEmail(validated)
+
     return { success: true, message: "Your enquiry has been submitted successfully. We will contact you soon." }
   } catch (error: any) {
     if (error instanceof z.ZodError) {
@@ -46,10 +53,6 @@ export async function submitEnquiry(formData: FormData) {
     return { success: false, message: "An error occurred while submitting your enquiry." }
   }
 }
-
-import bcrypt from "bcryptjs"
-import crypto from "crypto"
-import { sendWelcomeEmail } from "@/lib/email"
 
 export async function convertEnquiryToClient(enquiryId: string) {
   try {
