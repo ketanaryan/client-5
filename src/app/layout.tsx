@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: "Official Portal for CA Shantanu & Associates. Expert Chartered Accountant services including Tax Advisory, Compliance, and Auditing.",
 };
 
+import { DisclaimerModal } from "@/components/public/DisclaimerModal";
 import { SessionProvider } from "@/components/providers/session-provider";
 import { Toaster } from "sonner";
 
@@ -29,8 +30,10 @@ export default function RootLayout({
         <SessionProvider>
           {children}
         </SessionProvider>
+        <DisclaimerModal />
         <Toaster position="top-right" />
       </body>
     </html>
   );
 }
+
