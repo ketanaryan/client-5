@@ -512,7 +512,7 @@ export default function LandingPage() {
                   { name: 'About Us', href: '/about' }, 
                   { name: 'Services', href: '/#services' }, 
                   { name: 'Knowledge Center', href: '#' }, 
-                  { name: 'Career', href: '#' }, 
+                  { name: 'Career', href: '/#contact' }, 
                   { name: 'Gallery', href: '#' }, 
                   { name: 'Contact Us', href: '/#contact' }
                 ].map(l => (
@@ -545,13 +545,13 @@ export default function LandingPage() {
             <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">SERVICES</h4>
             <ul className="space-y-4">
               {[
-                { name: 'Company Registration', href: '#services' }, 
-                { name: 'Tax Advisory', href: '#services' }, 
-                { name: 'Company and LLP Compliances', href: '#services' },
-                { name: 'Auditing & Assurance', href: '#services' }, 
-                { name: 'Project Finance & Fund Raising', href: '#services' },
-                { name: 'Account Outsourcing & Bookkeeping', href: '#services' }, 
-                { name: 'Insolvency Services', href: '#services' }
+                { name: 'Company Registration', href: '/services/business-registration' }, 
+                { name: 'Tax Advisory', href: '/services/tax-advisory' }, 
+                { name: 'Company and LLP Compliances', href: '/services/company-and-llp-compliances' },
+                { name: 'Auditing & Assurance', href: '/services/auditing-and-assurance' }, 
+                { name: 'Project Finance & Fund Raising', href: '/services/project-finance-and-fund-raising' },
+                { name: 'Account Outsourcing & Bookkeeping', href: '/services/account-outsourcing-and-bookkeeping' }, 
+                { name: 'Insolvency Services', href: '/services/insolvency-services' }
               ].map(l => (
                 <li key={l.name}>
                   <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 leading-tight transition-colors">
@@ -565,18 +565,20 @@ export default function LandingPage() {
           
         </div>
         
-        <div className="border-t border-white/10">
-          <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col lg:flex-row justify-between items-center text-[12px] text-slate-400 gap-4 tracking-wide">
-            <div>© 2026 Shantanu & Associates. All Rights Reserved.</div>
+                <div className="border-t border-white/10 mt-8">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col justify-center items-center text-[12px] text-slate-400 gap-4 tracking-wide">
+            <div>&copy; 2026 Shantanu & Associates. All Rights Reserved.</div>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
               <Link href="/disclaimer" className="hover:text-white cursor-pointer transition-colors">Disclaimer</Link>|
               <Link href="/terms-and-conditions" className="hover:text-white cursor-pointer transition-colors">Terms & Conditions</Link>|
               <Link href="/privacy-policy" className="hover:text-white cursor-pointer transition-colors">Privacy Policy</Link>
             </div>
-            <div>Designed & Developed by <strong className="text-white">Aryan</strong></div>
           </div>
         </div>
       </footer>
     </div>
   )
 }
+
+
+
