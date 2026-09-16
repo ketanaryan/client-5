@@ -135,3 +135,48 @@ export async function toggleTaskStatus(taskId: string, isCompleted: boolean) {
   })
   return { success: true }
 }
+
+export async function assignStaffToRequest(id: string, staffId: string | null) {
+  const session = await auth()
+  if (!session?.user || session.user.role !== "ADMIN") {
+    throw new Error("Unauthorized")
+  }
+  await prisma.workRequest.update({
+    where: { id },
+    data: { assignedStaffId: staffId }
+  })
+  revalidatePath("/admin/work-requests")
+  return { success: true }
+}
+
+export async function generateInvoiceForRequest(workRequestId: string, amount: number) {
+  const session = await auth()
+  if (!session?.user || session.user.role !== "ADMIN") {
+    throw new Error("Unauthorized")
+  }
+
+  // Check if invoice already exists
+  const existing = await prisma.invoice.findFirst({
+    where: { workRequestId }
+  })
+  if (existing) {
+    throw new Error("Invoice already generated")
+  }
+
+  await prisma.invoice.create({
+    data: {
+      workRequestId,
+      amount,
+      status: "UNPAID"
+    }
+  })
+  
+  // Optionally update status to COMPLETED
+  await prisma.workRequest.update({
+    where: { id: workRequestId },
+    data: { status: "COMPLETED" }
+  })
+
+  revalidatePath("/admin/work-requests")
+  return { success: true }
+}

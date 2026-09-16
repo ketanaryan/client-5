@@ -13,14 +13,13 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
   const doc = await prisma.document.findUnique({
     where: { id: params.id },
-    include: { uploadedBy: true, workRequest: true }
+    include: { uploadedBy: true, workRequest: { include: { invoices: true } } }
   })
 
   if (!doc) {
     return new NextResponse("Document not found", { status: 404 })
   }
 
-  // Strictly enforce authorization
   const isOwner = doc.uploadedById === session.user.id
   const isStaff = session.user.role === "STAFF" || session.user.role === "ADMIN"
   
@@ -40,11 +39,18 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     return new NextResponse("Forbidden", { status: 403 })
   }
 
+  // Final Deliverable Payment Lock
+  if (doc.title.startsWith("[FINAL]") && session.user.role === "CLIENT") {
+    const hasUnpaidInvoice = doc.workRequest?.invoices.some(inv => inv.status !== "PAID")
+    if (hasUnpaidInvoice || !doc.workRequest?.invoices.length) {
+       return new NextResponse("Payment required to access final deliverables", { status: 402 })
+    }
+  }
+
   try {
     const storageDir = resolve(process.cwd(), "storage", "documents")
     const filePath = resolve(storageDir, doc.fileUrl)
     
-    // Crucial: Prevent Directory Traversal Attack by ensuring the resolved path is within storageDir
     if (!filePath.startsWith(storageDir)) {
       console.warn("Security Alert: Path traversal attempt prevented")
       return new NextResponse("Forbidden", { status: 403 })
@@ -56,7 +62,6 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
       headers: {
         "Content-Disposition": `attachment; filename="${doc.title}"`,
         "Content-Type": "application/octet-stream",
-        // Enforce secure headers
         "X-Content-Type-Options": "nosniff",
       }
     })

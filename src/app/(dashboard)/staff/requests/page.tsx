@@ -76,18 +76,7 @@ export default async function StaffRequestsPage() {
     redirect("/login")
   }
 
-  const workRequests = await prisma.workRequest.findMany({
-    include: {
-      client: {
-        include: {
-          user: true,
-        },
-      },
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  })
+  const workRequests = await prisma.workRequest.findMany({ where: { assignedStaffId: session.user.id }, orderBy: { createdAt: "desc" }, include: { client: { include: { user: true } } } })
 
   return (
     <div className="flex-1 space-y-6 p-8 pt-6">
@@ -185,5 +174,7 @@ export default async function StaffRequestsPage() {
     </div>
   )
 }
+
+
 
 

@@ -427,10 +427,12 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                         </TableCell>
                       </TableRow>
                     ) : (
-                      documents.map((doc: any) => (
+                      documents.map((doc: any) => {
+                      const isLocked = doc.title.startsWith("[FINAL]") && (!doc.workRequestId || invoices.some((inv: any) => inv.workRequestId === doc.workRequestId && inv.status !== "PAID") || !invoices.some((inv: any) => inv.workRequestId === doc.workRequestId))
+                      return (
                         <TableRow key={doc.id} className="hover:bg-slate-50/40">
                           <TableCell className="font-medium text-slate-900 flex items-center gap-2">
-                            <FileText className="h-4 w-4 text-blue-500"/> {doc.title}
+                            <FileText className={`h-4 w-4 ${isLocked ? "text-amber-500" : "text-blue-500"}`}/> {doc.title}
                           </TableCell>
                           <TableCell className="text-[14px] text-slate-600">
                             {doc.uploadedById === user.id ? "You" : doc.uploadedBy?.name || "Staff"}
@@ -442,16 +444,18 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                             <Button 
                               variant="outline" 
                               size="sm" 
+                              disabled={isLocked}
                               className="h-8 text-xs font-medium border-slate-200 hover:bg-slate-50 text-slate-700" 
                               onClick={() => {
                                 window.open(`/api/documents/${doc.id}`, "_blank")
                               }}
                             >
-                              Download
+                              {isLocked ? "Pay to Unlock" : "Download"}
                             </Button>
                           </TableCell>
                         </TableRow>
-                      ))
+                      )
+                    })
                     )}
                   </TableBody>
                 </Table>
@@ -517,6 +521,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
     </div>
   )
 }
+
 
 
 

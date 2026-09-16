@@ -132,26 +132,7 @@ export function WorkRequestsTable({ data, clients }: { data: any[], clients: any
                   </span>
                 </TableCell>
                 <TableCell className="pr-6 text-right py-4">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="inline-flex items-center justify-center gap-1.5 text-[13px] font-medium text-slate-700 hover:text-slate-900 transition-colors border border-slate-200 rounded-lg px-3 py-1.5 bg-white shadow-sm hover:border-slate-300 outline-none">
-                      Update Status <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-48 rounded-xl shadow-lg border-slate-200/60 p-1">
-                      <DropdownMenuGroup>
-                        <DropdownMenuLabel className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider px-2 py-1.5">Change Status</DropdownMenuLabel>
-                      </DropdownMenuGroup>
-                      <DropdownMenuSeparator className="bg-slate-100" />
-                      {["PENDING", "IN_PROGRESS", "FOR_REVIEW", "AWAITING_CLIENT", "COMPLETED"].map(status => (
-                        <DropdownMenuItem 
-                          key={status}
-                          className="text-[13px] text-slate-700 hover:bg-slate-50 cursor-pointer rounded-lg my-0.5"
-                          onClick={() => updateWorkRequestStatus(row.id, status as any)}
-                        >
-                          {status.replace("_", " ")}
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <a href={`/admin/work-requests/${row.id}`} className="inline-flex items-center justify-center gap-1.5 text-[13px] font-medium text-blue-600 hover:text-blue-700 transition-colors border border-blue-200 rounded-lg px-3 py-1.5 bg-blue-50 shadow-sm outline-none">Manage &rarr;</a>
                 </TableCell>
               </TableRow>
             ))}
@@ -170,3 +151,4 @@ export function WorkRequestsTable({ data, clients }: { data: any[], clients: any
     </div>
   )
 }
+
