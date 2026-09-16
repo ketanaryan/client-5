@@ -20,29 +20,29 @@ import ServiceCarousel from "@/components/public/ServiceCarousel"
 const HERO_SLIDES = [
   {
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1920&q=75",
-    title: "Service Beyond Trust",
-    subtitle: "We serve every size and type company from startups to Fortune 50.",
+    title: "Precision Driven Growth",
+    subtitle: "Delivering strategic financial solutions for emerging startups and established enterprises.",
     buttonText: "About Us",
     buttonLink: "/about"
   },
   {
     image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=75",
-    title: "Expertise Through Experience",
-    subtitle: "Expert Consultancy Service for direct and indirect taxes",
+    title: "Mastery In Taxation",
+    subtitle: "Comprehensive advisory and seamless compliance strategies for direct and indirect taxes.",
     buttonText: "Click Here",
     buttonLink: "/#services"
   },
   {
     image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=75",
-    title: "Partnering You All The Way",
-    subtitle: "Your trusted partners in financial growth and compliance.",
+    title: "Your Catalyst For Success",
+    subtitle: "Dedicated partners accelerating your financial compliance and business scaling.",
     buttonText: "Know How",
     buttonLink: "/about"
   },
   {
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=75",
-    title: "Leading Tax & Advisory Firm",
-    subtitle: "Unparalleled Excellence in Tax and Advisory Services",
+    title: "Excellence In Advisory",
+    subtitle: "Uncompromising quality in statutory audit, business structuring, and corporate finance.",
     buttonText: "Get Started",
     buttonLink: "/#contact"
   }
