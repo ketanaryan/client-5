@@ -74,3 +74,17 @@ export async function updateUserAvatar(base64Image: string) {
 
   return { success: true }
 }
+export async function markAllNotificationsRead() {
+  const session = await auth()
+  if (!session?.user?.id) throw new Error("Not authenticated")
+
+  await prisma.notification.updateMany({
+    where: { userId: session.user.id, isRead: false },
+    data: { isRead: true }
+  })
+  
+  revalidatePath("/")
+
+  return { success: true }
+}
+
