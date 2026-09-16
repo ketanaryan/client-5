@@ -47,7 +47,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
     { name: "Leads/Enquiries", icon: Users, href: "/admin/enquiries", roles: ["ADMIN"] },
     
     // Staff specific
-    { name: "My Work", icon: FileText, href: `/staff/my-work`, roles: ["STAFF"] },
+    
     { name: "All Requests", icon: Briefcase, href: `/staff/requests`, roles: ["STAFF"] },
 
     // CRM
@@ -72,7 +72,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
     { name: "Messages", icon: Bell, href: `/${role.toLowerCase()}/messages`, roles: ["STAFF"] },
     { name: "Reports", icon: BarChart, href: `/${role.toLowerCase()}/reports`, roles: ["ADMIN", "STAFF"] },
     { name: "Profile", icon: UserCog, href: `/${role.toLowerCase()}/profile`, roles: ["STAFF"] },
-    { name: "Settings", icon: Settings, href: `/${role.toLowerCase()}/settings`, roles: ["ADMIN", "STAFF", "CLIENT", "ASSOCIATE"] },
+    { name: "Settings", icon: Settings, href: role === "CLIENT" ? "/client?tab=profile" : `/${role.toLowerCase()}/settings`, roles: ["ADMIN", "STAFF", "CLIENT", "ASSOCIATE"] },
   ]
 
   // Filter routes by role
@@ -147,3 +147,5 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
     </div>
   )
 }
+
+

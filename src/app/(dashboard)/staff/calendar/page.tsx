@@ -1,86 +1,80 @@
-import { prisma } from "@/lib/prisma"
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { prisma } from "@/lib/prisma"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CalendarDays, Clock } from "lucide-react"
 
 export default async function StaffCalendarPage() {
   const session = await auth()
-  if (!session?.user || !["STAFF", "ADMIN"].includes(session.user.role as string)) redirect("/login")
+  if (!session?.user || (session.user.role !== "STAFF" && session.user.role !== "ADMIN")) {
+    redirect("/login")
+  }
 
   const workRequests = await prisma.workRequest.findMany({
-    where: { assignedStaffId: session.user.id },
-    orderBy: { dueDate: "asc" },
-    include: { client: { include: { user: true } } }
+    where: { dueDate: { not: null }, assignedStaffId: session.user.id },
+    select: { id: true, title: true, dueDate: true, priority: true }
   })
 
-  const upcoming = workRequests.filter(wr => wr.dueDate && new Date(wr.dueDate) >= new Date())
-  const overdue = workRequests.filter(wr => wr.dueDate && new Date(wr.dueDate) < new Date() && wr.status !== "COMPLETED")
+  // Group by day for simple current month view
+  const now = new Date()
+  const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
+  
+  const deadlinesByDay: Record<number, any[]> = {}
+  workRequests.forEach(wr => {
+    if (wr.dueDate) {
+      const d = new Date(wr.dueDate)
+      if (d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()) {
+        const day = d.getDate()
+        if (!deadlinesByDay[day]) deadlinesByDay[day] = []
+        deadlinesByDay[day].push(wr)
+      }
+    }
+  })
 
   return (
     <div className="flex-1 space-y-6 p-8 pt-6">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900">Calendar</h2>
-        <p className="text-slate-500 mt-1">Your upcoming deadlines and scheduled work.</p>
+      <div className="flex items-center justify-between space-y-2">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900">My Deadlines</h2>
+          <p className="text-slate-500">Track all upcoming due dates for your assigned work.</p>
+        </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card className="shadow-sm border-slate-200">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg flex items-center gap-2 text-slate-800">
-              <Clock className="h-5 w-5 text-red-500" /> Overdue
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {overdue.length === 0 ? (
-              <p className="text-sm text-slate-500">No overdue tasks. Great job!</p>
-            ) : (
-              overdue.map(wr => (
-                <div key={wr.id} className="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-100">
-                  <div>
-                    <p className="font-medium text-slate-900 text-sm">{wr.title}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{wr.client.user.name}</p>
-                  </div>
-                  <Badge className="bg-red-100 text-red-700 border-none text-xs">
-                    {wr.dueDate ? new Date(wr.dueDate).toLocaleDateString("en-IN", { day: "2-digit", month: "short" }) : "N/A"}
-                  </Badge>
-                </div>
-              ))
-            )}
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-sm border-slate-200">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg flex items-center gap-2 text-slate-800">
-              <CalendarDays className="h-5 w-5 text-blue-500" /> Upcoming Deadlines
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {upcoming.length === 0 ? (
-              <p className="text-sm text-slate-500">No upcoming deadlines.</p>
-            ) : (
-              upcoming.slice(0, 10).map(wr => (
-                <div key={wr.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100">
-                  <div>
-                    <p className="font-medium text-slate-900 text-sm">{wr.title}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{wr.client.user.name}</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-xs border-slate-200">
-                      {wr.status.replace("_", " ")}
-                    </Badge>
-                    <Badge className="bg-blue-100 text-blue-700 border-none text-xs">
-                      {wr.dueDate ? new Date(wr.dueDate).toLocaleDateString("en-IN", { day: "2-digit", month: "short" }) : "N/A"}
-                    </Badge>
+      <Card className="min-h-[500px] border-slate-200 shadow-sm">
+        <CardContent className="p-0">
+          <div className="grid grid-cols-7 border-b text-center text-sm font-semibold bg-slate-50 text-slate-600 rounded-t-xl">
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <div key={day} className="py-4 border-r last:border-r-0">
+                {day}
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-7 grid-rows-5 min-h-[600px] bg-slate-50/30">
+            {Array.from({ length: 35 }).map((_, i) => {
+              const day = i + 1
+              const hasItems = day <= daysInMonth && deadlinesByDay[day]
+              return (
+                <div key={i} className="border-r border-b p-3 min-h-[120px] bg-white transition-colors hover:bg-slate-50/50">
+                  <span className={`text-sm font-medium ${day === now.getDate() ? "bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center" : "text-slate-400"}`}>
+                    {day <= daysInMonth ? day : ""}
+                  </span>
+                  <div className="mt-2 space-y-1.5">
+                    {hasItems && deadlinesByDay[day].map(item => (
+                      <div key={item.id} className={`text-[10px] p-1.5 rounded font-medium border truncate ${
+                        item.priority === "HIGH" ? "bg-red-50 text-red-700 border-red-200" :
+                        item.priority === "MEDIUM" ? "bg-amber-50 text-amber-700 border-amber-200" :
+                        "bg-emerald-50 text-emerald-700 border-emerald-200"
+                      }`}>
+                        {item.title}
+                      </div>
+                    ))}
                   </div>
                 </div>
-              ))
-            )}
-          </CardContent>
-        </Card>
-      </div>
+              )
+            })}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
