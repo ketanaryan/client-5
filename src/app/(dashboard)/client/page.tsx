@@ -20,7 +20,8 @@ export default async function ClientPage() {
       clientProfile: {
         include: {
           workRequests: {
-            orderBy: { createdAt: "desc" }
+            orderBy: { createdAt: "desc" },
+            include: { tasks: true }
           }
         }
       }

@@ -16,7 +16,7 @@ export default async function StaffRequestDetailPage({ params }: { params: { id:
       client: {
         include: { user: true }
       },
-      tasks: { orderBy: { createdAt: "asc" } },
+      tasks: true,
       documents: {
         include: { uploadedBy: true },
         orderBy: { createdAt: "desc" }
