@@ -533,7 +533,7 @@ export default function LandingPage() {
               <Link href="#" className="hover:text-white cursor-pointer transition-colors">Terms & Conditions</Link>|
               <Link href="#" className="hover:text-white cursor-pointer transition-colors">Privacy Policy</Link>
             </div>
-            <div>Designed & Developed by <strong className="text-white">AGY AI</strong></div>
+            <div>Designed & Developed by <strong className="text-white">Aryan</strong></div>
           </div>
         </div>
       </footer>
