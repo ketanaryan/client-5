@@ -6,11 +6,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { User, Mail, Shield, Save, Camera, Loader2 } from "lucide-react"
-import { updateUserAvatar } from "@/app/actions/users"
+import { updateUserAvatar, updateUserProfile } from "@/app/actions/users"
 import Image from "next/image"
+import { toast } from "sonner"
 
 export default function ProfileForm({ user }: { user: any }) {
   const [loading, setLoading] = useState(false)
+  const [saving, setSaving] = useState(false)
+  const [name, setName] = useState(user.name || "")
   const [avatar, setAvatar] = useState<string | null>(user.image || null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -19,7 +22,7 @@ export default function ProfileForm({ user }: { user: any }) {
     if (!file) return
 
     if (file.size > 2 * 1024 * 1024) {
-      alert("File size must be less than 2MB")
+      toast.error("File size must be less than 2MB")
       return
     }
 
@@ -30,13 +33,26 @@ export default function ProfileForm({ user }: { user: any }) {
       setLoading(true)
       try {
         await updateUserAvatar(base64String)
+        toast.success("Avatar updated successfully!")
       } catch (error) {
         console.error(error)
-        alert("Failed to update avatar")
+        toast.error("Failed to update avatar")
       }
       setLoading(false)
     }
     reader.readAsDataURL(file)
+  }
+
+  const handleSave = async () => {
+    try {
+      setSaving(true)
+      await updateUserProfile(name)
+      toast.success("Profile saved successfully!")
+    } catch (error) {
+      toast.error("Failed to save profile")
+    } finally {
+      setSaving(false)
+    }
   }
 
   return (
@@ -77,7 +93,7 @@ export default function ProfileForm({ user }: { user: any }) {
       <CardContent className="space-y-6 pt-6">
         <div className="space-y-3">
           <Label htmlFor="name" className="text-slate-700 font-semibold">Full Name</Label>
-          <Input id="name" defaultValue={user.name || ""} className="max-w-md bg-slate-50 focus:bg-white transition-colors" />
+          <Input id="name" value={name} onChange={(e) => setName(e.target.value)} className="max-w-md bg-slate-50 focus:bg-white transition-colors" />
         </div>
         <div className="space-y-3">
           <Label htmlFor="email" className="text-slate-700 font-semibold">Email Address</Label>
@@ -95,8 +111,9 @@ export default function ProfileForm({ user }: { user: any }) {
           </div>
         </div>
         <div className="pt-2 border-t border-slate-100 mt-6">
-          <Button className="mt-4 bg-[#032b4e] hover:bg-[#1c3a5e] text-white shadow-sm font-medium">
-            <Save className="h-4 w-4 mr-2" /> Save Profile
+          <Button onClick={handleSave} disabled={saving} className="mt-4 bg-[#032b4e] hover:bg-[#1c3a5e] text-white shadow-sm font-medium">
+            {saving ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Save className="h-4 w-4 mr-2" />} 
+            {saving ? "Saving..." : "Save Profile"}
           </Button>
         </div>
       </CardContent>

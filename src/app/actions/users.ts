@@ -93,3 +93,34 @@ export async function markAllNotificationsRead() {
   return { success: true }
 }
 
+
+export async function updateUserProfile(name: string) {
+  const session = await auth()
+  if (!session?.user?.id) throw new Error("Not authenticated")
+
+  if (!name.trim()) throw new Error("Name is required")
+
+  await prisma.user.update({
+    where: { id: session.user.id },
+    data: { name: name.trim() }
+  })
+  
+  revalidatePath("/", "layout")
+  return { success: true }
+}
+
+export async function changePassword(newPassword: string) {
+  const session = await auth()
+  if (!session?.user?.id) throw new Error("Not authenticated")
+
+  if (newPassword.length < 6) throw new Error("Password must be at least 6 characters")
+
+  const passwordHash = await bcrypt.hash(newPassword, 10)
+
+  await prisma.user.update({
+    where: { id: session.user.id },
+    data: { passwordHash }
+  })
+  
+  return { success: true }
+}
