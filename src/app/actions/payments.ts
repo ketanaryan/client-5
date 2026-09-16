@@ -40,6 +40,46 @@ export async function recordPayment(formData: FormData) {
   return { success: true }
 }
 
+export async function submitClientPayment(invoiceId: string, amount: number, utrNumber: string) {
+  const session = await auth()
+  if (!session?.user || session.user.role !== "CLIENT") {
+    throw new Error("Unauthorized")
+  }
+
+  if (!invoiceId || !utrNumber) {
+    throw new Error("Missing fields")
+  }
+
+  // Ensure invoice belongs to the client
+  const invoice = await prisma.invoice.findUnique({
+    where: { id: invoiceId },
+    include: { workRequest: true }
+  })
+  
+  if (!invoice) throw new Error("Invoice not found")
+
+  // Find client profile
+  const profile = await prisma.clientProfile.findUnique({
+    where: { userId: session.user.id }
+  })
+
+  if (invoice.workRequest.clientId !== profile?.id) {
+    throw new Error("Unauthorized access to this invoice")
+  }
+
+  await prisma.payment.create({
+    data: {
+      invoiceId,
+      amount,
+      utrNumber,
+      status: "PENDING", // Wait for admin approval
+    }
+  })
+
+  revalidatePath("/client")
+  return { success: true }
+}
+
 export async function getUnpaidInvoices() {
   const session = await auth()
   if (!session?.user || session.user.role !== "ADMIN") {

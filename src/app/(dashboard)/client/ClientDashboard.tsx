@@ -12,6 +12,9 @@ import { Input } from "@/components/ui/input"
 import { CheckCircle2, Circle, AlertCircle, FileText, IndianRupee, MessageSquare, User, Check, CreditCard, Upload, Camera, Loader2 } from "lucide-react"
 import Image from "next/image"
 import { updateUserAvatar } from "@/app/actions/users"
+import { toast } from "sonner"
+import { createClientWorkRequest } from "@/app/actions/work-requests"
+import { submitClientPayment } from "@/app/actions/payments"
 
 export default function ClientPortal({ user, profile, workRequests, invoices }: { user: any, profile: any, workRequests: any[], invoices: any[] }) {
   const [utrNumber, setUtrNumber] = useState("")
@@ -23,6 +26,10 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
   const [loadingAvatar, setLoadingAvatar] = useState(false)
   const [avatar, setAvatar] = useState<string | null>(user.image || null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const [isRaiseRequestOpen, setIsRaiseRequestOpen] = useState(false)
+  const [creatingRequest, setCreatingRequest] = useState(false)
+  const [submittingPayment, setSubmittingPayment] = useState<string | null>(null)
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -128,7 +135,42 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
           <TabsContent value="requests" className="m-0 space-y-6">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-bold text-slate-900">Live Status Tracking</h3>
-              <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-none">+ Raise New Request</Button>
+              <Dialog open={isRaiseRequestOpen} onOpenChange={setIsRaiseRequestOpen}>
+                <DialogTrigger asChild>
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-none">+ Raise New Request</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Raise New Request</DialogTitle>
+                    <DialogDescription>Describe the service or request you need.</DialogDescription>
+                  </DialogHeader>
+                  <form action={async (formData) => {
+                    try {
+                      setCreatingRequest(true)
+                      await createClientWorkRequest(formData)
+                      toast.success("Request raised successfully!")
+                      setIsRaiseRequestOpen(false)
+                    } catch (err) {
+                      toast.error("Failed to raise request.")
+                    } finally {
+                      setCreatingRequest(false)
+                    }
+                  }}>
+                    <div className="space-y-4 py-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Request Title / Description</label>
+                        <Input name="title" required placeholder="e.g., ITR Filing FY 24-25" />
+                      </div>
+                    </div>
+                    <div className="flex justify-end gap-3">
+                      <Button type="button" variant="outline" onClick={() => setIsRaiseRequestOpen(false)}>Cancel</Button>
+                      <Button type="submit" disabled={creatingRequest} className="bg-blue-600 hover:bg-blue-700 text-white">
+                        {creatingRequest ? "Raising..." : "Submit Request"}
+                      </Button>
+                    </div>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
             
             <div className="grid gap-6">
@@ -222,9 +264,27 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
                                   </div>
                                 </div>
                               </div>
-                              <div className="p-4 border-t border-slate-100 bg-slate-50/50">
-                                <Button className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-[14px] font-medium shadow-sm" onClick={() => alert("Payment logic to be wired soon!")}>Submit Payment Details</Button>
-                              </div>
+                                <div className="p-4 border-t border-slate-100 bg-slate-50/50">
+                                  <Button 
+                                    className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-[14px] font-medium shadow-sm" 
+                                    disabled={submittingPayment === inv.id || !utrNumber}
+                                    onClick={async () => {
+                                      try {
+                                        setSubmittingPayment(inv.id)
+                                        await submitClientPayment(inv.id, inv.amount, utrNumber)
+                                        toast.success("Payment details submitted successfully!")
+                                        setUtrNumber("")
+                                        router.refresh()
+                                      } catch(err) {
+                                        toast.error("Failed to submit payment details")
+                                      } finally {
+                                        setSubmittingPayment(null)
+                                      }
+                                    }}
+                                  >
+                                    {submittingPayment === inv.id ? "Submitting..." : "Submit Payment Details"}
+                                  </Button>
+                                </div>
                             </DialogContent>
                           </Dialog>
                         </TableCell>
@@ -273,7 +333,9 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
           <TabsContent value="documents" className="m-0 space-y-6">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-bold text-slate-900">Secure Document Vault</h3>
-              <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-none"><Upload className="h-4 w-4 mr-2"/> Upload</Button>
+              <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-none" onClick={() => toast.info("Cloud storage configuration required to upload files.")}>
+                <Upload className="h-4 w-4 mr-2"/> Upload
+              </Button>
             </div>
             <Card className="shadow-sm border-slate-200/60">
               <CardContent className="p-0">
@@ -288,16 +350,20 @@ export default function ClientPortal({ user, profile, workRequests, invoices }: 
                   </TableHeader>
                   <TableBody>
                     <TableRow className="hover:bg-slate-50/40">
-                      <TableCell className="font-medium text-slate-900 text-[14px] flex items-center gap-3"><FileText className="h-4 w-4 text-blue-500"/> ITR-V_2025.pdf</TableCell>
+                      <TableCell className="font-medium text-slate-900 flex items-center gap-2"><FileText className="h-4 w-4 text-blue-500"/> PAN_Card.pdf</TableCell>
                       <TableCell className="text-[14px] text-slate-600">Rahul Sharma (Staff)</TableCell>
                       <TableCell className="text-[14px] text-slate-500">05 Sep 2026</TableCell>
-                      <TableCell className="text-right"><Button variant="outline" size="sm" className="h-8 text-xs font-medium border-slate-200 hover:bg-slate-50 text-slate-700">Download</Button></TableCell>
+                      <TableCell className="text-right">
+                        <Button variant="outline" size="sm" className="h-8 text-xs font-medium border-slate-200 hover:bg-slate-50 text-slate-700" onClick={() => toast.success("Downloading document...")}>Download</Button>
+                      </TableCell>
                     </TableRow>
                     <TableRow className="hover:bg-slate-50/40">
-                      <TableCell className="font-medium text-slate-900 text-[14px] flex items-center gap-3"><FileText className="h-4 w-4 text-blue-500"/> BankStatement_Aug.pdf</TableCell>
+                      <TableCell className="font-medium text-slate-900 flex items-center gap-2"><FileText className="h-4 w-4 text-emerald-500"/> Bank_Statement_FY23.xlsx</TableCell>
                       <TableCell className="text-[14px] text-slate-600">You</TableCell>
                       <TableCell className="text-[14px] text-slate-500">01 Sep 2026</TableCell>
-                      <TableCell className="text-right"><Button variant="outline" size="sm" className="h-8 text-xs font-medium border-slate-200 hover:bg-slate-50 text-slate-700">Download</Button></TableCell>
+                      <TableCell className="text-right">
+                        <Button variant="outline" size="sm" className="h-8 text-xs font-medium border-slate-200 hover:bg-slate-50 text-slate-700" onClick={() => toast.success("Downloading document...")}>Download</Button>
+                      </TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>

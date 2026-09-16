@@ -40,6 +40,38 @@ export async function createWorkRequest(formData: FormData) {
   return { success: true }
 }
 
+export async function createClientWorkRequest(formData: FormData) {
+  const session = await auth()
+  if (!session?.user || session.user.role !== "CLIENT") {
+    throw new Error("Unauthorized")
+  }
+
+  const title = formData.get("title") as string
+  if (!title) {
+    throw new Error("Missing request title")
+  }
+
+  const profile = await prisma.clientProfile.findUnique({
+    where: { userId: session.user.id }
+  })
+
+  if (!profile) {
+    throw new Error("Client profile not found")
+  }
+
+  await prisma.workRequest.create({
+    data: {
+      clientId: profile.id,
+      title,
+      priority: "MEDIUM",
+      status: "PENDING",
+    }
+  })
+
+  revalidatePath("/client")
+  return { success: true }
+}
+
 export async function updateWorkRequestStatus(id: string, status: "PENDING" | "IN_PROGRESS" | "AWAITING_CLIENT" | "FOR_REVIEW" | "COMPLETED") {
   const session = await auth()
   if (!session?.user) {
