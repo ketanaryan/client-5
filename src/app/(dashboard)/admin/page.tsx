@@ -19,12 +19,16 @@ export default async function AdminDashboard() {
     prisma.user.count({ where: { role: "CLIENT" } }),
     prisma.user.count({ where: { role: "STAFF" } }),
     prisma.workRequest.count({ where: { status: { not: "COMPLETED" } } }),
-    prisma.workRequest.findMany({
+        prisma.workRequest.findMany({
       take: 5,
       orderBy: { createdAt: "desc" },
-      include: { client: { include: { user: true } }, assignedStaff: true }
+      include: { client: { include: { user: true } } }
     })
   ])
+
+  // Fetch staff names for mapping
+  const staffMembers = await prisma.user.findMany({ where: { role: "STAFF" }, select: { id: true, name: true } })
+  const staffMap = new Map(staffMembers.map(s => [s.id, s.name]))
 
   // Aggregate invoices for revenue
   const invoices = await prisma.invoice.findMany({
@@ -116,7 +120,7 @@ export default async function AdminDashboard() {
                   <TableRow key={wr.id} className="hover:bg-slate-50/50 transition-colors">
                     <TableCell className="pl-6 py-4 font-medium text-slate-900">{wr.title}</TableCell>
                     <TableCell className="py-4 text-slate-600">{wr.client.companyName || wr.client.user.name}</TableCell>
-                    <TableCell className="py-4 text-slate-600">{wr.assignedStaff?.name || "Unassigned"}</TableCell>
+                    <TableCell className="py-4 text-slate-600">{(staffMap.get(wr.assignedStaffId) || "Unassigned")}</TableCell>
                     <TableCell className="py-4">
                       <Badge variant="secondary" className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-0">{wr.status.replace("_", " ")}</Badge>
                     </TableCell>
@@ -130,3 +134,5 @@ export default async function AdminDashboard() {
     </div>
   )
 }
+
+
