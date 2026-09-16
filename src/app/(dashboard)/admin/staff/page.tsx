@@ -13,13 +13,25 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Plus, MoreHorizontal, Mail, Phone } from "lucide-react"
 import { CreateStaffDialog } from "@/components/staff/CreateStaffDialog"
+import { SearchInput } from "@/components/ui/search-input"
 
-export default async function StaffPage() {
+export default async function StaffPage({ searchParams }: { searchParams: { q?: string } }) {
   const session = await auth()
   if (session?.user?.role !== "ADMIN") redirect("/login")
 
+  const query = searchParams.q || ""
+
   const staff = await prisma.user.findMany({
-    where: { role: "STAFF" },
+    where: { 
+      role: "STAFF",
+      ...(query && {
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { email: { contains: query, mode: "insensitive" } },
+          { userCode: { contains: query, mode: "insensitive" } },
+        ]
+      })
+    },
     orderBy: { createdAt: "desc" },
     include: {
       _count: {
@@ -30,12 +42,13 @@ export default async function StaffPage() {
 
   return (
     <div className="flex-1 space-y-6 p-8 pt-6">
-      <div className="flex items-center justify-between space-y-2">
+      <div className="flex items-center justify-between space-y-2 flex-wrap gap-4">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900">Staff Directory</h2>
           <p className="text-slate-500">Manage your internal team members and access.</p>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3 ml-auto">
+          <SearchInput placeholder="Search staff ID, name..." />
           <CreateStaffDialog roleType="STAFF" />
         </div>
       </div>
@@ -44,7 +57,8 @@ export default async function StaffPage() {
         <Table>
           <TableHeader>
             <TableRow className="bg-slate-50/50">
-              <TableHead className="w-[300px]">Name</TableHead>
+              <TableHead className="w-[120px]">Staff ID</TableHead>
+              <TableHead className="w-[280px]">Name</TableHead>
               <TableHead>Contact</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Activity Log</TableHead>
@@ -54,6 +68,11 @@ export default async function StaffPage() {
           <TableBody>
             {staff.map((member) => (
               <TableRow key={member.id}>
+                <TableCell className="font-semibold text-slate-700">
+                  <Badge variant="outline" className="bg-slate-50 border-slate-200 text-slate-600 font-mono tracking-wide">
+                    {member.userCode || "N/A"}
+                  </Badge>
+                </TableCell>
                 <TableCell className="font-medium text-slate-900">
                   {member.name}
                 </TableCell>
@@ -80,7 +99,7 @@ export default async function StaffPage() {
             ))}
             {staff.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center text-slate-500">
+                <TableCell colSpan={6} className="h-24 text-center text-slate-500">
                   No staff members found.
                 </TableCell>
               </TableRow>

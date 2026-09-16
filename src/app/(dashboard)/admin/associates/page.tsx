@@ -13,13 +13,25 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Plus, Users, Mail, Phone } from "lucide-react"
 import { CreateStaffDialog } from "@/components/staff/CreateStaffDialog"
+import { SearchInput } from "@/components/ui/search-input"
 
-export default async function AssociatesPage() {
+export default async function AssociatesPage({ searchParams }: { searchParams: { q?: string } }) {
   const session = await auth()
   if (session?.user?.role !== "ADMIN") redirect("/login")
 
+  const query = searchParams.q || ""
+
   const associates = await prisma.user.findMany({
-    where: { role: "ASSOCIATE" },
+    where: { 
+      role: "ASSOCIATE",
+      ...(query && {
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { email: { contains: query, mode: "insensitive" } },
+          { userCode: { contains: query, mode: "insensitive" } },
+        ]
+      })
+    },
     orderBy: { createdAt: "desc" },
     include: {
       associateProfile: true
@@ -28,12 +40,13 @@ export default async function AssociatesPage() {
 
   return (
     <div className="flex-1 space-y-6 p-8 pt-6">
-      <div className="flex items-center justify-between space-y-2">
+      <div className="flex items-center justify-between space-y-2 flex-wrap gap-4">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900">Associate Network</h2>
           <p className="text-slate-500">Manage external partners, specialized consultants, and outsourced work.</p>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3 ml-auto">
+          <SearchInput placeholder="Search associate ID, name..." />
           <CreateStaffDialog roleType="ASSOCIATE" />
         </div>
       </div>
@@ -42,6 +55,7 @@ export default async function AssociatesPage() {
         <Table>
           <TableHeader>
             <TableRow className="bg-slate-50/50">
+              <TableHead className="w-[130px]">Associate ID</TableHead>
               <TableHead>Professional Name</TableHead>
               <TableHead>Contact Details</TableHead>
               <TableHead>Domain</TableHead>
@@ -52,6 +66,11 @@ export default async function AssociatesPage() {
           <TableBody>
             {associates.map((associate) => (
               <TableRow key={associate.id}>
+                <TableCell className="font-semibold text-slate-700">
+                  <Badge variant="outline" className="bg-slate-50 border-slate-200 text-slate-600 font-mono tracking-wide">
+                    {associate.userCode || "N/A"}
+                  </Badge>
+                </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50">
@@ -87,7 +106,7 @@ export default async function AssociatesPage() {
             ))}
             {associates.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center text-slate-500">
+                <TableCell colSpan={6} className="h-24 text-center text-slate-500">
                   No associates found.
                 </TableCell>
               </TableRow>

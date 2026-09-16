@@ -26,6 +26,10 @@ export async function createUser(data: z.infer<typeof CreateUserSchema>) {
 
     const passwordHash = await bcrypt.hash(validated.password, 10)
 
+    const prefix = validated.role === "STAFF" ? "STF" : validated.role === "CLIENT" ? "CLI" : validated.role === "ASSOCIATE" ? "ASC" : "ADM"
+    const count = await prisma.user.count({ where: { role: validated.role } })
+    const userCode = `${prefix}-${1000 + count}`
+
     const user = await prisma.user.create({
       data: {
         name: validated.name,
@@ -33,6 +37,7 @@ export async function createUser(data: z.infer<typeof CreateUserSchema>) {
         passwordHash,
         role: validated.role,
         phone: validated.phone,
+        userCode,
         ...(validated.role === "CLIENT" && {
           clientProfile: {
             create: {

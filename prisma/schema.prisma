@@ -45,6 +45,7 @@ model User {
   email            String            @unique
   passwordHash     String
   role             Role              @default(CLIENT)
+  userCode         String?           @unique
   phone            String?
   image            String?
   isActive         Boolean           @default(true)
