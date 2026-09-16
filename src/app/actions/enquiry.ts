@@ -71,7 +71,13 @@ export async function convertEnquiryToClient(enquiryId: string) {
     })
     
     if (existingUser) {
-      throw new Error("User with this email already exists")
+      // If user already exists, just mark the enquiry as converted so it doesn't stay 'NEW'
+      await prisma.enquiry.update({
+        where: { id: enquiryId },
+        data: { status: "CONVERTED" }
+      })
+      revalidatePath("/admin/enquiries")
+      return { success: true, message: "Client already exists. Enquiry marked as converted." }
     }
 
     // Generate secure temp password

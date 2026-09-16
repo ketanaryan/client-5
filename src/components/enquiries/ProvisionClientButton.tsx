@@ -24,10 +24,14 @@ export function ProvisionClientButton({ enquiryId, status }: { enquiryId: string
     setLoading(false)
     
     if (result.success) {
-      toast.success("Secure Client Portal Provisioned", {
-        description: "Credentials emailed to client.",
-        className: "bg-emerald-50 text-emerald-900 border-emerald-200"
-      })
+      if (result.message) {
+        toast.success("Enquiry Converted", { description: result.message })
+      } else {
+        toast.success("Secure Client Portal Provisioned", {
+          description: "Credentials emailed to client.",
+          className: "bg-emerald-50 text-emerald-900 border-emerald-200"
+        })
+      }
     } else {
       toast.error("Failed to provision portal", {
         description: result.error
