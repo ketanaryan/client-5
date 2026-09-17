@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation"
 
 export default function SecuritySettings() {
   const [passwordOpen, setPasswordOpen] = useState(false)
+  const [currentPassword, setCurrentPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [changing, setChanging] = useState(false)
   const router = useRouter()
@@ -21,9 +22,10 @@ export default function SecuritySettings() {
     e.preventDefault()
     try {
       setChanging(true)
-      await changePassword(newPassword)
+      await changePassword(currentPassword, newPassword)
       toast.success("Password changed successfully!")
       setPasswordOpen(false)
+      setCurrentPassword("")
       setNewPassword("")
     } catch (error: any) {
       toast.error(error.message || "Failed to change password")
@@ -54,6 +56,15 @@ export default function SecuritySettings() {
                 <DialogDescription>Enter a strong new password for your account.</DialogDescription>
               </DialogHeader>
               <form onSubmit={handlePasswordChange} className="space-y-4">
+                <div className="space-y-2">
+                  <Label>Current Password</Label>
+                  <Input 
+                    type="password" 
+                    value={currentPassword} 
+                    onChange={(e) => setCurrentPassword(e.target.value)} 
+                    required 
+                  />
+                </div>
                 <div className="space-y-2">
                   <Label>New Password</Label>
                   <Input 

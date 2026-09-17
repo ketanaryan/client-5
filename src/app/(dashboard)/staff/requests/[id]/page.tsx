@@ -32,5 +32,10 @@ export default async function StaffRequestDetailPage({ params }: { params: { id:
     redirect("/staff/requests")
   }
 
+  // IDOR Protection: Prevent staff from viewing work requests they are not assigned to.
+  if (session.user.role === "STAFF" && workRequest.assignedStaffId !== session.user.id) {
+    redirect("/staff/requests")
+  }
+
   return <RequestDetailClient workRequest={workRequest} currentUser={session.user} />
 }

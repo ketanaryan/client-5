@@ -109,11 +109,20 @@ export async function updateUserProfile(name: string) {
   return { success: true }
 }
 
-export async function changePassword(newPassword: string) {
+export async function changePassword(currentPassword: string, newPassword: string) {
   const session = await auth()
   if (!session?.user?.id) throw new Error("Not authenticated")
 
   if (newPassword.length < 6) throw new Error("Password must be at least 6 characters")
+
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id }
+  })
+
+  if (!user) throw new Error("User not found")
+
+  const isValid = await bcrypt.compare(currentPassword, user.passwordHash)
+  if (!isValid) throw new Error("Incorrect current password")
 
   const passwordHash = await bcrypt.hash(newPassword, 10)
 

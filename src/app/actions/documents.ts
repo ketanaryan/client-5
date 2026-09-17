@@ -85,12 +85,23 @@ export async function deleteDocument(documentId: string) {
   if (!session?.user?.id) throw new Error("Unauthorized")
 
   const doc = await prisma.document.findUnique({
-    where: { id: documentId }
+    where: { id: documentId },
+    include: { workRequest: true }
   })
 
   if (!doc) throw new Error("Document not found")
 
-  if (session.user.role !== "ADMIN" && session.user.role !== "STAFF" && doc.uploadedById !== session.user.id) {
+  let isAuthorized = false;
+
+  if (session.user.role === "ADMIN") {
+    isAuthorized = true;
+  } else if (doc.uploadedById === session.user.id) {
+    isAuthorized = true;
+  } else if (session.user.role === "STAFF" && doc.workRequest?.assignedStaffId === session.user.id) {
+    isAuthorized = true;
+  }
+
+  if (!isAuthorized) {
     throw new Error("Unauthorized")
   }
 
