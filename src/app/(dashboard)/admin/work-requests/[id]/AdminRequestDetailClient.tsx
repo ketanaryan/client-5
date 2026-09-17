@@ -155,7 +155,11 @@ export default function AdminRequestDetailClient({ workRequest, staffMembers }: 
                 <label className="text-sm font-medium text-slate-700 flex items-center gap-2"><UserPlus className="w-4 h-4"/> Assign Staff</label>
                 <Select value={assignedStaff} onValueChange={setAssignedStaff}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select Staff" />
+                    <SelectValue placeholder="Select Staff">
+                      {assignedStaff === "unassigned" 
+                        ? "Unassigned" 
+                        : staffMembers.find(s => s.id === assignedStaff)?.name || "Unknown Staff"}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="unassigned" className="text-slate-400 font-medium">Unassigned</SelectItem>
