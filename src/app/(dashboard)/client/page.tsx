@@ -1,17 +1,14 @@
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { prisma } from "@/lib/prisma"
+import { decrypt } from "@/lib/encryption"
 import ClientPortal from "./ClientDashboard"
 
 export default async function ClientPage() {
   const session = await auth()
   
-  if (!session?.user) {
+  if (!session?.user || session.user.role !== "CLIENT") {
     redirect("/login")
-  }
-
-  if (session.user.role !== "CLIENT") {
-    redirect("/") 
   }
 
   const clientData = await prisma.user.findUnique({
@@ -24,6 +21,7 @@ export default async function ClientPage() {
       role: true,
       phone: true,
       userCode: true,
+      kycStatus: true,
       clientProfile: {
         include: {
           workRequests: {
@@ -37,6 +35,14 @@ export default async function ClientPage() {
 
   if (!clientData || !clientData.clientProfile) {
     redirect("/login")
+  }
+
+  // Decrypt sensitive data for display
+  const profile = clientData.clientProfile;
+  const decryptedProfile = {
+    ...profile,
+    decryptedPan: profile.encryptedPan ? decrypt(profile.encryptedPan) : null,
+    decryptedGst: profile.encryptedGst ? decrypt(profile.encryptedGst) : null,
   }
 
   // Fetch invoices and documents in parallel for better performance
@@ -72,11 +78,10 @@ export default async function ClientPage() {
   return (
     <ClientPortal 
       user={clientData} 
-      profile={clientData.clientProfile} 
-      workRequests={clientData.clientProfile.workRequests || []} 
+      profile={decryptedProfile} 
+      workRequests={clientData.clientProfile.workRequests}
       invoices={invoices}
-      documents={documents} 
+      documents={documents}
     />
   )
 }
-

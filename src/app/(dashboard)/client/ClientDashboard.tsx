@@ -25,7 +25,10 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
   const [activeTab, setActiveTab] = useState(tab)
   
   const [loadingAvatar, setLoadingAvatar] = useState(false)
+  
   const [avatar, setAvatar] = useState<string | null>(user.image || null)
+  const [kycLoading, setKycLoading] = useState(false)
+
   const fileInputRef = useRef<HTMLInputElement>(null)
   const documentUploadRef = useRef<HTMLInputElement>(null)
   const [uploadingDoc, setUploadingDoc] = useState(false)
@@ -84,13 +87,36 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
             <TabsTrigger value="requests" className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none h-full px-1 text-[14px] font-medium text-slate-500 data-[state=active]:text-slate-900 transition-none">My Requests</TabsTrigger>
             <TabsTrigger value="invoices" className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none h-full px-1 text-[14px] font-medium text-slate-500 data-[state=active]:text-slate-900 transition-none">Invoices & Payments</TabsTrigger>
             <TabsTrigger value="documents" className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none h-full px-1 text-[14px] font-medium text-slate-500 data-[state=active]:text-slate-900 transition-none">Document Vault</TabsTrigger>
-            <TabsTrigger value="profile" className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none h-full px-1 text-[14px] font-medium text-slate-500 data-[state=active]:text-slate-900 transition-none">Profile</TabsTrigger>
+            <TabsTrigger id="kyc-tab-trigger" value="profile" className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none h-full px-1 text-[14px] font-medium text-slate-500 data-[state=active]:text-slate-900 transition-none">Profile</TabsTrigger>
           </TabsList>
         </div>
 
         <div className="flex-1 overflow-auto p-6 md:p-8 pb-12">
           {/* DASHBOARD TAB */}
           <TabsContent value="dashboard" className="m-0 space-y-6">
+
+            {/* KYC Alert Banner */}
+            {user.kycStatus !== "VERIFIED" && (
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                <div className="flex gap-3">
+                  <div className="mt-0.5"><AlertCircle className="w-5 h-5 text-amber-600" /></div>
+                  <div>
+                    <h4 className="font-semibold text-amber-900 text-sm">
+                      {user.kycStatus === "REJECTED" ? "KYC Rejected" : "Complete your KYC"}
+                    </h4>
+                    <p className="text-sm text-amber-700 mt-0.5">
+                      {profile?.kycRejectionReason 
+                        ? `Reason: ${profile.kycRejectionReason}. Please resubmit your documents.`
+                        : "As per regulations, please submit your PAN and GST details to complete onboarding."}
+                    </p>
+                  </div>
+                </div>
+                <Button onClick={() => window.document.getElementById('kyc-tab-trigger')?.click()} variant="outline" className="shrink-0 bg-white border-amber-200 text-amber-700 hover:bg-amber-100">
+                  Submit KYC Now
+                </Button>
+              </div>
+            )}
+
             <div className="bg-red-50/50 border border-red-100 rounded-xl p-5 flex items-start gap-4">
               <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 shrink-0" />
               <div>

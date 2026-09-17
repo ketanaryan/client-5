@@ -68,14 +68,17 @@ model User {
 }
 
 model ClientProfile {
-  id             String        @id @default(uuid())
-  userId         String        @unique
-  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  encryptedPan   String?
-  encryptedGst   String?
-  companyName    String?
-  address        String?
-  workRequests   WorkRequest[]
+  id                 String        @id @default(uuid())
+  userId             String        @unique
+  user               User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  encryptedPan       String?
+  encryptedGst       String?
+  panDocumentUrl     String?
+  gstDocumentUrl     String?
+  kycRejectionReason String?
+  companyName        String?
+  address            String?
+  workRequests       WorkRequest[]
 }
 
 model AssociateProfile {
