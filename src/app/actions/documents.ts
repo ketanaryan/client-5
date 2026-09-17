@@ -40,6 +40,8 @@ export async function uploadClientDocument(formData: FormData) {
   const safeName = basename(originalName).replace(/[^a-zA-Z0-9.\-_]/g, "_")
   const filename = `${randomUUID()}-${safeName}`
   
+  const workRequestId = formData.get("workRequestId") as string | null
+
   // Ensure storage directory exists securely outside public root
   const storageDir = join(process.cwd(), "storage", "documents")
   await mkdir(storageDir, { recursive: true })
@@ -47,12 +49,30 @@ export async function uploadClientDocument(formData: FormData) {
   const filePath = join(storageDir, filename)
   await writeFile(filePath, buffer)
 
+  if (workRequestId) {
+    const wr = await prisma.workRequest.findUnique({
+      where: { id: workRequestId },
+      include: { client: true }
+    })
+    if (!wr) throw new Error("Work request not found")
+    
+    // Auth check for work request access
+    if (session.user.role === "CLIENT" && wr.client.userId !== session.user.id) {
+      throw new Error("Unauthorized to upload to this work request")
+    }
+    if (session.user.role === "STAFF" && wr.assignedStaffId !== session.user.id) {
+      // Allow STAFF to upload only if assigned
+      throw new Error("Unauthorized to upload to this work request")
+    }
+  }
+
   // Link file to client
   await prisma.document.create({
     data: {
       title: safeName,
       fileUrl: filename,
       uploadedById: session.user.id,
+      workRequestId: workRequestId || null,
     }
   })
 

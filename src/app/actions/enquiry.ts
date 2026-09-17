@@ -4,8 +4,15 @@ import { z } from "zod"
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 
+import { auth } from "@/auth"
+
 export async function deleteEnquiry(enquiryId: string) {
   try {
+    const session = await auth()
+    if (!session?.user || session.user.role !== "ADMIN") {
+      throw new Error("Unauthorized")
+    }
+
     await prisma.enquiry.delete({ where: { id: enquiryId } })
     revalidatePath("/admin/enquiries")
     return { success: true }
@@ -56,6 +63,11 @@ export async function submitEnquiry(formData: FormData) {
 
 export async function convertEnquiryToClient(enquiryId: string) {
   try {
+    const session = await auth()
+    if (!session?.user || session.user.role !== "ADMIN") {
+      throw new Error("Unauthorized")
+    }
+
     const enquiry = await prisma.enquiry.findUnique({
       where: { id: enquiryId }
     })

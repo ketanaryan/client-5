@@ -74,8 +74,15 @@ export async function createClientWorkRequest(formData: FormData) {
 
 export async function updateWorkRequestStatus(id: string, status: "PENDING" | "IN_PROGRESS" | "AWAITING_CLIENT" | "FOR_REVIEW" | "COMPLETED") {
   const session = await auth()
-  if (!session?.user) {
+  if (!session?.user || (session.user.role !== "ADMIN" && session.user.role !== "STAFF")) {
     throw new Error("Unauthorized")
+  }
+
+  const wr = await prisma.workRequest.findUnique({ where: { id } })
+  if (!wr) throw new Error("Not found")
+
+  if (session.user.role === "STAFF" && wr.assignedStaffId !== session.user.id) {
+    throw new Error("Unauthorized: Not assigned to this request")
   }
 
   await prisma.workRequest.update({
@@ -103,6 +110,14 @@ export async function updateWorkRequestFee(id: string, feeAmount: number) {
   if (!session?.user || (session.user.role !== "STAFF" && session.user.role !== "ADMIN")) {
     throw new Error("Unauthorized")
   }
+
+  if (session.user.role === "STAFF") {
+    const wr = await prisma.workRequest.findUnique({ where: { id } })
+    if (!wr || wr.assignedStaffId !== session.user.id) {
+      throw new Error("Unauthorized: Not assigned to this request")
+    }
+  }
+
   await prisma.workRequest.update({
     where: { id },
     data: { feeAmount }
@@ -116,6 +131,14 @@ export async function addTaskToRequest(workRequestId: string, description: strin
   if (!session?.user || (session.user.role !== "STAFF" && session.user.role !== "ADMIN")) {
     throw new Error("Unauthorized")
   }
+
+  if (session.user.role === "STAFF") {
+    const wr = await prisma.workRequest.findUnique({ where: { id: workRequestId } })
+    if (!wr || wr.assignedStaffId !== session.user.id) {
+      throw new Error("Unauthorized: Not assigned to this request")
+    }
+  }
+
   await prisma.task.create({
     data: {
       workRequestId,
@@ -127,7 +150,20 @@ export async function addTaskToRequest(workRequestId: string, description: strin
 
 export async function toggleTaskStatus(taskId: string, isCompleted: boolean) {
   const session = await auth()
-  if (!session?.user) throw new Error("Unauthorized")
+  if (!session?.user || (session.user.role !== "ADMIN" && session.user.role !== "STAFF")) {
+    throw new Error("Unauthorized")
+  }
+  
+  const task = await prisma.task.findUnique({
+    where: { id: taskId },
+    include: { workRequest: true }
+  })
+  
+  if (!task) throw new Error("Task not found")
+  
+  if (session.user.role === "STAFF" && task.workRequest.assignedStaffId !== session.user.id) {
+    throw new Error("Unauthorized: Not assigned to this request")
+  }
   
   await prisma.task.update({
     where: { id: taskId },
