@@ -90,7 +90,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
       </div>
 
       <div className="flex-1 overflow-auto py-4 scrollbar-hide">
-        <nav className="grid gap-1.5 px-4">
+        <nav className="grid gap-1 px-3">
           {visibleRoutes.map((route) => {
             const isActive = pathname === route.href || pathname.startsWith(`${route.href}/`)
             return (
@@ -98,10 +98,10 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
                 key={route.href}
                 href={route.href}
                 className={cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[14px] font-medium transition-all duration-200",
+                  "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
                   isActive
-                    ? "bg-slate-100 text-slate-900 shadow-sm border border-slate-200/60"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900 border border-transparent"
+                    ? "bg-blue-50 text-blue-700"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                 )}
               >
                 <route.icon className={cn("h-[18px] w-[18px]", isActive ? "text-blue-600" : "text-slate-400 group-hover:text-slate-600")} />

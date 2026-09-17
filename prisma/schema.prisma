@@ -189,3 +189,13 @@ model Notification {
   createdAt DateTime @default(now())
 }
 
+model Reminder {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  dueDate     DateTime
+  type        String   @default("CUSTOM") // e.g. "GSTR-3B", "ITR Corporate", "CUSTOM"
+  targetCount Int      @default(0)
+  createdAt   DateTime @default(now())
+  isCompleted Boolean  @default(false)
+}
