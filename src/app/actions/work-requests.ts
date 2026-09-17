@@ -101,7 +101,18 @@ export async function getClients() {
   }
   
   return prisma.clientProfile.findMany({
-    include: { user: true }
+    include: { 
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          image: true,
+          userCode: true
+        }
+      } 
+    }
   })
 }
 

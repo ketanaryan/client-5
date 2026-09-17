@@ -14,11 +14,19 @@ export default async function AdminRequestDetailPage({ params }: { params: { id:
     where: { id: params.id },
     include: {
       client: {
-        include: { user: true }
+        include: { 
+          user: {
+            select: { id: true, name: true, email: true, image: true, phone: true }
+          } 
+        }
       },
       tasks: true,
       documents: {
-        include: { uploadedBy: true },
+        include: { 
+          uploadedBy: {
+            select: { id: true, name: true, role: true }
+          }
+        },
         orderBy: { createdAt: "desc" }
       },
       invoices: true

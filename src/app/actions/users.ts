@@ -53,11 +53,13 @@ export async function createUser(data: z.infer<typeof CreateUserSchema>) {
       }
     })
 
+    const { passwordHash: _, ...safeUser } = user
+
     revalidatePath("/admin/staff")
     revalidatePath("/admin/clients")
     revalidatePath("/admin/associates")
     
-    return { success: true, user }
+    return { success: true, user: safeUser }
   } catch (error: any) {
     return { success: false, error: error.message }
   }

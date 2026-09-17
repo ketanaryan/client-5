@@ -96,7 +96,11 @@ export async function getUnpaidInvoices() {
       workRequest: {
         include: {
           client: {
-            include: { user: true }
+            include: { 
+              user: {
+                select: { id: true, name: true, email: true, phone: true }
+              } 
+            }
           }
         }
       }

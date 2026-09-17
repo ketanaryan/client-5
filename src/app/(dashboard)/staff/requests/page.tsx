@@ -76,7 +76,19 @@ export default async function StaffRequestsPage() {
     redirect("/login")
   }
 
-  const workRequests = await prisma.workRequest.findMany({ where: { assignedStaffId: session.user.id }, orderBy: { createdAt: "desc" }, include: { client: { include: { user: true } } } })
+  const workRequests = await prisma.workRequest.findMany({ 
+    where: { assignedStaffId: session.user.id }, 
+    orderBy: { createdAt: "desc" }, 
+    include: { 
+      client: { 
+        include: { 
+          user: {
+            select: { id: true, name: true, email: true, phone: true }
+          }
+        } 
+      } 
+    } 
+  })
 
   return (
     <div className="flex-1 space-y-6 p-8 pt-6">

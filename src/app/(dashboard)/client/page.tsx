@@ -16,7 +16,14 @@ export default async function ClientPage() {
 
   const clientData = await prisma.user.findUnique({
     where: { id: session.user.id },
-    include: {
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      image: true,
+      role: true,
+      phone: true,
+      userCode: true,
       clientProfile: {
         include: {
           workRequests: {
@@ -55,7 +62,11 @@ export default async function ClientPage() {
       ]
     },
     orderBy: { createdAt: "desc" },
-    include: { uploadedBy: true }
+    include: { 
+      uploadedBy: {
+        select: { id: true, name: true, role: true }
+      } 
+    }
   })
 
   return (
