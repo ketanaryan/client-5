@@ -502,11 +502,11 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
               <CardContent className="grid gap-6 md:grid-cols-2 p-8">
                 <div className="space-y-2">
                   <label className="text-[13px] font-medium text-slate-500 uppercase tracking-wider">Company PAN</label>
-                  <div className="p-3.5 bg-slate-50/80 rounded-xl border border-slate-100 font-mono text-[14px] text-slate-900">{profile?.panNumber || "Not Provided"}</div>
+                  <div className="p-3.5 bg-slate-50/80 rounded-xl border border-slate-100 font-mono text-[14px] text-slate-900">{profile?.encryptedPan || "Not Provided"}</div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[13px] font-medium text-slate-500 uppercase tracking-wider">GSTIN</label>
-                  <div className="p-3.5 bg-slate-50/80 rounded-xl border border-slate-100 font-mono text-[14px] text-slate-900">{profile?.gstin || "Not Provided"}</div>
+                  <div className="p-3.5 bg-slate-50/80 rounded-xl border border-slate-100 font-mono text-[14px] text-slate-900">{profile?.encryptedGst || "Not Provided"}</div>
                 </div>
                 <div className="space-y-2 md:col-span-2">
                   <label className="text-[13px] font-medium text-slate-500 uppercase tracking-wider">Registered Address</label>
