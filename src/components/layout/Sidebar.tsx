@@ -15,6 +15,7 @@ import {
   BarChart,
   CalendarDays,
   Settings,
+  ShieldCheck,
 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -52,6 +53,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
 
     // CRM
     { name: "Clients", icon: Users, href: `/${role.toLowerCase()}/clients`, roles: ["ADMIN", "ASSOCIATE"] },
+    { name: "KYC Approvals", icon: ShieldCheck, href: `/admin/kyc`, roles: ["ADMIN"] },
     { name: "Associates", icon: UserPlus, href: `/${role.toLowerCase()}/associates`, roles: ["ADMIN"] },
     { name: "Staff", icon: UserCog, href: `/${role.toLowerCase()}/staff`, roles: ["ADMIN"] },
     
