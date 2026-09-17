@@ -540,6 +540,50 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                 </div>
               </CardContent>
             </Card>
+
+            {/* KYC Upload Form */}
+            {user.kycStatus !== "VERIFIED" && (
+              <Card className="border-slate-200 shadow-sm mt-6">
+                <CardHeader className="border-b border-slate-100 bg-slate-50/50 pb-6">
+                  <CardTitle className="text-lg">KYC Document Upload</CardTitle>
+                  <CardDescription>Submit your PAN and GST documents securely.</CardDescription>
+                </CardHeader>
+                <form action={async (formData) => {
+                  try {
+                    const { submitKyc } = await import("@/app/actions/kyc");
+                    await submitKyc(formData);
+                    window.location.reload();
+                  } catch (e: any) {
+                    alert(e.message);
+                  }
+                }}>
+                  <CardContent className="grid gap-6 md:grid-cols-2 p-8">
+                    <div className="space-y-2">
+                      <label className="text-[13px] font-medium text-slate-700">PAN Number *</label>
+                      <Input name="panNumber" required placeholder="ABCDE1234F" className="font-mono uppercase" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[13px] font-medium text-slate-700">PAN Document (PDF/JPG) *</label>
+                      <Input name="panFile" type="file" required accept=".pdf,.jpg,.jpeg,.png" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[13px] font-medium text-slate-700">GSTIN (Optional)</label>
+                      <Input name="gstin" placeholder="22AAAAA0000A1Z5" className="font-mono uppercase" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[13px] font-medium text-slate-700">GST Document (PDF/JPG)</label>
+                      <Input name="gstFile" type="file" accept=".pdf,.jpg,.jpeg,.png" />
+                    </div>
+                  </CardContent>
+                  <div className="p-6 border-t border-slate-100 flex justify-end">
+                    <Button type="submit">
+                      Submit KYC for Verification
+                    </Button>
+                  </div>
+                </form>
+              </Card>
+            )}
+
           </TabsContent>
 
         </div>
