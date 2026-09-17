@@ -25,7 +25,13 @@ export default async function StaffDashboard() {
   // Fetch real data for the staff member
   const workRequests = await prisma.workRequest.findMany({
     where: { assignedStaffId: session.user.id },
-    include: { client: { include: { user: true } } },
+    include: { 
+      client: { 
+        include: { 
+          user: { select: { id: true, name: true } } 
+        } 
+      } 
+    },
     orderBy: { createdAt: "desc" }
   })
 

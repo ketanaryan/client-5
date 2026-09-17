@@ -114,30 +114,30 @@ export async function convertEnquiryToClient(enquiryId: string) {
     }
     const userCode = `CLI-${nextNum}`
 
-    // Create User and ClientProfile
-    await prisma.user.create({
-      data: {
-        name: enquiry.name,
-        email: enquiry.email,
-        phone: enquiry.phone,
-        passwordHash,
-        role: "CLIENT",
-        userCode,
-        isFirstLogin: true,
-        kycStatus: "PENDING",
-        clientProfile: {
-          create: {
-            companyName: enquiry.name
+    // Create User, ClientProfile, and Update Enquiry status atomically
+    await prisma.$transaction([
+      prisma.user.create({
+        data: {
+          name: enquiry.name,
+          email: enquiry.email,
+          phone: enquiry.phone,
+          passwordHash,
+          role: "CLIENT",
+          userCode,
+          isFirstLogin: true,
+          kycStatus: "PENDING",
+          clientProfile: {
+            create: {
+              companyName: enquiry.name
+            }
           }
         }
-      }
-    })
-
-    // Update Enquiry status
-    await prisma.enquiry.update({
-      where: { id: enquiryId },
-      data: { status: "CONVERTED" }
-    })
+      }),
+      prisma.enquiry.update({
+        where: { id: enquiryId },
+        data: { status: "CONVERTED" }
+      })
+    ])
 
     // Send Welcome Email
     await sendWelcomeEmail(enquiry.email, tempPassword, enquiry.name)

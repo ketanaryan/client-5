@@ -31,11 +31,12 @@ export default async function AdminDashboard() {
   const staffMembers = await prisma.user.findMany({ where: { role: "STAFF" }, select: { id: true, name: true } })
   const staffMap = new Map(staffMembers.map(s => [s.id, s.name]))
 
-  // Aggregate invoices for revenue
-  const invoices = await prisma.invoice.findMany({
-    where: { status: "PAID" }
+  // Aggregate invoices for revenue efficiently
+  const revenueResult = await prisma.invoice.aggregate({
+    where: { status: "PAID" },
+    _sum: { amount: true }
   })
-  const totalRevenue = invoices.reduce((acc, inv) => acc + inv.amount, 0)
+  const totalRevenue = revenueResult._sum.amount || 0
 
   return (
     <div className="flex flex-1 flex-col gap-6 pb-10 pt-4">

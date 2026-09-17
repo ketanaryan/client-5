@@ -39,35 +39,35 @@ export default async function ClientPage() {
     redirect("/login")
   }
 
-  // Correct invoice fetch (using clientProfile.id)
-  const invoices = await prisma.invoice.findMany({
-    where: {
-      workRequest: {
-        clientId: clientData.clientProfile.id
+  // Fetch invoices and documents in parallel for better performance
+  const [invoices, documents] = await Promise.all([
+    prisma.invoice.findMany({
+      where: {
+        workRequest: {
+          clientId: clientData.clientProfile.id
+        }
+      },
+      orderBy: { issuedDate: "desc" },
+      include: {
+        workRequest: true,
+        payments: true
       }
-    },
-    orderBy: { issuedDate: "desc" },
-    include: {
-      workRequest: true,
-      payments: true
-    }
-  })
-
-  // Fetch documents for the vault
-  const documents = await prisma.document.findMany({
-    where: {
-      OR: [
-        { uploadedById: session.user.id },
-        { workRequest: { clientId: clientData.clientProfile.id } }
-      ]
-    },
-    orderBy: { createdAt: "desc" },
-    include: { 
-      uploadedBy: {
-        select: { id: true, name: true, role: true }
-      } 
-    }
-  })
+    }),
+    prisma.document.findMany({
+      where: {
+        OR: [
+          { uploadedById: session.user.id },
+          { workRequest: { clientId: clientData.clientProfile.id } }
+        ]
+      },
+      orderBy: { createdAt: "desc" },
+      include: { 
+        uploadedBy: {
+          select: { id: true, name: true, role: true }
+        } 
+      }
+    })
+  ])
 
   return (
     <ClientPortal 

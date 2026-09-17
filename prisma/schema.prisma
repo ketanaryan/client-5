@@ -61,12 +61,16 @@ model User {
   internalNotes    InternalNote[]
   documents        Document[]
   notifications    Notification[]
+  assignedRequests WorkRequest[]     @relation("AssignedStaff")
+
+  @@index([email])
+  @@index([role])
 }
 
 model ClientProfile {
   id             String        @id @default(uuid())
   userId         String        @unique
-  user           User          @relation(fields: [userId], references: [id])
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   encryptedPan   String?
   encryptedGst   String?
   companyName    String?
@@ -77,7 +81,7 @@ model ClientProfile {
 model AssociateProfile {
   id     String @id @default(uuid())
   userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model WorkRequest {
@@ -88,6 +92,7 @@ model WorkRequest {
   status          WorkStatus     @default(PENDING)
   priority        Priority       @default(MEDIUM)
   assignedStaffId String?
+  assignedStaff   User?          @relation("AssignedStaff", fields: [assignedStaffId], references: [id])
   feeAmount       Float?
   createdAt       DateTime       @default(now())
   dueDate         DateTime?
@@ -96,24 +101,33 @@ model WorkRequest {
   tasks           Task[]
   notes           InternalNote[]
   documents       Document[]
+
+  @@index([clientId])
+  @@index([assignedStaffId])
+  @@index([status])
 }
 
 model Task {
   id            String      @id @default(uuid())
   workRequestId String
-  workRequest   WorkRequest @relation(fields: [workRequestId], references: [id])
+  workRequest   WorkRequest @relation(fields: [workRequestId], references: [id], onDelete: Cascade)
   description   String
   isCompleted   Boolean     @default(false)
+
+  @@index([workRequestId])
 }
 
 model InternalNote {
   id            String      @id @default(uuid())
   workRequestId String
-  workRequest   WorkRequest @relation(fields: [workRequestId], references: [id])
+  workRequest   WorkRequest @relation(fields: [workRequestId], references: [id], onDelete: Cascade)
   authorId      String
   author        User        @relation(fields: [authorId], references: [id])
   content       String
   createdAt     DateTime    @default(now())
+
+  @@index([workRequestId])
+  @@index([authorId])
 }
 
 model ActivityLog {
@@ -122,6 +136,8 @@ model ActivityLog {
   user              User     @relation(fields: [userId], references: [id])
   actionDescription String
   timestamp         DateTime @default(now())
+
+  @@index([userId])
 }
 
 model Invoice {
@@ -133,6 +149,9 @@ model Invoice {
   issuedDate    DateTime      @default(now())
   
   payments      Payment[]
+
+  @@index([workRequestId])
+  @@index([status])
 }
 
 model Payment {
@@ -144,6 +163,8 @@ model Payment {
   receiptUrl String?
   status     WorkStatus @default(PENDING)
   createdAt  DateTime @default(now())
+
+  @@index([invoiceId])
 }
 
 model Message {
@@ -154,6 +175,9 @@ model Message {
   receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
   content    String
   createdAt  DateTime @default(now())
+
+  @@index([senderId])
+  @@index([receiverId])
 }
 
 model Enquiry {
@@ -165,6 +189,8 @@ model Enquiry {
   message          String
   status           EnquiryStatus @default(NEW)
   createdAt        DateTime      @default(now())
+
+  @@index([status])
 }
 
 model Document {
@@ -174,19 +200,25 @@ model Document {
   uploadedById  String
   uploadedBy    User         @relation(fields: [uploadedById], references: [id])
   workRequestId String?
-  workRequest   WorkRequest? @relation(fields: [workRequestId], references: [id])
+  workRequest   WorkRequest? @relation(fields: [workRequestId], references: [id], onDelete: Cascade)
   createdAt     DateTime     @default(now())
+
+  @@index([uploadedById])
+  @@index([workRequestId])
 }
 
 model Notification {
   id        String   @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title     String
   message   String
   isRead    Boolean  @default(false)
   link      String?
   createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([isRead])
 }
 
 model Reminder {
@@ -194,8 +226,11 @@ model Reminder {
   title       String
   description String?
   dueDate     DateTime
-  type        String   @default("CUSTOM") // e.g. "GSTR-3B", "ITR Corporate", "CUSTOM"
+  type        String   @default("CUSTOM")
   targetCount Int      @default(0)
   createdAt   DateTime @default(now())
   isCompleted Boolean  @default(false)
+
+  @@index([dueDate])
+  @@index([isCompleted])
 }
