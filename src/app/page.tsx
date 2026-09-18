@@ -16,7 +16,6 @@ import {
 } from "lucide-react"
 import { Navbar } from "@/components/public/Navbar"
 import ServiceCarousel from "@/components/public/ServiceCarousel"
-import { ContactForm } from "@/components/public/ContactForm"
 import { Footer } from "@/components/public/Footer"
 
 const HERO_SLIDES = [
