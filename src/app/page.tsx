@@ -445,8 +445,8 @@ export default function LandingPage() {
             </div>
             
             <div className="bg-transparent">
-              <form id="enquiry-form" action={onSubmit} className="space-y-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <form id="enquiry-form" action={onSubmit} className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="relative">
                     <input name="name" required placeholder="Name*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
@@ -454,20 +454,18 @@ export default function LandingPage() {
                     <span className="absolute left-0 text-white/60 text-lg">IN +91 ▾</span>
                     <input name="phone" required placeholder="Phone Number*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 pl-20 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="relative col-span-1 sm:col-span-2">
                     <input name="email" type="email" required placeholder="Email ID*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
                 </div>
                 
-                <div className="space-y-4 pt-2">
+                <div className="space-y-3 pt-2">
                   <p className="text-white/80 text-[16px] font-medium">Services Interested In (Select multiple):</p>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2.5">
                     {["Audit & Assurance", "Company Formation", "Taxation", "NRI Services", "Consultancy", "GST Registration", "Other"].map(srv => (
                       <label key={srv} className="cursor-pointer">
                         <input type="checkbox" name="serviceRequested" value={srv} className="peer sr-only" />
-                        <div className="px-5 py-2.5 rounded-full border border-white/30 text-white/80 peer-checked:bg-blue-600 peer-checked:border-blue-600 peer-checked:text-white peer-checked:font-medium transition-all hover:border-white/60 text-sm select-none">
+                        <div className="px-5 py-2 rounded-full border border-white/30 text-white/80 peer-checked:bg-blue-600 peer-checked:border-blue-600 peer-checked:text-white peer-checked:font-medium transition-all hover:border-white/60 text-sm select-none">
                           {srv}
                         </div>
                       </label>
@@ -475,12 +473,12 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                <div className="relative pt-4">
+                <div className="relative pt-2">
                   <input name="message" required placeholder="Enter Message" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                 </div>
                 
-                <div>
-                  <Button type="submit" className="bg-[#0f4a7b] hover:bg-[#0c3c63] text-white font-medium px-10 py-6 rounded-md text-lg transition-colors border border-blue-400/20 shadow-lg" disabled={loading}>
+                <div className="pt-4">
+                  <Button type="submit" className="bg-[#0f4a7b] hover:bg-[#0c3c63] text-white font-medium px-10 py-6 rounded-md text-lg transition-colors border border-blue-400/20 shadow-lg w-full sm:w-auto" disabled={loading}>
                     {loading ? "Submitting..." : "Submit →"}
                   </Button>
                 </div>
