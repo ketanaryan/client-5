@@ -66,7 +66,7 @@ export async function submitKyc(formData: FormData) {
     }),
     prisma.user.update({
       where: { id: session.user.id },
-      data: { kycStatus: "PENDING" }
+      data: { kycStatus: "SUBMITTED" }
     })
   ])
 

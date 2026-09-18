@@ -85,9 +85,11 @@ export default async function ClientsPage({ searchParams }: { searchParams: { q?
                     </div>
                     <div>
                       <p className="font-medium text-slate-900">{client.clientProfile?.companyName || "N/A"}</p>
-                      <p className="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
-                        <Briefcase className="h-3 w-3" /> GST Registered
-                      </p>
+                      {client.clientProfile?.encryptedGst && (
+                        <p className="text-xs text-emerald-600 flex items-center gap-1 mt-0.5 font-medium">
+                          <Briefcase className="h-3 w-3" /> GST Registered
+                        </p>
+                      )}
                     </div>
                   </div>
                 </TableCell>
@@ -102,9 +104,15 @@ export default async function ClientsPage({ searchParams }: { searchParams: { q?
                   </div>
                 </TableCell>
                 <TableCell>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
-                    Active Client
-                  </Badge>
+                  {client.isActive ? (
+                    <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
+                      Active Client
+                    </Badge>
+                  ) : (
+                    <Badge variant="outline" className="bg-slate-50 text-slate-500 border-slate-200">
+                      Inactive
+                    </Badge>
+                  )}
                 </TableCell>
                 <TableCell className="text-right">
                   <Button variant="outline" size="sm" className="border-slate-200">

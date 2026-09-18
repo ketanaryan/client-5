@@ -113,7 +113,20 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
           <TabsContent value="dashboard" className="m-0 space-y-6">
 
             {/* KYC Alert Banner */}
-            {user.kycStatus !== "VERIFIED" && (
+            {user.kycStatus === "SUBMITTED" ? (
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                <div className="flex gap-3">
+                  <div className="mt-0.5"><Loader2 className="w-5 h-5 text-blue-600 animate-spin" /></div>
+                  <div>
+                    <h4 className="font-semibold text-blue-900 text-sm">KYC Under Review</h4>
+                    <p className="text-sm text-blue-700 mt-0.5">Your documents have been submitted and are being verified.</p>
+                  </div>
+                </div>
+                <Button onClick={() => window.document.getElementById('kyc-tab-trigger')?.click()} variant="outline" className="shrink-0 bg-white border-blue-200 text-blue-700 hover:bg-blue-100">
+                  View Status
+                </Button>
+              </div>
+            ) : user.kycStatus !== "VERIFIED" ? (
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex gap-3">
                   <div className="mt-0.5"><AlertCircle className="w-5 h-5 text-amber-600" /></div>
@@ -132,16 +145,38 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                   Submit KYC Now
                 </Button>
               </div>
-            )}
+            ) : null}
+            {(() => {
+              const overdueInvoices = invoices.filter(inv => inv.status === 'OVERDUE');
+              const unpaidInvoices = invoices.filter(inv => inv.status === 'UNPAID' || inv.status === 'OVERDUE');
+              const outstandingBalance = unpaidInvoices.reduce((sum, inv) => sum + inv.amount, 0);
 
-            <div className="bg-red-50/50 border border-red-100 rounded-xl p-5 flex items-start gap-4">
-              <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 shrink-0" />
-              <div>
-                <h4 className="font-semibold text-red-700">Outstanding Balance: ₹15,000</h4>
-                <p className="text-[13px] text-red-600/80 mt-1">You have 1 overdue invoice. Please clear the dues to avoid delay in services.</p>
-              </div>
-              <Button size="sm" variant="outline" className="ml-auto shrink-0 bg-white border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700" onClick={() => document.querySelector('[data-value="invoices"]')?.dispatchEvent(new MouseEvent('click', {bubbles:true}))}>Pay Now</Button>
-            </div>
+              if (outstandingBalance > 0) {
+                const isOverdue = overdueInvoices.length > 0;
+                return (
+                  <div className={`border rounded-xl p-5 flex items-start gap-4 ${isOverdue ? 'bg-red-50/50 border-red-100' : 'bg-amber-50/50 border-amber-100'}`}>
+                    <AlertCircle className={`h-5 w-5 mt-0.5 shrink-0 ${isOverdue ? 'text-red-500' : 'text-amber-500'}`} />
+                    <div>
+                      <h4 className={`font-semibold ${isOverdue ? 'text-red-700' : 'text-amber-700'}`}>
+                        Outstanding Balance: ₹{outstandingBalance.toLocaleString('en-IN')}
+                      </h4>
+                      <p className={`text-[13px] mt-1 ${isOverdue ? 'text-red-600/80' : 'text-amber-700/80'}`}>
+                        You have {unpaidInvoices.length} unpaid invoice(s){isOverdue ? ' (including overdue)' : ''}. Please clear the dues to avoid delay in services.
+                      </p>
+                    </div>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className={`ml-auto shrink-0 bg-white ${isOverdue ? 'border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700' : 'border-amber-200 text-amber-700 hover:bg-amber-50 hover:text-amber-800'}`} 
+                      onClick={() => window.document.getElementById('invoices-tab-trigger')?.click() || document.querySelector('[data-value="invoices"]')?.dispatchEvent(new MouseEvent('click', {bubbles:true}))}
+                    >
+                      Pay Now
+                    </Button>
+                  </div>
+                );
+              }
+              return null;
+            })()}
 
             <div className="grid gap-6 md:grid-cols-3">
               <Card className="shadow-sm border-slate-200/60 overflow-hidden relative group">
@@ -558,8 +593,18 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
               </CardContent>
             </Card>
 
-            {/* KYC Upload Form */}
-            {user.kycStatus !== "VERIFIED" && (
+            {/* KYC Upload Form or Status */}
+            {user.kycStatus === "SUBMITTED" ? (
+              <Card className="border-slate-200 shadow-sm mt-6">
+                <CardHeader className="border-b border-slate-100 bg-slate-50/50">
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Loader2 className="h-5 w-5 text-blue-500 animate-spin" /> 
+                    KYC Under Review
+                  </CardTitle>
+                  <CardDescription>Your documents have been submitted and are currently being verified by our team. This usually takes 1-2 business days.</CardDescription>
+                </CardHeader>
+              </Card>
+            ) : user.kycStatus !== "VERIFIED" ? (
               <Card className="border-slate-200 shadow-sm mt-6">
                 <CardHeader className="border-b border-slate-100 bg-slate-50/50 pb-6">
                   <CardTitle className="text-lg">KYC Document Upload</CardTitle>
@@ -598,7 +643,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                   </div>
                 </form>
               </Card>
-            )}
+            ) : null}
 
           </TabsContent>
 
