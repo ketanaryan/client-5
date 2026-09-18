@@ -16,6 +16,23 @@ import { toast } from "sonner"
 import { createClientWorkRequest } from "@/app/actions/work-requests"
 import { submitClientPayment } from "@/app/actions/payments"
 import { uploadClientDocument } from "@/app/actions/documents"
+import { useFormStatus } from "react-dom"
+
+function SubmitKycButton() {
+  const { pending } = useFormStatus()
+  return (
+    <Button type="submit" disabled={pending}>
+      {pending ? (
+        <>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          Submitting...
+        </>
+      ) : (
+        "Submit KYC for Verification"
+      )}
+    </Button>
+  )
+}
 
 export default function ClientPortal({ user, profile, workRequests, invoices, documents }: { user: any, profile: any, workRequests: any[], invoices: any[], documents?: any[] }) {
   const [utrNumber, setUtrNumber] = useState("")
@@ -80,7 +97,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
         </div>
       </div>
 
-      <Tabs value={activeTab} onValueChange={handleTabChange} className="flex flex-col h-full">
+      <Tabs value={activeTab} onValueChange={handleTabChange} className="flex flex-col flex-1 min-h-0">
         <div className="px-6 md:px-8 border-b border-slate-100">
           <TabsList className="bg-transparent h-14 w-full justify-start gap-6 p-0">
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none h-full px-1 text-[14px] font-medium text-slate-500 data-[state=active]:text-slate-900 transition-none">Overview</TabsTrigger>
@@ -552,9 +569,10 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                   try {
                     const { submitKyc } = await import("@/app/actions/kyc");
                     await submitKyc(formData);
+                    toast.success("KYC submitted successfully");
                     window.location.reload();
                   } catch (e: any) {
-                    alert(e.message);
+                    toast.error(e.message);
                   }
                 }}>
                   <CardContent className="grid gap-6 md:grid-cols-2 p-8">
@@ -576,9 +594,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                     </div>
                   </CardContent>
                   <div className="p-6 border-t border-slate-100 flex justify-end">
-                    <Button type="submit">
-                      Submit KYC for Verification
-                    </Button>
+                    <SubmitKycButton />
                   </div>
                 </form>
               </Card>

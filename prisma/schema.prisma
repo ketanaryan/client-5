@@ -48,6 +48,9 @@ model User {
   userCode         String?           @unique
   phone            String?
   image            String?
+  address          String?
+  age              Int?
+  gender           String?
   isActive         Boolean           @default(true)
   isFirstLogin     Boolean           @default(true)
   kycStatus        String            @default("PENDING")

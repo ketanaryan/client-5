@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
   LayoutDashboard,
@@ -38,6 +38,7 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Sidebar({ className, role = "ADMIN", userName = "User", userImage = null }: SidebarProps) {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   // Define full routes array tailored for each role
   const routes = [
@@ -94,7 +95,23 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
       <div className="flex-1 overflow-auto py-4 scrollbar-hide">
         <nav className="grid gap-1 px-3">
           {visibleRoutes.map((route) => {
-            const isActive = pathname === route.href || pathname.startsWith(`${route.href}/`)
+            let isActive = false
+            
+            if (role === "CLIENT") {
+              const currentTab = searchParams?.get("tab") || "dashboard"
+              if (route.href.includes("?tab=")) {
+                isActive = route.href.includes(`tab=${currentTab}`)
+              } else if (route.href === "/client") {
+                isActive = currentTab === "dashboard"
+              }
+            } else {
+              if (route.href === `/${role.toLowerCase()}`) {
+                isActive = pathname === route.href
+              } else {
+                isActive = pathname === route.href || pathname.startsWith(`${route.href}/`)
+              }
+            }
+
             return (
               <Link
                 key={route.href}
