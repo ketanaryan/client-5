@@ -347,7 +347,7 @@ export default function LandingPage() {
         </section>
 
         {/* 6. HAPPY CLIENTS */}
-        <section className="w-full py-24 bg-white border-t border-slate-200 overflow-hidden relative">
+        <section className="w-full py-28 bg-[#f8fafc] border-y border-slate-200 overflow-hidden relative">
           <style dangerouslySetInnerHTML={{__html: `
             @keyframes marquee {
               0% { transform: translateX(0); }
@@ -360,61 +360,65 @@ export default function LandingPage() {
               animation-play-state: paused;
             }
           `}} />
-          <div className="max-w-[1200px] mx-auto text-center mb-16 px-6 lg:px-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 tracking-tight">Happy Clients</h2>
-            <div className="flex flex-col items-center justify-center gap-1">
+          <div className="max-w-[1200px] mx-auto text-center mb-20 px-6 lg:px-12">
+            <div className="flex flex-col items-center gap-3 mb-10">
+              <span className="text-blue-600 font-bold tracking-[0.2em] uppercase text-sm">Testimonials</span>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight">Client Success Stories</h2>
+            </div>
+            
+            <div className="inline-flex flex-col items-center justify-center gap-1 bg-white px-8 py-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
               <span className="font-bold text-xl text-slate-900 tracking-tight">EXCELLENT</span>
               <div className="flex gap-1 mb-1">
-                {[1,2,3,4,5].map(star => <Star key={star} className="h-7 w-7 fill-yellow-400 text-yellow-400" />)}
+                {[1,2,3,4,5].map(star => <Star key={star} className="h-6 w-6 fill-yellow-400 text-yellow-400" />)}
               </div>
-              <span className="text-sm text-slate-500 mt-2 font-medium">Based on <strong>100+ reviews</strong></span>
-              <div className="mt-3 text-3xl font-bold text-blue-500 tracking-tighter">Google</div>
+              <span className="text-sm text-slate-500 mt-1 font-medium">Based on <strong>100+ reviews</strong></span>
+              <div className="mt-2 text-2xl font-bold text-blue-500 tracking-tighter">Google</div>
             </div>
           </div>
           
           <div className="relative w-full max-w-[100vw]">
             {/* Gradient Masks for smooth fading edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-[#f8fafc] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-[#f8fafc] to-transparent z-10 pointer-events-none" />
             
-            <div className="flex w-[max-content] animate-marquee">
+            <div className="flex w-[max-content] animate-marquee pb-8 pt-4">
               {/* Duplicate the array to create the infinite scroll effect */}
               {[...[
                 { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
                 { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
                 { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
-                { name: 'Sneha Rao', initial: 'S', bg: 'bg-blue-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
+                { name: 'Sneha Rao', initial: 'S', bg: 'bg-indigo-500', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
                 { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
-                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-purple-600', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
+                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-emerald-500', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
               ], ...[
                 { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
                 { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
                 { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
-                { name: 'Sneha Rao', initial: 'S', bg: 'bg-blue-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
+                { name: 'Sneha Rao', initial: 'S', bg: 'bg-indigo-500', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
                 { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
-                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-purple-600', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
+                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-emerald-500', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
               ]].map((rev, i) => (
-                <div key={i} className="bg-white p-7 rounded-[1.5rem] border border-slate-200 shadow-sm flex flex-col relative mx-3 w-[380px] shrink-0 hover:shadow-xl transition-all cursor-grab active:cursor-grabbing">
-                  <div className="flex justify-between items-start mb-5">
+                <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col relative mx-4 w-[400px] shrink-0 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 cursor-grab active:cursor-grabbing group">
+                  <div className="flex justify-between items-start mb-6">
                     <div className="flex items-center gap-4">
                       {rev.img ? (
-                        <Image src={rev.img} alt={rev.name} width={48} height={48} className="rounded-full object-cover" loading="lazy" />
+                        <Image src={rev.img} alt={rev.name} width={52} height={52} className="rounded-full object-cover ring-2 ring-slate-50" loading="lazy" />
                       ) : (
-                        <div className={`w-12 h-12 rounded-full ${rev.bg} flex items-center justify-center text-white font-bold text-lg`}>{rev.initial}</div>
+                        <div className={`w-[52px] h-[52px] rounded-full ${rev.bg} flex items-center justify-center text-white font-bold text-xl ring-2 ring-slate-50`}>{rev.initial}</div>
                       )}
                       <div className="flex flex-col text-left">
-                        <span className="font-bold text-[16px] text-slate-900 leading-tight">{rev.name}</span>
-                        <span className="text-[13px] text-slate-500 mt-0.5">{rev.time}</span>
+                        <span className="font-bold text-[17px] text-slate-900 leading-tight group-hover:text-blue-600 transition-colors">{rev.name}</span>
+                        <span className="text-[13px] text-slate-500 mt-1">{rev.time}</span>
                       </div>
                     </div>
-                    <div className="text-2xl font-bold text-blue-500 tracking-tighter absolute right-6 top-6">G</div>
+                    <div className="text-2xl font-bold text-blue-500 tracking-tighter absolute right-6 top-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">G</div>
                   </div>
-                  <div className="flex gap-1 mb-4">
-                    {[1,2,3,4,5].map(star => <Star key={star} className="h-[15px] w-[15px] fill-yellow-400 text-yellow-400" />)}
+                  <div className="flex gap-1 mb-5">
+                    {[1,2,3,4,5].map(star => <Star key={star} className="h-[16px] w-[16px] fill-yellow-400 text-yellow-400" />)}
                     <div className="h-[18px] w-[18px] rounded-full bg-blue-500 flex items-center justify-center ml-1"><Check className="h-3 w-3 text-white stroke-[3]" /></div>
                   </div>
-                  <p className="text-[15px] text-slate-600 leading-relaxed mb-4 flex-1">"{rev.review}"</p>
-                  <button className="text-slate-400 text-[14px] font-medium text-left hover:text-slate-900 transition-colors">Read more</button>
+                  <p className="text-[15px] text-slate-600 leading-relaxed mb-6 flex-1 relative z-10">"{rev.review}"</p>
+                  <button className="text-blue-600 text-[14px] font-semibold text-left hover:text-blue-800 transition-colors flex items-center gap-1">Read more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" /></button>
                 </div>
               ))}
             </div>
