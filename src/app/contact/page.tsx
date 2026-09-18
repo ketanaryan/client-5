@@ -45,7 +45,7 @@ export default function ContactPage() {
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] mb-4">Reach us for Best Chartered Accounting Services</h2>
             <p className="text-slate-600 max-w-3xl leading-relaxed">
-              Even though we are a firm of Chartered Accountants in Pune, with our services of online consultation and &apos;No Need to Visit&apos; approach for our clients, we act as your CA Near Me for prospective clients located anywhere on the globe.
+              Even though we are a firm of Chartered Accountants in Bangalore, with our services of online consultation and &apos;No Need to Visit&apos; approach for our clients, we act as your CA Near Me for prospective clients located anywhere on the globe.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ export default function ContactPage() {
                 </div>
                 <Input name="email" placeholder="Email *" required type="email" className="h-12 bg-slate-50 border-slate-200" />
                 <Textarea name="message" placeholder="Comment *" required className="min-h-[150px] bg-slate-50 border-slate-200" />
-                <Button disabled={loading} type="submit" className="bg-[#10b981] hover:bg-[#059669] text-white px-8 py-6 rounded-md font-bold text-base shadow-sm">
+                <Button disabled={loading} type="submit" className="bg-[#0f4a7b] hover:bg-[#0c3c63] text-white px-8 py-6 rounded-md font-bold text-base shadow-sm">
                   {loading ? "SUBMITTING..." : "SUBMIT"}
                 </Button>
               </form>
@@ -70,27 +70,27 @@ export default function ContactPage() {
 
             {/* Right: Info Boxes */}
             <div className="space-y-6">
-              <Button variant="outline" className="w-full sm:w-auto bg-[#84cc16] hover:bg-[#65a30d] text-white border-0 py-6 px-8 font-bold text-base shadow-sm hover:text-white">
+              <Button variant="outline" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white border-0 py-6 px-8 font-bold text-base shadow-sm hover:text-white">
                 Download Firm&apos;s Profile
               </Button>
 
               <div className="flex gap-4 p-6 border border-slate-100 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow">
                 <div className="mt-1">
-                  <MapPin className="w-8 h-8 text-[#10b981]" />
+                  <MapPin className="w-8 h-8 text-[#0f4a7b]" />
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-slate-900 mb-2">Address Info</h4>
                   <p className="text-slate-600 leading-relaxed">
-                    B-2240, Ganga Trueno Business Park,<br />
-                    New Airport Road, Vimannagar,<br />
-                    Pune - 411014
+                    No 1, 2nd Floor, 18th Cross Road,<br />
+                    23rd Main Road, JP Nagar 5th Phase,<br />
+                    Bangalore - 560078
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-4 p-6 border border-slate-100 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow">
                 <div className="mt-1">
-                  <Clock className="w-8 h-8 text-[#10b981]" />
+                  <Clock className="w-8 h-8 text-[#0f4a7b]" />
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-slate-900 mb-2">Office Schedule</h4>
@@ -103,12 +103,12 @@ export default function ContactPage() {
 
               <div className="flex gap-4 p-6 border border-slate-100 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow">
                 <div className="mt-1">
-                  <PhoneCall className="w-8 h-8 text-[#10b981]" />
+                  <PhoneCall className="w-8 h-8 text-[#0f4a7b]" />
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-slate-900 mb-2">Contact Info</h4>
                   <p className="text-slate-600 leading-relaxed">
-                    Phone: +91-7219308077<br />
+                    Phone: +91-8668555246<br />
                     Email: shantanus.associates@gmail.com
                   </p>
                 </div>
@@ -121,7 +121,7 @@ export default function ContactPage() {
       {/* Map Section */}
       <section className="w-full h-[500px] bg-slate-100 relative">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.383569830836!2d73.9133033!3d18.5567319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c1404c000001%3A0x867375db6a1f34f7!2sGanga%20Trueno%20Business%20Park!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.809315330315!2d77.5852922750756!3d12.90393298740529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1511227161b3%3A0xc00f2adfb2a20b9e!2sJP%20Nagar%205th%20Phase%2C%20J.%20P.%20Nagar%2C%20Bengaluru%2C%20Karnataka%20560078!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 
