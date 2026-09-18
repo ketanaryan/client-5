@@ -85,7 +85,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
     <div className={cn("flex h-full flex-col bg-white border-r border-slate-200 text-slate-700", className)}>
       <div className="flex h-16 items-center px-6 mt-4 mb-2">
         <Link href="/" className="flex items-center gap-3 font-bold text-slate-900">
-          <img src="/ca-logo.png" alt="CA Logo" className="h-14 w-auto object-contain scale-110 ml-2" />
+          <img src="/ca-logo-cropped.png" alt="CA Logo" className="h-8 w-auto object-contain ml-2" />
           <span className="text-[16px] leading-tight tracking-tight font-semibold">Shantanu &<br/><span className="font-medium text-slate-500 text-[14px]">Associates</span></span>
         </Link>
       </div>

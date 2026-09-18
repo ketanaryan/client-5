@@ -126,7 +126,7 @@ export function Navbar() {
       {/* Main Navigation Bar */}
       <header className="px-6 lg:px-12 h-20 flex items-center justify-between border-b border-slate-200 bg-white shadow-sm sticky top-0">
         <Link className="flex items-center gap-3 group" href="/">
-          <img src="/ca-logo.png" alt="CA Logo" className="h-16 md:h-20 w-auto object-contain transition-transform group-hover:scale-105" />
+          <img src="/ca-logo-cropped.png" alt="CA Logo" className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105" />
           <div className="flex flex-col">
             <span className="font-bold text-lg md:text-xl leading-none tracking-tight text-[#0f172a]">Shantanu & Associates</span>
             <span className="text-[10px] md:text-xs tracking-widest text-[#1e3a8a] font-semibold uppercase mt-1">Chartered Accountants</span>
