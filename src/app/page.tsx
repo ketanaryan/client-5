@@ -422,21 +422,72 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* 7. CONTACT CTA */}
-        <section className="relative w-full py-24 px-6 lg:px-12 bg-[#032b4e] text-center">
-          <div className="max-w-[800px] mx-auto text-white space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight">
-              Ready to take the next step?
-            </h2>
-            <p className="text-lg text-white/80 pb-4">
-              Get in touch with our experts today to discuss your business requirements and financial goals.
-            </p>
-            <div>
-              <Link href="/contact">
-                <Button className="bg-[#10b981] hover:bg-[#059669] text-white font-bold px-10 py-6 rounded-md text-lg transition-all shadow-lg hover:-translate-y-1">
-                  Contact Us Now
-                </Button>
-              </Link>
+        {/* 7. CONTACT / QUERIES OVERLAY */}
+        <section id="contact" className="relative w-full py-24 px-6 lg:px-12 bg-slate-900">
+          <Image
+            src="/images/img_adf3301b42.jpg"
+            alt="Contact background"
+            fill
+            sizes="100vw"
+            className="object-cover z-0 mix-blend-overlay opacity-60"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-blue-950/80 z-0"></div>
+          
+          <div className="max-w-[1200px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-white space-y-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-white/40 mb-2">
+                <span className="text-2xl font-bold">24</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight max-w-[15ch]">
+                Do You Have Any Queries To Discuss? Let's Talk.
+              </h2>
+              <div className="pt-4">
+                <a href="tel:7219308077" className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 transition-colors border border-white/20 rounded-md px-8 py-4 text-xl font-bold backdrop-blur-sm">
+                  <Phone className="h-5 w-5 opacity-70" /> 7219308077
+                </a>
+              </div>
+            </div>
+            
+            <div className="bg-transparent">
+              <form id="enquiry-form" action={onSubmit} className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="relative">
+                    <input name="name" required placeholder="Name*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
+                  </div>
+                  <div className="relative flex items-center">
+                    <span className="absolute left-0 text-white/60 text-lg">IN +91 ▾</span>
+                    <input name="phone" required placeholder="Phone Number*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 pl-20 text-lg outline-none focus:border-blue-400 transition-colors" />
+                  </div>
+                  <div className="relative col-span-1 sm:col-span-2">
+                    <input name="email" type="email" required placeholder="Email ID*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
+                  </div>
+                </div>
+                
+                <div className="space-y-3 pt-2">
+                  <p className="text-white/80 text-[16px] font-medium">Services Interested In (Select multiple):</p>
+                  <div className="flex flex-wrap gap-2.5">
+                    {["Audit & Assurance", "Company Formation", "Taxation", "NRI Services", "Consultancy", "GST Registration", "Other"].map(srv => (
+                      <label key={srv} className="cursor-pointer">
+                        <input type="checkbox" name="serviceRequested" value={srv} className="peer sr-only" />
+                        <div className="px-5 py-2 rounded-full border border-white/30 text-white/80 peer-checked:bg-blue-600 peer-checked:border-blue-600 peer-checked:text-white peer-checked:font-medium transition-all hover:border-white/60 text-sm select-none">
+                          {srv}
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="relative pt-2">
+                  <input name="message" required placeholder="Enter Message" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
+                </div>
+                
+                <div className="pt-4">
+                  <Button type="submit" className="bg-[#0f4a7b] hover:bg-[#0c3c63] text-white font-medium px-10 py-6 rounded-md text-lg transition-colors border border-blue-400/20 shadow-lg w-full sm:w-auto" disabled={loading}>
+                    {loading ? "Submitting..." : "Submit →"}
+                  </Button>
+                </div>
+              </form>
             </div>
           </div>
         </section>
