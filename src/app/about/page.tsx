@@ -72,7 +72,7 @@ export default function AboutPage() {
               "Even though our headquarters are in Bangalore, our advanced online consultation and 'No Need to Visit' digital approach allows us to serve prospective and existing clients located anywhere across India and the globe."
             ].map((point, idx) => (
               <div key={idx} className="flex items-start gap-4">
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
+                <div className="w-2.5 h-2.5 rounded-full bg-blue-500 mt-2 shrink-0" />
                 <p className="text-slate-700 text-[15px] leading-relaxed">
                   {point}
                 </p>
@@ -86,7 +86,7 @@ export default function AboutPage() {
       <section className="w-full py-20 px-6 lg:px-12 bg-[#032b4e] text-white relative overflow-hidden">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-xl space-y-4">
-            <div className="w-12 h-12 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2">
+            <div className="w-12 h-12 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center mb-2">
               <Eye className="w-6 h-6" />
             </div>
             <h3 className="text-2xl font-bold text-white tracking-wide">Our Vision</h3>
@@ -96,7 +96,7 @@ export default function AboutPage() {
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-xl space-y-4">
-            <div className="w-12 h-12 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2">
+            <div className="w-12 h-12 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center mb-2">
               <Target className="w-6 h-6" />
             </div>
             <h3 className="text-2xl font-bold text-white tracking-wide">Our Mission</h3>
@@ -133,11 +133,11 @@ export default function AboutPage() {
               <div className="p-8 md:p-10 flex flex-col justify-center flex-1 space-y-4">
                 <div>
                   <h3 className="text-3xl font-bold text-slate-900 mb-2">CA Shantanu Sharma</h3>
-                  <div className="text-emerald-700 font-semibold text-sm tracking-wide">
+                  <div className="text-blue-700 font-semibold text-sm tracking-wide">
                     B.Com, FCA, DISA (ICAI) • Founder & Managing Partner
                   </div>
                 </div>
-                <div className="w-12 h-1 bg-emerald-500 rounded-full my-4"></div>
+                <div className="w-12 h-1 bg-blue-500 rounded-full my-4"></div>
                 <p className="text-slate-600 text-[15px] leading-relaxed text-justify">
                   CA Shantanu Sharma is the Founder and Managing Partner of the Firm. He possesses an all-round professional expertise of more than 15 years in the fields of Statutory Audits, Direct & Indirect Taxation, Corporate Management Consultancy, Internal Audits & Systems Study, Tax Audits, and Project Financing. 
                 </p>
@@ -163,7 +163,7 @@ export default function AboutPage() {
               </p>
             </div>
             <Link href="/#contact">
-              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-6 text-base rounded-md shadow-md shrink-0">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-6 text-base rounded-md shadow-md shrink-0">
                 Contact Us
               </Button>
             </Link>
@@ -185,7 +185,7 @@ export default function AboutPage() {
             <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">QUICK LINKS</h4>
             <ul className="space-y-2 text-sm text-slate-300">
               <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/about" className="text-emerald-400 font-medium">About Us</Link></li>
+              <li><Link href="/about" className="text-blue-400 font-medium">About Us</Link></li>
               <li><Link href="/#services" className="hover:text-white transition-colors">Services</Link></li>
               <li><Link href="/#contact" className="hover:text-white transition-colors">Contact Us</Link></li>
               <li><Link href="/login" className="hover:text-white transition-colors">Client Portal</Link></li>
@@ -207,15 +207,15 @@ export default function AboutPage() {
             <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">HEAD OFFICE</h4>
             <div className="space-y-3 text-sm text-slate-300">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-emerald-400 shrink-0 mt-1" />
+                <MapPin className="w-5 h-5 text-blue-400 shrink-0 mt-1" />
                 <span>No 1, 2nd Floor, 18th Cross Road, 23rd Main Road, JP Nagar 5th Phase, Bangalore - 560078</span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Phone className="w-4 h-4 text-blue-400 shrink-0" />
                 <a href="tel:8668555246" className="hover:text-white transition-colors">8668555246</a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
                 <a href="mailto:shantanus.associates@gmail.com" className="hover:text-white transition-colors">shantanus.associates@gmail.com</a>
               </div>
             </div>

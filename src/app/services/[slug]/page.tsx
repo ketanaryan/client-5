@@ -980,7 +980,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
           <div className="text-sm text-slate-300 mb-4 flex items-center space-x-2">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-emerald-400 font-medium">{service.title}</span>
+            <span className="text-blue-400 font-medium">{service.title}</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold leading-tight max-w-3xl">
             {service.heroHeading}
@@ -1009,7 +1009,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                 <ul className="space-y-4">
                   {service.subServices.map((item, idx) => (
                     <li key={idx} className="flex items-start">
-                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold mr-4 mt-0.5">
+                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold mr-4 mt-0.5">
                         {idx + 1}
                       </span>
                       <span className="text-slate-600 text-lg leading-tight pt-1">
@@ -1041,7 +1041,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                   Get in touch with Shantanu & Associates today for expert, timely, and professional assistance.
                 </p>
                 <Link href="/#contact">
-                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-lg h-14 rounded-xl transition-all">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg h-14 rounded-xl transition-all">
                     Contact Us Today
                   </Button>
                 </Link>

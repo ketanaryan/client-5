@@ -109,14 +109,14 @@ export function Navbar() {
   return (
     <div className="flex flex-col w-full relative z-50">
       {/* Top Utility Bar */}
-      <div className="bg-slate-900 text-slate-100 py-2 px-6 lg:px-12 flex items-center justify-between text-xs sm:text-sm font-medium">
+      <div className="bg-[#1e3a8a] text-slate-100 py-2 px-6 lg:px-12 flex items-center justify-between text-xs sm:text-sm font-medium">
         <div>20+ Years of Excellence</div>
         <div className="flex items-center gap-6">
-          <a href="tel:8668555246" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+          <a href="tel:8668555246" className="flex items-center gap-2 hover:text-blue-300 transition-colors">
             <Phone className="h-4 w-4" />
             <span className="hidden sm:inline">8668555246</span>
           </a>
-          <a href="mailto:shantanus.associates@gmail.com" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+          <a href="mailto:shantanus.associates@gmail.com" className="flex items-center gap-2 hover:text-blue-300 transition-colors">
             <Mail className="h-4 w-4" />
             <span className="hidden sm:inline">shantanus.associates@gmail.com</span>
           </a>
@@ -126,12 +126,10 @@ export function Navbar() {
       {/* Main Navigation Bar */}
       <header className="px-6 lg:px-12 h-20 flex items-center justify-between border-b border-slate-200 bg-white shadow-sm sticky top-0">
         <Link className="flex items-center gap-3 group" href="/">
-          <div className="h-10 w-10 bg-slate-900 rounded flex items-center justify-center text-white font-bold transition-transform group-hover:scale-105">
-            CA
-          </div>
+          <img src="/ca-logo.png" alt="CA Logo" className="h-12 w-auto object-contain transition-transform group-hover:scale-105" />
           <div className="flex flex-col">
-            <span className="font-bold text-lg leading-none tracking-tight text-blue-950">Shantanu & Associates</span>
-            <span className="text-[10px] tracking-widest text-slate-500 font-medium uppercase mt-1">Chartered Accountants</span>
+            <span className="font-bold text-lg leading-none tracking-tight text-[#0f172a]">Shantanu & Associates</span>
+            <span className="text-[10px] tracking-widest text-[#1e3a8a] font-semibold uppercase mt-1">Chartered Accountants</span>
           </div>
         </Link>
         <nav className="hidden md:flex items-center h-full">
@@ -141,7 +139,7 @@ export function Navbar() {
             onMouseEnter={() => setShowDropdown(true)}
             onMouseLeave={() => { setShowDropdown(false); setActiveCategory(0); }}
           >
-            <button className="text-sm font-bold text-blue-950 px-4 h-full flex items-center gap-1 border-b-2 border-transparent hover:border-emerald-600 hover:text-emerald-700 transition-colors">
+            <button className="text-sm font-bold text-[#0f172a] px-4 h-full flex items-center gap-1 border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors">
               Services <ChevronDown className="h-3.5 w-3.5" />
             </button>
             
@@ -155,8 +153,8 @@ export function Navbar() {
                       href={cat.href}
                       className={`flex items-center justify-between px-5 py-3 text-[14px] font-medium transition-colors ${
                         activeCategory === idx 
-                          ? "bg-emerald-600 text-white" 
-                          : "text-slate-700 hover:bg-slate-50"
+                          ? "bg-blue-600 text-white" 
+                          : "text-slate-700 hover:bg-blue-50 hover:text-blue-700"
                       }`}
                       onMouseEnter={() => setActiveCategory(idx)}
                     >
@@ -172,7 +170,7 @@ export function Navbar() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="block px-4 py-2.5 text-[13px] text-slate-600 hover:text-emerald-700 hover:bg-slate-50 rounded-md transition-colors"
+                      className="block px-4 py-2.5 text-[13px] text-slate-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-colors"
                     >
                       {item.name}
                     </Link>
@@ -182,11 +180,11 @@ export function Navbar() {
             )}
           </div>
 
-          <Link className="text-sm font-bold text-blue-950 px-4 h-full flex items-center border-b-2 border-transparent hover:border-emerald-600 hover:text-emerald-700 transition-colors" href="/about">About Us</Link>
-          <Link className="text-sm font-bold text-blue-950 px-4 h-full flex items-center border-b-2 border-transparent hover:border-emerald-600 hover:text-emerald-700 transition-colors" href="/#contact">Contact</Link>
-          <div className="w-px h-6 bg-slate-300 mx-4"></div>
+          <Link className="text-sm font-bold text-[#0f172a] px-4 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/about">About Us</Link>
+          <Link className="text-sm font-bold text-[#0f172a] px-4 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/#contact">Contact</Link>
+          <div className="w-px h-6 bg-slate-200 mx-4"></div>
           <Link href="/login">
-            <Button className="bg-slate-900 hover:bg-slate-800 text-white rounded-md px-6">
+            <Button className="bg-[#1e3a8a] hover:bg-blue-800 text-white rounded-md px-6 shadow-sm">
               Client Portal
             </Button>
           </Link>

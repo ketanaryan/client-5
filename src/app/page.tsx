@@ -72,7 +72,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen selection:bg-emerald-600 selection:text-white bg-white">
+    <div className="flex flex-col min-h-screen selection:bg-blue-600 selection:text-white bg-white">
       <Navbar />
 
       <main className="flex-1">
@@ -108,7 +108,7 @@ export default function LandingPage() {
                 </p>
                 <div className={`transition-all duration-700 delay-700 ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                   <Link href={slide.buttonLink}>
-                    <Button size="lg" className="bg-[#15803d] hover:bg-emerald-700 text-white font-bold px-10 py-7 text-lg rounded-md shadow-[0_4px_14px_0_rgba(21,128,61,0.39)] transition-transform hover:scale-105">
+                    <Button size="lg" className="bg-[#2563eb] hover:bg-blue-700 text-white font-bold px-10 py-7 text-lg rounded-md shadow-[0_4px_14px_0_rgba(21,128,61,0.39)] transition-transform hover:scale-105">
                       {slide.buttonText}
                     </Button>
                   </Link>
@@ -125,7 +125,7 @@ export default function LandingPage() {
                 onClick={() => setCurrentSlide(idx)}
                 className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
                   idx === currentSlide 
-                    ? 'bg-transparent border-2 border-emerald-500 scale-125' 
+                    ? 'bg-transparent border-2 border-blue-500 scale-125' 
                     : 'bg-white/50 hover:bg-white/80'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
@@ -143,7 +143,7 @@ export default function LandingPage() {
                 Shantanu & Associates, Chartered Accountant in Bangalore is a professionally managed firm catering to domestic and international clients with wide range of services in domestic and international taxation, regulatory and advisory services and cross border transaction related services. The team at S&A is a Firm of CA in Bangalore and has dedicated, experienced and expert professionals and associates like Chartered Accountants, Company Secretary and Consultants and high-end infrastructure to provide end to end services to your business. With effort of gaining deep understanding of your business, our qualified team is committed to provide valuable, consistent and efficient services based on its in-depth knowledge and wide experience in the areas of audit, taxation, regulatory compliances and related business services. Our objective is to help our clients to focus on and achieve their business and financial goals by providing them services that is personalized and tailored to meet our client&apos;s requirements and suit their business the best.
               </p>
               <Link href="/about">
-                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4">
                   Read more
                 </Button>
               </Link>
@@ -251,7 +251,7 @@ export default function LandingPage() {
         {/* 4. CORE VALUES */}
         <section className="w-full py-16 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
           <div className="max-w-[1200px] mx-auto text-center mb-12">
-            <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">BELIEFS THAT SHAPE OUR CULTURE</div>
+            <div className="text-blue-500 font-bold uppercase tracking-widest text-sm mb-3">BELIEFS THAT SHAPE OUR CULTURE</div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Our Core Values</h2>
             <p className="text-slate-500 text-[17px] leading-relaxed max-w-3xl mx-auto">
               Our firm believes in and follows a culture of faith, integrity, and ethics at all levels when delivering services to every client. Our profession is our faith.
@@ -267,8 +267,8 @@ export default function LandingPage() {
               { title: 'Respect', icon: Handshake },
               { title: 'Time Value', icon: Clock }
             ].map((val, i) => (
-              <div key={i} className="group bg-white flex flex-col items-center text-center gap-4 p-6 w-full rounded-[1.25rem] shadow-sm border border-slate-200/60 hover:shadow-xl hover:-translate-y-1 hover:border-emerald-500/30 transition-all duration-300 cursor-pointer">
-                <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+              <div key={i} className="group bg-white flex flex-col items-center text-center gap-4 p-6 w-full rounded-[1.25rem] shadow-sm border border-slate-200/60 hover:shadow-xl hover:-translate-y-1 hover:border-blue-500/30 transition-all duration-300 cursor-pointer">
+                <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
                   <val.icon className="w-7 h-7 stroke-[2]" />
                 </div>
                 <span className="font-bold text-slate-800 text-[15px]">{val.title}</span>
@@ -280,7 +280,7 @@ export default function LandingPage() {
         {/* 5. INDUSTRIES */}
         <section className="w-full py-24 px-6 lg:px-12 bg-white">
           <div className="max-w-[1200px] mx-auto text-center mb-16">
-            <div className="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-3">OUR INDUSTRIES</div>
+            <div className="text-blue-500 font-bold uppercase tracking-widest text-sm mb-3">OUR INDUSTRIES</div>
             <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Business We Served</h2>
           </div>
           
@@ -320,7 +320,7 @@ export default function LandingPage() {
                 
                 {/* Content (z-20 keeps it above the image/overlay) */}
                 <div className="relative z-20 flex flex-col items-center">
-                  <ind.icon className="h-10 w-10 text-emerald-500 mb-4 group-hover:text-white transition-colors duration-300 stroke-[1.5] group-hover:-translate-y-2 transform" />
+                  <ind.icon className="h-10 w-10 text-blue-500 mb-4 group-hover:text-white transition-colors duration-300 stroke-[1.5] group-hover:-translate-y-2 transform" />
                   <h3 className="font-semibold text-slate-800 text-[14px] leading-snug group-hover:text-white transition-all duration-300 px-2 group-hover:translate-y-1 transform">{ind.title}</h3>
                 </div>
               </Link>
@@ -365,14 +365,14 @@ export default function LandingPage() {
                 { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
                 { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
                 { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
-                { name: 'Sneha Rao', initial: 'S', bg: 'bg-emerald-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
+                { name: 'Sneha Rao', initial: 'S', bg: 'bg-blue-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
                 { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
                 { name: 'Aditi Sharma', initial: 'A', bg: 'bg-purple-600', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
               ], ...[
                 { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
                 { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
                 { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
-                { name: 'Sneha Rao', initial: 'S', bg: 'bg-emerald-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
+                { name: 'Sneha Rao', initial: 'S', bg: 'bg-blue-600', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
                 { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
                 { name: 'Aditi Sharma', initial: 'A', bg: 'bg-purple-600', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
               ]].map((rev, i) => (
@@ -434,23 +434,23 @@ export default function LandingPage() {
               <form id="enquiry-form" action={onSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="relative">
-                    <input name="name" required placeholder="Name*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-emerald-400 transition-colors" />
+                    <input name="name" required placeholder="Name*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
                   <div className="relative flex items-center">
                     <span className="absolute left-0 text-white/60 text-lg">IN +91 ▾</span>
-                    <input name="phone" required placeholder="Phone Number*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 pl-20 text-lg outline-none focus:border-emerald-400 transition-colors" />
+                    <input name="phone" required placeholder="Phone Number*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 pl-20 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="relative">
-                    <input name="email" type="email" required placeholder="Email ID*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-emerald-400 transition-colors" />
+                    <input name="email" type="email" required placeholder="Email ID*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
                   <div className="relative">
-                    <input name="serviceRequested" placeholder="Service Interested In" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-emerald-400 transition-colors" />
+                    <input name="serviceRequested" placeholder="Service Interested In" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
                 </div>
                 <div className="relative">
-                  <input name="message" required placeholder="Enter Message" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-emerald-400 transition-colors" />
+                  <input name="message" required placeholder="Enter Message" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                 </div>
                 
                 <div>
@@ -474,10 +474,10 @@ export default function LandingPage() {
               Businesses Are Changing And We Need To Keep Up! At Shantanu & Associates Our Object Is To Create Confidence And Trust In The Economic Realm And To Deliver The Best Quality Of Services, When It Comes To Business Setup Advisory, Audits, Taxation And Assurance.
             </p>
             <div className="flex gap-3 pt-2">
-              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer">f</Link>
-              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer">in</Link>
-              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer">X</Link>
-              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-emerald-500 hover:text-white transition-colors cursor-pointer">P</Link>
+              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">f</Link>
+              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">in</Link>
+              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">X</Link>
+              <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">P</Link>
             </div>
           </div>
           
@@ -492,13 +492,13 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="flex items-center gap-4 text-slate-300 text-sm">
-                <Mail className="w-5 h-5 text-white shrink-0" /> <a href="mailto:shantanus.associates@gmail.com" className="hover:text-emerald-400 cursor-pointer">shantanus.associates@gmail.com</a>
+                <Mail className="w-5 h-5 text-white shrink-0" /> <a href="mailto:shantanus.associates@gmail.com" className="hover:text-blue-400 cursor-pointer">shantanus.associates@gmail.com</a>
               </div>
               <div className="flex items-center gap-4 text-slate-300 text-sm">
-                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:8668555246" className="hover:text-emerald-400 cursor-pointer">8668555246</a>
+                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:8668555246" className="hover:text-blue-400 cursor-pointer">8668555246</a>
               </div>
               <div className="flex items-center gap-4 text-slate-300 text-sm">
-                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:7219308077" className="hover:text-emerald-400 cursor-pointer">7219308077</a>
+                <Phone className="w-5 h-5 text-white shrink-0" /> <a href="tel:7219308077" className="hover:text-blue-400 cursor-pointer">7219308077</a>
               </div>
             </div>
           </div>
