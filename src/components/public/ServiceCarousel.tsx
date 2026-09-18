@@ -105,11 +105,11 @@ export default function ServiceCarousel() {
               </div>
 
               {/* Content */}
-              <div className="p-5 flex flex-col flex-1">
-                <h3 className="font-bold text-[22px] text-slate-900 mb-2">
+              <div className="p-8 flex flex-col flex-1 bg-white">
+                <h3 className="font-bold text-2xl text-[#032b4e] mb-3">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 text-[15px] leading-relaxed mb-5 flex-1">
+                <p className="text-slate-600 text-[16px] leading-[1.8] mb-8 flex-1">
                   {service.desc}
                 </p>
                 <Link href={`/services/${service.slug}`}>

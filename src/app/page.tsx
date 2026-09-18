@@ -138,10 +138,15 @@ export default function LandingPage() {
         <section id="about" className="w-full py-24 px-6 lg:px-12 bg-white">
           <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-16 items-center">
             <div className="flex-1 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-800">About Us-Chartered Accountant In Bangalore</h2>
-              <p className="text-slate-600 leading-relaxed text-sm md:text-base text-justify">
-                Shantanu & Associates, Chartered Accountant in Bangalore is a professionally managed firm catering to domestic and international clients with wide range of services in domestic and international taxation, regulatory and advisory services and cross border transaction related services. The team at S&A is a Firm of CA in Bangalore and has dedicated, experienced and expert professionals and associates like Chartered Accountants, Company Secretary and Consultants and high-end infrastructure to provide end to end services to your business. With effort of gaining deep understanding of your business, our qualified team is committed to provide valuable, consistent and efficient services based on its in-depth knowledge and wide experience in the areas of audit, taxation, regulatory compliances and related business services. Our objective is to help our clients to focus on and achieve their business and financial goals by providing them services that is personalized and tailored to meet our client&apos;s requirements and suit their business the best.
-              </p>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#032b4e] mb-6 leading-tight">
+                  About Us <span className="block text-xl md:text-2xl text-blue-600 mt-2 font-semibold">Chartered Accountants In Bangalore</span>
+                </h2>
+                <p className="text-slate-600 leading-[1.8] text-[16px] md:text-[18px] mb-6">
+                  Shantanu & Associates, Chartered Accountant in Bangalore is a professionally managed firm catering to domestic and international clients with wide range of services in domestic and international taxation, regulatory and advisory services and cross border transaction related services. The team at S&A is a Firm of CA in Bangalore and has dedicated, experienced and expert professionals and associates like Chartered Accountants, Company Secretary and Consultants and high-end infrastructure to provide end to end services to your business. 
+                </p>
+                <p className="text-slate-600 leading-[1.8] text-[16px] md:text-[18px] mb-8">
+                  With effort of gaining deep understanding of your business, our qualified team is committed to provide valuable, consistent and efficient services based on its in-depth knowledge and wide experience in the areas of audit, taxation, regulatory compliances and related business services. Our objective is to help our clients to focus on and achieve their business and financial goals by providing them services that is personalized and tailored to meet our client&apos;s requirements and suit their business the best.
+                </p>
               <Link href="/about">
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4">
                   Read more
