@@ -189,19 +189,23 @@ export default function LandingPage() {
               { title: 'RERA Registration', slug: 'rera-registration', img: '/images/img_9c1221ae6f.jpg' },
               { title: 'Shop Act Registration', slug: 'shop-act-registration', img: '/images/img_2974d83ac5.jpg' }
             ].map((srv, i) => (
-              <Link href={`/services/${srv.slug}`} key={i} className="flex flex-col rounded-xl overflow-hidden shadow-md cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all">
-                <div className="h-[140px] relative overflow-hidden">
+              <Link href={`/services/${srv.slug}`} key={i} className="group relative flex flex-col rounded-2xl overflow-hidden bg-white shadow-lg shadow-blue-900/5 border-2 border-slate-100 cursor-pointer hover:border-blue-200 hover:shadow-[0_12px_40px_rgba(37,99,235,0.15)] hover:-translate-y-1 transition-all duration-500">
+                <div className="h-[150px] relative overflow-hidden">
                   <Image
                     src={srv.img}
                     alt={srv.title}
                     fill
                     sizes="(max-width: 1024px) 50vw, 20vw"
-                    className="object-cover hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#032b4e]/90 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <div className="bg-[#1e3c5a] hover:bg-[#1a354f] transition-colors p-4 flex-1 flex items-center justify-center text-center">
-                  <h3 className="font-bold text-white text-[14px] leading-snug">{srv.title}</h3>
+                <div className="bg-white p-5 flex-1 flex items-center justify-between">
+                  <h3 className="font-bold text-[#032b4e] text-[15px] leading-snug group-hover:text-blue-600 transition-colors pr-2">{srv.title}</h3>
+                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-600 transition-colors shrink-0">
+                    <ArrowRight className="w-4 h-4 text-blue-600 group-hover:text-white transition-colors" />
+                  </div>
                 </div>
               </Link>
             ))}
@@ -227,7 +231,7 @@ export default function LandingPage() {
               { title: 'LLP Registration', subtitle: 'Flexible partnership model', slug: 'llp-registration', img: '/images/img_f5258efe70.jpg' },
               { title: 'Partnership Firm', subtitle: 'Traditional joint venture', slug: 'partnership-firm-registration', img: '/images/img_4e6adef9f0.jpg' }
             ].map((srv, i) => (
-              <Link href={`/services/${srv.slug}`} key={i} className="group relative bg-white border border-slate-200/80 rounded-[2rem] p-3 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 overflow-hidden flex flex-col">
+              <Link href={`/services/${srv.slug}`} key={i} className="group relative bg-white border-2 border-slate-100 rounded-[2rem] p-3 shadow-lg shadow-blue-900/5 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 overflow-hidden flex flex-col">
                 <div className="h-56 w-full rounded-3xl overflow-hidden relative mb-5">
                   <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                   <Image
@@ -239,9 +243,14 @@ export default function LandingPage() {
                     loading="lazy"
                   />
                 </div>
-                <div className="px-3 pb-4">
-                  <h3 className="font-bold text-slate-900 text-lg tracking-tight mb-1">{srv.title}</h3>
-                  <p className="text-sm font-medium text-slate-500">{srv.subtitle}</p>
+                <div className="px-3 pb-4 flex justify-between items-end">
+                  <div>
+                    <h3 className="font-bold text-[#032b4e] text-lg tracking-tight mb-1 group-hover:text-blue-600 transition-colors">{srv.title}</h3>
+                    <p className="text-[14px] font-medium text-slate-500">{srv.subtitle}</p>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-600 transition-colors shrink-0">
+                    <ArrowRight className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />
+                  </div>
                 </div>
               </Link>
             ))}
