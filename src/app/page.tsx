@@ -360,11 +360,8 @@ export default function LandingPage() {
               animation-play-state: paused;
             }
           `}} />
-          <div className="max-w-[1200px] mx-auto text-center mb-20 px-6 lg:px-12">
-            <div className="flex flex-col items-center gap-3 mb-10">
-              <span className="text-blue-600 font-bold tracking-[0.2em] uppercase text-sm">Testimonials</span>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight">Client Success Stories</h2>
-            </div>
+          <div className="max-w-[1200px] mx-auto text-center mb-16 px-6 lg:px-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 tracking-tight">Happy Clients</h2>
             
             <div className="inline-flex flex-col items-center justify-center gap-1 bg-white px-8 py-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
               <span className="font-bold text-xl text-slate-900 tracking-tight">EXCELLENT</span>
