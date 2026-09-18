@@ -170,16 +170,18 @@ export default function LandingPage() {
 
         {/* 3A. CA SERVICES WE OFFER - CAROUSEL */}
         <section id="services" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">CA Services We Offer</h2>
+          <div className="max-w-[1200px] mx-auto mb-12 text-center md:text-left">
+            <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">OUR EXPERTISE</div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight">CA Services We Offer</h2>
           </div>
           <ServiceCarousel />
         </section>
 
         {/* 3B. BUSINESS REGISTRATION */}
         <section className="w-full py-16 px-6 lg:px-12 bg-white">
-          <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
-            <h2 className="text-3xl font-bold text-slate-900">Business Registration Services We Offer</h2>
+          <div className="max-w-[1200px] mx-auto mb-12 text-center md:text-left">
+            <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">ESSENTIAL COMPLIANCE</div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight">Business Registration Services</h2>
           </div>
           <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-6">
             {[
@@ -214,13 +216,14 @@ export default function LandingPage() {
 
         {/* 3C. COMPANY FORMATION */}
         <section className="w-full pt-16 pb-24 px-6 lg:px-12 bg-white">
-          <div className="max-w-[1200px] mx-auto mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Company Formation</h2>
-              <p className="text-slate-500 mt-3 text-lg max-w-xl">Start your business with a solid legal foundation. We handle the entire incorporation process seamlessly.</p>
+          <div className="max-w-[1200px] mx-auto mb-14 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="text-center md:text-left">
+              <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">START YOUR JOURNEY</div>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight mb-4">Company Formation</h2>
+              <p className="text-slate-600 text-[16px] md:text-[18px] leading-[1.8] max-w-xl mx-auto md:mx-0">Start your business with a solid legal foundation. We handle the entire incorporation process seamlessly from start to finish.</p>
             </div>
-            <Link href="/services/business-registration">
-              <Button variant="outline" className="hidden md:flex rounded-full px-6 h-12 text-[15px] border-slate-200 hover:bg-slate-50 font-medium">View All Services</Button>
+            <Link href="/services/business-registration" className="flex justify-center md:justify-end">
+              <Button variant="outline" className="rounded-full px-8 h-14 text-[15px] border-slate-200 hover:border-blue-300 hover:text-blue-700 hover:bg-blue-50 font-bold text-slate-700 transition-all shadow-sm">View All Services <ArrowRight className="w-4 h-4 ml-2" /></Button>
             </Link>
           </div>
           
