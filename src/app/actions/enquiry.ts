@@ -39,7 +39,7 @@ export async function submitEnquiry(formData: FormData) {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       phone: formData.get("phone") as string,
-      serviceRequested: formData.get("serviceRequested") as string,
+      serviceRequested: formData.getAll("serviceRequested").join(", ") as string,
       message: formData.get("message") as string,
     }
 

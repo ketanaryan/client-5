@@ -255,10 +255,10 @@ export default function LandingPage() {
 
         {/* 4. CORE VALUES */}
         <section className="w-full py-16 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto text-center mb-12">
-            <div className="text-blue-500 font-bold uppercase tracking-widest text-sm mb-3">BELIEFS THAT SHAPE OUR CULTURE</div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Our Core Values</h2>
-            <p className="text-slate-500 text-[17px] leading-relaxed max-w-3xl mx-auto">
+          <div className="max-w-[1200px] mx-auto text-center mb-16">
+            <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4">BELIEFS THAT SHAPE OUR CULTURE</div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] mb-6 tracking-tight">Our Core Values</h2>
+            <p className="text-slate-600 text-[16px] md:text-[18px] leading-[1.8] max-w-3xl mx-auto">
               Our firm believes in and follows a culture of faith, integrity, and ethics at all levels when delivering services to every client. Our profession is our faith.
             </p>
           </div>
@@ -272,11 +272,11 @@ export default function LandingPage() {
               { title: 'Respect', icon: Handshake },
               { title: 'Time Value', icon: Clock }
             ].map((val, i) => (
-              <div key={i} className="group bg-white flex flex-col items-center text-center gap-4 p-6 w-full rounded-[1.25rem] shadow-sm border border-slate-200/60 hover:shadow-xl hover:-translate-y-1 hover:border-blue-500/30 transition-all duration-300 cursor-pointer">
-                <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
-                  <val.icon className="w-7 h-7 stroke-[2]" />
+              <div key={i} className="group bg-white flex flex-col items-center text-center gap-5 p-8 w-full rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 hover:border-blue-500/40 transition-all duration-300 cursor-pointer">
+                <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                  <val.icon className="w-8 h-8 stroke-[1.5]" />
                 </div>
-                <span className="font-bold text-slate-800 text-[15px]">{val.title}</span>
+                <span className="font-bold text-slate-900 text-[16px]">{val.title}</span>
               </div>
             ))}
           </div>
@@ -447,14 +447,26 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  <div className="relative">
+                  <div className="relative col-span-1 sm:col-span-2">
                     <input name="email" type="email" required placeholder="Email ID*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
-                  <div className="relative">
-                    <input name="serviceRequested" placeholder="Service Interested In" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
+                </div>
+                
+                <div className="space-y-4 pt-2">
+                  <p className="text-white/80 text-[16px] font-medium">Services Interested In (Select multiple):</p>
+                  <div className="flex flex-wrap gap-3">
+                    {["Audit & Assurance", "Company Formation", "Taxation", "NRI Services", "Consultancy", "GST Registration", "Other"].map(srv => (
+                      <label key={srv} className="cursor-pointer">
+                        <input type="checkbox" name="serviceRequested" value={srv} className="peer sr-only" />
+                        <div className="px-5 py-2.5 rounded-full border border-white/30 text-white/80 peer-checked:bg-blue-600 peer-checked:border-blue-600 peer-checked:text-white peer-checked:font-medium transition-all hover:border-white/60 text-sm select-none">
+                          {srv}
+                        </div>
+                      </label>
+                    ))}
                   </div>
                 </div>
-                <div className="relative">
+
+                <div className="relative pt-4">
                   <input name="message" required placeholder="Enter Message" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                 </div>
                 
