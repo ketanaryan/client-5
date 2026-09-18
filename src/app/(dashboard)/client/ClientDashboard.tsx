@@ -50,6 +50,33 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
   const documentUploadRef = useRef<HTMLInputElement>(null)
   const [uploadingDoc, setUploadingDoc] = useState(false)
 
+  const handleUploadForRequest = async (e: React.ChangeEvent<HTMLInputElement>, workRequestId?: string) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("File size must be less than 5MB")
+      return
+    }
+    
+    const formData = new FormData()
+    formData.append("file", file)
+    if (workRequestId) formData.append("workRequestId", workRequestId)
+    
+    try {
+      setUploadingDoc(true)
+      toast.loading("Uploading document...", { id: "upload" })
+      const { uploadClientDocument } = await import("@/app/actions/documents")
+      await uploadClientDocument(formData)
+      toast.success("Document uploaded securely", { id: "upload" })
+      router.refresh()
+    } catch (err) {
+      toast.error("Failed to upload document", { id: "upload" })
+    } finally {
+      setUploadingDoc(false)
+      e.target.value = ""
+    }
+  }
+
   const [isRaiseRequestOpen, setIsRaiseRequestOpen] = useState(false)
   const [creatingRequest, setCreatingRequest] = useState(false)
   const [submittingPayment, setSubmittingPayment] = useState<string | null>(null)
@@ -293,15 +320,14 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                             </div>
                           ))}
                         </div>
-                        <div className="flex justify-end pt-2">
+                        <div className="flex justify-end pt-2 gap-2 items-center">
+                          <input type="file" className="hidden" id={`upload-${wr.id}`} onChange={(e) => handleUploadForRequest(e, wr.id)} />
                           <Button 
                             variant="outline" 
                             size="sm" 
                             className="text-blue-600 border-blue-200 bg-blue-50 hover:bg-blue-100 hover:text-blue-700"
-                            onClick={() => {
-                              setActiveTab("documents")
-                              setTimeout(() => documentUploadRef.current?.click(), 100)
-                            }}
+                            onClick={() => document.getElementById(`upload-${wr.id}`)?.click()}
+                            disabled={uploadingDoc}
                           >
                             <Upload className="w-4 h-4 mr-2" />
                             Upload Documents for Request
@@ -475,30 +501,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                 type="file"
                 ref={documentUploadRef}
                 className="hidden"
-                onChange={async (e) => {
-                  const file = e.target.files?.[0]
-                  if (!file) return
-                  if (file.size > 5 * 1024 * 1024) {
-                    toast.error("File size must be less than 5MB")
-                    return
-                  }
-                  
-                  const formData = new FormData()
-                  formData.append("file", file)
-                  
-                  try {
-                    setUploadingDoc(true)
-                    toast.loading("Uploading document...", { id: "upload" })
-                    await uploadClientDocument(formData)
-                    toast.success("Document uploaded securely", { id: "upload" })
-                    router.refresh()
-                  } catch (err) {
-                    toast.error("Failed to upload document", { id: "upload" })
-                  } finally {
-                    setUploadingDoc(false)
-                    if (documentUploadRef.current) documentUploadRef.current.value = ""
-                  }
-                }}
+                onChange={(e) => handleUploadForRequest(e)}
               />
               <Button 
                 size="sm" 

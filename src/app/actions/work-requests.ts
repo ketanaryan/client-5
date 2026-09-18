@@ -156,6 +156,10 @@ export async function addTaskToRequest(workRequestId: string, description: strin
       description,
     }
   })
+  
+  revalidatePath(`/staff/requests/${workRequestId}`)
+  revalidatePath(`/admin/work-requests/${workRequestId}`)
+  revalidatePath("/client")
   return { success: true }
 }
 
@@ -180,6 +184,10 @@ export async function toggleTaskStatus(taskId: string, isCompleted: boolean) {
     where: { id: taskId },
     data: { isCompleted }
   })
+  
+  revalidatePath(`/staff/requests/${task.workRequestId}`)
+  revalidatePath(`/admin/work-requests/${task.workRequestId}`)
+  revalidatePath("/client")
   return { success: true }
 }
 
