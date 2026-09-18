@@ -351,7 +351,10 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                             {inv.status}
                           </Badge>
                         </TableCell>
-                        <TableCell className="text-right">
+                        <TableCell className="text-right flex items-center justify-end gap-2">
+                          <Button variant="outline" size="sm" className="h-8 text-xs font-medium border-slate-200 text-slate-700" onClick={() => window.open(`/invoice/${inv.id}`, '_blank')}>
+                            View PDF
+                          </Button>
                           <Dialog>
                             <DialogTrigger className="bg-emerald-600 text-white hover:bg-emerald-700 shadow-none h-8 rounded-md px-3 text-xs inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
                               <IndianRupee className="h-3 w-3"/> Pay Now
@@ -420,7 +423,8 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                       <TableHead className="font-medium text-slate-500 text-xs uppercase tracking-wider">Date</TableHead>
                       <TableHead className="font-medium text-slate-500 text-xs uppercase tracking-wider">Amount</TableHead>
                       <TableHead className="font-medium text-slate-500 text-xs uppercase tracking-wider">UTR</TableHead>
-                      <TableHead className="font-medium text-slate-500 text-xs uppercase tracking-wider">Status</TableHead>
+                      <TableHead className="text-slate-500 font-semibold text-[11px] tracking-wider uppercase">Status</TableHead>
+                      <TableHead className="text-slate-500 font-semibold text-[11px] tracking-wider uppercase text-right">Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -435,6 +439,11 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                         <TableCell className="font-medium text-slate-900 text-[14px]">₹{payment.amount.toLocaleString('en-IN')}</TableCell>
                         <TableCell className="font-mono text-[13px] text-slate-500">{payment.utrNumber || "-"}</TableCell>
                         <TableCell><Badge variant="secondary" className="bg-emerald-50 text-emerald-700 font-medium border-0 px-2">{payment.status}</Badge></TableCell>
+                        <TableCell className="text-right">
+                          <Button variant="outline" size="sm" className="h-8 text-xs font-medium border-slate-200 text-slate-700" onClick={() => window.open(`/invoice/${payment.invoiceId}`, '_blank')}>
+                            View Invoice
+                          </Button>
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

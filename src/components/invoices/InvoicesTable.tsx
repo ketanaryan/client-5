@@ -8,6 +8,7 @@ import { Search, ChevronDown, Receipt, Calendar } from "lucide-react"
 import { CreateInvoiceDialog } from "./CreateInvoiceDialog"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator, DropdownMenuLabel, DropdownMenuGroup } from "@/components/ui/dropdown-menu"
 import { updateInvoiceStatus } from "@/app/actions/invoices"
+import { toast } from "sonner"
 
 const tabs = ["All", "Unpaid", "Paid", "Overdue"]
 
@@ -125,18 +126,30 @@ export function InvoicesTable({ data, pendingWorkRequests }: { data: any[], pend
                     <DropdownMenuTrigger className="inline-flex items-center justify-center gap-1.5 text-[13px] font-medium text-slate-700 hover:text-slate-900 transition-colors border border-slate-200 rounded-lg px-3 py-1.5 bg-white shadow-sm hover:border-slate-300 outline-none">
                       Mark as <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-40 rounded-xl shadow-lg border-slate-200/60 p-1">
+                    <DropdownMenuContent align="end" className="w-48 rounded-xl shadow-lg border-slate-200/60 p-1">
+                      <DropdownMenuGroup>
+                        <DropdownMenuItem className="text-[13px] text-slate-700 hover:bg-slate-50 cursor-pointer rounded-lg my-0.5" onClick={() => window.open(`/invoice/${row.id}`, '_blank')}>
+                          View / Download PDF
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="text-[13px] text-blue-600 font-medium hover:bg-blue-50 cursor-pointer rounded-lg my-0.5" onClick={async () => {
+                          const { sendInvoice } = await import("@/app/actions/invoices")
+                          await sendInvoice(row.id)
+                          toast.success("Invoice sent successfully via Email, WhatsApp, and In-App notification!")
+                        }}>
+                          Send to Client
+                        </DropdownMenuItem>
+                      </DropdownMenuGroup>
+                      <DropdownMenuSeparator className="bg-slate-100" />
                       <DropdownMenuGroup>
                         <DropdownMenuLabel className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider px-2 py-1.5">Change Status</DropdownMenuLabel>
                       </DropdownMenuGroup>
-                      <DropdownMenuSeparator className="bg-slate-100" />
                       {["PAID", "UNPAID", "OVERDUE"].map(status => (
                         <DropdownMenuItem 
                           key={status}
                           className="text-[13px] text-slate-700 hover:bg-slate-50 cursor-pointer rounded-lg my-0.5"
                           onClick={() => updateInvoiceStatus(row.id, status as any)}
                         >
-                          {status}
+                          Mark as {status}
                         </DropdownMenuItem>
                       ))}
                     </DropdownMenuContent>

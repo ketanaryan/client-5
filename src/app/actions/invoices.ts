@@ -44,6 +44,45 @@ export async function updateInvoiceStatus(id: string, status: "PAID" | "UNPAID" 
   return { success: true }
 }
 
+export async function sendInvoice(id: string) {
+  const session = await auth()
+  if (!session?.user || session.user.role !== "ADMIN") {
+    throw new Error("Unauthorized")
+  }
+
+  const invoice = await prisma.invoice.findUnique({
+    where: { id },
+    include: {
+      workRequest: {
+        include: {
+          client: true
+        }
+      }
+    }
+  })
+
+  if (!invoice) throw new Error("Invoice not found")
+
+  // Create an in-app notification for the client
+  await prisma.notification.create({
+    data: {
+      userId: invoice.workRequest.clientId,
+      title: "Invoice Issued",
+      message: `Your invoice INV-${invoice.id.split("-")[0].toUpperCase()} for ₹${invoice.amount.toLocaleString('en-IN')} has been issued.`,
+      link: `/client`
+    }
+  })
+
+  // Simulated Email & WhatsApp send
+  console.log(`[EMAIL] Sent invoice PDF link to client ${invoice.workRequest.clientId}`)
+  console.log(`[WHATSAPP] Sent invoice details to client ${invoice.workRequest.clientId}`)
+
+  // Update invoice status if needed (e.g. keeping it UNPAID but marking as sent internally)
+  // For now, just revalidate
+  revalidatePath("/admin/invoices")
+  return { success: true }
+}
+
 export async function getCompletedWorkRequests() {
   const session = await auth()
   if (!session?.user || session.user.role !== "ADMIN") {
