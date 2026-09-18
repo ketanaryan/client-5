@@ -62,7 +62,13 @@ export function CreateInvoiceDialog({ pendingWorkRequests }: { pendingWorkReques
             <label className="text-[13px] font-medium text-slate-700">Completed Work Request</label>
             <Select value={workRequestId} onValueChange={(val) => setWorkRequestId(val || "")} required>
               <SelectTrigger className="w-full h-10 bg-slate-50/30 border-slate-200 focus:ring-2 focus:ring-indigo-500/20 transition-all rounded-lg">
-                <SelectValue placeholder="Select work request" />
+                <span data-slot="select-value" className="flex flex-1 text-left truncate">
+                  {selectedWr ? (
+                    `${selectedWr.client.companyName || selectedWr.client.user.name} - ${selectedWr.title}`
+                  ) : (
+                    <span className="text-muted-foreground">Select work request</span>
+                  )}
+                </span>
               </SelectTrigger>
               <SelectContent>
                 {pendingWorkRequests.length === 0 && (

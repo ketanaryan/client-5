@@ -13,9 +13,16 @@ export function RecordPaymentDialog({ unpaidInvoices }: { unpaidInvoices: any[] 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [invoiceId, setInvoiceId] = useState("")
+  const [method, setMethod] = useState("ONLINE")
 
   const selectedInv = unpaidInvoices.find(inv => inv.id === invoiceId)
   const defaultAmount = selectedInv?.amount || ""
+
+  const methodLabels: Record<string, string> = {
+    "ONLINE": "Online/NEFT",
+    "CASH": "Cash",
+    "CHEQUE": "Cheque"
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -24,6 +31,7 @@ export function RecordPaymentDialog({ unpaidInvoices }: { unpaidInvoices: any[] 
     try {
       const formData = new FormData(e.currentTarget)
       formData.append("invoiceId", invoiceId)
+      formData.append("method", method)
       await recordPayment(formData)
       setOpen(false)
     } catch (err: any) {
@@ -61,7 +69,13 @@ export function RecordPaymentDialog({ unpaidInvoices }: { unpaidInvoices: any[] 
             <label className="text-[13px] font-medium text-slate-700">Unpaid Invoice</label>
             <Select value={invoiceId} onValueChange={(val) => setInvoiceId(val || "")} required>
               <SelectTrigger className="w-full h-10 bg-slate-50/30 border-slate-200 focus:ring-2 focus:ring-emerald-500/20 transition-all rounded-lg">
-                <SelectValue placeholder="Select invoice" />
+                <span data-slot="select-value" className="flex flex-1 text-left truncate">
+                  {selectedInv ? (
+                    `INV-${selectedInv.id.slice(0,8).toUpperCase()} (₹${selectedInv.amount}) - ${selectedInv.workRequest.client.companyName || selectedInv.workRequest.client.user.name}`
+                  ) : (
+                    <span className="text-muted-foreground">Select invoice</span>
+                  )}
+                </span>
               </SelectTrigger>
               <SelectContent>
                 {unpaidInvoices.length === 0 && (
@@ -83,9 +97,11 @@ export function RecordPaymentDialog({ unpaidInvoices }: { unpaidInvoices: any[] 
             </div>
             <div className="space-y-1.5">
               <label className="text-[13px] font-medium text-slate-700">Method</label>
-              <Select name="method" defaultValue="ONLINE">
+              <Select value={method} onValueChange={(val) => setMethod(val || "ONLINE")}>
                 <SelectTrigger className="w-full h-10 bg-slate-50/30 border-slate-200 focus:ring-2 focus:ring-emerald-500/20 transition-all rounded-lg">
-                  <SelectValue />
+                  <span data-slot="select-value" className="flex flex-1 text-left truncate">
+                    {methodLabels[method]}
+                  </span>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="ONLINE">Online/NEFT</SelectItem>
