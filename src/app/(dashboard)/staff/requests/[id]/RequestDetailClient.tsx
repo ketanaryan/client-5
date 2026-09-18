@@ -162,7 +162,13 @@ export default function RequestDetailClient({ workRequest, currentUser }: { work
                 <label className="text-sm font-medium text-slate-700">Status</label>
                 <Select value={status} onValueChange={setStatus}>
                   <SelectTrigger>
-                    <SelectValue />
+                    <span>
+                      {status === "PENDING" ? "Pending" : 
+                       status === "IN_PROGRESS" ? "In Progress" : 
+                       status === "AWAITING_CLIENT" ? "Awaiting Client" : 
+                       status === "FOR_REVIEW" ? "For Review" : 
+                       status === "COMPLETED" ? "Completed" : status}
+                    </span>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="PENDING">Pending</SelectItem>

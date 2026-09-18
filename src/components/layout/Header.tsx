@@ -9,6 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { markAllNotificationsRead } from "@/app/actions/users"
+import { Suspense } from "react"
 
 export function Header({ role = "ADMIN", userName = "User", userImage = null, notifications = [] }: { userName?: string, role?: any, userImage?: string | null, notifications?: any[] }) {
   const router = useRouter()
@@ -29,7 +30,9 @@ export function Header({ role = "ADMIN", userName = "User", userImage = null, no
             <span className="sr-only">Toggle Menu</span>
           </SheetTrigger>
           <SheetContent side="left" className="w-72 p-0 border-none bg-white">
-            <Sidebar role={role} userName={userName} userImage={userImage} className="border-none" />
+            <Suspense fallback={<div className="w-full h-full bg-white"></div>}>
+              <Sidebar role={role} userName={userName} userImage={userImage} className="border-none" />
+            </Suspense>
           </SheetContent>
         </Sheet>
         {/* Empty left side for desktop as per Figma */}

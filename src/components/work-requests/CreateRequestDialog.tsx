@@ -50,7 +50,11 @@ export function CreateRequestDialog({ clients }: { clients: any[] }) {
             <label className="text-[13px] font-medium text-slate-700">Client</label>
             <Select value={clientId} onValueChange={(val) => setClientId(val || "")} required>
               <SelectTrigger className="w-full h-10 bg-slate-50/30 border-slate-200 focus:ring-2 focus:ring-blue-500/20 transition-all rounded-lg">
-                <SelectValue placeholder="Select client" />
+                {clientId ? (
+                  <span>{clients.find(c => c.id === clientId)?.companyName || clients.find(c => c.id === clientId)?.user.name || clientId}</span>
+                ) : (
+                  <span className="text-slate-500">Select client</span>
+                )}
               </SelectTrigger>
               <SelectContent>
                 {clients.map(c => (
@@ -68,7 +72,7 @@ export function CreateRequestDialog({ clients }: { clients: any[] }) {
               <label className="text-[13px] font-medium text-slate-700">Priority</label>
               <Select value={priority} onValueChange={(val) => setPriority(val || "MEDIUM")}>
                 <SelectTrigger className="w-full h-10 bg-slate-50/30 border-slate-200 rounded-lg">
-                  <SelectValue />
+                  {priority === "LOW" ? "Low" : priority === "MEDIUM" ? "Medium" : priority === "HIGH" ? "High" : priority}
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="LOW">Low</SelectItem>

@@ -16,6 +16,8 @@ import { format } from "date-fns"
 import { RecordPaymentDialog } from "@/components/payments/RecordPaymentDialog"
 import { getUnpaidInvoices } from "@/app/actions/payments"
 
+import { VerifyPaymentButton } from "@/components/payments/VerifyPaymentButton"
+
 export default async function PaymentsPage() {
   const session = await auth()
   if (session?.user?.role !== "ADMIN") redirect("/login")
@@ -103,9 +105,12 @@ export default async function PaymentsPage() {
                       Verified
                     </Badge>
                   ) : payment.status === "PENDING" ? (
-                    <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
-                      Verification Pending
-                    </Badge>
+                    <div className="flex items-center">
+                      <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
+                        Verification Pending
+                      </Badge>
+                      <VerifyPaymentButton paymentId={payment.id} />
+                    </div>
                   ) : (
                     <Badge variant="destructive">Failed</Badge>
                   )}

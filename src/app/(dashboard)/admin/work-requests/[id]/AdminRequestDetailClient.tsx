@@ -155,11 +155,11 @@ export default function AdminRequestDetailClient({ workRequest, staffMembers }: 
                 <label className="text-sm font-medium text-slate-700 flex items-center gap-2"><UserPlus className="w-4 h-4"/> Assign Staff</label>
                 <Select value={assignedStaff} onValueChange={setAssignedStaff}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select Staff">
+                    <span>
                       {assignedStaff === "unassigned" 
                         ? "Unassigned" 
                         : staffMembers.find(s => s.id === assignedStaff)?.name || "Unknown Staff"}
-                    </SelectValue>
+                    </span>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="unassigned" className="text-slate-400 font-medium">Unassigned</SelectItem>
@@ -174,7 +174,13 @@ export default function AdminRequestDetailClient({ workRequest, staffMembers }: 
                 <label className="text-sm font-medium text-slate-700">Workflow Status</label>
                 <Select value={status} onValueChange={setStatus}>
                   <SelectTrigger>
-                    <SelectValue />
+                    <span>
+                      {status === "PENDING" ? "Pending" : 
+                       status === "IN_PROGRESS" ? "In Progress" : 
+                       status === "AWAITING_CLIENT" ? "Awaiting Client" : 
+                       status === "FOR_REVIEW" ? "For Review (Staff Done)" : 
+                       status === "COMPLETED" ? "Completed" : status}
+                    </span>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="PENDING">Pending</SelectItem>

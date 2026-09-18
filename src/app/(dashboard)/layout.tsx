@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/Header"
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { prisma } from "@/lib/prisma"
+import { Suspense } from "react"
 
 export default async function DashboardLayout({
   children,
@@ -31,7 +32,9 @@ export default async function DashboardLayout({
     <div className="flex h-screen w-full overflow-hidden bg-[#f8fafc]">
       {/* Desktop Sidebar */}
       <div className="hidden lg:block lg:w-64 lg:shrink-0 bg-white">
-        <Sidebar role={userRole} userName={userName} userImage={userImage} />
+        <Suspense fallback={<div className="w-64 h-full bg-white border-r border-slate-200"></div>}>
+          <Sidebar role={userRole} userName={userName} userImage={userImage} />
+        </Suspense>
       </div>
       
       {/* Main Content Area */}

@@ -107,3 +107,31 @@ export async function getUnpaidInvoices() {
     }
   })
 }
+
+export async function verifyPayment(paymentId: string) {
+  const session = await auth()
+  if (!session?.user || session.user.role !== "ADMIN") {
+    throw new Error("Unauthorized")
+  }
+
+  const payment = await prisma.payment.findUnique({
+    where: { id: paymentId }
+  })
+
+  if (!payment) throw new Error("Payment not found")
+
+  await prisma.$transaction([
+    prisma.payment.update({
+      where: { id: paymentId },
+      data: { status: "COMPLETED" }
+    }),
+    prisma.invoice.update({
+      where: { id: payment.invoiceId },
+      data: { status: "PAID" }
+    })
+  ])
+
+  revalidatePath("/admin/payments")
+  revalidatePath("/admin/invoices")
+  return { success: true }
+}
