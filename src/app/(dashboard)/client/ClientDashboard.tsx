@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { CheckCircle2, Circle, AlertCircle, FileText, IndianRupee, MessageSquare, User, Check, CreditCard, Upload, Camera, Loader2 } from "lucide-react"
+import { CheckCircle2, Circle, AlertCircle, FileText, IndianRupee, MessageSquare, User, Check, CreditCard, Upload, Camera, Loader2, Clock } from "lucide-react"
 import Image from "next/image"
 import { updateUserAvatar } from "@/app/actions/users"
 import { toast } from "sonner"
@@ -278,7 +278,7 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                   <CardContent className="pt-6 pb-6 space-y-6">
                     {wr.tasks && wr.tasks.length > 0 && (
                       <div className="space-y-3 border-t border-slate-100 pt-4 mt-2">
-                        <h4 className="text-sm font-semibold text-slate-900">Required Documents & Tasks</h4>
+                        <h4 className="text-sm font-semibold text-slate-900">Progress Tracking</h4>
                         <div className="space-y-2">
                           {wr.tasks.map((task: any) => (
                             <div key={task.id} className="flex items-center space-x-3 p-3 bg-slate-50/50 rounded-lg border border-slate-100">
@@ -309,8 +309,23 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                         </div>
                       </div>
                     )}
-                    {(!wr.tasks || wr.tasks.length === 0) && (
-                      <p className="text-sm text-slate-500 mt-2">Your CA will review this request and provide a checklist of required documents shortly.</p>
+                    {(!wr.tasks || wr.tasks.length === 0) && wr.status === 'COMPLETED' && (
+                      <div className="bg-emerald-50 border border-emerald-100 rounded-lg p-4 mt-2 flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                        <p className="text-sm text-emerald-800 font-medium">This request has been fully completed. Please check your Document Vault or Invoices tab.</p>
+                      </div>
+                    )}
+                    {(!wr.tasks || wr.tasks.length === 0) && wr.status === 'IN_PROGRESS' && (
+                      <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mt-2 flex items-center gap-3">
+                        <Loader2 className="w-5 h-5 text-blue-600 animate-spin" />
+                        <p className="text-sm text-blue-800 font-medium">Our team is actively working on your request. Progress updates will appear here.</p>
+                      </div>
+                    )}
+                    {(!wr.tasks || wr.tasks.length === 0) && wr.status === 'PENDING' && (
+                      <div className="bg-slate-50 border border-slate-100 rounded-lg p-4 mt-2 flex items-center gap-3">
+                        <Clock className="w-5 h-5 text-slate-400" />
+                        <p className="text-sm text-slate-600">Your CA will review this request and provide a checklist or timeline shortly.</p>
+                      </div>
                     )}
                   </CardContent>
                 </Card>
