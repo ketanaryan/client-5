@@ -135,7 +135,7 @@ export default function LandingPage() {
         </section>
 
         {/* 2. ABOUT US */}
-        <section id="about" className="w-full py-24 px-6 lg:px-12 bg-white">
+        <section id="about" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-white">
           <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-16 items-center">
             <div className="flex-1 space-y-6">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#032b4e] mb-6 leading-tight">
@@ -148,13 +148,13 @@ export default function LandingPage() {
                   With effort of gaining deep understanding of your business, our qualified team is committed to provide valuable, consistent and efficient services based on its in-depth knowledge and wide experience in the areas of audit, taxation, regulatory compliances and related business services. Our objective is to help our clients to focus on and achieve their business and financial goals by providing them services that is personalized and tailored to meet our client&apos;s requirements and suit their business the best.
                 </p>
               <Link href="/about">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4 md:mt-0">
                   Read more
                 </Button>
               </Link>
             </div>
             <div className="w-full md:w-[500px] shrink-0">
-              <div className="relative w-full aspect-square">
+              <div className="relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/img_b45366581e.jpg"
                   alt="About Shantanu & Associates"
@@ -169,9 +169,9 @@ export default function LandingPage() {
         </section>
 
         {/* 3A. CA SERVICES WE OFFER - CAROUSEL */}
-        <section id="services" className="w-full pt-24 pb-16 px-6 lg:px-12 bg-white border-t border-slate-200">
+        <section id="services" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
           <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
-            <h2 className="text-3xl font-bold text-slate-900">CA Services We Offer</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">CA Services We Offer</h2>
           </div>
           <ServiceCarousel />
         </section>
