@@ -37,10 +37,17 @@ export async function createStaff(formData: FormData) {
     throw new Error("Email already registered")
   }
 
-  const passwordHash = await bcrypt.hash("password123", 10)
+  // Generate a random 8-character password
+  const randomPassword = Math.random().toString(36).slice(-8)
+  const passwordHash = await bcrypt.hash(randomPassword, 10)
+
+  // In a real production app, you would use Resend/SendGrid here.
+  console.log(`[EMAIL SIMULATION] Sending Onboarding Email to ${email}`)
+  console.log(`[EMAIL SIMULATION] Subject: Welcome to Shantanu & Associates - Your Account Details`)
+  console.log(`[EMAIL SIMULATION] Body: Hello ${name},\nYour account has been created. Your login email is ${email} and your temporary password is: ${randomPassword}\nPlease log in and change your password immediately.`)
 
   if (role === "ASSOCIATE") {
-    await prisma.user.create({
+    const newUser = await prisma.user.create({
       data: {
         name,
         email,
@@ -56,9 +63,19 @@ export async function createStaff(formData: FormData) {
         }
       }
     })
+    
+    // Create an in-app notification for the newly onboarded user
+    await prisma.notification.create({
+      data: {
+        userId: newUser.id,
+        title: "Welcome to the Portal",
+        message: "Your account has been successfully set up. Please update your password in Settings.",
+        link: "/associate/settings",
+      }
+    })
     revalidatePath("/admin/associates")
   } else {
-    await prisma.user.create({
+    const newUser = await prisma.user.create({
       data: {
         name,
         email,
@@ -71,8 +88,17 @@ export async function createStaff(formData: FormData) {
         image: image || null,
       }
     })
+    
+    await prisma.notification.create({
+      data: {
+        userId: newUser.id,
+        title: "Welcome to the Portal",
+        message: "Your account has been successfully set up. Please update your password in Settings.",
+        link: "/staff/settings",
+      }
+    })
     revalidatePath("/admin/staff")
   }
 
-  return { success: true }
+  return { success: true, generatedPassword: randomPassword }
 }

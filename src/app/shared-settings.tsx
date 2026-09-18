@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Bell, Shield } from "lucide-react"
+import { ChangePasswordForm } from "@/components/shared/ChangePasswordForm"
 
 export default async function UserSettingsPage() {
   const session = await auth()
@@ -51,13 +52,14 @@ export default async function UserSettingsPage() {
               <div>
                 <CardTitle className="text-lg">Security & Access</CardTitle>
                 <CardDescription className="mt-1">
-                  Your current account permissions.
+                  Change your password.
                 </CardDescription>
               </div>
             </div>
           </CardHeader>
           <CardContent className="space-y-6 pt-6">
-             <p className="text-sm text-slate-600">Your account operates under the <strong>{session.user.role}</strong> role. You have access to assigned workspace areas.</p>
+             <p className="text-sm text-slate-600 mb-4">Your account operates under the <strong>{session.user.role}</strong> role.</p>
+             <ChangePasswordForm />
           </CardContent>
         </Card>
       </div>

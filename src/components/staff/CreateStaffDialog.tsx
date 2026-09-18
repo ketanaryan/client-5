@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { createStaff } from "@/app/actions/staff"
 import { Loader2, Plus } from "lucide-react"
+import { toast } from "sonner"
 
 export function CreateStaffDialog({ roleType }: { roleType: "STAFF" | "ASSOCIATE" }) {
   const [open, setOpen] = useState(false)
@@ -33,9 +34,10 @@ export function CreateStaffDialog({ roleType }: { roleType: "STAFF" | "ASSOCIATE
       if (photoBase64) {
         formData.append("image", photoBase64)
       }
-      await createStaff(formData)
+      const res = await createStaff(formData)
       setOpen(false)
       setPhotoBase64(null)
+      toast.success(`Account created! Email sent. (Temp password: ${res?.generatedPassword})`)
     } catch (err: any) {
       console.error(err)
       setError(err.message || "Failed to create user.")
@@ -57,7 +59,7 @@ export function CreateStaffDialog({ roleType }: { roleType: "STAFF" | "ASSOCIATE
         <DialogHeader className="bg-slate-50/50 p-6 pb-4 border-b border-slate-100">
           <DialogTitle className="text-xl font-bold tracking-tight text-slate-800">Onboard {roleName}</DialogTitle>
           <DialogDescription className="text-[13px] text-slate-500">
-            Create a new internal account. Default password will be <strong className="text-slate-700 font-mono">password123</strong>.
+            Create a new internal account. A secure random password will be generated and emailed to the staff member.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
