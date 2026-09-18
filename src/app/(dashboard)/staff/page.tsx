@@ -22,6 +22,16 @@ export default async function StaffDashboard() {
     year: 'numeric'
   })
 
+  // Dynamic greeting based on IST
+  const istTime = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+  const currentHour = istTime.getHours();
+  let greeting = "Good evening";
+  if (currentHour < 12) {
+    greeting = "Good morning";
+  } else if (currentHour < 17) {
+    greeting = "Good afternoon";
+  }
+
   // Fetch real data for the staff member
   const workRequests = await prisma.workRequest.findMany({
     where: { assignedStaffId: session.user.id },
@@ -54,7 +64,7 @@ export default async function StaffDashboard() {
       {/* Header Area */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mt-2">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Good morning, {userName}! ??</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">{greeting}, {userName}! 👋</h2>
           <p className="text-sm text-slate-500 mt-1">Here is your real-time work overview.</p>
         </div>
         <div className="flex items-center gap-2 text-sm text-blue-600 bg-blue-50/80 px-3 py-1.5 rounded-full font-medium border border-blue-100/50 shadow-sm">
