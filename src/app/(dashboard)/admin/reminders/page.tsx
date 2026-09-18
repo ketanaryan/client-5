@@ -64,9 +64,14 @@ export default async function RemindersPage() {
                   {reminder.description && (
                     <p className="text-xs text-slate-500 mt-2 line-clamp-2">{reminder.description}</p>
                   )}
-                  <Button className={`w-full mt-6 shadow-sm font-medium ${isUrgent ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>
-                    {isUrgent ? 'Send Bulk SMS Reminder' : 'Schedule Notification'}
-                  </Button>
+                  <div className="flex items-center justify-between mt-6">
+                    <span className="text-xs font-semibold px-2 py-1 bg-slate-100 text-slate-600 rounded-md">
+                      {reminder.targetGroup.replace("_", " ")}
+                    </span>
+                    <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md flex items-center">
+                      <BellRing className="h-3 w-3 mr-1" /> Notified
+                    </span>
+                  </div>
                 </CardContent>
               </Card>
             )

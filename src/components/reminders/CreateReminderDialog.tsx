@@ -80,15 +80,18 @@ export function CreateReminderDialog() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="targetCount" className="text-slate-700 font-medium text-sm">Target Clients Count</Label>
-              <Input
-                id="targetCount"
-                name="targetCount"
-                type="number"
-                defaultValue={0}
-                className="col-span-3 rounded-lg border-slate-200 shadow-sm"
+              <Label htmlFor="targetGroup" className="text-slate-700 font-medium text-sm">Target Client Group *</Label>
+              <select
+                id="targetGroup"
+                name="targetGroup"
+                className="col-span-3 h-10 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/20"
                 required
-              />
+              >
+                <option value="ALL">All Active Clients</option>
+                <option value="GST_REGISTERED">GST Registered Clients</option>
+                <option value="PENDING_KYC">Clients with Pending KYC</option>
+                <option value="UNPAID_INVOICES">Clients with Unpaid Invoices</option>
+              </select>
             </div>
           </div>
           <DialogFooter>

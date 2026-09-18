@@ -234,6 +234,7 @@ model Reminder {
   dueDate     DateTime
   type        String   @default("CUSTOM")
   targetCount Int      @default(0)
+  targetGroup String   @default("ALL")
   createdAt   DateTime @default(now())
   isCompleted Boolean  @default(false)
 
