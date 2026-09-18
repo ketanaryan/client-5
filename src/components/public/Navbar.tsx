@@ -181,7 +181,7 @@ export function Navbar() {
           </div>
 
           <Link className="text-sm font-bold text-[#0f172a] px-4 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/about">About Us</Link>
-          <Link className="text-sm font-bold text-[#0f172a] px-4 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/#contact">Contact</Link>
+          <Link className="text-sm font-bold text-[#0f172a] px-4 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/contact">Contact</Link>
           <div className="w-px h-6 bg-slate-200 mx-4"></div>
           <Link href="/login">
             <Button className="bg-[#1e3a8a] hover:bg-blue-800 text-white rounded-md px-6 shadow-sm">
