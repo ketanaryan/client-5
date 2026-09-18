@@ -63,9 +63,17 @@ export default async function EnquiriesPage() {
                       </div>
                     </TableCell>
                     <TableCell className="py-4">
-                      <Badge variant="outline" className="bg-slate-100 border-slate-200 text-slate-700 font-medium">
-                        {enq.serviceRequested || "N/A"}
-                      </Badge>
+                      {enq.serviceRequested ? (
+                        <div className="flex flex-wrap gap-1.5 max-w-[200px]">
+                          {enq.serviceRequested.split(', ').filter(Boolean).map((srv, idx) => (
+                            <Badge key={idx} variant="outline" className="bg-blue-50 border-blue-200 text-blue-700 font-medium text-xs whitespace-nowrap">
+                              {srv}
+                            </Badge>
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="text-slate-400 text-sm italic">N/A</span>
+                      )}
                     </TableCell>
                     <TableCell className="py-4">
                       <p className="text-sm text-slate-600 leading-relaxed max-w-md">
