@@ -43,7 +43,7 @@ export function WorkRequestsTable({ data, clients }: { data: any[], clients: any
   }
 
   return (
-    <div className="flex flex-1 flex-col h-full bg-white rounded-xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] border border-slate-200/60 overflow-hidden relative">
+    <div className="flex flex-1 flex-col h-full rounded-xl border border-blue-100/60 bg-white/95 backdrop-blur-sm shadow-[0_4px_20px_-4px_rgba(59,130,246,0.05)] overflow-hidden relative">
       
       {/* Top Header Section */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-6 border-b border-slate-100 gap-4">
@@ -62,8 +62,8 @@ export function WorkRequestsTable({ data, clients }: { data: any[], clients: any
               onClick={() => setActiveTab(tab)}
               className={`whitespace-nowrap px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
                 activeTab === tab 
-                  ? "bg-white text-slate-900 shadow-sm ring-1 ring-slate-200/50" 
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                  ? "bg-white text-blue-900 shadow-sm ring-1 ring-blue-100" 
+                  : "text-slate-600 hover:text-blue-800 hover:bg-[#EBF1F8]/50"
               }`}
             >
               {tab}
@@ -88,20 +88,20 @@ export function WorkRequestsTable({ data, clients }: { data: any[], clients: any
       {/* Data Table */}
       <div className="flex-1 overflow-auto">
         <Table className="min-w-[1000px]">
-          <TableHeader className="bg-slate-50/50 sticky top-0 z-10 backdrop-blur-md">
-            <TableRow className="border-b border-slate-100 hover:bg-transparent">
-              <TableHead className="text-slate-500 font-medium text-[11px] uppercase tracking-wider pl-6 h-10">ID</TableHead>
-              <TableHead className="text-slate-500 font-medium text-[11px] uppercase tracking-wider h-10">Client</TableHead>
-              <TableHead className="text-slate-500 font-medium text-[11px] uppercase tracking-wider h-10">Work</TableHead>
-              <TableHead className="text-slate-500 font-medium text-[11px] uppercase tracking-wider h-10">Status</TableHead>
-              <TableHead className="text-slate-500 font-medium text-[11px] uppercase tracking-wider h-10">Due Date</TableHead>
-              <TableHead className="text-slate-500 font-medium text-[11px] uppercase tracking-wider h-10 text-right">Fee</TableHead>
-              <TableHead className="text-slate-500 font-medium text-[11px] uppercase tracking-wider h-10 text-right pr-6">Action</TableHead>
+          <TableHeader className="bg-[#EBF1F8]/50 sticky top-0 z-10 backdrop-blur-md border-b border-blue-100/50">
+            <TableRow className="hover:bg-transparent border-none">
+              <TableHead className="text-[#4B5F77] font-semibold text-[11px] uppercase tracking-wider pl-6 h-10">ID</TableHead>
+              <TableHead className="text-[#4B5F77] font-semibold text-[11px] uppercase tracking-wider h-10">Client</TableHead>
+              <TableHead className="text-[#4B5F77] font-semibold text-[11px] uppercase tracking-wider h-10">Work</TableHead>
+              <TableHead className="text-[#4B5F77] font-semibold text-[11px] uppercase tracking-wider h-10">Status</TableHead>
+              <TableHead className="text-[#4B5F77] font-semibold text-[11px] uppercase tracking-wider h-10">Due Date</TableHead>
+              <TableHead className="text-[#4B5F77] font-semibold text-[11px] uppercase tracking-wider h-10 text-right">Fee</TableHead>
+              <TableHead className="text-[#4B5F77] font-semibold text-[11px] uppercase tracking-wider h-10 text-right pr-6">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredData.map((row) => (
-              <TableRow key={row.id} className="border-b border-slate-100/60 hover:bg-slate-50/80 transition-colors group">
+              <TableRow key={row.id} className="border-b border-blue-50/50 hover:bg-blue-50/40 transition-colors group">
                 <TableCell className="pl-6 font-medium text-slate-400 text-xs py-3 font-mono">
                   {row.id.slice(0, 8)}
                 </TableCell>

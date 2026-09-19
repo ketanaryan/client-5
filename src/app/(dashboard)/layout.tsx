@@ -29,16 +29,16 @@ export default async function DashboardLayout({
 
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#f8fafc]">
+    <div className="flex h-screen w-full overflow-hidden bg-[#EBF1F8]">
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block lg:w-64 lg:shrink-0 bg-white">
-        <Suspense fallback={<div className="w-64 h-full bg-white border-r border-slate-200"></div>}>
+      <div className="hidden lg:block lg:w-64 lg:shrink-0 bg-[#0B1425]">
+        <Suspense fallback={<div className="w-64 h-full bg-[#0B1425] border-r border-[#15233A]"></div>}>
           <Sidebar role={userRole} userName={userName} userImage={userImage} />
         </Suspense>
       </div>
       
       {/* Main Content Area */}
-      <div className="flex flex-1 flex-col overflow-hidden bg-[#f8fafc]">
+      <div className="flex flex-1 flex-col overflow-hidden bg-[#EBF1F8]">
         <Header role={userRole} userName={userName} userImage={userImage} notifications={notifications} />
         
         {/* Scrollable page content */}

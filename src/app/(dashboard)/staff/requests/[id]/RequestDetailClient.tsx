@@ -8,15 +8,14 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Checkbox } from "@/components/ui/checkbox"
-import { FileText, Plus, Save, Clock, IndianRupee, MessageSquare, Loader2, Download } from "lucide-react"
+import { FileText, Plus, Save, Clock, MessageSquare, Loader2, Download } from "lucide-react"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { updateWorkRequestStatus, updateWorkRequestFee, addTaskToRequest, toggleTaskStatus } from "@/app/actions/work-requests"
+import { updateWorkRequestStatus, addTaskToRequest, toggleTaskStatus } from "@/app/actions/work-requests"
 
 export default function RequestDetailClient({ workRequest, currentUser }: { workRequest: any, currentUser: any }) {
   const router = useRouter()
   const [status, setStatus] = useState(workRequest.status)
-  const [fee, setFee] = useState(workRequest.feeAmount?.toString() || "")
   const [newTask, setNewTask] = useState("")
   const [savingStatus, setSavingStatus] = useState(false)
   const [savingTask, setSavingTask] = useState(false)
@@ -25,9 +24,6 @@ export default function RequestDetailClient({ workRequest, currentUser }: { work
     try {
       setSavingStatus(true)
       await updateWorkRequestStatus(workRequest.id, status)
-      if (fee !== workRequest.feeAmount?.toString()) {
-        await updateWorkRequestFee(workRequest.id, parseFloat(fee) || 0)
-      }
       toast.success("Request updated successfully!")
       router.refresh()
     } catch (err) {
@@ -178,16 +174,6 @@ export default function RequestDetailClient({ workRequest, currentUser }: { work
                     <SelectItem value="COMPLETED">Completed</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 flex items-center gap-2"><IndianRupee className="w-4 h-4"/> Fee Amount</label>
-                <Input 
-                  type="number" 
-                  placeholder="e.g. 5000" 
-                  value={fee} 
-                  onChange={(e) => setFee(e.target.value)} 
-                />
               </div>
             </CardContent>
           </Card>

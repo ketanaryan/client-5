@@ -22,7 +22,7 @@ export function Header({ role = "ADMIN", userName = "User", userImage = null, no
   const unreadCount = notifications.filter(n => !n.isRead).length
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between bg-[#f8fafc] px-4 sm:px-6">
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between bg-[#EBF1F8] px-4 sm:px-6">
       <div className="flex items-center gap-4">
         <Sheet>
           <SheetTrigger className="lg:hidden bg-white border border-slate-200 h-10 w-10 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
@@ -49,7 +49,7 @@ export function Header({ role = "ADMIN", userName = "User", userImage = null, no
           <DropdownMenuTrigger className="relative hover:bg-slate-100 rounded-full h-10 w-10 flex items-center justify-center outline-none transition-colors border-none cursor-pointer">
             <Bell className="h-[22px] w-[22px] text-slate-600" />
             {unreadCount > 0 && (
-                <Badge className="absolute right-1 top-1.5 flex h-4 w-4 items-center justify-center rounded-full p-0 text-[10px] bg-red-500 text-white border-2 border-[#f8fafc]">
+                <Badge className="absolute right-1 top-1.5 flex h-4 w-4 items-center justify-center rounded-full p-0 text-[10px] bg-red-500 text-white border-2 border-[#EBF1F8]">
                   {unreadCount}
                 </Badge>
               )}

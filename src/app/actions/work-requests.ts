@@ -118,15 +118,8 @@ export async function getClients() {
 
 export async function updateWorkRequestFee(id: string, feeAmount: number) {
   const session = await auth()
-  if (!session?.user || (session.user.role !== "STAFF" && session.user.role !== "ADMIN")) {
+  if (!session?.user || session.user.role !== "ADMIN") {
     throw new Error("Unauthorized")
-  }
-
-  if (session.user.role === "STAFF") {
-    const wr = await prisma.workRequest.findUnique({ where: { id } })
-    if (!wr || wr.assignedStaffId !== session.user.id) {
-      throw new Error("Unauthorized: Not assigned to this request")
-    }
   }
 
   await prisma.workRequest.update({

@@ -48,7 +48,7 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="rounded-xl border-slate-200/60 bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between space-y-0 pb-2">
               <p className="text-sm font-medium text-slate-500">Total Clients</p>
@@ -60,7 +60,7 @@ export default async function AdminDashboard() {
           </CardContent>
         </Card>
         
-        <Card className="rounded-xl border-slate-200/60 bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between space-y-0 pb-2">
               <p className="text-sm font-medium text-slate-500">Active Requests</p>
@@ -72,7 +72,7 @@ export default async function AdminDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-xl border-slate-200/60 bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between space-y-0 pb-2">
               <p className="text-sm font-medium text-slate-500">Staff Members</p>
@@ -84,7 +84,7 @@ export default async function AdminDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-xl border-slate-200/60 bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between space-y-0 pb-2">
               <p className="text-sm font-medium text-slate-500">Collected Revenue</p>
@@ -98,7 +98,7 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="grid gap-6 mt-4">
-        <Card className="rounded-xl border-slate-200/60 bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)]">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 py-5 px-6">
             <CardTitle className="text-base font-semibold text-slate-900">Recent Work Requests</CardTitle>
             <Link href="/admin/work-requests" className="text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center gap-1 transition-colors">

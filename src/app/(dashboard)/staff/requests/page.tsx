@@ -59,13 +59,6 @@ function formatDate(date: Date | null | undefined): string {
   })
 }
 
-function formatCurrency(amount: number | null | undefined): string {
-  if (amount == null) return "—"
-  return `₹${amount.toLocaleString("en-IN", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`
-}
 
 export default async function StaffRequestsPage() {
   const session = await auth()
@@ -110,7 +103,7 @@ export default async function StaffRequestsPage() {
               <TableHead>Status</TableHead>
               <TableHead>Priority</TableHead>
               <TableHead>Due Date</TableHead>
-              <TableHead className="text-right">Fee Amount</TableHead>`n                <TableHead className="text-right">Action</TableHead>
+              <TableHead className="text-right">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -158,9 +151,6 @@ export default async function StaffRequestsPage() {
                   </TableCell>
                   <TableCell className="text-sm text-slate-500">
                     {wr.dueDate ? formatDate(wr.dueDate) : "—"}
-                  </TableCell>
-                  <TableCell className="text-right text-sm font-medium text-slate-700">
-                    {formatCurrency(wr.feeAmount)}
                   </TableCell>
                   <TableCell className="text-right">
                     <Link href={`/staff/requests/${wr.id}`} className="text-blue-600 hover:text-blue-800 text-sm font-medium">
