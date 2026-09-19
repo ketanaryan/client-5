@@ -1,4 +1,5 @@
 "use client"
+import { useState, useEffect } from "react"
 
 import { Menu, CalendarDays, Bell, Check, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -13,6 +14,12 @@ import { Suspense } from "react"
 
 export function Header({ role = "ADMIN", userName = "User", userImage = null, notifications = [] }: { userName?: string, role?: any, userImage?: string | null, notifications?: any[] }) {
   const router = useRouter()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const currentDate = new Date().toLocaleDateString('en-GB', {
     day: '2-digit',
     month: 'short',
@@ -42,7 +49,7 @@ export function Header({ role = "ADMIN", userName = "User", userImage = null, no
       <div className="flex items-center gap-6">
         <div className="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-500">
           <CalendarDays className="h-4 w-4 text-blue-500" />
-          {currentDate}
+          {mounted ? currentDate : <span className="w-[88px] h-5" />}
         </div>
 
         <DropdownMenu>

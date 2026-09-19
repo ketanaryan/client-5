@@ -38,11 +38,11 @@ export default async function DashboardLayout({
       </div>
       
       {/* Main Content Area */}
-      <div className="flex flex-1 flex-col overflow-hidden bg-[#EBF1F8]">
+      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-[#EBF1F8]">
         <Header role={userRole} userName={userName} userImage={userImage} notifications={notifications} />
         
         {/* Scrollable page content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 pt-0">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 pt-0">
           {children}
         </main>
       </div>
