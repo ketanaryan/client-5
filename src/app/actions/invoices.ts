@@ -66,7 +66,7 @@ export async function sendInvoice(id: string) {
   // Create an in-app notification for the client
   await prisma.notification.create({
     data: {
-      userId: invoice.workRequest.clientId,
+      userId: invoice.workRequest.client.userId,
       title: "Invoice Issued",
       message: `Your invoice INV-${invoice.id.split("-")[0].toUpperCase()} for ₹${invoice.amount.toLocaleString('en-IN')} has been issued.`,
       link: `/client`
@@ -74,8 +74,8 @@ export async function sendInvoice(id: string) {
   })
 
   // Simulated Email & WhatsApp send
-  console.log(`[EMAIL] Sent invoice PDF link to client ${invoice.workRequest.clientId}`)
-  console.log(`[WHATSAPP] Sent invoice details to client ${invoice.workRequest.clientId}`)
+  console.log(`[EMAIL] Sent invoice PDF link to client ${invoice.workRequest.client.userId}`)
+  console.log(`[WHATSAPP] Sent invoice details to client ${invoice.workRequest.client.userId}`)
 
   // Update invoice status if needed (e.g. keeping it UNPAID but marking as sent internally)
   // For now, just revalidate
