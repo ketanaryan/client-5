@@ -184,6 +184,33 @@ export async function toggleTaskStatus(taskId: string, isCompleted: boolean) {
   return { success: true }
 }
 
+export async function deleteTask(taskId: string) {
+  const session = await auth()
+  if (!session?.user || (session.user.role !== "ADMIN" && session.user.role !== "STAFF")) {
+    throw new Error("Unauthorized")
+  }
+  
+  const task = await prisma.task.findUnique({
+    where: { id: taskId },
+    include: { workRequest: true }
+  })
+  
+  if (!task) throw new Error("Task not found")
+  
+  if (session.user.role === "STAFF" && task.workRequest.assignedStaffId !== session.user.id) {
+    throw new Error("Unauthorized: Not assigned to this request")
+  }
+  
+  await prisma.task.delete({
+    where: { id: taskId }
+  })
+  
+  revalidatePath(`/staff/requests/${task.workRequestId}`)
+  revalidatePath(`/admin/work-requests/${task.workRequestId}`)
+  revalidatePath("/client")
+  return { success: true }
+}
+
 export async function assignStaffToRequest(id: string, staffId: string | null) {
   const session = await auth()
   if (!session?.user || session.user.role !== "ADMIN") {

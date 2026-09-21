@@ -8,10 +8,10 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Checkbox } from "@/components/ui/checkbox"
-import { FileText, Plus, Save, Clock, MessageSquare, Loader2, Download } from "lucide-react"
+import { FileText, Plus, Save, Clock, MessageSquare, Loader2, Download, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { updateWorkRequestStatus, addTaskToRequest, toggleTaskStatus } from "@/app/actions/work-requests"
+import { updateWorkRequestStatus, addTaskToRequest, toggleTaskStatus, deleteTask } from "@/app/actions/work-requests"
 
 export default function RequestDetailClient({ workRequest, currentUser }: { workRequest: any, currentUser: any }) {
   const router = useRouter()
@@ -67,6 +67,20 @@ export default function RequestDetailClient({ workRequest, currentUser }: { work
     }
   }
 
+  const handleDeleteTask = async (taskId: string) => {
+    try {
+      await deleteTask(taskId)
+      toast.success("Task deleted successfully!")
+      router.refresh()
+    } catch (err) {
+      toast.error("Failed to delete task")
+    }
+  }
+
+  const handleDeleteDummyTask = (taskId: string) => {
+    setDummyTasks(prev => prev.filter(t => t.id !== taskId))
+  }
+
   return (
     <div className="p-8 max-w-6xl mx-auto space-y-6">
       <div className="flex justify-between items-start">
@@ -104,26 +118,46 @@ export default function RequestDetailClient({ workRequest, currentUser }: { work
               </div>
               <div className="space-y-3 mt-4">
                 {workRequest.tasks.map((task: any) => (
-                  <div key={task.id} className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                    <Checkbox 
-                      checked={task.isCompleted} 
-                      onCheckedChange={() => handleToggleTask(task.id, task.isCompleted)} 
-                    />
-                    <label className={`text-sm font-medium leading-none ${task.isCompleted ? "line-through text-slate-400" : "text-slate-700"}`}>
-                      {task.description}
-                    </label>
+                  <div key={task.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100 group">
+                    <div className="flex items-center space-x-3">
+                      <Checkbox 
+                        checked={task.isCompleted} 
+                        onCheckedChange={() => handleToggleTask(task.id, task.isCompleted)} 
+                      />
+                      <label className={`text-sm font-medium leading-none ${task.isCompleted ? "line-through text-slate-400" : "text-slate-700"}`}>
+                        {task.description}
+                      </label>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-slate-400 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                      onClick={() => handleDeleteTask(task.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </div>
                 ))}
                 
                 {dummyTasks.map((task) => (
-                  <div key={task.id} className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                    <Checkbox 
-                      checked={task.isCompleted} 
-                      onCheckedChange={() => handleToggleDummyTask(task.id)} 
-                    />
-                    <label className={`text-sm font-medium leading-none ${task.isCompleted ? "line-through text-slate-400" : "text-slate-700"}`}>
-                      {task.description} <span className="text-xs text-blue-500 ml-2 font-normal">(Dummy)</span>
-                    </label>
+                  <div key={task.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100 group">
+                    <div className="flex items-center space-x-3">
+                      <Checkbox 
+                        checked={task.isCompleted} 
+                        onCheckedChange={() => handleToggleDummyTask(task.id)} 
+                      />
+                      <label className={`text-sm font-medium leading-none ${task.isCompleted ? "line-through text-slate-400" : "text-slate-700"}`}>
+                        {task.description} <span className="text-xs text-blue-500 ml-2 font-normal">(Dummy)</span>
+                      </label>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-slate-400 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"
+                      onClick={() => handleDeleteDummyTask(task.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </div>
                 ))}
               </div>
