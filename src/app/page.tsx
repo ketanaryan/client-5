@@ -143,10 +143,10 @@ export default function LandingPage() {
                   About Us <span className="block text-xl md:text-2xl text-blue-600 mt-2 font-semibold">Chartered Accountants In Bangalore</span>
                 </h2>
                 <p className="text-slate-600 leading-[1.8] text-[16px] md:text-[18px] mb-6">
-                  Shantanu & Associates, Chartered Accountant in Bangalore is a professionally managed firm catering to domestic and international clients with wide range of services in domestic and international taxation, regulatory and advisory services and cross border transaction related services. The team at S&A is a Firm of CA in Bangalore and has dedicated, experienced and expert professionals and associates like Chartered Accountants, Company Secretary and Consultants and high-end infrastructure to provide end to end services to your business. 
+                  Shantanu & Associates is a premier, professionally managed Chartered Accountancy firm based in Bangalore. We specialize in providing comprehensive financial, taxation, and regulatory solutions for both domestic and international enterprises. Our dynamic team comprises seasoned Chartered Accountants, Company Secretaries, and experienced business consultants. Supported by state-of-the-art infrastructure, we deliver end-to-end advisory and compliance services designed to drive your business forward.
                 </p>
                 <p className="text-slate-600 leading-[1.8] text-[16px] md:text-[18px] mb-8">
-                  With effort of gaining deep understanding of your business, our qualified team is committed to provide valuable, consistent and efficient services based on its in-depth knowledge and wide experience in the areas of audit, taxation, regulatory compliances and related business services. Our objective is to help our clients to focus on and achieve their business and financial goals by providing them services that is personalized and tailored to meet our client&apos;s requirements and suit their business the best.
+                  By investing time to deeply understand your unique business landscape, our experts ensure the delivery of high-value, consistent, and efficient solutions. Drawing from our profound expertise in audit, direct and indirect taxation, and corporate compliances, we align our strategies with your financial objectives. Our ultimate mission is to empower you to focus on your core operations while we handle the complexities of financial management, providing personalized services that perfectly match your specific business requirements.
                 </p>
               <Link href="/about">
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4 md:mt-0">
@@ -272,7 +272,7 @@ export default function LandingPage() {
             <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4">BELIEFS THAT SHAPE OUR CULTURE</div>
             <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] mb-6 tracking-tight">Our Core Values</h2>
             <p className="text-slate-600 text-[16px] md:text-[18px] leading-[1.8] max-w-3xl mx-auto">
-              Our firm believes in and follows a culture of faith, integrity, and ethics at all levels when delivering services to every client. Our profession is our faith.
+              At the heart of our firm lies a steadfast commitment to transparency, ethical practices, and unwavering integrity. We treat our profession as a calling, ensuring that every client interaction is built on a foundation of absolute trust and mutual respect.
             </p>
           </div>
           

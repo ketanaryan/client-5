@@ -23,9 +23,9 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "GST Registration Online – Process, Documents & Fees",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "The Goods and Services Tax (GST) is the backbone of India's indirect tax structure. Obtaining a GST Registration is legally mandatory for businesses crossing the prescribed annual turnover threshold (₹40 Lakhs for goods, ₹20 Lakhs for services in most states) or those engaged in inter-state taxable supply.",
+      "GST forms the core foundation of India's indirect taxation system. Securing a GST Registration is a strict legal requirement for businesses crossing the prescribed annual turnover threshold (₹40 Lakhs for goods, ₹20 Lakhs for services in most states) or those engaged in inter-state taxable supply.",
       "Operating without a valid GSTIN when liable can result in heavy monetary penalties, confiscation of goods, and loss of input tax credit. It also prevents you from legally collecting taxes from your buyers or passing on the credit chain.",
-      "At Shantanu & Associates, our tax professionals manage the entire lifecycle of your GST registration. We eliminate the bureaucratic friction, ensure exact classification of your HSN/SAC codes, and get your firm legally registered and compliant within standard departmental timelines."
+      "The dedicated tax experts at our firm oversee the complete lifecycle of your GST registration. We eliminate the bureaucratic friction, ensure exact classification of your HSN/SAC codes, and get your firm legally registered and compliant within standard departmental timelines."
     ],
     eligibility: [
       "Any business crossing the ₹40 Lakh turnover threshold for goods (₹20 Lakh for special category states).",
@@ -66,9 +66,9 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Udyam Registration for Micro, Small and Medium Enterprises",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "The MSME sector is a critical growth engine for the Indian economy. To support these enterprises, the Government of India introduced the Udyam Registration framework—a simple, paperless certification based on self-declaration.",
+      "The MSME domain serves as a vital catalyst for growth for the Indian economy. To support these enterprises, the Government of India introduced the Udyam Registration framework—a simple, paperless certification based on self-declaration.",
       "Registering your entity as an MSME unlocks a powerful suite of government incentives, statutory protections against delayed payments, and priority treatment in corporate ecosystems and public procurement.",
-      "Shantanu & Associates handles the end-to-end Udyam classification and registration process. We ensure your investment and turnover data is accurately linked with the IT and GST portals to secure your MSME status without future compliance friction."
+      "Our firm expertly manages the end-to-end Udyam classification and registration process. We ensure your investment and turnover data is accurately linked with the IT and GST portals to secure your MSME status without future compliance friction."
     ],
     eligibility: [
       "Micro Enterprises: Investment in Plant & Machinery/Equipment up to ₹1 Crore AND Turnover up to ₹5 Crores.",
@@ -105,8 +105,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Provident Fund (EPF) Registration & Compliance",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "Employee Provident Fund (EPF) registration is mandatory for establishments employing 20 or more persons, acting as a crucial social security benefit for the workforce.",
-      "Shantanu & Associates ensures smooth PF registration for your organization, helping you foster a secure environment for employees while remaining fully compliant with labor laws."
+      "Registering for the Employee Provident Fund (EPF) is a statutory requirement for establishments employing 20 or more persons, acting as a crucial social security benefit for the workforce.",
+      "Our team guarantees seamless PF enrollment for your organization, helping you foster a secure environment for employees while remaining fully compliant with labor laws."
     ],
     subServicesHeading: "Our PF Registration Services include:",
     subServices: [
@@ -123,8 +123,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Employees' State Insurance Corporation (ESIC) Registration",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "ESIC registration is a statutory responsibility for employers having 10 or more employees, providing medical and financial assistance to employees and their dependents.",
-      "At Shantanu & Associates, we navigate the complex ESIC registration process on your behalf, guaranteeing that your business fulfills its statutory obligations accurately."
+      "Securing ESIC registration is a legal obligation for employers having 10 or more employees, providing medical and financial assistance to employees and their dependents.",
+      "We expertly guide you through the intricate ESIC registration process on your behalf, guaranteeing that your business fulfills its statutory obligations accurately."
     ],
     subServicesHeading: "Our ESIC Registration Offerings:",
     subServices: [
@@ -141,8 +141,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Professional Tax Enrolment and Registration (PTEC & PTRC)",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "Professional tax is a state-level tax levied on individuals earning an income from a profession, trade, or employment. Employers are required to obtain both PTEC and PTRC.",
-      "Shantanu & Associates provides prompt professional tax registration services, ensuring that your organization adheres to state-specific tax laws and avoids unwarranted penalties."
+      "Professional tax constitutes a state-imposed levy on individuals earning an income from a profession, trade, or employment. Employers are required to obtain both PTEC and PTRC.",
+      "We deliver swift and accurate professional tax enrollment services, ensuring that your organization adheres to state-specific tax laws and avoids unwarranted penalties."
     ],
     subServicesHeading: "Our Professional Tax Services:",
     subServices: [
@@ -159,8 +159,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Food License (FSSAI) Registration & Compliance",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "Every food business operator (FBO) involved in manufacturing, processing, storage, distribution, or sale of food products must possess an FSSAI license or registration.",
-      "Shantanu & Associates assists FBOs in securing basic, state, or central FSSAI licenses, ensuring that your food business meets all required safety and quality standards."
+      "All food business operators (FBOs) involved in manufacturing, processing, storage, distribution, or sale of food products must possess an FSSAI license or registration.",
+      "Our specialists help FBOs obtain basic, state, or central FSSAI licenses, ensuring that your food business meets all required safety and quality standards."
     ],
     subServicesHeading: "Our FSSAI Registration Offerings:",
     subServices: [
@@ -177,8 +177,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Real Estate (Regulation and Development) Act Compliance",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "RERA aims to protect home-buyers and boost investments in the real estate sector. Project and agent registrations under RERA are mandatory for all commercial and residential real estate projects.",
-      "Shantanu & Associates offers comprehensive RERA registration and compliance services for promoters and real estate agents, ensuring absolute transparency and legal conformity."
+      "The primary goal of RERA is to safeguard home-buyers and boost investments in the real estate sector. Project and agent registrations under RERA are mandatory for all commercial and residential real estate projects.",
+      "We provide end-to-end RERA compliance and registration and compliance services for promoters and real estate agents, ensuring absolute transparency and legal conformity."
     ],
     subServicesHeading: "Our RERA Services include:",
     subServices: [
@@ -195,8 +195,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Shops and Establishments Act Intimation / Registration",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "The Shops and Establishments Act regulates the working conditions, rights of workers, and operational parameters of commercial establishments operating within a state.",
-      "At Shantanu & Associates, we facilitate hassle-free Shop Act registrations and intimations, securing your legal right to operate a commercial space while adhering to local civic norms."
+      "The Shops and Establishments Act governs the working conditions, rights of workers, and operational parameters of commercial establishments operating within a state.",
+      "We enable smooth and hassle-free Shop Act registrations and intimations, securing your legal right to operate a commercial space while adhering to local civic norms."
     ],
     subServicesHeading: "Our Shop Act Offerings:",
     subServices: [
@@ -213,8 +213,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Import Export Code (IEC) Registration",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "An Import Export Code (IEC) is a key business identification number mandatory for exports or imports to and from India, issued by the Directorate General of Foreign Trade (DGFT).",
-      "Shantanu & Associates enables businesses to expand globally by swiftly obtaining their IEC, backed by our expertise in foreign trade policies and customs regulations."
+      "The Import Export Code (IEC) serves as a fundamental identifier number mandatory for exports or imports to and from India, issued by the Directorate General of Foreign Trade (DGFT).",
+      "Our firm empowers your business for global expansion by swiftly obtaining their IEC, backed by our expertise in foreign trade policies and customs regulations."
     ],
     subServicesHeading: "Our IEC Registration Services:",
     subServices: [
@@ -233,7 +233,7 @@ const SERVICES: Record<string, ServiceData> = {
     introduction: [
       "Your brand name, logo, and slogan are among your company’s most valuable intellectual property. Without legal registration, competitors can easily hijack your identity, confusing your customers and diluting your market position.",
       "A Trademark Registration grants you exclusive statutory rights across India under the Trade Marks Act, 1999. It empowers you to take aggressive legal action against infringers and use the coveted ® symbol, instantly boosting brand trust and valuation.",
-      "Shantanu & Associates handles the complex trademark lifecycle. From conducting exhaustive phonetic searches to responding to Registry objections, our IP attorneys ensure your brand is heavily shielded against corporate theft."
+      "We expertly navigate the entire trademark protection lifecycle. From conducting exhaustive phonetic searches to responding to Registry objections, our IP attorneys ensure your brand is heavily shielded against corporate theft."
     ],
     eligibility: [
       "Individuals, Proprietorships, and Freelancers.",
@@ -269,9 +269,9 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Incorporate a Private Limited Company (Pvt Ltd)",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "The Private Limited Company (Pvt. Ltd.) is the most respected and scalable business structure in India. It is governed by the Ministry of Corporate Affairs (MCA) under the Companies Act, 2013.",
+      "A Private Limited Company (Pvt. Ltd.) stands as the most credible and scalable business structure in India. It is governed by the Ministry of Corporate Affairs (MCA) under the Companies Act, 2013.",
       "Registering as a Pvt. Ltd. limits the personal liability of founders, allows for external equity funding from venture capitalists, enables ESOP structuring to retain top talent, and provides an unmatched level of corporate credibility to global clients and vendors.",
-      "At Shantanu & Associates, we execute the entire incorporation lifecycle. From securing name approvals to drafting customized constitutional documents (MOA/AOA), our corporate legal experts ensure your company is structured with a rock-solid legal foundation."
+      "Our team flawlessly executes your entire incorporation journey. From securing name approvals to drafting customized constitutional documents (MOA/AOA), our corporate legal experts ensure your company is structured with a rock-solid legal foundation."
     ],
     eligibility: [
       "Minimum of Two Directors (at least one must be an Indian Resident).",
@@ -309,8 +309,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "One Person Company Registration",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "The One Person Company (OPC) structure allows a single entrepreneur to operate a corporate entity with limited liability protection, blending the simplicity of a sole proprietorship with corporate status.",
-      "Shantanu & Associates expertly guides solo entrepreneurs through the OPC registration process, ensuring compliance with the specialized rules regarding nominees and structural limits."
+      "The OPC framework empowers solo founders to operate a corporate entity with limited liability protection, blending the simplicity of a sole proprietorship with corporate status.",
+      "We provide expert guidance to solo founders through the OPC registration process, ensuring compliance with the specialized rules regarding nominees and structural limits."
     ],
     subServicesHeading: "Our OPC Registration Offerings:",
     subServices: [
@@ -327,8 +327,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "LLP Registration and Advisory",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "A Limited Liability Partnership (LLP) offers the benefits of limited liability while providing the operational flexibility of a traditional partnership, making it ideal for professional services.",
-      "At Shantanu & Associates, we manage the entire LLP formation lifecycle, including the drafting of robust partnership agreements to prevent future disputes."
+      "An LLP merges the advantages of limited liability while providing the operational flexibility of a traditional partnership, making it ideal for professional services.",
+      "We oversee the complete LLP incorporation lifecycle, including the drafting of robust partnership agreements to prevent future disputes."
     ],
     subServicesHeading: "Our LLP Registration Services:",
     subServices: [
@@ -345,8 +345,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Partnership Deed Drafting and Firm Registration",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "A Partnership Firm is a traditional business structure where two or more individuals manage and operate a business according to the terms of a Partnership Deed.",
-      "Shantanu & Associates specializes in drafting customized partnership deeds and registering the firm with the Registrar of Firms, ensuring a solid legal foundation for your joint venture."
+      "A Partnership Firm remains a classic organizational model where two or more individuals manage and operate a business according to the terms of a Partnership Deed.",
+      "We specialize in crafting tailored partnership agreements and registering the firm with the Registrar of Firms, ensuring a solid legal foundation for your joint venture."
     ],
     subServicesHeading: "Our Partnership Registration Offerings:",
     subServices: [
@@ -363,8 +363,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Section 8 Company Registration for Non-Profits",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "A Section 8 Company is registered for charitable or not-for-profit purposes, dedicated to promoting commerce, art, science, sports, education, or social welfare.",
-      "Shantanu & Associates assists philanthropists and organizations in establishing Section 8 companies, ensuring compliance with strict non-profit regulations and securing tax exemptions."
+      "Section 8 Companies are established exclusively for philanthropic or not-for-profit purposes, dedicated to promoting commerce, art, science, sports, education, or social welfare.",
+      "We aid NGOs and philanthropic groups in establishing Section 8 companies, ensuring compliance with strict non-profit regulations and securing tax exemptions."
     ],
     subServicesHeading: "Our Section 8 Incorporation Services:",
     subServices: [
@@ -381,8 +381,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Sole Proprietorship Setup and Compliance",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "A Sole Proprietorship is the simplest form of business entity, owned and run by a single individual with no legal distinction between the owner and the business entity.",
-      "Shantanu & Associates helps small business owners establish their sole proprietorships through necessary local and tax registrations, establishing a formal business identity."
+      "The Sole Proprietorship represents the most straightforward business model, owned and run by a single individual with no legal distinction between the owner and the business entity.",
+      "We assist emerging entrepreneurs in setting up their sole proprietorships through necessary local and tax registrations, establishing a formal business identity."
     ],
     subServicesHeading: "Our Sole Proprietorship Services:",
     subServices: [
@@ -399,8 +399,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Comprehensive Audit & Assurance Services",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "In a dynamic regulatory landscape, robust audit and assurance services are vital for maintaining stakeholder trust and ensuring accurate financial reporting.",
-      "Shantanu & Associates provides rigorous, independent audit services tailored to your industry, helping you identify risks, improve internal controls, and comply with all statutory requirements."
+      "Navigating today's shifting regulatory environment requires steadfast audit services are vital for maintaining stakeholder trust and ensuring accurate financial reporting.",
+      "We deliver strict, independent auditing solutions tailored to your industry, helping you identify risks, improve internal controls, and comply with all statutory requirements."
     ],
     subServicesHeading: "Our Audit Offerings include:",
     subServices: [
@@ -417,8 +417,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Statutory Audit under the Companies Act",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "A Statutory Audit is legally mandated to evaluate the financial statements and records of a company, ensuring that they represent a true and fair view of its financial position.",
-      "At Shantanu & Associates, our statutory audit procedures comply meticulously with the Standards on Auditing (SAs) issued by the ICAI, providing stakeholders with reliable financial insights."
+      "Statutory Audits are a legal prerequisite for assessing the financial statements and records of a company, ensuring that they represent a true and fair view of its financial position.",
+      "Our statutory auditing protocols strictly adhere with the Standards on Auditing (SAs) issued by the ICAI, providing stakeholders with reliable financial insights."
     ],
     subServicesHeading: "Our Statutory Audit Services:",
     subServices: [
@@ -435,8 +435,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Internal Audit and Risk Advisory",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "Internal audits act as a catalyst for improving an organization's governance, risk management, and management controls by providing independent, objective insight.",
-      "Shantanu & Associates designs custom internal audit plans focused on process optimization, fraud prevention, and operational efficiency, empowering management to make informed decisions."
+      "Internal auditing serves as a powerful driver for enhancing an organization's governance, risk management, and management controls by providing independent, objective insight.",
+      "We formulate tailored internal audit strategies focused on process optimization, fraud prevention, and operational efficiency, empowering management to make informed decisions."
     ],
     subServicesHeading: "Our Internal Audit Services:",
     subServices: [
@@ -453,8 +453,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Income Tax Audit Services (Section 44AB)",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "Under Section 44AB of the Income Tax Act, businesses and professionals exceeding specific turnover thresholds must undergo a Tax Audit by a practicing Chartered Accountant.",
-      "Shantanu & Associates conducts thorough tax audits to ensure your tax computations are accurate, disclosures are complete, and you remain protected from penal consequences."
+      "As per Section 44AB, qualifying businesses and professionals exceeding specific turnover thresholds must undergo a Tax Audit by a practicing Chartered Accountant.",
+      "We execute comprehensive tax audits to ensure your tax computations are accurate, disclosures are complete, and you remain protected from penal consequences."
     ],
     subServicesHeading: "Our Tax Audit Offerings:",
     subServices: [
@@ -471,8 +471,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "GST Audit, Reconciliation, and Annual Returns",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "GST audits and annual reconciliations are critical to identifying mismatches between books of accounts and filed returns, mitigating the risk of departmental scrutiny.",
-      "Shantanu & Associates provides exhaustive GST reconciliation services, ensuring your Input Tax Credit (ITC) claims are valid and your liability is accurately discharged."
+      "Annual GST audits and reconciliations remain essential to identifying mismatches between books of accounts and filed returns, mitigating the risk of departmental scrutiny.",
+      "We offer detailed GST reconciliation services, ensuring your Input Tax Credit (ITC) claims are valid and your liability is accurately discharged."
     ],
     subServicesHeading: "Our GST Audit Services:",
     subServices: [
@@ -489,8 +489,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Bank Statutory and Branch Audits",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "Bank audits involve a specialized review of banking operations, loan portfolios, and regulatory compliances as mandated by the Reserve Bank of India (RBI).",
-      "Shantanu & Associates possesses the expertise required to conduct robust branch statutory audits, ensuring asset classification and income recognition conform to RBI guidelines."
+      "Bank auditing entails a focused evaluation of banking operations, loan portfolios, and regulatory compliances as mandated by the Reserve Bank of India (RBI).",
+      "Our firm holds the necessary proficiency to execute rigorous branch statutory audits, ensuring asset classification and income recognition conform to RBI guidelines."
     ],
     subServicesHeading: "Our Bank Audit Services:",
     subServices: [
@@ -507,8 +507,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Concurrent and Revenue Audits for Financial Institutions",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "Concurrent audit is a systematic and timely examination of financial transactions on a regular basis to ensure accuracy, authenticity, and compliance with guidelines.",
-      "At Shantanu & Associates, our concurrent audit teams provide real-time monitoring of transactions, early detection of irregularities, and strengthening of internal controls for banks and NBFCs."
+      "Concurrent auditing involves the continuous and systematic review of financial transactions on a regular basis to ensure accuracy, authenticity, and compliance with guidelines.",
+      "Our concurrent auditing professionals deliver real-time monitoring of transactions, early detection of irregularities, and strengthening of internal controls for banks and NBFCs."
     ],
     subServicesHeading: "Our Concurrent Audit Offerings:",
     subServices: [
@@ -525,8 +525,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Comprehensive Direct & Indirect Tax Advisory",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "Navigating India’s complex tax framework requires strategic foresight and meticulous compliance. Effective tax planning impacts the bottom line and operational sustainability.",
-      "Shantanu & Associates offers end-to-end taxation services spanning Income Tax, GST, International Taxation, and Transfer Pricing to individuals, HNIs, and corporate entities."
+      "Maneuvering through India’s intricate tax regime demands strategic foresight and meticulous compliance. Effective tax planning impacts the bottom line and operational sustainability.",
+      "We provide comprehensive taxation solutions spanning Income Tax, GST, International Taxation, and Transfer Pricing to individuals, HNIs, and corporate entities."
     ],
     subServicesHeading: "Our Core Taxation Services:",
     subServices: [
@@ -543,9 +543,9 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Comprehensive Income Tax Return (ITR) Filing Services",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "Filing an accurate Income Tax Return (ITR) is an absolute legal necessity, whether you are a salaried professional, a freelance consultant, or a multi-crore corporate enterprise. The Indian tax regime requires meticulous disclosure of income across all statutory heads.",
+      "Submitting a precise Income Tax Return (ITR) is a strict legal obligation, whether you are a salaried professional, a freelance consultant, or a multi-crore corporate enterprise. The Indian tax regime requires meticulous disclosure of income across all statutory heads.",
       "Delaying or misreporting income can trigger severe scrutiny, aggressive penalties (under Section 270A), and persistent litigation with the Income Tax Department. A flawlessly optimized ITR acts as financial proof for loan processing, visa approvals, and carrying forward business losses.",
-      "Shantanu & Associates transforms tax filing from a stressful obligation into a strategic advantage. Our Chartered Accountants comprehensively analyze your Annual Information Statement (AIS) and Form 26AS, maximize your eligible deductions, and file your taxes with clinical precision."
+      "We turn the tax filing process from a burden obligation into a strategic advantage. Our Chartered Accountants comprehensively analyze your Annual Information Statement (AIS) and Form 26AS, maximize your eligible deductions, and file your taxes with clinical precision."
     ],
     eligibility: [
       "Individuals whose gross total income exceeds the basic exemption limit (₹3 Lakhs under the new regime, ₹2.5 Lakhs under the old regime).",
@@ -583,8 +583,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Strategic Advance Tax Planning & Computation",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "Advance tax refers to paying a part of your annual tax liability before the end of the financial year. Failure to pay adequate advance tax results in penal interest under sections 234B and 234C.",
-      "At Shantanu & Associates, we project your annual profitability, formulate tax-saving strategies, and ensure timely payment of advance tax installments to optimize cash flow."
+      "Advance tax involves clearing portions of your tax dues before the end of the financial year. Failure to pay adequate advance tax results in penal interest under sections 234B and 234C.",
+      "We accurately forecast your yearly profits, formulate tax-saving strategies, and ensure timely payment of advance tax installments to optimize cash flow."
     ],
     subServicesHeading: "Our Advance Tax Services:",
     subServices: [
@@ -601,8 +601,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "TDS / TCS Advisory and Return Filing",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "Tax Deducted at Source (TDS) and Tax Collected at Source (TCS) are crucial compliance areas. Errors in deduction rates or filing delays lead to severe financial penalties and disallowance of expenses.",
-      "Shantanu & Associates manages the entire spectrum of TDS compliance, from calculating correct deduction rates to timely filing of quarterly statements and issuing certificates."
+      "TDS and TCS represent vital compliance pillars compliance areas. Errors in deduction rates or filing delays lead to severe financial penalties and disallowance of expenses.",
+      "We handle every aspect of TDS and TCS compliance, from calculating correct deduction rates to timely filing of quarterly statements and issuing certificates."
     ],
     subServicesHeading: "Our TDS Compliance Offerings:",
     subServices: [
@@ -619,8 +619,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Tax Assessments, Appeals & Litigation Advisory",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "Tax scrutiny, notices, and assessments can be highly stressful and financially damaging if not handled with profound legal expertise and meticulous documentation.",
-      "Shantanu & Associates represents clients before tax authorities and appellate tribunals. We draft robust legal replies and construct strategic defenses to resolve tax disputes favorably."
+      "Facing tax assessments and notices can be daunting and financially damaging if not handled with profound legal expertise and meticulous documentation.",
+      "We robustly represent our clients before tax tribunals and appellate tribunals. We draft robust legal replies and construct strategic defenses to resolve tax disputes favorably."
     ],
     subServicesHeading: "Our Tax Litigation Services:",
     subServices: [
@@ -637,8 +637,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Tax Planning for Capital Gains",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "The sale of immovable property, shares, or mutual funds attracts capital gains tax. Without structured planning, these transactions can lead to significant tax outflows.",
-      "Shantanu & Associates provides specialized advisory on structuring asset sales to minimize tax liability, leveraging exemptions available under sections like 54, 54EC, and 54F."
+      "Selling real estate or financial assets triggers capital gains tax. Without structured planning, these transactions can lead to significant tax outflows.",
+      "We offer expert guidance on optimizing asset disposals to minimize tax liability, leveraging exemptions available under sections like 54, 54EC, and 54F."
     ],
     subServicesHeading: "Our Capital Gains Offerings:",
     subServices: [
@@ -655,8 +655,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Monthly and Quarterly GST Return Filing",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "Timely and accurate filing of GST returns is crucial to avoid late fees, interest, and the denial of input tax credit to your customers.",
-      "At Shantanu & Associates, we automate and validate your GST data, ensuring seamless filing of all applicable returns while keeping you fully compliant with evolving GST rules."
+      "Punctual and precise GST return filing is imperative to avoid late fees, interest, and the denial of input tax credit to your customers.",
+      "We systematically process and verify your GST information, ensuring seamless filing of all applicable returns while keeping you fully compliant with evolving GST rules."
     ],
     subServicesHeading: "Our GST Return Services:",
     subServices: [
@@ -673,8 +673,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "End-to-End GST Advisory and Compliance",
     image: "/images/finance_taxation.jpg",
     introduction: [
-      "The GST law undergoes frequent amendments via notifications and circulars, making continuous compliance a complex task for in-house teams.",
-      "Shantanu & Associates acts as your extended tax department, providing proactive advisory on transaction structuring, classification, and place of supply rules."
+      "GST regulations are subject to constant modifications via notifications and circulars, making continuous compliance a complex task for in-house teams.",
+      "We function as your dedicated external tax wing, providing proactive advisory on transaction structuring, classification, and place of supply rules."
     ],
     subServicesHeading: "Our GST Compliance Services:",
     subServices: [
@@ -691,8 +691,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "GST Refund Claims and Processing",
     image: "/images/corporate_registration.jpg",
     introduction: [
-      "Blocked working capital due to accumulated input tax credit or exports can severely impact liquidity. A structured approach is required to claim GST refunds efficiently.",
-      "Shantanu & Associates specializes in preparing and filing robust refund applications, systematically tracking them until the amount is credited to your bank account."
+      "Trapped working capital from unutilized ITC or exports can severely impact liquidity. A structured approach is required to claim GST refunds efficiently.",
+      "We excel in structuring and submitting strong refund applications, systematically tracking them until the amount is credited to your bank account."
     ],
     subServicesHeading: "Our GST Refund Services:",
     subServices: [
@@ -709,8 +709,8 @@ const SERVICES: Record<string, ServiceData> = {
     heroHeading: "Departmental GST Audit and Assessment Support",
     image: "/images/audit_advisory.jpg",
     introduction: [
-      "With the implementation of rigorous data analytics, tax authorities are increasingly conducting departmental audits (Section 65) and issuing assessment notices.",
-      "Shantanu & Associates supports businesses in navigating departmental audits, compiling requested data, and representing the entity strongly before tax officials."
+      "Leveraging advanced data analytics, tax bodies are increasingly conducting departmental audits (Section 65) and issuing assessment notices.",
+      "We guide enterprises safely through departmental scrutiny, compiling requested data, and representing the entity strongly before tax officials."
     ],
     subServicesHeading: "Our Assessment Support Services:",
     subServices: [

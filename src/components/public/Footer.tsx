@@ -9,7 +9,7 @@ export function Footer() {
         <div className="space-y-6 pr-4">
           <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">ABOUT SHANTANU & ASSOCIATES</h4>
           <p className="text-slate-300 text-sm leading-relaxed text-justify">
-            Businesses Are Changing And We Need To Keep Up! At Shantanu & Associates Our Object Is To Create Confidence And Trust In The Economic Realm And To Deliver The Best Quality Of Services, When It Comes To Business Setup Advisory, Audits, Taxation And Assurance.
+            The global business landscape is evolving rapidly, and agility is paramount. At Shantanu & Associates, our core mission is to foster unshakeable confidence and trust within the economic ecosystem by delivering an elite tier of professional services across business incubation advisory, rigorous auditing, strategic taxation, and comprehensive assurance.
           </p>
           <div className="flex gap-3 pt-2">
             <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">f</Link>

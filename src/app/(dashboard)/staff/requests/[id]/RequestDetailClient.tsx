@@ -20,6 +20,16 @@ export default function RequestDetailClient({ workRequest, currentUser }: { work
   const [savingStatus, setSavingStatus] = useState(false)
   const [savingTask, setSavingTask] = useState(false)
 
+  const [dummyTasks, setDummyTasks] = useState([
+    { id: "dummy-1", description: "Please upload your sign", isCompleted: true },
+    { id: "dummy-2", description: "Upload your photo", isCompleted: true },
+    { id: "dummy-3", description: "Upload your income proof", isCompleted: false },
+  ])
+
+  const handleToggleDummyTask = (taskId: string) => {
+    setDummyTasks(prev => prev.map(t => t.id === taskId ? { ...t, isCompleted: !t.isCompleted } : t))
+  }
+
   const handleSaveStatus = async () => {
     try {
       setSavingStatus(true)
@@ -93,7 +103,6 @@ export default function RequestDetailClient({ workRequest, currentUser }: { work
                 </Button>
               </div>
               <div className="space-y-3 mt-4">
-                {workRequest.tasks.length === 0 && <p className="text-sm text-slate-500">No tasks defined yet.</p>}
                 {workRequest.tasks.map((task: any) => (
                   <div key={task.id} className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
                     <Checkbox 
@@ -102,6 +111,18 @@ export default function RequestDetailClient({ workRequest, currentUser }: { work
                     />
                     <label className={`text-sm font-medium leading-none ${task.isCompleted ? "line-through text-slate-400" : "text-slate-700"}`}>
                       {task.description}
+                    </label>
+                  </div>
+                ))}
+                
+                {dummyTasks.map((task) => (
+                  <div key={task.id} className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
+                    <Checkbox 
+                      checked={task.isCompleted} 
+                      onCheckedChange={() => handleToggleDummyTask(task.id)} 
+                    />
+                    <label className={`text-sm font-medium leading-none ${task.isCompleted ? "line-through text-slate-400" : "text-slate-700"}`}>
+                      {task.description} <span className="text-xs text-blue-500 ml-2 font-normal">(Dummy)</span>
                     </label>
                   </div>
                 ))}

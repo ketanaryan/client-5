@@ -42,13 +42,13 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-slate-700 text-[16px] leading-[1.8] text-justify">
             <p>
-              <strong className="text-slate-900 font-semibold">Shantanu & Associates</strong> is a Chartered Accountant firm in Bangalore, professionally managed and catering to both domestic and international corporate clients with a wide spectrum of services in domestic and international taxation, regulatory compliance, corporate governance, transaction advisory, and cross-border commercial structuring. The team at Shantanu & Associates is committed to being a top-tier CA Firm in Bangalore, equipped with experienced Chartered Accountants, Company Secretaries, legal consultants, and modern digital infrastructure to deliver end-to-end financial and statutory solutions for your growing enterprise.
+              <strong className="text-slate-900 font-semibold">Shantanu & Associates</strong> is a leading Chartered Accountancy practice in Bangalore, structured to seamlessly serve domestic enterprises and global corporations. We deliver an expansive portfolio of specialized services encompassing direct and indirect taxation, stringent regulatory compliance, advanced corporate governance, and complex cross-border financial advisory. Driven by a vision to be the most trusted financial partner in the region, our collective of elite Chartered Accountants, skilled Company Secretaries, and legal authorities leverages robust digital infrastructure to provide comprehensive, full-cycle statutory support for scaling businesses.
             </p>
             <p>
-              With an unwavering commitment to cultivating a deep understanding of each client&apos;s unique operational model, our qualified advisory team delivers valuable, consistent, and prompt services grounded in rigorous technical proficiency and decades of cumulative industry experience across audit, direct tax planning, GST compliances, and business consulting. Our primary objective is to empower founders and business leaders to focus on scaling operations and achieving strategic milestones, while we shoulder their regulatory, financial, and compliance obligations with precision and ethical integrity.
+              By dedicating ourselves to fundamentally understanding the nuances of your specific industry and operational blueprint, our expert advisors engineer strategies that are not only compliant but strategically advantageous. Drawing upon extensive domain mastery across statutory audits, advanced tax planning, and strategic business consulting, we deliver actionable, high-impact outcomes. Our fundamental mission is to liberate business owners from administrative and regulatory burdens, empowering them to drive expansion and innovation while we ensure financial integrity and compliance with absolute precision.
             </p>
             <p>
-              Over the years, Shantanu & Associates has earned the durable trust of visionary enterprises across diverse industrial verticals, including Banking & Finance, Information Technology & ITeS, Automotive & Engineering, Healthcare & Pharmaceuticals, Real Estate & Infrastructure, Logistics, E-Commerce, Hospitality & Leisure, and Manufacturing. We stand as a dependable institutional partner providing an exhaustive range of financial solutions under one unified roof.
+              Throughout our journey, Shantanu & Associates has built enduring partnerships with forward-thinking organizations spanning a multitude of sectors. From modern Banking & IT to traditional Manufacturing, Healthcare, Real Estate, and Logistics, our footprint is vast. We proudly operate as a singular, comprehensive financial command center for our clients, replacing complexity with clarity and confidence.
             </p>
           </div>
         </div>
@@ -62,14 +62,14 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-5">
             {[
-              "We have a Professional, Proactive, and Partnership Approach towards every client's unique requirements.",
-              "We believe in staying ahead and updated with the latest legislative developments and economic reforms to provide clients with consistent, dependable, and prompt services.",
-              "We believe in strong and regular communication with our clients to eliminate concerns and ensure all statutory deadlines are comfortably met.",
-              "We actively integrate feedback from our clients to constantly improvise and upgrade our operational systems.",
-              "We abide unconditionally by our commitments with absolute transparency and meticulous confidentiality.",
-              "We understand our clients' challenges as if they were our own and commit to delivering solutions that yield constructive, quantifiable results.",
-              "We provide a comprehensive range of accounting, audit, tax, and registration services under one roof, saving you the hassle of coordinating with multiple external agencies.",
-              "Even though our headquarters are in Bangalore, our advanced online consultation and 'No Need to Visit' digital approach allows us to serve prospective and existing clients located anywhere across India and the globe."
+              "A fundamentally proactive and highly collaborative partnership model tailored specifically to your organizational needs.",
+              "Continuous tracking of the latest legislative shifts and economic reforms, ensuring your compliance strategies remain ahead of the curve.",
+              "Transparent, continuous communication loops designed to proactively manage risks and effortlessly meet critical statutory deadlines.",
+              "A dynamic, feedback-driven operational culture that constantly refines and enhances our service delivery protocols.",
+              "Uncompromising adherence to professional ethics, ensuring absolute data confidentiality and transparency in every transaction.",
+              "Deep empathy for your business challenges, translating complex problems into measurable, constructive financial outcomes.",
+              "A unified, single-window destination for all audit, accounting, taxation, and registration requirements, eliminating vendor friction.",
+              "A robust digital-first consultation infrastructure that flawlessly supports clients pan-India and globally, right from our Bangalore headquarters."
             ].map((point, idx) => (
               <div key={idx} className="flex items-start gap-4">
                 <div className="w-2.5 h-2.5 rounded-full bg-blue-500 mt-2 shrink-0" />
