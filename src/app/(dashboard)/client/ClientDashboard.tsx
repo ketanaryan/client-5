@@ -18,6 +18,7 @@ import { createClientWorkRequest } from "@/app/actions/work-requests"
 import { submitClientPayment } from "@/app/actions/payments"
 import { uploadClientDocument } from "@/app/actions/documents"
 import { useFormStatus } from "react-dom"
+import { EntitySwitcher } from "@/components/clients/EntitySwitcher"
 
 function SubmitKycButton() {
   const { pending } = useFormStatus()
@@ -35,7 +36,7 @@ function SubmitKycButton() {
   )
 }
 
-export default function ClientPortal({ user, profile, workRequests, invoices, documents }: { user: any, profile: any, workRequests: any[], invoices: any[], documents?: any[] }) {
+export default function ClientPortal({ user, profile, workRequests, invoices, documents, allGroupProfiles, activeProfileId }: { user: any, profile: any, workRequests: any[], invoices: any[], documents?: any[], allGroupProfiles?: any[], activeProfileId?: string }) {
   const [utrNumber, setUtrNumber] = useState("")
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -125,11 +126,14 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
 
   return (
     <div className="flex flex-1 flex-col h-full bg-white overflow-hidden rounded-xl border border-slate-200/60 shadow-sm mx-auto w-full max-w-7xl my-2 sm:my-4">
-      <div className="p-6 md:p-8 border-b border-slate-100 bg-slate-50/30 flex justify-between items-end">
+      <div className="p-6 md:p-8 border-b border-slate-100 bg-slate-50/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Client Portal</h2>
           <p className="text-sm text-slate-500 mt-1">Welcome back, {profile?.companyName || user.name}.</p>
         </div>
+        {allGroupProfiles && allGroupProfiles.length > 1 && activeProfileId && (
+          <EntitySwitcher profiles={allGroupProfiles} currentEntityId={activeProfileId} />
+        )}
       </div>
 
       <Tabs value={activeTab} onValueChange={handleTabChange} className="flex flex-col flex-1 min-h-0">

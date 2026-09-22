@@ -4,53 +4,85 @@ import { prisma } from "@/lib/prisma"
 import { decrypt } from "@/lib/encryption"
 import ClientPortal from "./ClientDashboard"
 
-export default async function ClientPage() {
+export default async function ClientPage({ searchParams }: { searchParams: { tab?: string, entityId?: string } }) {
   const session = await auth()
   
   if (!session?.user || session.user.role !== "CLIENT") {
     redirect("/login")
   }
 
-  const clientData = await prisma.user.findUnique({
+  // 1. Fetch the logged-in user's base client profile
+  const baseUser = await prisma.user.findUnique({
     where: { id: session.user.id },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      image: true,
-      role: true,
-      phone: true,
-      userCode: true,
-      kycStatus: true,
-      clientProfile: {
-        include: {
-          workRequests: {
-            orderBy: { createdAt: "desc" },
-            include: { tasks: true }
+    include: {
+      clientProfile: true
+    }
+  })
+
+  if (!baseUser || !baseUser.clientProfile) {
+    redirect("/login")
+  }
+
+  const groupId = baseUser.clientProfile.groupId
+
+  // 2. If in a group, fetch all profiles in the group
+  let allGroupProfiles: any[] = []
+  if (groupId) {
+    const group = await prisma.clientGroup.findUnique({
+      where: { id: groupId },
+      include: {
+        clientProfiles: {
+          include: {
+            user: { select: { id: true, name: true, email: true } }
           }
         }
+      }
+    })
+    if (group) {
+      allGroupProfiles = group.clientProfiles
+    }
+  } else {
+    // Just wrap their own profile if not in a group
+    allGroupProfiles = [
+      { ...baseUser.clientProfile, user: { id: baseUser.id, name: baseUser.name, email: baseUser.email } }
+    ]
+  }
+
+  // 3. Determine which entity to view
+  let activeProfileId = searchParams.entityId || baseUser.clientProfile.id
+  // Ensure they aren't trying to view an entity they don't have access to
+  const hasAccess = allGroupProfiles.some(p => p.id === activeProfileId)
+  if (!hasAccess) {
+    activeProfileId = baseUser.clientProfile.id
+  }
+
+  // 4. Fetch the FULL data for the active profile
+  const activeProfileData = await prisma.clientProfile.findUnique({
+    where: { id: activeProfileId },
+    include: {
+      user: true,
+      workRequests: {
+        orderBy: { createdAt: "desc" },
+        include: { tasks: true }
       }
     }
   })
 
-  if (!clientData || !clientData.clientProfile) {
-    redirect("/login")
-  }
+  if (!activeProfileData) redirect("/login")
 
   // Decrypt sensitive data for display
-  const profile = clientData.clientProfile;
   const decryptedProfile = {
-    ...profile,
-    decryptedPan: profile.encryptedPan ? decrypt(profile.encryptedPan) : null,
-    decryptedGst: profile.encryptedGst ? decrypt(profile.encryptedGst) : null,
+    ...activeProfileData,
+    decryptedPan: activeProfileData.encryptedPan ? decrypt(activeProfileData.encryptedPan) : null,
+    decryptedGst: activeProfileData.encryptedGst ? decrypt(activeProfileData.encryptedGst) : null,
   }
 
-  // Fetch invoices and documents in parallel for better performance
+  // Fetch invoices and documents for the active profile
   const [invoices, documents] = await Promise.all([
     prisma.invoice.findMany({
       where: {
         workRequest: {
-          clientId: clientData.clientProfile.id
+          clientId: activeProfileId
         }
       },
       orderBy: { issuedDate: "desc" },
@@ -62,8 +94,9 @@ export default async function ClientPage() {
     prisma.document.findMany({
       where: {
         OR: [
-          { uploadedById: session.user.id },
-          { workRequest: { clientId: clientData.clientProfile.id } }
+          { workRequest: { clientId: activeProfileId } },
+          // If viewing their own profile, they can see docs they uploaded directly without a WR
+          ...(activeProfileId === baseUser.clientProfile.id ? [{ uploadedById: session.user.id }] : [])
         ]
       },
       orderBy: { createdAt: "desc" },
@@ -75,13 +108,21 @@ export default async function ClientPage() {
     })
   ])
 
+  // user prop is expected to have active user's core details for rendering
+  const displayUser = {
+    ...activeProfileData.user,
+    kycStatus: activeProfileData.user.kycStatus
+  }
+
   return (
     <ClientPortal 
-      user={clientData} 
+      user={displayUser} 
       profile={decryptedProfile} 
-      workRequests={clientData.clientProfile.workRequests}
+      workRequests={activeProfileData.workRequests}
       invoices={invoices}
       documents={documents}
+      allGroupProfiles={allGroupProfiles}
+      activeProfileId={activeProfileId}
     />
   )
 }

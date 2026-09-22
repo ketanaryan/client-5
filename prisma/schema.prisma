@@ -65,6 +65,7 @@ model User {
   documents        Document[]
   notifications    Notification[]
   assignedRequests WorkRequest[]     @relation("AssignedStaff")
+  managedGroups    ClientGroup[]     @relation("GroupManager")
 
   @@index([email])
   @@index([role])
@@ -81,7 +82,23 @@ model ClientProfile {
   kycRejectionReason String?
   companyName        String?
   address            String?
+  groupId            String?
+  clientGroup        ClientGroup?  @relation(fields: [groupId], references: [id], onDelete: SetNull)
   workRequests       WorkRequest[]
+
+  @@index([groupId])
+}
+
+model ClientGroup {
+  id               String          @id @default(uuid())
+  name             String
+  primaryContactId String
+  primaryContact   User            @relation("GroupManager", fields: [primaryContactId], references: [id])
+  clientProfiles   ClientProfile[]
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  @@index([primaryContactId])
 }
 
 model AssociateProfile {
