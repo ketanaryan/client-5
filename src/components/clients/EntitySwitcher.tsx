@@ -9,7 +9,8 @@ export function EntitySwitcher({ profiles, currentEntityId }: { profiles: any[],
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const handleSwitch = (entityId: string) => {
+  const handleSwitch = (entityId: string | null) => {
+    if (!entityId) return;
     const params = new URLSearchParams(searchParams.toString())
     params.set("entityId", entityId)
     router.push(`${pathname}?${params.toString()}`)
