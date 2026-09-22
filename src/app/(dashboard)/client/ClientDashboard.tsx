@@ -80,6 +80,13 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
   const [isRaiseRequestOpen, setIsRaiseRequestOpen] = useState(false)
   const [creatingRequest, setCreatingRequest] = useState(false)
   const [submittingPayment, setSubmittingPayment] = useState<string | null>(null)
+  
+  const [selectedServices, setSelectedServices] = useState<string[]>([])
+  const handleServiceToggle = (service: string) => {
+    setSelectedServices(prev => 
+      prev.includes(service) ? prev.filter(s => s !== service) : [...prev, service]
+    )
+  }
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -253,22 +260,62 @@ export default function ClientPortal({ user, profile, workRequests, invoices, do
                   <form action={async (formData) => {
                     try {
                       setCreatingRequest(true)
-                      await createClientWorkRequest(formData)
+                      
+                      const desc = formData.get("title") as string;
+                      // Ensure required title if no services selected
+                      if (!desc.trim() && selectedServices.length === 0) {
+                        toast.error("Please provide a description or select a service.")
+                        setCreatingRequest(false)
+                        return
+                      }
+                      
+                      const servicesStr = selectedServices.length > 0 ? `[${selectedServices.join(", ")}] ` : "";
+                      const finalTitle = (servicesStr + desc).trim();
+                      
+                      const newFormData = new FormData();
+                      newFormData.append("title", finalTitle);
+                      
+                      await createClientWorkRequest(newFormData)
                       toast.success("Request raised successfully!")
                       setIsRaiseRequestOpen(false)
+                      setSelectedServices([])
                     } catch (err) {
                       toast.error("Failed to raise request.")
                     } finally {
                       setCreatingRequest(false)
                     }
                   }}>
-                    <div className="space-y-4 py-4">
+                    <div className="space-y-5 py-4">
+                      <div className="space-y-3">
+                        <label className="text-sm font-medium">Select Services (Checklist)</label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {[
+                            "ITR Filing",
+                            "GST Registration",
+                            "GST Return",
+                            "Company Formation",
+                            "Audit & Assurance",
+                            "Trademark Registration"
+                          ].map(service => (
+                            <div key={service} className="flex items-center space-x-2 bg-slate-50 border border-slate-100 p-2.5 rounded-lg">
+                              <Checkbox 
+                                id={`service-${service}`} 
+                                checked={selectedServices.includes(service)}
+                                onCheckedChange={() => handleServiceToggle(service)}
+                              />
+                              <label htmlFor={`service-${service}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer">
+                                {service}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium">Request Title / Description</label>
-                        <Input name="title" required placeholder="e.g., ITR Filing FY 24-25" />
+                        <label className="text-sm font-medium">Request Title / Additional Details</label>
+                        <Input name="title" placeholder="e.g., FY 24-25 data attached" />
                       </div>
                     </div>
-                    <div className="flex justify-end gap-3">
+                    <div className="flex justify-end gap-3 mt-4">
                       <Button type="button" variant="outline" onClick={() => setIsRaiseRequestOpen(false)}>Cancel</Button>
                       <Button type="submit" disabled={creatingRequest} className="bg-blue-600 hover:bg-blue-700 text-white">
                         {creatingRequest ? "Raising..." : "Submit Request"}
