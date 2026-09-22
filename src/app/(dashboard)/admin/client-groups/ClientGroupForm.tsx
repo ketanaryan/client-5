@@ -47,11 +47,10 @@ export function ClientGroupForm({ unassignedProfiles }: { unassignedProfiles: an
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="bg-blue-600 hover:bg-blue-700">Create New Group</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+    <>
+      <Button onClick={() => setOpen(true)} className="bg-blue-600 hover:bg-blue-700">Create New Group</Button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Create Client Group</DialogTitle>
           <DialogDescription>Group multiple entities into a single business family.</DialogDescription>
@@ -96,6 +95,7 @@ export function ClientGroupForm({ unassignedProfiles }: { unassignedProfiles: an
           </div>
         </form>
       </DialogContent>
-    </Dialog>
+      </Dialog>
+    </>
   )
 }
