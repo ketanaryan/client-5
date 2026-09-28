@@ -3,9 +3,10 @@ import { redirect } from "next/navigation"
 import { prisma } from "@/lib/prisma"
 import AdminRequestDetailClient from "./AdminRequestDetailClient"
 
-export default async function AdminRequestDetailPage({ params }: { params: { id: string } }) {
+export default async function AdminRequestDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth()
-  
+
   if (!session?.user || session.user.role !== "ADMIN") {
     redirect("/login")
   }

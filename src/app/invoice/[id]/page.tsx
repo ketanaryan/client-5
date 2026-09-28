@@ -5,7 +5,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Printer, Download, Mail, Send } from "lucide-react"
 
-export default async function InvoicePrintPage({ params }: { params: { id: string } }) {
+export default async function InvoicePrintPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth()
   if (!session?.user) redirect("/login")
 

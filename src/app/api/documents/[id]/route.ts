@@ -4,9 +4,10 @@ import { readFile } from "fs/promises"
 import { join, resolve } from "path"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth()
-  
+
   if (!session?.user) {
     return new NextResponse("Unauthorized", { status: 401 })
   }
@@ -22,7 +23,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
   const isOwner = doc.uploadedById === session.user.id
   const isStaff = session.user.role === "STAFF" || session.user.role === "ADMIN"
-  
+
   let hasAccess = isOwner || isStaff
 
   if (!hasAccess && session.user.role === "CLIENT") {

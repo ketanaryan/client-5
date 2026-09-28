@@ -4,25 +4,23 @@ import { readFile } from "fs/promises"
 import path from "path"
 import { prisma } from "@/lib/prisma"
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { filename: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ filename: string }> }) {
+  const params = await props.params;
   const session = await auth()
-  
+
   // Must be logged in
   if (!session?.user?.id) {
     return new NextResponse("Unauthorized", { status: 401 })
   }
 
   const filename = params.filename
-  
+
   // Extract user ID from filename (format: type_userId_hash.ext)
   const parts = filename.split('_')
   if (parts.length < 3) {
     return new NextResponse("Invalid file format", { status: 400 })
   }
-  
+
   const targetUserId = parts[1]
 
   // Authorization checks

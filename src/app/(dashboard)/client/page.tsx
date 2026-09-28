@@ -4,9 +4,10 @@ import { prisma } from "@/lib/prisma"
 import { decrypt } from "@/lib/encryption"
 import ClientPortal from "./ClientDashboard"
 
-export default async function ClientPage({ searchParams }: { searchParams: { tab?: string, entityId?: string } }) {
+export default async function ClientPage(props: { searchParams: Promise<{ tab?: string, entityId?: string }> }) {
+  const searchParams = await props.searchParams;
   const session = await auth()
-  
+
   if (!session?.user || session.user.role !== "CLIENT") {
     redirect("/login")
   }

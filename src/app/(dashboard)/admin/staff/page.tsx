@@ -15,7 +15,8 @@ import { Plus, MoreHorizontal, Mail, Phone } from "lucide-react"
 import { CreateStaffDialog } from "@/components/staff/CreateStaffDialog"
 import { SearchInput } from "@/components/ui/search-input"
 
-export default async function StaffPage({ searchParams }: { searchParams: { q?: string } }) {
+export default async function StaffPage(props: { searchParams: Promise<{ q?: string }> }) {
+  const searchParams = await props.searchParams;
   const session = await auth()
   if (session?.user?.role !== "ADMIN") redirect("/login")
 

@@ -3,9 +3,10 @@ import { redirect } from "next/navigation"
 import { prisma } from "@/lib/prisma"
 import RequestDetailClient from "./RequestDetailClient"
 
-export default async function StaffRequestDetailPage({ params }: { params: { id: string } }) {
+export default async function StaffRequestDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const session = await auth()
-  
+
   if (!session?.user || (session.user.role !== "STAFF" && session.user.role !== "ADMIN")) {
     redirect("/login")
   }

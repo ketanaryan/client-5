@@ -15,7 +15,8 @@ import { Plus, Building2, UserCircle, Briefcase, FileText } from "lucide-react"
 import { CreateClientDialog } from "@/components/clients/CreateClientDialog"
 import { SearchInput } from "@/components/ui/search-input"
 
-export default async function ClientsPage({ searchParams }: { searchParams: { q?: string } }) {
+export default async function ClientsPage(props: { searchParams: Promise<{ q?: string }> }) {
+  const searchParams = await props.searchParams;
   const session = await auth()
   if (session?.user?.role !== "ADMIN") redirect("/login")
 

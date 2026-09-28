@@ -1066,7 +1066,8 @@ const SERVICES: Record<string, ServiceData> = {
   }
 };
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
+export default async function ServicePage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const service = SERVICES[params.slug];
 
   if (!service) {
