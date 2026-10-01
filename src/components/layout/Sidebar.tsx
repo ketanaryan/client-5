@@ -157,7 +157,13 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
               Settings
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-[#15233A]" />
-            <DropdownMenuItem className="text-red-400 font-medium cursor-pointer text-[13px] hover:bg-red-950/30 hover:text-red-300" onClick={() => signOut({ callbackUrl: `${window.location.origin}/login` })}>
+            <DropdownMenuItem 
+              className="text-red-400 font-medium cursor-pointer text-[13px] hover:bg-red-950/30 hover:text-red-300" 
+              onClick={async () => {
+                await signOut({ redirect: false })
+                window.location.href = "/login"
+              }}
+            >
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
