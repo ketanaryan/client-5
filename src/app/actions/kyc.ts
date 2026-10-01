@@ -32,7 +32,8 @@ export async function submitKyc(formData: FormData) {
 
   // Save PAN File
   if (panFile && panFile.size > 0) {
-    const ext = panFile.name.split('.').pop()
+    const rawExt = panFile.name.split('.').pop() || "bin"
+    const ext = rawExt.replace(/[^a-zA-Z0-9]/g, "")
     const fileName = `pan_${session.user.id}_${crypto.randomBytes(4).toString('hex')}.${ext}`
     const buffer = Buffer.from(await panFile.arrayBuffer())
     await writeFile(path.join(uploadDir, fileName), buffer)
@@ -41,7 +42,8 @@ export async function submitKyc(formData: FormData) {
 
   // Save GST File
   if (gstFile && gstFile.size > 0) {
-    const ext = gstFile.name.split('.').pop()
+    const rawExt = gstFile.name.split('.').pop() || "bin"
+    const ext = rawExt.replace(/[^a-zA-Z0-9]/g, "")
     const fileName = `gst_${session.user.id}_${crypto.randomBytes(4).toString('hex')}.${ext}`
     const buffer = Buffer.from(await gstFile.arrayBuffer())
     await writeFile(path.join(uploadDir, fileName), buffer)

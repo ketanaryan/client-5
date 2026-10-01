@@ -13,7 +13,8 @@ export async function GET(request: NextRequest, props: { params: Promise<{ filen
     return new NextResponse("Unauthorized", { status: 401 })
   }
 
-  const filename = params.filename
+  const rawFilename = params.filename
+  const filename = path.basename(rawFilename)
 
   // Extract user ID from filename (format: type_userId_hash.ext)
   const parts = filename.split('_')
