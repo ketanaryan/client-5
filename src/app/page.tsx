@@ -11,7 +11,7 @@ import {
   Briefcase, Users, Target, ThumbsUp, Handshake, Clock,
   Globe, BookOpen, PieChart, Monitor, Activity, HardHat, Book, 
   Plane, ShoppingCart, Home, Anchor, Truck, Car, Film, Factory, FlaskConical, FileText,
-  Star, MapPin, Mail, Phone, Check,
+  MapPin, Mail, Phone, Check,
   Settings
 } from "lucide-react"
 import { Navbar } from "@/components/public/Navbar"
@@ -292,133 +292,6 @@ export default function LandingPage() {
                 <span className="font-bold text-slate-900 text-[16px]">{val.title}</span>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* 5. INDUSTRIES */}
-        <section className="w-full py-24 px-6 lg:px-12 bg-white">
-          <div className="max-w-[1200px] mx-auto text-center mb-16">
-            <div className="text-blue-500 font-bold uppercase tracking-widest text-sm mb-3">OUR INDUSTRIES</div>
-            <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Business We Served</h2>
-          </div>
-          
-          <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-slate-100 shadow-sm">
-            {[
-              { title: 'Information Technology', icon: Monitor, img: '/images/img_040257aafd.jpg' },
-              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: '/images/finance_taxation.jpg' },
-              { title: 'Engineering & Infra', icon: HardHat, img: '/images/img_5945e74e47.jpg' },
-              { title: 'Education Sector', icon: Book, img: '/images/corporate_registration.jpg' },
-              { title: 'Banking & Financial', icon: Landmark, img: '/images/img_f89b625898.jpg' },
-              { title: 'Import & Export', icon: Plane, img: '/images/img_ba3ceb5181.jpg' },
-              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: '/images/img_eb1c0f1ffb.jpg' },
-              { title: 'Real Estate', icon: Home, img: '/images/img_b2b2b96a7f.jpg' },
-              { title: 'Vessels & Marine', icon: Anchor, img: '/images/audit_advisory.jpg' },
-              { title: 'Logistics Services', icon: Truck, img: '/images/img_cc67e33ce5.jpg' },
-              { title: 'Automobiles Industry', icon: Car, img: '/images/img_8b7a385dd4.jpg' },
-              { title: 'Media & Entertainment', icon: Film, img: '/images/img_1b0592f97b.jpg' },
-              { title: 'Manufacturing', icon: Factory, img: '/images/img_e029799d49.jpg' },
-              { title: 'Non Profit Org', icon: Users, img: '/images/img_d5604c9f88.jpg' },
-              { title: 'Chemical Sector', icon: FlaskConical, img: '/images/img_849418b560.jpg' }
-            ].map((ind, i) => (
-              <Link href="/#contact" key={i} className="group relative p-8 border border-slate-100 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 cursor-pointer bg-white overflow-hidden">
-                {/* Default State: Clean White Background (no ghost image) */}
-                <div className="absolute inset-0 bg-white z-0 group-hover:opacity-0 transition-opacity duration-300" />
-                
-                {/* Hover State: Image fades in and scales */}
-                <Image
-                  src={ind.img}
-                  alt={ind.title}
-                  fill
-                  sizes="(max-width: 1024px) 25vw, 20vw"
-                  className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 z-0"
-                  loading="lazy"
-                />
-                {/* Hover Dark Overlay */}
-                <div className="absolute inset-0 bg-blue-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
-                
-                {/* Content (z-20 keeps it above the image/overlay) */}
-                <div className="relative z-20 flex flex-col items-center">
-                  <ind.icon className="h-10 w-10 text-blue-500 mb-4 group-hover:text-white transition-colors duration-300 stroke-[1.5] group-hover:-translate-y-2 transform" />
-                  <h3 className="font-semibold text-slate-800 text-[14px] leading-snug group-hover:text-white transition-all duration-300 px-2 group-hover:translate-y-1 transform">{ind.title}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* 6. HAPPY CLIENTS */}
-        <section className="w-full py-28 bg-[#f8fafc] border-y border-slate-200 overflow-hidden relative">
-          <style dangerouslySetInnerHTML={{__html: `
-            @keyframes marquee {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            .animate-marquee {
-              animation: marquee 40s linear infinite;
-            }
-            .animate-marquee:hover {
-              animation-play-state: paused;
-            }
-          `}} />
-          <div className="max-w-[1200px] mx-auto text-center mb-16 px-6 lg:px-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 tracking-tight">Happy Clients</h2>
-            
-            <div className="inline-flex flex-col items-center justify-center gap-1 bg-white px-8 py-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
-              <span className="font-bold text-xl text-slate-900 tracking-tight">EXCELLENT</span>
-              <div className="flex gap-1 mb-1">
-                {[1,2,3,4,5].map(star => <Star key={star} className="h-6 w-6 fill-yellow-400 text-yellow-400" />)}
-              </div>
-              <span className="text-sm text-slate-500 mt-1 font-medium">Based on <strong>100+ reviews</strong></span>
-              <div className="mt-2 text-2xl font-bold text-blue-500 tracking-tighter">Google</div>
-            </div>
-          </div>
-          
-          <div className="relative w-full max-w-[100vw]">
-            {/* Gradient Masks for smooth fading edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-[#f8fafc] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-[#f8fafc] to-transparent z-10 pointer-events-none" />
-            
-            <div className="flex w-[max-content] animate-marquee pb-8 pt-4">
-              {/* Duplicate the array to create the infinite scroll effect */}
-              {[...[
-                { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
-                { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
-                { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
-                { name: 'Sneha Rao', initial: 'S', bg: 'bg-indigo-500', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
-                { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
-                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-emerald-500', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
-              ], ...[
-                { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
-                { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
-                { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
-                { name: 'Sneha Rao', initial: 'S', bg: 'bg-indigo-500', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
-                { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
-                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-emerald-500', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
-              ]].map((rev, i) => (
-                <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col relative mx-4 w-[400px] shrink-0 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 cursor-grab active:cursor-grabbing group">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="flex items-center gap-4">
-                      {rev.img ? (
-                        <Image src={rev.img} alt={rev.name} width={52} height={52} className="rounded-full object-cover ring-2 ring-slate-50" loading="lazy" />
-                      ) : (
-                        <div className={`w-[52px] h-[52px] rounded-full ${rev.bg} flex items-center justify-center text-white font-bold text-xl ring-2 ring-slate-50`}>{rev.initial}</div>
-                      )}
-                      <div className="flex flex-col text-left">
-                        <span className="font-bold text-[17px] text-slate-900 leading-tight group-hover:text-blue-600 transition-colors">{rev.name}</span>
-                        <span className="text-[13px] text-slate-500 mt-1">{rev.time}</span>
-                      </div>
-                    </div>
-                    <div className="text-2xl font-bold text-blue-500 tracking-tighter absolute right-6 top-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">G</div>
-                  </div>
-                  <div className="flex gap-1 mb-5">
-                    {[1,2,3,4,5].map(star => <Star key={star} className="h-[16px] w-[16px] fill-yellow-400 text-yellow-400" />)}
-                    <div className="h-[18px] w-[18px] rounded-full bg-blue-500 flex items-center justify-center ml-1"><Check className="h-3 w-3 text-white stroke-[3]" /></div>
-                  </div>
-                  <p className="text-[15px] text-slate-600 leading-relaxed mb-6 flex-1 relative z-10">"{rev.review}"</p>
-                  <button className="text-blue-600 text-[14px] font-semibold text-left hover:text-blue-800 transition-colors flex items-center gap-1">Read more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" /></button>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 

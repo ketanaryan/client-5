@@ -177,7 +177,7 @@ export default function AboutPage() {
           <div className="space-y-4">
             <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">ABOUT SHANTANU & ASSOCIATES</h4>
             <p className="text-slate-300 text-sm leading-relaxed text-justify">
-              Businesses are changing and we need to keep up! At Shantanu & Associates, our objective is to create confidence and trust in the economic realm and to deliver the best quality of services across business setup, audits, taxation, and regulatory compliance.
+              Businesses are changing and we need to keep up! At Shantanu & Associates, our objective is to create confidence and trust in the economic realm and to deliver high quality professional services across business setup, audits, taxation, and regulatory compliance.
             </p>
           </div>
 

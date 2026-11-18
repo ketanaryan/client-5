@@ -110,7 +110,7 @@ export function Navbar() {
     <div className="flex flex-col w-full relative z-50">
       {/* Top Utility Bar */}
       <div className="bg-[#1e3a8a] text-slate-100 py-2 px-6 lg:px-12 flex items-center justify-between text-xs sm:text-sm font-medium">
-        <div>20+ Years of Excellence</div>
+        <div className="text-slate-200">Chartered Accountants &bull; Bengaluru</div>
         <div className="flex items-center gap-6">
           <a href="tel:8668555246" className="flex items-center gap-2 hover:text-blue-300 transition-colors">
             <Phone className="h-4 w-4" />
