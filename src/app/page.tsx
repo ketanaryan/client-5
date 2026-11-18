@@ -223,7 +223,7 @@ export default function LandingPage() {
               <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight mb-4">Company Formation</h2>
               <p className="text-slate-600 text-[16px] md:text-[18px] leading-[1.8] max-w-xl mx-auto md:mx-0">Start your business with a solid legal foundation. We handle the entire incorporation process seamlessly from start to finish.</p>
             </div>
-            <Link href="/services/business-registration" className="flex justify-center md:justify-end">
+            <Link href="/services/business-setup-corporate-services" className="flex justify-center md:justify-end">
               <Button variant="outline" className="rounded-full px-8 h-14 text-[15px] border-slate-200 hover:border-blue-300 hover:text-blue-700 hover:bg-blue-50 font-bold text-slate-700 transition-all shadow-sm">View All Services <ArrowRight className="w-4 h-4 ml-2" /></Button>
             </Link>
           </div>
@@ -260,7 +260,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="mt-8 flex justify-center md:hidden">
-            <Link href="/services/business-registration" className="w-full">
+            <Link href="/services/business-setup-corporate-services" className="w-full">
               <Button variant="outline" className="w-full rounded-full h-12 text-[15px] border-slate-200 hover:bg-slate-50 font-medium">View All Services</Button>
             </Link>
           </div>
@@ -340,7 +340,17 @@ export default function LandingPage() {
                 <div className="space-y-3 pt-2">
                   <p className="text-white/80 text-[16px] font-medium">Services Interested In (Select multiple):</p>
                   <div className="flex flex-wrap gap-2.5">
-                    {["Audit & Assurance", "Company Formation", "Taxation", "NRI Services", "Consultancy", "GST Registration", "Other"].map(srv => (
+                    {[
+                      "Audit & Assurance", 
+                      "Accounting & Financial Services", 
+                      "Direct Taxation", 
+                      "Goods & Services Tax", 
+                      "AML & KYC Services", 
+                      "Forensic Accounting", 
+                      "Business Setup & Corporate", 
+                      "Regulatory & Compliance", 
+                      "Other"
+                    ].map(srv => (
                       <label key={srv} className="cursor-pointer">
                         <input type="checkbox" name="serviceRequested" value={srv} className="peer sr-only" />
                         <div className="px-5 py-2 rounded-full border border-white/30 text-white/80 peer-checked:bg-blue-600 peer-checked:border-blue-600 peer-checked:text-white peer-checked:font-medium transition-all hover:border-white/60 text-sm select-none">

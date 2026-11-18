@@ -2,1069 +2,24 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar } from '@/components/public/Navbar';
+import { Footer } from '@/components/public/Footer';
 import { Button } from '@/components/ui/button';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { SERVICES, ServiceData } from './servicesData';
 
-type ServiceData = {
-  title: string;
-  heroHeading: string;
-  image: string;
-  introduction: string[];
-  eligibility?: string[];
-  documentsRequired?: string[];
-  process?: string[];
-  subServicesHeading: string;
-  subServices: string[];
-};
+export async function generateStaticParams() {
+  return Object.keys(SERVICES).map((slug) => ({ slug }));
+}
 
-const SERVICES: Record<string, ServiceData> = {
-  "gst-registration": {
-    title: "GST Registration",
-    heroHeading: "GST Registration Online – Process, Documents & Fees",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "GST forms the core foundation of India's indirect taxation system. Securing a GST Registration is a strict legal requirement for businesses crossing the prescribed annual turnover threshold (₹40 Lakhs for goods, ₹20 Lakhs for services in most states) or those engaged in inter-state taxable supply.",
-      "Operating without a valid GSTIN when liable can result in heavy monetary penalties, confiscation of goods, and loss of input tax credit. It also prevents you from legally collecting taxes from your buyers or passing on the credit chain.",
-      "The dedicated tax experts at our firm oversee the complete lifecycle of your GST registration. We eliminate the bureaucratic friction, ensure exact classification of your HSN/SAC codes, and get your firm legally registered and compliant within standard departmental timelines."
-    ],
-    eligibility: [
-      "Any business crossing the ₹40 Lakh turnover threshold for goods (₹20 Lakh for special category states).",
-      "Any business crossing the ₹20 Lakh turnover threshold for services (₹10 Lakh for special category states).",
-      "Businesses involved in the inter-state supply of taxable goods or services.",
-      "E-commerce operators and individuals supplying through e-commerce platforms.",
-      "Casual taxable persons and Non-Resident Taxable Persons (NRTP).",
-      "Entities required to deduct TDS or collect TCS under the GST framework."
-    ],
-    documentsRequired: [
-      "PAN Card of the Business Entity / Proprietor.",
-      "Aadhaar Card and Passport size photographs of all Directors / Partners / Proprietor.",
-      "Proof of Business Registration (Incorporation Certificate, Partnership Deed, etc.).",
-      "Valid Address Proof for Principal Place of Business (Electricity Bill, Rent Agreement, NOC from owner).",
-      "Active Bank Account details (Cancelled Cheque or recent Bank Statement).",
-      "Digital Signature Certificate (DSC) for Companies and LLPs.",
-      "Letter of Authorization / Board Resolution for the Authorized Signatory."
-    ],
-    process: [
-      "Initial Consultation: We assess your business model to determine the exact GST applicability and state-specific requirements.",
-      "Document Compilation: Our team rigorously checks your KYC and premise documents to prevent application rejection.",
-      "Application Filing: We draft and file the GST REG-01 form on the GST Portal using accurate HSN/SAC classifications.",
-      "Query Resolution: If the assessing officer raises a Notice for Clarification (SCN), we draft and file the legal response on your behalf.",
-      "Certificate Issuance: Upon successful approval, we deliver your official GSTIN, GST Registration Certificate, and login credentials.",
-      "Post-Registration Setup: We guide you through the mandatory bank account linking and initial invoicing rules."
-    ],
-    subServicesHeading: "Our Comprehensive GST Offerings:",
-    subServices: [
-      "End-to-end GST Registration and core amendments.",
-      "Filing responses to GST Departmental Notices.",
-      "Cancellation and revocation of suspended GSTINs.",
-      "Mapping and optimization of Input Tax Credit (ITC).",
-      "LUT (Letter of Undertaking) filing for Exporters."
-    ]
-  },
-  "msme-udyam-registration": {
-    title: "MSME Udyam Registration",
-    heroHeading: "Udyam Registration for Micro, Small and Medium Enterprises",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "The MSME domain serves as a vital catalyst for growth for the Indian economy. To support these enterprises, the Government of India introduced the Udyam Registration framework—a simple, paperless certification based on self-declaration.",
-      "Registering your entity as an MSME unlocks a powerful suite of government incentives, statutory protections against delayed payments, and priority treatment in corporate ecosystems and public procurement.",
-      "Our firm expertly manages the end-to-end Udyam classification and registration process. We ensure your investment and turnover data is accurately linked with the IT and GST portals to secure your MSME status without future compliance friction."
-    ],
-    eligibility: [
-      "Micro Enterprises: Investment in Plant & Machinery/Equipment up to ₹1 Crore AND Turnover up to ₹5 Crores.",
-      "Small Enterprises: Investment up to ₹10 Crores AND Turnover up to ₹50 Crores.",
-      "Medium Enterprises: Investment up to ₹50 Crores AND Turnover up to ₹250 Crores.",
-      "Manufacturing units, service providers, and traders are all eligible to obtain Udyam Registration."
-    ],
-    documentsRequired: [
-      "Aadhaar Number of the Proprietor / Managing Partner / Director.",
-      "PAN Card details of the Business Entity.",
-      "GST Certificate (if applicable and registered).",
-      "Details of primary business activities and appropriate NIC codes.",
-      "Bank Account details (Account Number and IFSC Code).",
-      "Historical data regarding investment in plant and machinery."
-    ],
-    process: [
-      "Data Collation: Gathering Aadhaar, PAN, and business activity details.",
-      "NIC Code Selection: Scientifically selecting the National Industrial Classification (NIC) code that matches your actual operations.",
-      "Portal Submission: Filing the digital application on the official Udyam Registration portal via Aadhaar OTP validation.",
-      "Data Linking: Ensuring proper synchronization with CBDT (Income Tax) and CBIC (GST) databases.",
-      "Certificate Generation: Issuance of the lifetime valid Udyam Registration Certificate featuring the unique URN."
-    ],
-    subServicesHeading: "Strategic MSME Services:",
-    subServices: [
-      "New Udyam Registration processing.",
-      "Updating or amending existing Udyam profiles.",
-      "Migration from legacy Udyog Aadhaar to Udyam.",
-      "Consulting on MSME SAMADHAAN (delayed payment resolution).",
-      "Advisory on CGTMSE (Collateral-free bank loans) eligibility."
-    ]
-  },
-  "pf-registration": {
-    title: "PF Registration",
-    heroHeading: "Provident Fund (EPF) Registration & Compliance",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Registering for the Employee Provident Fund (EPF) is a statutory requirement for establishments employing 20 or more persons, acting as a crucial social security benefit for the workforce.",
-      "Our team guarantees seamless PF enrollment for your organization, helping you foster a secure environment for employees while remaining fully compliant with labor laws."
-    ],
-    subServicesHeading: "Our PF Registration Services include:",
-    subServices: [
-      "Assessment of PF applicability for the organization.",
-      "Preparation of required documentation and digital signatures.",
-      "Filing of the EPF registration application on the Shram Suvidha portal.",
-      "Obtaining the establishment PF code number.",
-      "Guidance on employee UAN generation.",
-      "Advisory on monthly PF contributions and return filings."
-    ]
-  },
-  "esic-registration": {
-    title: "ESIC Registration",
-    heroHeading: "Employees' State Insurance Corporation (ESIC) Registration",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Securing ESIC registration is a legal obligation for employers having 10 or more employees, providing medical and financial assistance to employees and their dependents.",
-      "We expertly guide you through the intricate ESIC registration process on your behalf, guaranteeing that your business fulfills its statutory obligations accurately."
-    ],
-    subServicesHeading: "Our ESIC Registration Offerings:",
-    subServices: [
-      "Evaluating ESIC applicability and wage limits.",
-      "Document preparation and compilation.",
-      "Online application filing through the ESIC portal.",
-      "Procurement of the 17-digit employer code.",
-      "Assistance with employee Pehchan card generation.",
-      "Guidance on monthly ESIC contribution procedures."
-    ]
-  },
-  "professional-tax-registration": {
-    title: "Professional Tax Registration",
-    heroHeading: "Professional Tax Enrolment and Registration (PTEC & PTRC)",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Professional tax constitutes a state-imposed levy on individuals earning an income from a profession, trade, or employment. Employers are required to obtain both PTEC and PTRC.",
-      "We deliver swift and accurate professional tax enrollment services, ensuring that your organization adheres to state-specific tax laws and avoids unwarranted penalties."
-    ],
-    subServicesHeading: "Our Professional Tax Services:",
-    subServices: [
-      "Determination of applicable state professional tax laws.",
-      "Application for Professional Tax Enrolment Certificate (PTEC).",
-      "Application for Professional Tax Registration Certificate (PTRC).",
-      "Filing and processing of documentation with local authorities.",
-      "Advisory on tax slab rates for employees.",
-      "Guidance on periodic professional tax return filings."
-    ]
-  },
-  "fssai-registration": {
-    title: "FSSAI Registration",
-    heroHeading: "Food License (FSSAI) Registration & Compliance",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "All food business operators (FBOs) involved in manufacturing, processing, storage, distribution, or sale of food products must possess an FSSAI license or registration.",
-      "Our specialists help FBOs obtain basic, state, or central FSSAI licenses, ensuring that your food business meets all required safety and quality standards."
-    ],
-    subServicesHeading: "Our FSSAI Registration Offerings:",
-    subServices: [
-      "Categorization of food business to determine license type.",
-      "Preparation of specialized documents like FSMS plans.",
-      "Filing the online application via the FoSCoS portal.",
-      "Liaison with food safety officers during inspections.",
-      "Assistance with FSSAI license renewal and modifications.",
-      "Advisory on food product labeling compliance."
-    ]
-  },
-  "rera-registration": {
-    title: "RERA Registration",
-    heroHeading: "Real Estate (Regulation and Development) Act Compliance",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "The primary goal of RERA is to safeguard home-buyers and boost investments in the real estate sector. Project and agent registrations under RERA are mandatory for all commercial and residential real estate projects.",
-      "We provide end-to-end RERA compliance and registration and compliance services for promoters and real estate agents, ensuring absolute transparency and legal conformity."
-    ],
-    subServicesHeading: "Our RERA Services include:",
-    subServices: [
-      "RERA project registration for promoters and developers.",
-      "RERA agent registration and renewals.",
-      "Quarterly and annual RERA compliance filings.",
-      "Drafting and reviewing of allottee agreements.",
-      "Handling RERA litigation and dispute resolution.",
-      "Certification of project accounts by professionals."
-    ]
-  },
-  "shop-act-registration": {
-    title: "Shop Act Registration",
-    heroHeading: "Shops and Establishments Act Intimation / Registration",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "The Shops and Establishments Act governs the working conditions, rights of workers, and operational parameters of commercial establishments operating within a state.",
-      "We enable smooth and hassle-free Shop Act registrations and intimations, securing your legal right to operate a commercial space while adhering to local civic norms."
-    ],
-    subServicesHeading: "Our Shop Act Offerings:",
-    subServices: [
-      "Preparation of Intimation or Registration application.",
-      "Submission of documents to the municipal corporation.",
-      "Guidance on statutory registers to be maintained.",
-      "Assistance in amending existing Shop Act certificates.",
-      "Renewal of expiring registrations.",
-      "Advisory on working hours, holidays, and labor rules."
-    ]
-  },
-  "iec-registration": {
-    title: "IEC Registration",
-    heroHeading: "Import Export Code (IEC) Registration",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "The Import Export Code (IEC) serves as a fundamental identifier number mandatory for exports or imports to and from India, issued by the Directorate General of Foreign Trade (DGFT).",
-      "Our firm empowers your business for global expansion by swiftly obtaining their IEC, backed by our expertise in foreign trade policies and customs regulations."
-    ],
-    subServicesHeading: "Our IEC Registration Services:",
-    subServices: [
-      "Filing the IEC application with the DGFT.",
-      "Preparation of required bank certificates and declarations.",
-      "Assistance in updating or modifying existing IEC details.",
-      "Annual updation of IEC as mandated by DGFT.",
-      "Linking of IEC with custom ports.",
-      "Advisory on export incentive schemes (RoDTEP, etc.)."
-    ]
-  },
-  "trademark-registration": {
-    title: "Trademark Registration",
-    heroHeading: "Protect Your Brand Identity with Trademark Registration",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Your brand name, logo, and slogan are among your company’s most valuable intellectual property. Without legal registration, competitors can easily hijack your identity, confusing your customers and diluting your market position.",
-      "A Trademark Registration grants you exclusive statutory rights across India under the Trade Marks Act, 1999. It empowers you to take aggressive legal action against infringers and use the coveted ® symbol, instantly boosting brand trust and valuation.",
-      "We expertly navigate the entire trademark protection lifecycle. From conducting exhaustive phonetic searches to responding to Registry objections, our IP attorneys ensure your brand is heavily shielded against corporate theft."
-    ],
-    eligibility: [
-      "Individuals, Proprietorships, and Freelancers.",
-      "Private Limited Companies, LLPs, and Partnership Firms.",
-      "Non-Governmental Organizations (NGOs) and Trusts.",
-      "Foreign entities seeking trademark protection within Indian territory."
-    ],
-    documentsRequired: [
-      "A clear copy of the Logo / Wordmark / Device Mark.",
-      "User Affidavit (if the trademark is already in use prior to application).",
-      "Signed Form TM-48 (Power of Attorney authorizing us to file on your behalf).",
-      "MSME Udyam Certificate or Startup India Certificate (to claim a 50% discount on government fees).",
-      "Details of the applicant (Name, Address, Nationality/Incorporation)."
-    ],
-    process: [
-      "Comprehensive TM Search: We conduct a deep-dive search across the exact and phonetically similar classes to gauge the probability of approval.",
-      "Class Selection: We pinpoint the absolute correct classification (out of 45 Vienna Classes) to ensure complete protection for your specific goods/services.",
-      "Application Filing: We draft and file Form TM-A with the Trademark Registry.",
-      "Objection Handling: If the Examiner raises an objection (under Section 9 or 11), we draft comprehensive legal arguments referencing judicial precedents.",
-      "Journal Publication & Registration: Once accepted, the mark is published in the TM Journal. If unopposed for 4 months, the final Registration Certificate is issued."
-    ],
-    subServicesHeading: "Our Intellectual Property Services:",
-    subServices: [
-      "Pre-filing Trademark Search and Risk Analysis.",
-      "Drafting and filing robust responses to Examination Reports.",
-      "Attending Trademark Hearings on behalf of the applicant.",
-      "Filing Trademark Renewals (Form TM-R).",
-      "Drafting Cease & Desist Notices for trademark infringement."
-    ]
-  },
-  "private-limited-company": {
-    title: "Private Limited Company",
-    heroHeading: "Incorporate a Private Limited Company (Pvt Ltd)",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "A Private Limited Company (Pvt. Ltd.) stands as the most credible and scalable business structure in India. It is governed by the Ministry of Corporate Affairs (MCA) under the Companies Act, 2013.",
-      "Registering as a Pvt. Ltd. limits the personal liability of founders, allows for external equity funding from venture capitalists, enables ESOP structuring to retain top talent, and provides an unmatched level of corporate credibility to global clients and vendors.",
-      "Our team flawlessly executes your entire incorporation journey. From securing name approvals to drafting customized constitutional documents (MOA/AOA), our corporate legal experts ensure your company is structured with a rock-solid legal foundation."
-    ],
-    eligibility: [
-      "Minimum of Two Directors (at least one must be an Indian Resident).",
-      "Minimum of Two Shareholders (Directors can also be Shareholders).",
-      "No minimum paid-up capital requirement.",
-      "A registered office address situated in India.",
-      "Directors must not be disqualified under the Companies Act, 2013."
-    ],
-    documentsRequired: [
-      "Identity Proof: PAN Card (mandatory) and Passport/Voter ID/Driving License for all Directors.",
-      "Address Proof: Recent Bank Statement, Electricity Bill, or Mobile Bill for all Directors.",
-      "Photographs: Recent passport-size photographs.",
-      "Registered Office Proof: Electricity Bill of the premises alongside a NOC from the property owner.",
-      "If rented: A valid Rent Agreement for the registered office."
-    ],
-    process: [
-      "Digital Signatures (DSC): Procuring Class-3 DSCs for the proposed directors.",
-      "Name Approval (RUN/SPICe+ Part A): Reserving a unique corporate name that adheres to MCA naming guidelines.",
-      "Drafting MOA & AOA: Structuring the Memorandum and Articles of Association customized to your operational goals.",
-      "Filing SPICe+ Part B: Submitting the comprehensive incorporation suite (including agile-pro for PF/ESIC/GST/Bank).",
-      "Certificate of Incorporation (COI): Obtaining the official COI, PAN, and TAN from the MCA.",
-      "Post-Incorporation Compliance: Assisting with bank account opening and filing the mandatory Form INC-20A (Commencement of Business)."
-    ],
-    subServicesHeading: "Corporate Structuring Offerings:",
-    subServices: [
-      "End-to-end Pvt Ltd Incorporation via SPICe+.",
-      "Drafting specialized MOA/AOA clauses for joint ventures.",
-      "Advisory on Authorized vs. Paid-up Share Capital structuring.",
-      "FDI compliance and RBI reporting for foreign directors/shareholders.",
-      "Seamless integration with Startup India (DPIIT) registration."
-    ]
-  },
-  "one-person-company": {
-    title: "One Person Company (OPC)",
-    heroHeading: "One Person Company Registration",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "The OPC framework empowers solo founders to operate a corporate entity with limited liability protection, blending the simplicity of a sole proprietorship with corporate status.",
-      "We provide expert guidance to solo founders through the OPC registration process, ensuring compliance with the specialized rules regarding nominees and structural limits."
-    ],
-    subServicesHeading: "Our OPC Registration Offerings:",
-    subServices: [
-      "Advisory on OPC eligibility and nominee selection.",
-      "Procurement of DSC and Director Identification Number (DIN).",
-      "Drafting specialized MOA and AOA for OPCs.",
-      "Filing of SPICe+ forms with the Registrar of Companies.",
-      "Assistance with mandatory nominee consent forms.",
-      "Conversion of OPC to Private Limited Company when required."
-    ]
-  },
-  "llp-registration": {
-    title: "Limited Liability Partnership (LLP)",
-    heroHeading: "LLP Registration and Advisory",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "An LLP merges the advantages of limited liability while providing the operational flexibility of a traditional partnership, making it ideal for professional services.",
-      "We oversee the complete LLP incorporation lifecycle, including the drafting of robust partnership agreements to prevent future disputes."
-    ],
-    subServicesHeading: "Our LLP Registration Services:",
-    subServices: [
-      "Name availability search and reservation (RUN-LLP).",
-      "Drafting of the comprehensive LLP Agreement.",
-      "Filing of incorporation documents (FiLLiP form).",
-      "Obtaining the LLP Identification Number (LLPIN).",
-      "Filing the LLP agreement within 30 days of incorporation.",
-      "Guidance on annual LLP compliance (Form 8 and Form 11)."
-    ]
-  },
-  "partnership-firm-registration": {
-    title: "Partnership Firm Registration",
-    heroHeading: "Partnership Deed Drafting and Firm Registration",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "A Partnership Firm remains a classic organizational model where two or more individuals manage and operate a business according to the terms of a Partnership Deed.",
-      "We specialize in crafting tailored partnership agreements and registering the firm with the Registrar of Firms, ensuring a solid legal foundation for your joint venture."
-    ],
-    subServicesHeading: "Our Partnership Registration Offerings:",
-    subServices: [
-      "Drafting a tailored Partnership Deed detailing profit sharing and roles.",
-      "Notarization and stamping of the Partnership Deed.",
-      "Applying for PAN and TAN for the partnership firm.",
-      "Registration with the state Registrar of Firms (RoF).",
-      "Assistance with opening the firm's bank account.",
-      "Advisory on reconstitution or dissolution of the firm."
-    ]
-  },
-  "section-8-company": {
-    title: "Section 8 Company / NGO",
-    heroHeading: "Section 8 Company Registration for Non-Profits",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Section 8 Companies are established exclusively for philanthropic or not-for-profit purposes, dedicated to promoting commerce, art, science, sports, education, or social welfare.",
-      "We aid NGOs and philanthropic groups in establishing Section 8 companies, ensuring compliance with strict non-profit regulations and securing tax exemptions."
-    ],
-    subServicesHeading: "Our Section 8 Incorporation Services:",
-    subServices: [
-      "Drafting specialized MOA and AOA outlining charitable objectives.",
-      "Applying for a Section 8 License from the MCA.",
-      "Filing of incorporation forms (SPICe+).",
-      "Guidance on obtaining 12A and 80G registrations under Income Tax.",
-      "Assistance with CSR registration (CSR-1).",
-      "Advisory on fund utilization and statutory auditing."
-    ]
-  },
-  "sole-proprietorship": {
-    title: "Sole Proprietorship",
-    heroHeading: "Sole Proprietorship Setup and Compliance",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "The Sole Proprietorship represents the most straightforward business model, owned and run by a single individual with no legal distinction between the owner and the business entity.",
-      "We assist emerging entrepreneurs in setting up their sole proprietorships through necessary local and tax registrations, establishing a formal business identity."
-    ],
-    subServicesHeading: "Our Sole Proprietorship Services:",
-    subServices: [
-      "Registration under the local Shops and Establishments Act.",
-      "Procurement of MSME Udyam Registration.",
-      "Obtaining Goods and Services Tax (GST) Registration.",
-      "Assistance with opening a current bank account.",
-      "Income tax advisory for proprietary businesses.",
-      "Guidance on protecting business names via trademark."
-    ]
-  },
-  "audit-and-assurance": {
-    title: "Audit & Assurance",
-    heroHeading: "Comprehensive Audit & Assurance Services",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Navigating today's shifting regulatory environment requires steadfast audit services are vital for maintaining stakeholder trust and ensuring accurate financial reporting.",
-      "We deliver strict, independent auditing solutions tailored to your industry, helping you identify risks, improve internal controls, and comply with all statutory requirements."
-    ],
-    subServicesHeading: "Our Audit Offerings include:",
-    subServices: [
-      "Statutory audits under the Companies Act.",
-      "Tax audits under the Income Tax Act.",
-      "Internal and management audits.",
-      "GST audits and reconciliations.",
-      "Bank concurrent and statutory branch audits.",
-      "Information systems and compliance audits."
-    ]
-  },
-  "statutory-audit": {
-    title: "Statutory Audit",
-    heroHeading: "Statutory Audit under the Companies Act",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Statutory Audits are a legal prerequisite for assessing the financial statements and records of a company, ensuring that they represent a true and fair view of its financial position.",
-      "Our statutory auditing protocols strictly adhere with the Standards on Auditing (SAs) issued by the ICAI, providing stakeholders with reliable financial insights."
-    ],
-    subServicesHeading: "Our Statutory Audit Services:",
-    subServices: [
-      "Comprehensive examination of financial statements.",
-      "Verification of compliance with Accounting Standards (Ind AS / AS).",
-      "Evaluation of internal financial controls over financial reporting.",
-      "Reporting requirements under CARO.",
-      "Liaison with management on key audit matters.",
-      "Issuance of independent auditor's report."
-    ]
-  },
-  "internal-audit": {
-    title: "Internal Audit",
-    heroHeading: "Internal Audit and Risk Advisory",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Internal auditing serves as a powerful driver for enhancing an organization's governance, risk management, and management controls by providing independent, objective insight.",
-      "We formulate tailored internal audit strategies focused on process optimization, fraud prevention, and operational efficiency, empowering management to make informed decisions."
-    ],
-    subServicesHeading: "Our Internal Audit Services:",
-    subServices: [
-      "Risk assessment and internal audit planning.",
-      "Evaluation of operational processes and standard operating procedures (SOPs).",
-      "Identification of revenue leakages and cost optimization avenues.",
-      "Assessment of internal financial controls.",
-      "Inventory and fixed asset verification.",
-      "Periodic management reporting and actionable recommendations."
-    ]
-  },
-  "tax-audit": {
-    title: "Tax Audit",
-    heroHeading: "Income Tax Audit Services (Section 44AB)",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "As per Section 44AB, qualifying businesses and professionals exceeding specific turnover thresholds must undergo a Tax Audit by a practicing Chartered Accountant.",
-      "We execute comprehensive tax audits to ensure your tax computations are accurate, disclosures are complete, and you remain protected from penal consequences."
-    ],
-    subServicesHeading: "Our Tax Audit Offerings:",
-    subServices: [
-      "Verification of books of accounts for tax compliance.",
-      "Preparation and filing of Form 3CA/3CB and Form 3CD.",
-      "Reconciliation of income with GST returns.",
-      "Checking compliance with TDS/TCS provisions.",
-      "Advisory on disallowances under the Income Tax Act.",
-      "Timely uploading of audit reports on the IT portal."
-    ]
-  },
-  "gst-audit": {
-    title: "GST Audit",
-    heroHeading: "GST Audit, Reconciliation, and Annual Returns",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Annual GST audits and reconciliations remain essential to identifying mismatches between books of accounts and filed returns, mitigating the risk of departmental scrutiny.",
-      "We offer detailed GST reconciliation services, ensuring your Input Tax Credit (ITC) claims are valid and your liability is accurately discharged."
-    ],
-    subServicesHeading: "Our GST Audit Services:",
-    subServices: [
-      "Filing of Annual Return (Form GSTR-9).",
-      "Filing of Reconciliation Statement (Form GSTR-9C).",
-      "Reconciliation of GSTR-1, GSTR-3B, and GSTR-2A/2B.",
-      "Verification of HSN classifications and applicable rates.",
-      "Review of e-way bills and e-invoicing compliance.",
-      "Advisory on rectifying reporting errors in subsequent returns."
-    ]
-  },
-  "bank-audit": {
-    title: "Bank Audit",
-    heroHeading: "Bank Statutory and Branch Audits",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Bank auditing entails a focused evaluation of banking operations, loan portfolios, and regulatory compliances as mandated by the Reserve Bank of India (RBI).",
-      "Our firm holds the necessary proficiency to execute rigorous branch statutory audits, ensuring asset classification and income recognition conform to RBI guidelines."
-    ],
-    subServicesHeading: "Our Bank Audit Services:",
-    subServices: [
-      "Statutory branch audits for nationalized and private banks.",
-      "Verification of Non-Performing Assets (NPA) classification.",
-      "Review of income recognition and provisioning norms.",
-      "Assessment of capital adequacy and internal controls.",
-      "Reporting under Long Form Audit Report (LFAR).",
-      "Certification of specialized banking returns."
-    ]
-  },
-  "concurrent-audit": {
-    title: "Concurrent Audit",
-    heroHeading: "Concurrent and Revenue Audits for Financial Institutions",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Concurrent auditing involves the continuous and systematic review of financial transactions on a regular basis to ensure accuracy, authenticity, and compliance with guidelines.",
-      "Our concurrent auditing professionals deliver real-time monitoring of transactions, early detection of irregularities, and strengthening of internal controls for banks and NBFCs."
-    ],
-    subServicesHeading: "Our Concurrent Audit Offerings:",
-    subServices: [
-      "Daily/weekly verification of banking and cash transactions.",
-      "Scrutiny of loan documentation and disbursement procedures.",
-      "Detection and prevention of revenue leakages.",
-      "Verification of KYC and AML compliance.",
-      "Checking foreign exchange transactions.",
-      "Providing immediate feedback to branch management."
-    ]
-  },
-  "taxation-services": {
-    title: "Taxation Services",
-    heroHeading: "Comprehensive Direct & Indirect Tax Advisory",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Maneuvering through India’s intricate tax regime demands strategic foresight and meticulous compliance. Effective tax planning impacts the bottom line and operational sustainability.",
-      "We provide comprehensive taxation solutions spanning Income Tax, GST, International Taxation, and Transfer Pricing to individuals, HNIs, and corporate entities."
-    ],
-    subServicesHeading: "Our Core Taxation Services:",
-    subServices: [
-      "Corporate and individual income tax return filing.",
-      "Strategic tax planning and transaction advisory.",
-      "Representation in tax litigation and assessments.",
-      "TDS and TCS compliance management.",
-      "Comprehensive GST compliance and advisory.",
-      "Capital gains optimization and investment structuring."
-    ]
-  },
-  "income-tax-return-filing": {
-    title: "Income Tax Return Filing",
-    heroHeading: "Comprehensive Income Tax Return (ITR) Filing Services",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Submitting a precise Income Tax Return (ITR) is a strict legal obligation, whether you are a salaried professional, a freelance consultant, or a multi-crore corporate enterprise. The Indian tax regime requires meticulous disclosure of income across all statutory heads.",
-      "Delaying or misreporting income can trigger severe scrutiny, aggressive penalties (under Section 270A), and persistent litigation with the Income Tax Department. A flawlessly optimized ITR acts as financial proof for loan processing, visa approvals, and carrying forward business losses.",
-      "We turn the tax filing process from a burden obligation into a strategic advantage. Our Chartered Accountants comprehensively analyze your Annual Information Statement (AIS) and Form 26AS, maximize your eligible deductions, and file your taxes with clinical precision."
-    ],
-    eligibility: [
-      "Individuals whose gross total income exceeds the basic exemption limit (₹3 Lakhs under the new regime, ₹2.5 Lakhs under the old regime).",
-      "All registered Companies and LLPs, irrespective of profit or loss.",
-      "Individuals holding foreign assets or signatory authority in foreign bank accounts.",
-      "Individuals who have deposited over ₹1 Crore in current accounts or spent over ₹2 Lakhs on foreign travel.",
-      "Taxpayers wishing to carry forward capital or business losses to subsequent financial years."
-    ],
-    documentsRequired: [
-      "PAN and Aadhaar Card.",
-      "Form 16 (for salaried individuals) and Form 16A/16B/16C for TDS deducted on other incomes.",
-      "Bank Statements for the entire financial year to reconcile interest and transactions.",
-      "Investment Proofs (LIC, PPF, ELSS, Medical Insurance, Home Loan Certificates).",
-      "Capital Gains Statements from brokers (Zerodha, Groww, Upstox, etc.).",
-      "Books of Accounts and Audit Reports (for businesses and professionals under presumptive taxation)."
-    ],
-    process: [
-      "Data Collection & AIS Reconciliation: We cross-verify your provided documents against the Income Tax Department's AIS/TIS to prevent mismatch notices.",
-      "Regime Optimization: We simulate your tax liability under both the Old and New Tax Regimes to determine the most beneficial structure.",
-      "Drafting Computations: Our CAs prepare a highly detailed computation of income, ensuring all legitimate Chapter VI-A deductions and set-offs are applied.",
-      "Draft Review: You review the computation and authorize the final tax liability/refund figures.",
-      "Filing & Verification: We transmit the applicable ITR form (ITR-1 to ITR-7) securely and assist with the mandatory e-Verification process via Aadhaar OTP."
-    ],
-    subServicesHeading: "Our Taxation & Filing Expertise:",
-    subServices: [
-      "ITR filing for Salaried Individuals, HNIs, and NRIs.",
-      "Presumptive Tax filing (ITR-4) for freelancers and small businesses.",
-      "Corporate Tax filing (ITR-6) including MAT/AMT computations.",
-      "Capital Gains optimization for real estate, crypto, and equity traders.",
-      "Filing Belated, Revised, and Updated Returns (ITR-U)."
-    ]
-  },
-  "advance-tax-planning": {
-    title: "Advance Tax Planning",
-    heroHeading: "Strategic Advance Tax Planning & Computation",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Advance tax involves clearing portions of your tax dues before the end of the financial year. Failure to pay adequate advance tax results in penal interest under sections 234B and 234C.",
-      "We accurately forecast your yearly profits, formulate tax-saving strategies, and ensure timely payment of advance tax installments to optimize cash flow."
-    ],
-    subServicesHeading: "Our Advance Tax Services:",
-    subServices: [
-      "Quarterly projection of income and tax liability.",
-      "Calculation of advance tax installments.",
-      "Advisory on tax-saving investments and restructuring.",
-      "Remittance of advance tax via challans.",
-      "Mitigation strategies for interest under 234A/B/C.",
-      "Year-end tax optimization reviews."
-    ]
-  },
-  "tds-compliance": {
-    title: "TDS Compliance & Returns",
-    heroHeading: "TDS / TCS Advisory and Return Filing",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "TDS and TCS represent vital compliance pillars compliance areas. Errors in deduction rates or filing delays lead to severe financial penalties and disallowance of expenses.",
-      "We handle every aspect of TDS and TCS compliance, from calculating correct deduction rates to timely filing of quarterly statements and issuing certificates."
-    ],
-    subServicesHeading: "Our TDS Compliance Offerings:",
-    subServices: [
-      "Advisory on applicable TDS/TCS rates and thresholds.",
-      "Preparation and filing of quarterly returns (Forms 24Q, 26Q, 27Q, 27EQ).",
-      "Generation and issuance of Form 16 and Form 16A.",
-      "Correction of filed TDS statements and addressing defaults.",
-      "Advisory on Lower Deduction Certificates (Section 197).",
-      "Reconciliation of TDS with books of accounts."
-    ]
-  },
-  "tax-litigation": {
-    title: "Tax Litigation Support",
-    heroHeading: "Tax Assessments, Appeals & Litigation Advisory",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Facing tax assessments and notices can be daunting and financially damaging if not handled with profound legal expertise and meticulous documentation.",
-      "We robustly represent our clients before tax tribunals and appellate tribunals. We draft robust legal replies and construct strategic defenses to resolve tax disputes favorably."
-    ],
-    subServicesHeading: "Our Tax Litigation Services:",
-    subServices: [
-      "Drafting replies to scrutiny notices (Section 143(2), 148, etc.).",
-      "Representation before the Assessing Officer (AO) during assessments.",
-      "Preparation and filing of appeals before CIT(Appeals).",
-      "Representation before the Income Tax Appellate Tribunal (ITAT).",
-      "Handling penalty proceedings and prosecution matters.",
-      "Advisory on dispute resolution schemes (Vivad se Vishwas)."
-    ]
-  },
-  "capital-gains-advisory": {
-    title: "Capital Gains Advisory",
-    heroHeading: "Tax Planning for Capital Gains",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Selling real estate or financial assets triggers capital gains tax. Without structured planning, these transactions can lead to significant tax outflows.",
-      "We offer expert guidance on optimizing asset disposals to minimize tax liability, leveraging exemptions available under sections like 54, 54EC, and 54F."
-    ],
-    subServicesHeading: "Our Capital Gains Offerings:",
-    subServices: [
-      "Computation of Short-Term and Long-Term Capital Gains.",
-      "Advisory on claiming exemptions under Section 54 series.",
-      "Guidance on capital gains bonds (54EC) and Capital Gains Account Scheme.",
-      "Tax structuring for property sale by NRIs.",
-      "Valuation advisory for real estate and unlisted shares.",
-      "Filing of ITR reflecting capital gains transactions."
-    ]
-  },
-  "gst-return-filing": {
-    title: "GST Return Filing",
-    heroHeading: "Monthly and Quarterly GST Return Filing",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Punctual and precise GST return filing is imperative to avoid late fees, interest, and the denial of input tax credit to your customers.",
-      "We systematically process and verify your GST information, ensuring seamless filing of all applicable returns while keeping you fully compliant with evolving GST rules."
-    ],
-    subServicesHeading: "Our GST Return Services:",
-    subServices: [
-      "Filing of GSTR-1 (Outward Supplies) and GSTR-3B.",
-      "Filing under the QRMP scheme for eligible taxpayers.",
-      "Reconciliation of GSTR-2A/2B to maximize Input Tax Credit.",
-      "Filing of specific returns (GSTR-4, GSTR-5, GSTR-6, GSTR-7).",
-      "Generation of e-way bills and e-invoices.",
-      "Review of HSN/SAC codes and tax rates applied."
-    ]
-  },
-  "gst-compliance": {
-    title: "GST Compliance",
-    heroHeading: "End-to-End GST Advisory and Compliance",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "GST regulations are subject to constant modifications via notifications and circulars, making continuous compliance a complex task for in-house teams.",
-      "We function as your dedicated external tax wing, providing proactive advisory on transaction structuring, classification, and place of supply rules."
-    ],
-    subServicesHeading: "Our GST Compliance Services:",
-    subServices: [
-      "Opinion on taxability of complex transactions.",
-      "Review of internal processes and ERP tax setups.",
-      "Advisory on cross-border transactions and exports (LUT).",
-      "Drafting replies to routine GST notices and intimations.",
-      "Assistance in obtaining Advance Rulings.",
-      "Training of corporate staff on GST updates."
-    ]
-  },
-  "gst-refund": {
-    title: "GST Refund",
-    heroHeading: "GST Refund Claims and Processing",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Trapped working capital from unutilized ITC or exports can severely impact liquidity. A structured approach is required to claim GST refunds efficiently.",
-      "We excel in structuring and submitting strong refund applications, systematically tracking them until the amount is credited to your bank account."
-    ],
-    subServicesHeading: "Our GST Refund Services:",
-    subServices: [
-      "Refund of unutilized ITC due to zero-rated supplies (exports without payment of tax).",
-      "Refund of IGST paid on export of goods or services.",
-      "Refund arising from Inverted Duty Structure.",
-      "Refund of excess balance in the Electronic Cash Ledger.",
-      "Preparation of required CA certificates and annexures.",
-      "Representation before GST authorities for refund sanction."
-    ]
-  },
-  "gst-audit-assessment": {
-    title: "GST Audit & Assessment",
-    heroHeading: "Departmental GST Audit and Assessment Support",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Leveraging advanced data analytics, tax bodies are increasingly conducting departmental audits (Section 65) and issuing assessment notices.",
-      "We guide enterprises safely through departmental scrutiny, compiling requested data, and representing the entity strongly before tax officials."
-    ],
-    subServicesHeading: "Our Assessment Support Services:",
-    subServices: [
-      "Pre-audit health checks and mock GST audits.",
-      "Compilation of data and documents in the format required by Form ADT-01.",
-      "Representation before GST officers during the audit process.",
-      "Drafting robust replies to Audit Observations and Show Cause Notices (SCN).",
-      "Filing appeals before the Joint Commissioner (Appeals).",
-      "Handling anti-evasion inquiries and summons."
-    ]
-  },
-  "input-tax-credit": {
-    title: "Input Tax Credit",
-    heroHeading: "Input Tax Credit (ITC) Optimization & Advisory",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Claiming Input Tax Credit correctly is the cornerstone of the GST regime. Identifying eligible credits while avoiding blocked credits under Section 17(5) requires precision.",
-      "At Shantanu S & Associates, we conduct specialized ITC reviews to identify missed credits, ensure compliance with the 180-day payment rule, and optimize your overall tax payout."
-    ],
-    subServicesHeading: "Our ITC Services include:",
-    subServices: [
-      "Comprehensive review of expense ledgers for eligible ITC.",
-      "Automated reconciliation of GSTR-2B with purchase registers.",
-      "Advisory on apportionment of credit for exempt and taxable supplies.",
-      "Guidance on blocked credit (Section 17(5)) applicability.",
-      "Reversal mechanism advisory (Rule 42 and Rule 43).",
-      "Vendor communication strategies for non-compliant suppliers."
-    ]
-  },
-  "nri-tax-services": {
-    title: "NRI Tax Services",
-    heroHeading: "Specialized Tax & Compliance Services for NRIs",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Non-Resident Indians (NRIs) face unique financial and regulatory challenges when managing their investments, properties, and income sources in India.",
-      "Shantanu S & Associates offers dedicated NRI desks that provide holistic solutions encompassing taxation, repatriation, and FEMA compliance, ensuring peace of mind across borders."
-    ],
-    subServicesHeading: "Our Core NRI Services:",
-    subServices: [
-      "Determination of residential status under FEMA and Income Tax.",
-      "Filing of Income Tax Returns for NRI income in India.",
-      "Advisory on Double Taxation Avoidance Agreements (DTAA).",
-      "Assistance with Form 15CA/15CB for fund repatriation.",
-      "Consulting on property transactions and lower TDS certificates.",
-      "Advisory on NRO/NRE/FCNR account regulations."
-    ]
-  },
-  "nri-income-tax-filing": {
-    title: "NRI Income Tax Filing",
-    heroHeading: "Income Tax Return Filing for NRIs",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "NRIs earning income in India through rent, capital gains, interest, or dividends are generally required to file an Income Tax Return in India.",
-      "At Shantanu S & Associates, we ensure accurate determination of your residential status and file your ITR in compliance with the provisions specifically applicable to non-residents."
-    ],
-    subServicesHeading: "Our NRI Tax Filing Services:",
-    subServices: [
-      "Residential status evaluation as per the Income Tax Act.",
-      "Filing of ITR reporting Indian sourced income.",
-      "Claiming refunds of excess TDS deducted by banks or buyers.",
-      "Disclosure of foreign assets (if applicable).",
-      "Responding to notices from the International Taxation ward.",
-      "Advisory on specialized NRI tax rates (Chapter XII-A)."
-    ]
-  },
-  "fema-compliance": {
-    title: "FEMA Compliance",
-    heroHeading: "Foreign Exchange Management Act (FEMA) Advisory",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Cross-border transactions, foreign direct investments, and external commercial borrowings are heavily regulated under FEMA. Non-compliance invites severe penalties.",
-      "Shantanu S & Associates provides expert guidance on FEMA regulations, assisting individuals and corporations in structuring transactions legally and filing statutory RBI returns."
-    ],
-    subServicesHeading: "Our FEMA Services include:",
-    subServices: [
-      "Advisory on Foreign Direct Investment (FDI) policies.",
-      "Filing of Single Master Form (SMF) on the FIRMS portal (FC-GPR, FC-TRS).",
-      "Filing of Annual Return on Foreign Liabilities and Assets (FLA).",
-      "Advisory on External Commercial Borrowings (ECB).",
-      "Compounding of contraventions under FEMA.",
-      "Guidance on setting up branch or liaison offices in India."
-    ]
-  },
-  "repatriation-of-funds": {
-    title: "Repatriation of Funds",
-    heroHeading: "Seamless Fund Repatriation and Form 15CA/15CB",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Repatriating funds out of India, whether from the sale of property, inheritance, or NRO account balances, requires specific certifications and banking clearances.",
-      "Shantanu S & Associates expedites the remittance process by issuing the mandatory Chartered Accountant certificates and ensuring compliance with the USD 1 Million scheme."
-    ],
-    subServicesHeading: "Our Repatriation Services:",
-    subServices: [
-      "Issuance of Form 15CB (CA Certificate).",
-      "Preparation and online uploading of Form 15CA.",
-      "Advisory on the Liberalized Remittance Scheme (LRS).",
-      "Documentation support for banking channels.",
-      "Repatriation of inherited assets and property sale proceeds.",
-      "Advisory on minimizing tax impact during repatriation."
-    ]
-  },
-  "dtaa-advisory": {
-    title: "DTAA Advisory",
-    heroHeading: "Double Taxation Avoidance Agreement Advisory",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "NRIs and foreign entities often face the risk of being taxed in both India and their country of residence. DTAA treaties provide relief through exemptions or tax credits.",
-      "Shantanu S & Associates interprets complex tax treaties to ensure you don't pay tax twice on the same income, optimizing your global tax footprint."
-    ],
-    subServicesHeading: "Our DTAA Services include:",
-    subServices: [
-      "Analysis of specific DTAA provisions between India and other nations.",
-      "Procurement of Tax Residency Certificates (TRC).",
-      "Filing of Form 10F for claiming treaty benefits.",
-      "Advisory on claiming Foreign Tax Credit (FTC) via Form 67.",
-      "Structuring of cross-border royalty and technical fees.",
-      "Assistance with Mutual Agreement Procedure (MAP)."
-    ]
-  },
-  "nri-property-tax": {
-    title: "NRI Property Tax",
-    heroHeading: "Taxation on Purchase and Sale of Property by NRIs",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Real estate transactions involving NRIs attract high TDS rates (up to 23.92%) on the sale value, leading to significant cash flow blockages.",
-      "At Shantanu S & Associates, we assist NRIs in minimizing this upfront tax burden by applying for Lower Deduction Certificates and expertly planning the capital gains exemptions."
-    ],
-    subServicesHeading: "Our NRI Property Tax Services:",
-    subServices: [
-      "Application for Lower or Nil TDS Certificate (Form 13).",
-      "Computation of Capital Gains on property sale.",
-      "Advisory on reinvestment bonds (54EC) for NRIs.",
-      "Guidance on TDS compliance for the buyer (Form 16A issuance).",
-      "Assistance with property valuation reports.",
-      "Full representation before the Jurisdictional Assessing Officer."
-    ]
-  },
-  "corporate-laws": {
-    title: "Corporate Laws",
-    heroHeading: "Corporate Secretarial and MCA Compliances",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "The Companies Act imposes rigorous compliance and reporting requirements on corporate entities. Staying compliant is essential to avoid penalties, director disqualifications, and striking off of the company.",
-      "Shantanu S & Associates provides end-to-end corporate secretarial support, acting as your outsourced compliance department to ensure your corporate governance is impeccable."
-    ],
-    subServicesHeading: "Our Corporate Law Services:",
-    subServices: [
-      "Filing of Annual Returns (AOC-4, MGT-7).",
-      "Maintenance of statutory registers and minute books.",
-      "Director appointment, resignation, and KYC (DIR-3).",
-      "Increase in Authorized Share Capital and allotment of shares.",
-      "Assistance with holding AGMs and Board Meetings.",
-      "Filing of various event-based MCA forms."
-    ]
-  },
-  "annual-roc-filings": {
-    title: "Annual ROC Filings",
-    heroHeading: "Registrar of Companies (ROC) Annual Compliances",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Every registered company and LLP must file annual returns and financial statements with the ROC, regardless of their operational status or turnover.",
-      "Shantanu S & Associates manages the entire annual filing cycle efficiently, ensuring strict adherence to the timelines prescribed by the Ministry of Corporate Affairs."
-    ],
-    subServicesHeading: "Our ROC Filing Services:",
-    subServices: [
-      "Preparation and filing of Form AOC-4 (Financial Statements).",
-      "Preparation and filing of Form MGT-7/MGT-7A (Annual Return).",
-      "LLP Annual return filing (Form 8 and Form 11).",
-      "Filing of Auditor Appointment forms (ADT-1).",
-      "Drafting of the Directors' Report and MGT-9.",
-      "Certification of MCA forms by professionals."
-    ]
-  },
-  "board-meeting-compliance": {
-    title: "Board Meeting Compliance",
-    heroHeading: "Drafting of Minutes and Board Resolutions",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "The Companies Act dictates strict rules regarding the frequency, quorum, and documentation of Board of Directors meetings and General Meetings.",
-      "Shantanu S & Associates assists corporate secretariats in drafting flawless notices, agendas, and minutes in compliance with the Secretarial Standards (SS-1 and SS-2)."
-    ],
-    subServicesHeading: "Our Meeting Compliance Services:",
-    subServices: [
-      "Drafting agendas and notices for Board Meetings and AGMs.",
-      "Preparation of precise minutes of the meetings.",
-      "Maintenance of physical and digital minute books.",
-      "Drafting of standard and special resolutions.",
-      "Advisory on quorum and virtual meeting guidelines.",
-      "Filing of Special Resolutions (MGT-14) with the ROC."
-    ]
-  },
-  "director-kyc": {
-    title: "Director KYC",
-    heroHeading: "Director KYC & Statutory Appointments",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "The Ministry of Corporate Affairs mandates annual KYC updates for all directors holding a DIN to maintain transparency and prevent corporate fraud.",
-      "At Shantanu S & Associates, we ensure timely filing of DIR-3 KYC for directors, avoiding the deactivation of DIN and the associated high penalty fees."
-    ],
-    subServicesHeading: "Our Director Compliance Services:",
-    subServices: [
-      "Filing of Web-based DIR-3 KYC.",
-      "Filing of detailed e-Form DIR-3 KYC for updates.",
-      "Procurement and renewal of Digital Signatures (DSC).",
-      "Advisory on appointment and resignation of Directors (DIR-12).",
-      "Obtaining DIN for new directors.",
-      "Reactivation of disqualified or deactivated DINs."
-    ]
-  },
-  "corporate-governance": {
-    title: "Corporate Governance",
-    heroHeading: "Corporate Governance and Secretarial Audits",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Strong corporate governance builds investor confidence, mitigates risk, and establishes a framework for sustainable growth and ethical management.",
-      "Shantanu S & Associates provides governance advisory and conducts Secretarial Audits to ensure compliance with the Companies Act, SEBI regulations, and other specific laws."
-    ],
-    subServicesHeading: "Our Governance Services include:",
-    subServices: [
-      "Conducting comprehensive Secretarial Audits (MR-3).",
-      "Structuring of Board Committees (Audit, CSR, Nomination).",
-      "Drafting governance policies (Whistleblower, CSR).",
-      "Advisory on Related Party Transactions.",
-      "Evaluation of Board performance and independence.",
-      "Pre-IPO governance readiness advisory."
-    ]
-  },
-  "consultancy": {
-    title: "Consultancy",
-    heroHeading: "Strategic Financial & Business Advisory",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "In a hyper-competitive business environment, achieving sustainable growth requires data-driven strategy, optimal capital allocation, and rigorous risk management.",
-      "Shantanu S & Associates partners with management teams to provide strategic insights, transforming complex business challenges into avenues for value creation and scaling."
-    ],
-    subServicesHeading: "Our Consultancy Verticals:",
-    subServices: [
-      "Comprehensive Business and Financial Advisory.",
-      "Mergers & Acquisitions (M&A) structuring.",
-      "Financial and Tax Due Diligence.",
-      "Business and Equity Valuation.",
-      "Virtual CFO services.",
-      "Project finance and pitch deck preparation."
-    ]
-  },
-  "business-advisory": {
-    title: "Business Advisory",
-    heroHeading: "Business Strategy and Virtual CFO Services",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Growing enterprises often need the financial acumen of a Chief Financial Officer without the overhead of a full-time executive hire.",
-      "Through our Virtual CFO and Business Advisory services, Shantanu S & Associates provides high-level financial strategy, cash flow management, and MIS reporting to drive your business forward."
-    ],
-    subServicesHeading: "Our Business Advisory Services:",
-    subServices: [
-      "Implementation of robust MIS (Management Information Systems).",
-      "Cash flow forecasting and working capital management.",
-      "Budgeting and variance analysis.",
-      "Cost optimization and profitability analysis.",
-      "ERP implementation and process automation advisory.",
-      "Guidance on capital structuring and fundraising."
-    ]
-  },
-  "ma-advisory": {
-    title: "M&A Advisory",
-    heroHeading: "Mergers, Acquisitions and Restructuring",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Mergers and Acquisitions present massive growth opportunities but carry significant execution, legal, and tax risks if not structured correctly.",
-      "Shantanu S & Associates offers end-to-end M&A advisory, from identifying synergies to drafting the scheme of arrangement, ensuring a tax-efficient and legally sound transaction."
-    ],
-    subServicesHeading: "Our M&A Services include:",
-    subServices: [
-      "Buy-side and sell-side advisory.",
-      "Tax optimization of the transaction structure.",
-      "Drafting and reviewing term sheets and definitive agreements.",
-      "Advisory on slump sales and demergers.",
-      "Post-merger integration and compliance.",
-      "Liaison with NCLT and regulatory bodies."
-    ]
-  },
-  "due-diligence": {
-    title: "Due Diligence",
-    heroHeading: "Financial and Tax Due Diligence",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Before finalizing any investment, acquisition, or joint venture, thorough due diligence is vital to uncover hidden liabilities and validate financial representations.",
-      "Our specialized due diligence teams dig deep into the target's financial health, tax compliance, and legal standing, providing investors with a clear, unbiased picture of the risks involved."
-    ],
-    subServicesHeading: "Our Due Diligence Offerings:",
-    subServices: [
-      "Comprehensive Financial Due Diligence.",
-      "Thorough Direct and Indirect Tax Due Diligence.",
-      "Identification of contingent liabilities and deal-breakers.",
-      "Analysis of quality of earnings and working capital.",
-      "Review of statutory compliance health.",
-      "Preparation of detailed diligence reports for investors."
-    ]
-  },
-  "valuation-services": {
-    title: "Valuation Services",
-    heroHeading: "Business, Equity and Intangible Valuation",
-    image: "/images/corporate_registration.jpg",
-    introduction: [
-      "Accurate valuation is critical for regulatory compliance, fundraising, financial reporting, and dispute resolution. It requires a blend of technical finance skills and industry insight.",
-      "Shantanu S & Associates provides defensible, technically robust valuation reports by Registered Valuers, accepted by regulators, auditors, and tax authorities alike."
-    ],
-    subServicesHeading: "Our Valuation Services:",
-    subServices: [
-      "Equity valuation for startup fundraising and angel investments.",
-      "Regulatory valuations under Income Tax (Rule 11UA) and FEMA.",
-      "Valuation of Intangible Assets (Trademarks, Goodwill).",
-      "Purchase Price Allocation (PPA) for financial reporting.",
-      "ESOP valuation and structuring.",
-      "Business valuation for M&A and restructuring."
-    ]
-  },
-  "strategic-planning": {
-    title: "Strategic Planning",
-    heroHeading: "Project Reports and Financial Modeling",
-    image: "/images/audit_advisory.jpg",
-    introduction: [
-      "Securing bank loans, government grants, or PE funding requires a compelling narrative backed by mathematically sound financial projections.",
-      "At Shantanu S & Associates, we craft detailed project reports and dynamic financial models that demonstrate the viability of your vision to lenders and investors."
-    ],
-    subServicesHeading: "Our Strategic Planning Services:",
-    subServices: [
-      "Preparation of Detailed Project Reports (DPR) for bank loans.",
-      "Creation of dynamic, scenario-based financial models.",
-      "Preparation of pitch decks for venture capital funding.",
-      "Feasibility studies for new projects and expansions.",
-      "Advisory on government subsidies and incentive schemes.",
-      "CMA data preparation for working capital limits."
-    ]
-  },
-  "business-registration": {
-    title: "Business Registration",
-    heroHeading: "End-to-End Business Registration Services",
-    image: "/images/finance_taxation.jpg",
-    introduction: [
-      "Starting a business in India requires navigating a maze of registrations spanning tax, labor, and municipal laws. Missing a critical registration can stall your operations.",
-      "Shantanu S & Associates acts as a single-window solution for entrepreneurs, handling all foundational registrations so you can commence operations rapidly and legally."
-    ],
-    subServicesHeading: "Our Business Setup Services include:",
-    subServices: [
-      "Entity structuring and incorporation.",
-      "Obtaining PAN, TAN, and GST Registration.",
-      "Applying for MSME Udyam and Shop Act registrations.",
-      "Securing PF, ESIC, and Professional Tax registrations.",
-      "Import Export Code (IEC) application.",
-      "Food license (FSSAI) and specific regulatory permits."
-    ]
-  }
-};
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
+  const service = SERVICES[params.slug];
+  if (!service) return { title: "Service Not Found" };
+  return {
+    title: `${service.title} | Shantanu S & Associates`,
+    description: service.introduction[0] || `${service.title} services by Shantanu S & Associates, Chartered Accountants in Bangalore.`,
+  };
+}
 
 export default async function ServicePage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
@@ -1075,11 +30,11 @@ export default async function ServicePage(props: { params: Promise<{ slug: strin
   }
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative bg-[#032b4e] text-white py-20 overflow-hidden">
+      <section className="relative bg-[#0B1425] text-white py-16 md:py-20 overflow-hidden border-b border-[#15233A]">
         <div className="absolute inset-0 z-0 opacity-20">
           <Image
             src={service.image}
@@ -1091,86 +46,120 @@ export default async function ServicePage(props: { params: Promise<{ slug: strin
           />
         </div>
         <div className="relative z-10 container mx-auto px-4 max-w-6xl">
-          <div className="text-sm text-slate-300 mb-4 flex items-center space-x-2">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-blue-400 font-medium">{service.title}</span>
+          <div className="text-xs text-slate-300 mb-4 flex items-center space-x-2 font-medium">
+            <Link href="/" className="hover:text-blue-400 transition-colors">Home</Link>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
+            <Link href="/#services" className="hover:text-blue-400 transition-colors">Services</Link>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
+            <span className="text-blue-400 font-semibold">{service.title}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight max-w-3xl">
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight max-w-4xl tracking-tight text-white">
             {service.heroHeading}
           </h1>
+          <p className="mt-3 text-slate-300 text-sm md:text-base font-medium flex items-center gap-2">
+            <ShieldCheck className="h-4 w-4 text-blue-400" />
+            <span>Chartered Accountants • Shantanu S &amp; Associates</span>
+          </p>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="py-16">
+      <section className="py-14 flex-1">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
             {/* Left side text */}
-            <div>
-              <h2 className="text-3xl font-bold text-slate-800 mb-6">Overview</h2>
-              <div className="space-y-6 text-lg text-slate-600">
-                {service.introduction.map((paragraph, idx) => (
-                  <p key={idx} className="leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
+            <div className="lg:col-span-7 xl:col-span-8 space-y-8">
+              <div className="bg-white p-7 md:p-9 rounded-2xl shadow-sm border border-slate-200/90">
+                <h2 className="text-2xl font-bold text-slate-900 mb-5 flex items-center gap-2">
+                  <span>Practice Overview</span>
+                </h2>
+                <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed">
+                  {service.introduction.map((paragraph, idx) => (
+                    <p key={idx}>
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
 
-              <div className="mt-12 bg-white p-8 rounded-xl shadow-sm border border-slate-100">
-                <h3 className="text-2xl font-bold text-slate-800 mb-6">{service.subServicesHeading}</h3>
-                <ul className="space-y-4">
+              {/* Offerings and Scope */}
+              <div className="bg-white p-7 md:p-9 rounded-2xl shadow-sm border border-slate-200/90">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-6">
+                  {service.subServicesHeading}
+                </h3>
+                <ul className="space-y-3.5">
                   {service.subServices.map((item, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold mr-4 mt-0.5">
+                    <li key={idx} className="flex items-start gap-3.5 group">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-50 text-blue-700 border border-blue-200 flex items-center justify-center font-bold text-xs mt-0.5">
                         {idx + 1}
                       </span>
-                      <span className="text-slate-600 text-lg leading-tight pt-1">
+                      <span className="text-slate-700 text-[14.5px] leading-snug">
                         {item}
                       </span>
                     </li>
                   ))}
                 </ul>
               </div>
+
+              {/* Statutory Assurance Commitment */}
+              <div className="bg-blue-50/70 border border-blue-100 rounded-xl p-6 flex items-start gap-4">
+                <CheckCircle2 className="h-6 w-6 text-blue-700 shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-sm font-bold text-blue-900 mb-1">
+                    Compliance &amp; Execution Guarantee
+                  </h4>
+                  <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
+                    All engagements are executed under the direct supervision of senior Chartered Accountants adhering to ICAI guidelines, applicable accounting standards, and statutory deadlines.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Right side image */}
-            <div className="sticky top-24">
-              <div className="rounded-2xl overflow-hidden shadow-xl relative aspect-video w-full">
+            {/* Right side card */}
+            <div className="lg:col-span-5 xl:col-span-4 sticky top-24 space-y-6">
+              <div className="rounded-2xl overflow-hidden shadow-md border border-slate-200 relative aspect-video w-full bg-slate-900">
                 <Image 
                   src={service.image} 
                   alt={service.title}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover"
                   loading="lazy"
                 />
               </div>
               
-              {/* CTA Box */}
-              <div className="mt-8 bg-[#032b4e] rounded-2xl p-8 text-center text-white shadow-xl">
-                <h3 className="text-2xl font-bold mb-4">Looking for {service.title} in Bangalore?</h3>
-                <p className="text-slate-300 mb-8">
-                  Get in touch with Shantanu S & Associates today for expert, timely, and professional assistance.
+              {/* CTA Consultation Card */}
+              <div className="bg-[#0B1425] rounded-2xl p-7 text-center text-white shadow-lg border border-[#162744]">
+                <div className="inline-block bg-blue-500/10 text-blue-400 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+                  Consulting Desk
+                </div>
+                <h3 className="text-xl font-extrabold mb-3 text-white">
+                  Need Assistance with {service.title}?
+                </h3>
+                <p className="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
+                  Connect with our Chartered Accountants at Shantanu S &amp; Associates for timely, professional, and compliant advisory.
                 </p>
-                <Link href="/#contact">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg h-14 rounded-xl transition-all">
-                    Contact Us Today
-                  </Button>
-                </Link>
+                <div className="space-y-3">
+                  <Link href="/#contact" className="block w-full">
+                    <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm h-12 rounded-xl transition-all shadow-sm">
+                      Enquire Now
+                    </Button>
+                  </Link>
+                  <Link href="/contact" className="block w-full">
+                    <Button variant="outline" className="w-full border-slate-600 text-slate-200 hover:bg-slate-800 hover:text-white font-semibold text-xs h-10 rounded-xl">
+                      Contact Office
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Footer (Simple) */}
-      <footer className="bg-slate-900 text-slate-400 py-8 text-center border-t border-slate-800">
-        <p>© {new Date().getFullYear()} Shantanu S & Associates. All Rights Reserved.</p>
-      </footer>
+      <Footer />
     </main>
   );
 }
-
-

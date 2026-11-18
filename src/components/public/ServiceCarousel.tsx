@@ -15,40 +15,52 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: "Audit And Assurance",
+    title: "Audit & Assurance",
     slug: "audit-and-assurance",
     img: "/images/img_a9188b67db.jpg",
-    desc: "Delivering rigorous, independent analysis of your financial health and internal frameworks. We empower organizations to ensure absolute transparency, exceed statutory benchmarks, and cultivate enduring trust among stakeholders and investors.",
+    desc: "Rigorous statutory audits, internal risk reviews, tax audits, and special purpose assurance aligned with ICAI Standards on Auditing to ensure complete financial integrity.",
   },
   {
-    title: "Consultancy",
-    slug: "consultancy",
+    title: "Accounting & Financial Services",
+    slug: "accounting-financial-services",
     img: "/images/img_c1d747b9ff.jpg",
-    desc: "Bespoke strategic guidance designed to accelerate enterprise scaling and operational agility. Our seasoned consultants partner with your leadership to map new growth avenues, neutralize market risks, and execute high-yield business transformations.",
+    desc: "End-to-end accounting, bookkeeping, MIS financial reporting, and complex ledger reconstruction to give your leadership clear financial clarity.",
   },
   {
-    title: "NRI Tax And Allied Services",
-    slug: "nri-tax-services",
-    img: "/images/img_9a0700b554.jpg",
-    desc: "Decoding the complexities of international tax landscapes. We provide specialized support for Non-Resident Indians, seamlessly managing cross-border income tax filings, leveraging DTAA frameworks, handling FEMA regulations, and facilitating smooth fund repatriation.",
-  },
-  {
-    title: "Corporate Laws",
-    slug: "corporate-laws",
-    img: "/images/img_7af04dbf3d.jpg",
-    desc: "Navigate the shifting terrain of corporate regulations with confidence. We provide comprehensive legal support spanning board governance protocols, meticulous annual filings, proactive statutory compliances, and seamless regulatory clearances under the Companies Act.",
-  },
-  {
-    title: "Taxation Services",
-    slug: "taxation-services",
+    title: "Direct Taxation",
+    slug: "direct-taxation",
     img: "/images/img_9cb98489ef.jpg",
-    desc: "A holistic approach to direct and indirect tax management. From strategic income tax and GST planning to accurate return filings, representation in assessments, and dispute resolution, we fortify your compliance while maximizing tax efficiency.",
+    desc: "Comprehensive corporate and individual income tax compliance, strategic tax planning, assessment management, and high-level litigation before appellate tribunals.",
   },
   {
-    title: "Business Registration",
-    slug: "business-registration",
+    title: "Goods & Services Tax",
+    slug: "goods-and-services-tax",
+    img: "/images/img_9cb98489ef.jpg",
+    desc: "Complete GST return filing, input tax credit reconciliation under GSTR-2B, departmental notice resolution, refund processing, and appeals.",
+  },
+  {
+    title: "AML & KYC Services",
+    slug: "aml-kyc-services",
     img: "/images/img_30da68060b.jpg",
-    desc: "Transform your visionary ideas into legal entities with zero friction. We oversee the entire lifecycle of business formation—from private limited incorporations and LLP setups to crucial GST and local authority registrations—getting you market-ready instantly.",
+    desc: "Institutional customer due diligence, AML risk assessment, continuous transaction monitoring, and PEP screening in compliance with statutory frameworks.",
+  },
+  {
+    title: "Forensic Accounting Services",
+    slug: "forensic-accounting-services",
+    img: "/images/img_a9188b67db.jpg",
+    desc: "Specialized fraud investigations, deep forensic audits, asset tracing, fraud risk mitigation, and expert financial witness litigation support.",
+  },
+  {
+    title: "Business Setup & Corporate Services",
+    slug: "business-setup-corporate-services",
+    img: "/images/img_7af04dbf3d.jpg",
+    desc: "Seamless company incorporation, LLP setup, startup structuring, entity registrations, and ongoing MCA annual filings for burgeoning enterprises.",
+  },
+  {
+    title: "Regulatory & Compliance Services",
+    slug: "regulatory-compliance-services",
+    img: "/images/img_9a0700b554.jpg",
+    desc: "Holistic statutory compliance architecture, corporate governance advisory, MCA regulatory filings, and proactive risk management for enterprises.",
   },
 ];
 

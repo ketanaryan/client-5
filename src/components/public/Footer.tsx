@@ -50,7 +50,6 @@ export function Footer() {
                 { name: 'About', href: '/about' }, 
                 { name: 'Services', href: '/#services' }, 
                 { name: 'News & Resources', href: '/news-and-resources' }, 
-                { name: 'Blogs', href: '/blogs' }, 
                 { name: 'Contact Us', href: '/contact' }
               ].map(l => (
                 <li key={l.name}>
