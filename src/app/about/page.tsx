@@ -43,7 +43,7 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-slate-700 text-[16px] leading-[1.8] text-justify">
             <p>
-              <strong className="text-slate-900 font-semibold">Shantanu & Associates</strong> is a leading Chartered Accountancy practice in Bangalore, structured to seamlessly serve domestic enterprises and global corporations. We deliver an expansive portfolio of specialized services encompassing direct and indirect taxation, stringent regulatory compliance, advanced corporate governance, and complex cross-border financial advisory. Driven by a vision to be the most trusted financial partner in the region, our collective of elite Chartered Accountants, skilled Company Secretaries, and legal authorities leverages robust digital infrastructure to provide comprehensive, full-cycle statutory support for scaling businesses.
+              <strong className="text-slate-900 font-semibold">Shantanu & Associates</strong> is a professionally managed Chartered Accountancy practice in Bangalore, structured to seamlessly serve domestic enterprises and global corporations. We deliver an expansive portfolio of specialized services encompassing direct and indirect taxation, stringent regulatory compliance, advanced corporate governance, and complex cross-border financial advisory. Driven by a commitment to integrity and client diligence, our collective of Chartered Accountants, Company Secretaries, and legal authorities leverages robust digital infrastructure to provide comprehensive, full-cycle statutory support for scaling businesses.
             </p>
             <p>
               By dedicating ourselves to fundamentally understanding the nuances of your specific industry and operational blueprint, our expert advisors engineer strategies that are not only compliant but strategically advantageous. Drawing upon extensive domain mastery across statutory audits, advanced tax planning, and strategic business consulting, we deliver actionable, high-impact outcomes. Our fundamental mission is to liberate business owners from administrative and regulatory burdens, empowering them to drive expansion and innovation while we ensure financial integrity and compliance with absolute precision.
@@ -92,7 +92,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-2xl font-bold text-white tracking-wide">Our Vision</h3>
             <p className="text-slate-300 text-[15px] leading-relaxed text-justify">
-              To be recognized as a premier Chartered Accountancy firm delivering unmatched trust, compliance excellence, and sustainable financial growth for enterprises across India and global markets through uncompromising ethical benchmarks and technological innovation.
+              To deliver unmatched trust, compliance excellence, and sustainable financial growth for enterprises across India and global markets through uncompromising ethical benchmarks and technological innovation.
             </p>
           </div>
 

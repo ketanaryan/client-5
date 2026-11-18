@@ -8,7 +8,7 @@ import { submitEnquiry } from "./actions/enquiry"
 import { 
   Building2, Calculator, Landmark, ArrowRight, ShieldCheck, TrendingUp, 
   Target, ThumbsUp, Handshake, Clock, FileText,
-  Phone, Mail, CheckCircle2, Award, Sparkles, Check
+  Phone, Mail, CheckCircle2, Award, Check
 } from "lucide-react"
 import { Navbar } from "@/components/public/Navbar"
 import ServiceCarousel from "@/components/public/ServiceCarousel"
@@ -33,109 +33,162 @@ export default function LandingPage() {
       <Navbar />
 
       <main className="flex-1">
-        {/* 1. HERO SECTION - Single Sharp Static Hero (No slider) */}
-        <section className="relative w-full bg-[#032b4e] py-20 md:py-28 px-6 lg:px-12 text-white overflow-hidden border-b border-blue-950">
-          {/* Subtle background glow and geometric grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(#1e40af_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none" />
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
+        {/* 1. HERO SECTION - Clean, Modern, Airy & Sharp */}
+        <section className="relative w-full bg-gradient-to-b from-slate-50/80 via-white to-white py-16 md:py-24 px-6 lg:px-12 border-b border-slate-200/80 overflow-hidden">
+          {/* Subtle modern background grid */}
+          <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
 
-          <div className="max-w-[1200px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/20 text-blue-200 text-xs sm:text-[13px] font-semibold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+          <div className="max-w-[1200px] mx-auto relative z-10">
+            <div className="max-w-3xl space-y-6">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs sm:text-[13px] font-semibold tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-blue-600 inline-block"></span>
                 Chartered Accountants &bull; Bengaluru &amp; Pan-India Advisory
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-                Precision Financial Architecture &amp; Strategic Compliance
+              {/* Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight text-[#032b4e] leading-[1.14]">
+                Financial Precision, Tax Advisory &amp; Regulatory Assurance
               </h1>
 
-              <p className="text-slate-300 text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-2xl font-normal">
-                Delivering high-value statutory audit, taxation, business structuring, and corporate regulatory advisory for emerging businesses, established enterprises, and global investors.
+              {/* Subtitle */}
+              <p className="text-slate-600 text-base sm:text-lg lg:text-[18px] leading-relaxed font-normal max-w-2xl">
+                Providing structured statutory audits, direct &amp; indirect taxation, company formation, and regulatory advisory for emerging businesses, established enterprises, and business families.
               </p>
 
-              <div className="pt-2 flex flex-wrap items-center gap-4">
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center gap-3">
                 <Link href="#contact">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 h-12 text-[15px] rounded shadow-md transition-all">
+                  <Button className="bg-[#032b4e] hover:bg-[#021f38] text-white font-bold px-7 h-11 text-sm rounded shadow-sm transition-all">
                     Enquire Now <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
 
                 <Link href="#services">
-                  <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:text-white font-semibold px-6 h-12 text-[15px] rounded backdrop-blur-sm transition-all">
+                  <Button variant="outline" className="border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-blue-700 font-bold px-6 h-11 text-sm rounded shadow-sm transition-all">
                     Our Services
                   </Button>
                 </Link>
 
                 <Link href="/login">
-                  <Button variant="outline" className="border-blue-400/30 text-blue-200 hover:bg-blue-900/40 hover:text-white font-semibold px-6 h-12 text-[15px] rounded transition-all">
-                    Client Portal
+                  <Button variant="ghost" className="text-blue-700 hover:text-blue-900 hover:bg-blue-50/60 font-bold px-4 h-11 text-sm rounded transition-all">
+                    Client Portal &rarr;
                   </Button>
                 </Link>
               </div>
+            </div>
 
-              {/* Trust Badges */}
-              <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-xs sm:text-sm text-slate-300">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
-                  <span className="font-medium">Direct &amp; Indirect Tax</span>
+            {/* 4 Practice Pillars Strip - Modern, Clean & Sharp */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14 pt-10 border-t border-slate-200/80">
+              <div className="bg-white p-5 rounded-lg border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
+                <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-sm mb-3">
+                  01
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
-                  <span className="font-medium">Statutory &amp; Internal Audit</span>
+                <h3 className="font-bold text-[#032b4e] text-[15px] mb-1">Direct Taxation</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">
+                  ITR filings, advance tax planning, TDS compliances, and scrutiny representation.
+                </p>
+              </div>
+
+              <div className="bg-white p-5 rounded-lg border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
+                <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-sm mb-3">
+                  02
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
-                  <span className="font-medium">ROC &amp; Corporate Laws</span>
+                <h3 className="font-bold text-[#032b4e] text-[15px] mb-1">Indirect Tax (GST)</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">
+                  GST registration, monthly returns, 2B reconciliations, and audit support.
+                </p>
+              </div>
+
+              <div className="bg-white p-5 rounded-lg border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
+                <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-sm mb-3">
+                  03
                 </div>
+                <h3 className="font-bold text-[#032b4e] text-[15px] mb-1">Audit &amp; Assurance</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">
+                  Statutory audit, internal financial controls, tax audit under 44AB, and bank reviews.
+                </p>
+              </div>
+
+              <div className="bg-white p-5 rounded-lg border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
+                <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-sm mb-3">
+                  04
+                </div>
+                <h3 className="font-bold text-[#032b4e] text-[15px] mb-1">Corporate &amp; ROC</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">
+                  Company formation, LLP incorporation, annual returns, and secretarial compliance.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. ABOUT US - Clean, Sharp Modern Presentation */}
+        <section id="about" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-white">
+          <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-16 items-center">
+            <div className="flex-1 space-y-6">
+              <div className="text-blue-700 font-bold uppercase tracking-widest text-xs">PRACTICE OVERVIEW</div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] leading-tight tracking-tight">
+                About Us <span className="block text-xl md:text-2xl text-blue-700 mt-1.5 font-semibold">Chartered Accountants in Bangalore</span>
+              </h2>
+              <p className="text-slate-600 leading-[1.8] text-[15px] sm:text-[16px]">
+                Shantanu &amp; Associates is a professionally managed Chartered Accountancy practice based in Bangalore. We specialize in providing comprehensive financial, taxation, and regulatory solutions for both domestic and international enterprises. Our dynamic team comprises seasoned Chartered Accountants, Company Secretaries, and experienced business consultants.
+              </p>
+              <p className="text-slate-600 leading-[1.8] text-[15px] sm:text-[16px]">
+                By investing time to understand your unique business landscape, our team ensures the delivery of compliant, consistent, and structured solutions across statutory audit, direct and indirect taxation, and corporate secretarial compliances.
+              </p>
+              <div className="pt-2">
+                <Link href="/about">
+                  <Button className="bg-[#032b4e] hover:bg-blue-900 text-white rounded px-7 h-11 shadow-sm font-bold text-sm">
+                    Read More About Firm <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
               </div>
             </div>
 
-            {/* Right Card - Sharp Practice Profile Box */}
-            <div className="lg:col-span-5">
-              <div className="bg-white/5 backdrop-blur-md border border-white/15 rounded-xl p-8 shadow-2xl relative">
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-                  <div>
-                    <h3 className="text-xl font-bold text-white tracking-tight">Shantanu &amp; Associates</h3>
-                    <p className="text-xs text-blue-300 font-medium mt-0.5">Chartered Accountants &bull; Practice Desk</p>
+            {/* Right Card: Clean Executive Practice Card */}
+            <div className="w-full lg:w-[440px] shrink-0">
+              <div className="bg-white rounded-lg p-8 shadow-sm border border-slate-200/90 relative overflow-hidden">
+                <div className="w-full h-1 bg-blue-600 absolute top-0 left-0" />
+                
+                <div className="flex items-center justify-between pb-5 border-b border-slate-100 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-extrabold text-lg flex items-center justify-center">
+                      CA
+                    </div>
+                    <div>
+                      <h4 className="font-extrabold text-[#032b4e] text-base leading-tight">CA Shantanu</h4>
+                      <p className="text-[11px] text-slate-500 font-medium">Founder &amp; Managing Partner</p>
+                    </div>
                   </div>
-                  <div className="w-10 h-10 rounded-lg bg-blue-600/30 border border-blue-400/30 flex items-center justify-center text-white font-bold text-sm">
-                    CA
+                  <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded">
+                    ICAI Registered
+                  </span>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="text-xs text-slate-600 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                    <span>B.Com, FCA, DISA (ICAI)</span>
+                  </div>
+                  <div className="text-xs text-slate-600 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                    <span>Statutory Audits &amp; Internal Controls</span>
+                  </div>
+                  <div className="text-xs text-slate-600 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                    <span>Direct &amp; Indirect Tax Advisory</span>
+                  </div>
+                  <div className="text-xs text-slate-600 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                    <span>Corporate Formation &amp; ROC Filings</span>
                   </div>
                 </div>
 
-                <div className="space-y-4 text-sm text-slate-200">
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
-                    <ShieldCheck className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
-                    <div>
-                      <strong className="text-white block text-[13.5px]">End-to-End Compliance</strong>
-                      <span className="text-xs text-slate-300">GST, Income Tax, TDS, ROC, and Secretarial Filings under one unified roof.</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
-                    <TrendingUp className="w-5 h-5 text-blue-400 mt-0.5 shrink-0" />
-                    <div>
-                      <strong className="text-white block text-[13.5px]">Strategic Enterprise Growth</strong>
-                      <span className="text-xs text-slate-300">Structuring Pvt Ltd, LLP, JV agreements, and cross-border tax efficiencies.</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
-                    <Award className="w-5 h-5 text-amber-400 mt-0.5 shrink-0" />
-                    <div>
-                      <strong className="text-white block text-[13.5px]">Led by CA Shantanu</strong>
-                      <span className="text-xs text-slate-300">Partner-led advisory ensuring senior attention on every audit and compliance matter.</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
-                  <span>Fast consultation scheduling</span>
-                  <Link href="#contact" className="text-blue-300 font-bold hover:text-white flex items-center gap-1">
-                    Book Call <ArrowRight className="w-3.5 h-3.5" />
+                <div className="pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                  <span>Bengaluru Practice Office</span>
+                  <Link href="/about#team" className="font-bold text-blue-700 hover:text-blue-900">
+                    View Profile &rarr;
                   </Link>
                 </div>
               </div>
@@ -143,77 +196,10 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* 2. ABOUT US - Sharp Clean Presentation */}
-        <section id="about" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-white">
-          <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-16 items-center">
-            <div className="flex-1 space-y-6">
-              <div className="text-blue-700 font-bold uppercase tracking-widest text-xs">PRACTICE PROFILE</div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#032b4e] leading-tight tracking-tight">
-                About Us <span className="block text-xl md:text-2xl text-blue-700 mt-2 font-semibold">Chartered Accountants in Bangalore</span>
-              </h2>
-              <p className="text-slate-600 leading-[1.8] text-[15px] sm:text-[16px]">
-                Shantanu &amp; Associates is a premier, professionally managed Chartered Accountancy firm based in Bangalore. We specialize in providing comprehensive financial, taxation, and regulatory solutions for both domestic and international enterprises. Our dynamic team comprises seasoned Chartered Accountants, Company Secretaries, and experienced business consultants. Supported by state-of-the-art infrastructure, we deliver end-to-end advisory and compliance services designed to drive your business forward.
-              </p>
-              <p className="text-slate-600 leading-[1.8] text-[15px] sm:text-[16px]">
-                By investing time to deeply understand your unique business landscape, our experts ensure the delivery of high-value, consistent, and efficient solutions. Drawing from our profound expertise in audit, direct and indirect taxation, and corporate compliances, we align our strategies with your financial objectives.
-              </p>
-              <div className="pt-2">
-                <Link href="/about">
-                  <Button className="bg-[#032b4e] hover:bg-blue-900 text-white rounded px-8 h-12 shadow-sm font-bold text-sm">
-                    Read More About Firm <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Card: Executive "Shantanu" Profile Card (Replaces generic stock photo) */}
-            <div className="w-full lg:w-[460px] shrink-0">
-              <div className="bg-gradient-to-br from-[#032b4e] via-[#093d6b] to-[#021f38] text-white rounded-xl p-8 sm:p-10 shadow-xl border border-blue-900 flex flex-col justify-between relative overflow-hidden">
-                <div className="absolute -top-16 -right-16 w-48 h-48 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
-                
-                <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                  <div className="w-12 h-12 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center font-extrabold text-xl text-white">
-                    CA
-                  </div>
-                  <span className="text-xs font-bold tracking-widest text-blue-200 uppercase">
-                    Managing Partner
-                  </span>
-                </div>
-
-                <div className="py-8 space-y-2">
-                  <span className="text-xs uppercase tracking-widest text-blue-300 font-semibold block">
-                    FOUNDER &amp; FIRM LEAD
-                  </span>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase">
-                    Shantanu
-                  </h3>
-                  <p className="text-blue-100 text-sm font-medium">
-                    B.Com, FCA, DISA (ICAI) &bull; Chartered Accountant
-                  </p>
-                  <p className="text-slate-300 text-xs leading-relaxed pt-3">
-                    Providing strategic clarity, regulatory audits, and proactive tax architecture for high-growth enterprises and business families.
-                  </p>
-                </div>
-
-                <div className="pt-6 border-t border-white/10 grid grid-cols-2 gap-4 text-center">
-                  <div className="p-3 rounded bg-white/5 border border-white/10">
-                    <span className="text-xl font-bold text-white block">15+</span>
-                    <span className="text-[11px] text-slate-300">Years Domain Mastery</span>
-                  </div>
-                  <div className="p-3 rounded bg-white/5 border border-white/10">
-                    <span className="text-xl font-bold text-white block">500+</span>
-                    <span className="text-[11px] text-slate-300">Enterprises Advised</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* 3A. CA SERVICES WE OFFER - CAROUSEL */}
-        <section id="services" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
+        <section id="services" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-slate-50/60 border-t border-slate-200">
           <div className="max-w-[1200px] mx-auto mb-12 text-center md:text-left">
-            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">OUR EXPERTISE</div>
+            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">PRACTICE DOMAINS</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] tracking-tight">CA Services We Offer</h2>
           </div>
           <ServiceCarousel />
@@ -222,7 +208,7 @@ export default function LandingPage() {
         {/* 3B. BUSINESS REGISTRATION */}
         <section className="w-full py-16 px-6 lg:px-12 bg-white">
           <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
-            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">ESSENTIAL COMPLIANCE</div>
+            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">FOUNDATIONAL COMPLIANCE</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] tracking-tight">Business Registration Services</h2>
           </div>
           <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-5">
@@ -260,7 +246,7 @@ export default function LandingPage() {
         <section className="w-full pt-12 pb-20 px-6 lg:px-12 bg-white">
           <div className="max-w-[1200px] mx-auto mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="text-center md:text-left">
-              <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">START YOUR ENTERPRISE</div>
+              <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">BUSINESS ENTITIES</div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] tracking-tight mb-2">Company Formation</h2>
               <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-xl">
                 Incorporate your business with a solid legal foundation. We handle name approval, digital signatures, MOA/AOA drafting, and MCA filing end-to-end.
@@ -308,10 +294,10 @@ export default function LandingPage() {
         {/* 4. CORE VALUES */}
         <section className="w-full py-16 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
           <div className="max-w-[1200px] mx-auto text-center mb-12">
-            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">OUR PROFESSIONAL CODE</div>
+            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">ETHICAL BENCHMARKS</div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] mb-4 tracking-tight">Our Core Values</h2>
             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-              Built on transparency, ethical independence, and strict adherence to ICAI standards. Every engagement is executed with confidentiality and fiduciary responsibility.
+              Built on transparency, professional independence, and strict adherence to ICAI standards. Every engagement is executed with confidentiality and fiduciary responsibility.
             </p>
           </div>
           
@@ -348,7 +334,7 @@ export default function LandingPage() {
               </h2>
 
               <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-                Whether you need advice on company incorporation, GST compliance, or comprehensive statutory audit, our advisory desk is ready to assist.
+                Whether you need advice on company incorporation, GST compliance, or statutory audits, our advisory desk is ready to assist.
               </p>
 
               <div className="pt-2 space-y-3">
