@@ -122,11 +122,11 @@ export function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden xl:flex items-center h-full">
-          <Link className="text-[13.5px] font-bold text-[#0f172a] px-3.5 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/">
+          <Link className="text-[14px] font-medium text-slate-700 px-3.5 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/">
             Home
           </Link>
 
-          <Link className="text-[13.5px] font-bold text-[#0f172a] px-3.5 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/about">
+          <Link className="text-[14px] font-medium text-slate-700 px-3.5 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/about">
             About
           </Link>
 
@@ -136,57 +136,66 @@ export function Navbar() {
             onMouseEnter={() => setShowDropdown(true)}
             onMouseLeave={() => { setShowDropdown(false); setActiveCategory(0); }}
           >
-            <button className="text-[13.5px] font-bold text-[#0f172a] px-3.5 h-full flex items-center gap-1 border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors">
-              Services <ChevronDown className="h-3.5 w-3.5" />
+            <button className="text-[14px] font-medium text-slate-700 px-3.5 h-full flex items-center gap-1.5 border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors">
+              <span>Services</span>
+              <ChevronDown className="h-3.5 w-3.5 text-slate-400 group-hover:text-blue-600 transition-transform" />
             </button>
             
             {showDropdown && (
-              <div className="absolute top-full left-0 bg-white shadow-[0_12px_40px_rgb(0,0,0,0.15)] border border-slate-200 flex rounded-b-xl overflow-hidden min-w-[720px]">
+              <div className="absolute top-full left-0 bg-white shadow-[0_12px_40px_rgb(0,0,0,0.12)] border border-slate-200/90 flex rounded-b-xl overflow-hidden min-w-[740px]">
                 {/* Left Column - Categories */}
-                <div className="w-[280px] bg-slate-50/70 border-r border-slate-100 py-2">
+                <div className="w-[290px] bg-slate-50/80 border-r border-slate-100 py-2.5">
                   {SERVICE_CATEGORIES.map((cat, idx) => (
                     <Link
                       key={cat.name}
                       href={cat.href}
-                      className={`flex items-center justify-between px-4 py-2.5 text-[13.5px] font-medium transition-colors ${
+                      className={`flex items-center justify-between px-4 py-2.5 text-[13.5px] transition-colors ${
                         activeCategory === idx 
-                          ? "bg-blue-600 text-white font-semibold shadow-sm" 
-                          : "text-slate-700 hover:bg-blue-50 hover:text-blue-700"
+                          ? "bg-blue-600 text-white font-semibold shadow-xs" 
+                          : "text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-700"
                       }`}
                       onMouseEnter={() => setActiveCategory(idx)}
                     >
-                      {cat.name}
-                      <ChevronRight className="h-4 w-4 opacity-60" />
+                      <span>{cat.name}</span>
+                      <ChevronRight className={`h-3.5 w-3.5 ${activeCategory === idx ? "text-white" : "text-slate-400"}`} />
                     </Link>
                   ))}
                 </div>
                 
                 {/* Right Column - Sub Items */}
-                <div className="flex-1 bg-white py-3 px-3">
-                  <div className="px-3 pb-2 mb-2 border-b border-slate-100">
-                    <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                <div className="flex-1 bg-white py-3 px-4">
+                  <div className="px-3 pb-2.5 mb-2 border-b border-slate-100 flex items-center justify-between">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-blue-700">
                       {SERVICE_CATEGORIES[activeCategory]?.name}
                     </span>
-                  </div>
-                  {SERVICE_CATEGORIES[activeCategory]?.subItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="block px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
+                    <Link 
+                      href={SERVICE_CATEGORIES[activeCategory]?.href || "#"} 
+                      className="text-xs text-slate-500 hover:text-blue-600 font-medium flex items-center gap-1 transition-colors"
                     >
-                      {item.name}
+                      Overview &rarr;
                     </Link>
-                  ))}
+                  </div>
+                  <div className="grid grid-cols-1 gap-1">
+                    {SERVICE_CATEGORIES[activeCategory]?.subItems.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="block px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-blue-700 hover:bg-blue-50/80 rounded-lg transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
           </div>
 
-          <Link className="text-[13.5px] font-bold text-[#0f172a] px-3.5 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/news-and-resources">
+          <Link className="text-[14px] font-medium text-slate-700 px-3.5 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/news-and-resources">
             News &amp; Resources
           </Link>
 
-          <Link className="text-[13.5px] font-bold text-[#0f172a] px-3.5 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/contact">
+          <Link className="text-[14px] font-medium text-slate-700 px-3.5 h-full flex items-center border-b-2 border-transparent hover:border-blue-600 hover:text-blue-700 transition-colors" href="/contact">
             Contact Us
           </Link>
 
@@ -194,13 +203,13 @@ export function Navbar() {
 
           <div className="flex items-center gap-2.5">
             <Link href="/#contact">
-              <Button variant="outline" className="border border-blue-600 text-blue-700 hover:bg-blue-50 font-bold rounded-lg px-4 h-9 shadow-xs text-xs transition-colors">
+              <Button variant="outline" className="border border-blue-600 text-blue-700 hover:bg-blue-50 font-semibold rounded-lg px-4 h-9 shadow-xs text-xs transition-colors">
                 Enquire Now
               </Button>
             </Link>
 
             <Link href="/login">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-5 h-9 shadow-xs text-xs font-bold transition-colors">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-5 h-9 shadow-xs text-xs font-semibold transition-colors">
                 Login
               </Button>
             </Link>
