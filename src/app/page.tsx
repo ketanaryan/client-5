@@ -81,7 +81,7 @@ export default function LandingPage() {
 
       <main className="flex-1">
         {/* 1. HERO SECTION */}
-        <section className="relative w-full h-[88vh] min-h-[620px] max-h-[820px] flex items-center justify-center bg-[#070e1c] overflow-hidden">
+        <section className="relative w-full min-h-[580px] lg:min-h-[640px] flex items-center justify-center bg-[#070e1c] overflow-hidden py-16 sm:py-20">
           {HERO_SLIDES.map((slide, idx) => (
             <div 
               key={idx} 
@@ -121,9 +121,9 @@ export default function LandingPage() {
                     </Button>
                   </Link>
                   <Link href={slide.secondaryLink}>
-                    <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 font-semibold px-7 h-12 text-sm rounded-lg backdrop-blur-xs transition-all">
+                    <button className="h-12 px-7 rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm backdrop-blur-sm transition-all shadow-xs flex items-center justify-center">
                       {slide.secondaryText}
-                    </Button>
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export default function LandingPage() {
           ))}
           
           {/* Carousel Indicators */}
-          <div className="absolute bottom-16 sm:bottom-20 left-0 right-0 flex justify-center gap-2.5 z-20">
+          <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 flex justify-center gap-2.5 z-20">
             {HERO_SLIDES.map((_, idx) => (
               <button
                 key={idx}
@@ -148,8 +148,8 @@ export default function LandingPage() {
         </section>
 
         {/* 2. 3-PILLAR INSTITUTIONAL TRUST STRIP */}
-        <section className="relative z-20 -mt-10 sm:-mt-12 max-w-[1200px] mx-auto px-6 lg:px-12">
-          <div className="bg-white rounded-2xl shadow-[0_12px_36px_rgb(0,0,0,0.08)] border border-slate-200/90 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100 p-2 sm:p-3">
+        <section className="w-full bg-slate-50 border-b border-slate-200/80 py-10 px-6 lg:px-12">
+          <div className="max-w-[1200px] mx-auto bg-white rounded-xl shadow-xs border border-slate-200 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100 p-2 sm:p-3">
             <div className="p-5 sm:p-6 flex items-start gap-4">
               <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-blue-700">
                 <ShieldCheck className="w-5 h-5" />
