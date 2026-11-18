@@ -8,14 +8,13 @@ export function Footer() {
         
         <div className="space-y-6 pr-4">
           <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">ABOUT SHANTANU S &amp; ASSOCIATES</h4>
-          <p className="text-slate-300 text-sm leading-relaxed text-justify">
-            The global business landscape is evolving rapidly, and agility is paramount. At Shantanu S &amp; Associates, our core mission is to foster unshakeable confidence and trust within the economic ecosystem by delivering professional services across business incubation advisory, rigorous auditing, strategic taxation, and comprehensive assurance.
+          <p className="text-slate-300 text-sm leading-relaxed text-left">
+            Shantanu S &amp; Associates is a trusted Chartered Accountancy practice based in Bengaluru. We provide comprehensive statutory audit, direct &amp; indirect taxation, corporate governance, and AML/KYC compliance advisory for emerging enterprises, established corporations, and global investors.
           </p>
-          <div className="flex gap-3 pt-2">
-            <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">f</Link>
-            <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">in</Link>
-            <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">X</Link>
-            <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">P</Link>
+          <div className="flex gap-2.5 pt-2">
+            <Link href="#" aria-label="Facebook" className="w-8 h-8 rounded-lg bg-white/10 text-slate-200 flex items-center justify-center font-bold text-sm hover:bg-blue-600 hover:text-white transition-colors cursor-pointer">f</Link>
+            <Link href="#" aria-label="LinkedIn" className="w-8 h-8 rounded-lg bg-white/10 text-slate-200 flex items-center justify-center font-bold text-xs hover:bg-blue-600 hover:text-white transition-colors cursor-pointer">in</Link>
+            <Link href="#" aria-label="X" className="w-8 h-8 rounded-lg bg-white/10 text-slate-200 flex items-center justify-center font-bold text-xs hover:bg-blue-600 hover:text-white transition-colors cursor-pointer">𝕏</Link>
           </div>
         </div>
         
@@ -79,15 +78,16 @@ export function Footer() {
         
         <div className="space-y-6">
           <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">SERVICES</h4>
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             {[
-              { name: 'Company Registration', href: '/services/business-registration' }, 
-              { name: 'Tax Advisory', href: '/services/tax-advisory' }, 
-              { name: 'Company and LLP Compliances', href: '/services/company-and-llp-compliances' },
-              { name: 'Auditing & Assurance', href: '/services/auditing-and-assurance' }, 
-              { name: 'Project Finance & Fund Raising', href: '/services/project-finance-and-fund-raising' },
-              { name: 'Account Outsourcing & Bookkeeping', href: '/services/account-outsourcing-and-bookkeeping' }, 
-              { name: 'Insolvency Services', href: '/services/insolvency-services' }
+              { name: 'Audit & Assurance', href: '/services/audit-and-assurance' }, 
+              { name: 'Accounting & Financial', href: '/services/accounting-financial-services' }, 
+              { name: 'Direct Taxation', href: '/services/direct-taxation' },
+              { name: 'Goods & Services Tax', href: '/services/goods-and-services-tax' }, 
+              { name: 'AML & KYC Services', href: '/services/aml-kyc-services' },
+              { name: 'Forensic Accounting', href: '/services/forensic-accounting-services' }, 
+              { name: 'Business Setup & Corporate', href: '/services/business-setup-corporate-services' },
+              { name: 'Regulatory & Compliance', href: '/services/regulatory-compliance-services' }
             ].map(l => (
               <li key={l.name}>
                 <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 leading-tight transition-colors">
@@ -105,9 +105,9 @@ export function Footer() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col justify-center items-center text-[12px] text-slate-400 gap-4 tracking-wide">
           <div>&copy; {new Date().getFullYear()} Shantanu S &amp; Associates. All Rights Reserved.</div>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
-            <Link href="/" className="hover:text-white cursor-pointer transition-colors">Disclaimer</Link>|
-            <Link href="/terms" className="hover:text-white cursor-pointer transition-colors">Terms & Conditions</Link>|
-            <Link href="/privacy" className="hover:text-white cursor-pointer transition-colors">Privacy Policy</Link>
+            <Link href="/disclaimer" className="hover:text-white cursor-pointer transition-colors">Disclaimer</Link>|
+            <Link href="/terms-and-conditions" className="hover:text-white cursor-pointer transition-colors">Terms &amp; Conditions</Link>|
+            <Link href="/privacy-policy" className="hover:text-white cursor-pointer transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>
