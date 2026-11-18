@@ -34,10 +34,10 @@ export function DisclaimerModal() {
         <div className="p-6 md:p-8 space-y-6 text-slate-700 text-[15px] leading-relaxed">
           <h2 className="text-2xl font-bold text-slate-900 mb-2 uppercase tracking-wide">Disclaimer</h2>
           
-          <h3 className="text-lg font-bold text-slate-900">Shantanu & Associates, Chartered Accountants</h3>
+          <h3 className="text-lg font-bold text-slate-900">Shantanu S &amp; Associates, Chartered Accountants</h3>
           
           <p>
-            This website pertains to Shantanu & Associates, Chartered Accountants in practice, and is intended solely to provide general information about our professional qualifications, areas of practice and services.
+            This website pertains to Shantanu S &amp; Associates, Chartered Accountants in practice, and is intended solely to provide general information about our professional qualifications, areas of practice and services.
           </p>
           
           <p>

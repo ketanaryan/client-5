@@ -42,13 +42,13 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-slate-700 text-[16px] leading-[1.8] text-justify">
             <p>
-              <strong className="text-slate-900 font-semibold">Shantanu & Associates</strong> is a leading Chartered Accountancy practice in Bangalore, structured to seamlessly serve domestic enterprises and global corporations. We deliver an expansive portfolio of specialized services encompassing direct and indirect taxation, stringent regulatory compliance, advanced corporate governance, and complex cross-border financial advisory. Driven by a vision to be the most trusted financial partner in the region, our collective of elite Chartered Accountants, skilled Company Secretaries, and legal authorities leverages robust digital infrastructure to provide comprehensive, full-cycle statutory support for scaling businesses.
+              <strong className="text-slate-900 font-semibold">Shantanu S &amp; Associates</strong> is a professionally managed Chartered Accountancy practice in Bangalore, structured to seamlessly serve domestic enterprises and global corporations. We deliver an expansive portfolio of specialized services encompassing direct and indirect taxation, stringent regulatory compliance, advanced corporate governance, and complex cross-border financial advisory. Driven by a vision to be the most trusted financial partner in the region, our collective of Chartered Accountants, skilled Company Secretaries, and legal authorities leverages robust digital infrastructure to provide comprehensive, full-cycle statutory support for scaling businesses.
             </p>
             <p>
               By dedicating ourselves to fundamentally understanding the nuances of your specific industry and operational blueprint, our expert advisors engineer strategies that are not only compliant but strategically advantageous. Drawing upon extensive domain mastery across statutory audits, advanced tax planning, and strategic business consulting, we deliver actionable, high-impact outcomes. Our fundamental mission is to liberate business owners from administrative and regulatory burdens, empowering them to drive expansion and innovation while we ensure financial integrity and compliance with absolute precision.
             </p>
             <p>
-              Throughout our journey, Shantanu & Associates has built enduring partnerships with forward-thinking organizations spanning a multitude of sectors. From modern Banking & IT to traditional Manufacturing, Healthcare, Real Estate, and Logistics, our footprint is vast. We proudly operate as a singular, comprehensive financial command center for our clients, replacing complexity with clarity and confidence.
+              Throughout our journey, Shantanu S &amp; Associates has built enduring partnerships with forward-thinking organizations spanning a multitude of sectors. From modern Banking &amp; IT to traditional Manufacturing, Healthcare, Real Estate, and Logistics, our footprint is vast. We proudly operate as a singular, comprehensive financial command center for our clients, replacing complexity with clarity and confidence.
             </p>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function AboutPage() {
       <section className="w-full py-16 px-6 lg:px-12 bg-slate-50 border-y border-slate-200">
         <div className="max-w-[1200px] mx-auto">
           <h2 className="text-3xl font-bold text-slate-900 mb-10">
-            Why Choose Shantanu & Associates, CA in Bangalore?
+            Why Choose Shantanu S &amp; Associates, CA in Bangalore?
           </h2>
           <div className="space-y-5">
             {[
@@ -175,9 +175,9 @@ export default function AboutPage() {
       <footer className="w-full bg-[#032b4e] text-white pt-16 pb-6">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">ABOUT SHANTANU & ASSOCIATES</h4>
+            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">ABOUT SHANTANU S &amp; ASSOCIATES</h4>
             <p className="text-slate-300 text-sm leading-relaxed text-justify">
-              Businesses are changing and we need to keep up! At Shantanu & Associates, our objective is to create confidence and trust in the economic realm and to deliver high quality professional services across business setup, audits, taxation, and regulatory compliance.
+              Businesses are changing and we need to keep up! At Shantanu S &amp; Associates, our objective is to create confidence and trust in the economic realm and to deliver high quality professional services across business setup, audits, taxation, and regulatory compliance.
             </p>
           </div>
 
@@ -224,7 +224,7 @@ export default function AboutPage() {
 
         <div className="border-t border-white/10">
           <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-            <div>© {new Date().getFullYear()} Shantanu & Associates. All Rights Reserved.</div>
+            <div>© {new Date().getFullYear()} Shantanu S &amp; Associates. All Rights Reserved.</div>
             <div>Designed & Developed with AGY AI</div>
           </div>
         </div>

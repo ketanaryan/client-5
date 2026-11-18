@@ -11,19 +11,20 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.AUTH_URL || process.env.NEXTAUTH_URL || "https://shantanusassociates.in"),
   title: {
-    default: "CA Shantanu & Associates | Chartered Accountants in Bangalore",
-    template: "%s | CA Shantanu & Associates",
+    default: "CA Shantanu S & Associates | Chartered Accountants in Bangalore",
+    template: "%s | CA Shantanu S & Associates",
   },
-  description: "Premium Chartered Accountancy firm in Bangalore providing expert Tax Advisory, Compliance, Audit, and Business Formation services.",
+  description: "Chartered Accountancy firm in Bangalore providing expert Tax Advisory, Compliance, Audit, and Business Formation services.",
   keywords: ["CA in Bangalore", "Chartered Accountant", "Tax Consultant", "GST Registration", "Company Formation", "ITR Filing"],
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://ca-erp-demo.com",
-    title: "CA Shantanu & Associates",
-    description: "Premium Chartered Accountancy firm in Bangalore providing expert Tax Advisory, Compliance, Audit, and Business Formation services.",
-    siteName: "CA Shantanu & Associates",
+    url: "https://shantanusassociates.in",
+    title: "CA Shantanu S & Associates",
+    description: "Chartered Accountancy firm in Bangalore providing expert Tax Advisory, Compliance, Audit, and Business Formation services.",
+    siteName: "CA Shantanu S & Associates",
   },
 };
 

@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
         <div className="space-y-6 text-slate-700 leading-relaxed">
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">1. Information We Collect</h2>
-            <p>At CA Shantanu & Associates, we collect personal and financial information necessary to provide our professional services. This may include your name, contact details, PAN, GST numbers, financial records, and login credentials for our client portal.</p>
+            <p>At CA Shantanu S & Associates, we collect personal and financial information necessary to provide our professional services. This may include your name, contact details, PAN, GST numbers, financial records, and login credentials for our client portal.</p>
           </section>
 
           <section>

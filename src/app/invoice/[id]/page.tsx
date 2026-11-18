@@ -67,7 +67,7 @@ export default async function InvoicePrintPage(props: { params: Promise<{ id: st
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-3 mb-2">
                 <Image src="/ca-logo-cropped.png" alt="CA Logo" width={60} height={60} className="object-contain" />
-                <h1 className="text-2xl font-bold text-[#032b4e] uppercase tracking-wider">Shantanu & Associates</h1>
+                <h1 className="text-2xl font-bold text-[#032b4e] uppercase tracking-wider">Shantanu S & Associates</h1>
               </div>
               <p className="text-sm text-slate-500">Chartered Accountants</p>
               <p className="text-sm text-slate-500 max-w-xs mt-1">
@@ -141,7 +141,7 @@ export default async function InvoicePrintPage(props: { params: Promise<{ id: st
             <div>
               <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Bank Details</h3>
               <p className="text-sm text-slate-600 mb-1"><strong>Bank:</strong> HDFC Bank Ltd.</p>
-              <p className="text-sm text-slate-600 mb-1"><strong>A/C Name:</strong> CA Shantanu & Associates</p>
+              <p className="text-sm text-slate-600 mb-1"><strong>A/C Name:</strong> CA Shantanu S & Associates</p>
               <p className="text-sm text-slate-600 mb-1"><strong>A/C No:</strong> 502000XXXXXX12</p>
               <p className="text-sm text-slate-600"><strong>IFSC Code:</strong> HDFC0001234</p>
             </div>
@@ -152,7 +152,7 @@ export default async function InvoicePrintPage(props: { params: Promise<{ id: st
                 {/* Simulated signature or stamp could go here */}
                 <div className="absolute bottom-1 right-2 text-blue-900/20 font-bold italic text-2xl -rotate-12">CA SHANTANU</div>
               </div>
-              <p className="text-sm font-medium text-slate-800">For Shantanu & Associates</p>
+              <p className="text-sm font-medium text-slate-800">For Shantanu S & Associates</p>
             </div>
           </div>
 

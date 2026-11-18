@@ -143,7 +143,7 @@ export default function LandingPage() {
                   About Us <span className="block text-xl md:text-2xl text-blue-600 mt-2 font-semibold">Chartered Accountants In Bangalore</span>
                 </h2>
                 <p className="text-slate-600 leading-[1.8] text-[16px] md:text-[18px] mb-6">
-                  Shantanu & Associates is a premier, professionally managed Chartered Accountancy firm based in Bangalore. We specialize in providing comprehensive financial, taxation, and regulatory solutions for both domestic and international enterprises. Our dynamic team comprises seasoned Chartered Accountants, Company Secretaries, and experienced business consultants. Supported by state-of-the-art infrastructure, we deliver end-to-end advisory and compliance services designed to drive your business forward.
+                  Shantanu S &amp; Associates is a professionally managed Chartered Accountancy firm based in Bangalore. We specialize in providing comprehensive financial, taxation, and regulatory solutions for both domestic and international enterprises. Our dynamic team comprises seasoned Chartered Accountants, Company Secretaries, and experienced business consultants. Supported by state-of-the-art infrastructure, we deliver end-to-end advisory and compliance services designed to drive your business forward.
                 </p>
                 <p className="text-slate-600 leading-[1.8] text-[16px] md:text-[18px] mb-8">
                   By investing time to deeply understand your unique business landscape, our experts ensure the delivery of high-value, consistent, and efficient solutions. Drawing from our profound expertise in audit, direct and indirect taxation, and corporate compliances, we align our strategies with your financial objectives. Our ultimate mission is to empower you to focus on your core operations while we handle the complexities of financial management, providing personalized services that perfectly match your specific business requirements.
@@ -158,7 +158,7 @@ export default function LandingPage() {
               <div className="relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/img_b45366581e.jpg"
-                  alt="About Shantanu & Associates"
+                  alt="About Shantanu S &amp; Associates"
                   fill
                   sizes="(max-width: 768px) 100vw, 500px"
                   className="object-cover"

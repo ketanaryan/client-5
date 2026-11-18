@@ -88,7 +88,7 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
           <div className="bg-white/95 p-1 rounded-md shadow-sm">
             <img src="/ca-logo-cropped.png" alt="CA Logo" className="h-7 w-auto object-contain" />
           </div>
-          <span className="text-[16px] leading-tight tracking-tight font-semibold">Shantanu &<br/><span className="font-medium text-blue-400 text-[14px]">Associates</span></span>
+          <span className="text-[16px] leading-tight tracking-tight font-semibold">Shantanu S &<br/><span className="font-medium text-blue-400 text-[14px]">Associates</span></span>
         </Link>
       </div>
 
@@ -160,7 +160,11 @@ export function Sidebar({ className, role = "ADMIN", userName = "User", userImag
             <DropdownMenuItem 
               className="text-red-400 font-medium cursor-pointer text-[13px] hover:bg-red-950/30 hover:text-red-300" 
               onClick={async () => {
-                await signOut({ redirect: false })
+                try {
+                  await signOut({ redirect: false })
+                } catch (e) {
+                  console.error("SignOut error:", e)
+                }
                 window.location.href = "/login"
               }}
             >

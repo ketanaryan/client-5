@@ -10,7 +10,7 @@ export async function sendWelcomeEmail(toEmail: string, tempPassword: string, cl
       subject: "Welcome to your Secure Digital Vault",
       html: `
         <div style="font-family: Arial, sans-serif; max-w: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
-          <h2 style="color: #032b4e;">Welcome to Shantanu & Associates</h2>
+          <h2 style="color: #032b4e;">Welcome to Shantanu S & Associates</h2>
           <p style="color: #475569; font-size: 16px;">Dear ${clientName},</p>
           <p style="color: #475569; font-size: 16px;">
             Your secure client portal has been provisioned successfully. You can now log in to upload documents, track work progress, and communicate directly with our team.

@@ -11,7 +11,7 @@ export default function TermsAndConditions() {
         <div className="space-y-6 text-slate-700 leading-relaxed">
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">1. Introduction</h2>
-            <p>Welcome to CA Shantanu & Associates. By accessing our website and utilizing our services, you agree to be bound by these Terms and Conditions. Please read them carefully.</p>
+            <p>Welcome to CA Shantanu S & Associates. By accessing our website and utilizing our services, you agree to be bound by these Terms and Conditions. Please read them carefully.</p>
           </section>
 
           <section>
@@ -26,12 +26,12 @@ export default function TermsAndConditions() {
 
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">4. Limitation of Liability</h2>
-            <p>While we strive to ensure the accuracy of all information provided, CA Shantanu & Associates shall not be held liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use our website or services without direct consultation.</p>
+            <p>While we strive to ensure the accuracy of all information provided, CA Shantanu S & Associates shall not be held liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use our website or services without direct consultation.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">5. Intellectual Property</h2>
-            <p>All content on this website, including text, graphics, logos, and software, is the property of CA Shantanu & Associates and is protected by intellectual property laws. Unauthorized reproduction is strictly prohibited.</p>
+            <p>All content on this website, including text, graphics, logos, and software, is the property of CA Shantanu S & Associates and is protected by intellectual property laws. Unauthorized reproduction is strictly prohibited.</p>
           </section>
 
           <section>

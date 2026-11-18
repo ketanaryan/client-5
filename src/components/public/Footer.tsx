@@ -7,9 +7,9 @@ export function Footer() {
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         
         <div className="space-y-6 pr-4">
-          <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">ABOUT SHANTANU & ASSOCIATES</h4>
+          <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">ABOUT SHANTANU S &amp; ASSOCIATES</h4>
           <p className="text-slate-300 text-sm leading-relaxed text-justify">
-            The global business landscape is evolving rapidly, and agility is paramount. At Shantanu & Associates, our core mission is to foster unshakeable confidence and trust within the economic ecosystem by delivering an elite tier of professional services across business incubation advisory, rigorous auditing, strategic taxation, and comprehensive assurance.
+            The global business landscape is evolving rapidly, and agility is paramount. At Shantanu S &amp; Associates, our core mission is to foster unshakeable confidence and trust within the economic ecosystem by delivering professional services across business incubation advisory, rigorous auditing, strategic taxation, and comprehensive assurance.
           </p>
           <div className="flex gap-3 pt-2">
             <Link href="#" className="w-9 h-9 rounded-md bg-white text-[#032b4e] flex items-center justify-center font-bold text-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">f</Link>
@@ -25,7 +25,7 @@ export function Footer() {
             <div className="flex items-start gap-4">
               <MapPin className="w-5 h-5 mt-1 text-white shrink-0" />
               <div className="flex flex-col gap-1">
-                <strong className="text-[15px] font-bold tracking-wide">Shantanu & Associates Head Office</strong>
+                <strong className="text-[15px] font-bold tracking-wide">Shantanu S &amp; Associates Head Office</strong>
                 <span className="text-slate-300 text-sm leading-relaxed">No 1, 2nd Floor, 18th Cross Road, 23rd Main Road, JP Nagar 5th Phase, Bangalore - 560078</span>
               </div>
             </div>
@@ -47,12 +47,11 @@ export function Footer() {
             <ul className="space-y-4">
               {[
                 { name: 'Home', href: '/' }, 
-                { name: 'About Us', href: '/about' }, 
+                { name: 'About', href: '/about' }, 
                 { name: 'Services', href: '/#services' }, 
-                { name: 'Knowledge Center', href: '#' }, 
-                { name: 'Career', href: '/#contact' }, 
-                { name: 'Gallery', href: '#' }, 
-                { name: 'Contact Us', href: '/#contact' }
+                { name: 'News & Resources', href: '/news-and-resources' }, 
+                { name: 'Blogs', href: '/blogs' }, 
+                { name: 'Contact Us', href: '/contact' }
               ].map(l => (
                 <li key={l.name}>
                   <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 transition-colors">
@@ -105,7 +104,7 @@ export function Footer() {
       
       <div className="border-t border-white/10 mt-8">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col justify-center items-center text-[12px] text-slate-400 gap-4 tracking-wide">
-          <div>&copy; {new Date().getFullYear()} Shantanu & Associates. All Rights Reserved.</div>
+          <div>&copy; {new Date().getFullYear()} Shantanu S &amp; Associates. All Rights Reserved.</div>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
             <Link href="/" className="hover:text-white cursor-pointer transition-colors">Disclaimer</Link>|
             <Link href="/terms" className="hover:text-white cursor-pointer transition-colors">Terms & Conditions</Link>|

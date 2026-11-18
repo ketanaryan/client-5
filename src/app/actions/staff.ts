@@ -43,7 +43,7 @@ export async function createStaff(formData: FormData) {
 
   // In a real production app, you would use Resend/SendGrid here.
   console.log(`[EMAIL SIMULATION] Sending Onboarding Email to ${email}`)
-  console.log(`[EMAIL SIMULATION] Subject: Welcome to Shantanu & Associates - Your Account Details`)
+  console.log(`[EMAIL SIMULATION] Subject: Welcome to Shantanu S & Associates - Your Account Details`)
   console.log(`[EMAIL SIMULATION] Body: Hello ${name},\nYour account has been created. Your login email is ${email} and your temporary password is: ${randomPassword}\nPlease log in and change your password immediately.`)
 
   if (role === "ASSOCIATE") {

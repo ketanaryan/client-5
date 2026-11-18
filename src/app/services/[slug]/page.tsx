@@ -728,7 +728,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/finance_taxation.jpg",
     introduction: [
       "Claiming Input Tax Credit correctly is the cornerstone of the GST regime. Identifying eligible credits while avoiding blocked credits under Section 17(5) requires precision.",
-      "At Shantanu & Associates, we conduct specialized ITC reviews to identify missed credits, ensure compliance with the 180-day payment rule, and optimize your overall tax payout."
+      "At Shantanu S & Associates, we conduct specialized ITC reviews to identify missed credits, ensure compliance with the 180-day payment rule, and optimize your overall tax payout."
     ],
     subServicesHeading: "Our ITC Services include:",
     subServices: [
@@ -746,7 +746,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/corporate_registration.jpg",
     introduction: [
       "Non-Resident Indians (NRIs) face unique financial and regulatory challenges when managing their investments, properties, and income sources in India.",
-      "Shantanu & Associates offers dedicated NRI desks that provide holistic solutions encompassing taxation, repatriation, and FEMA compliance, ensuring peace of mind across borders."
+      "Shantanu S & Associates offers dedicated NRI desks that provide holistic solutions encompassing taxation, repatriation, and FEMA compliance, ensuring peace of mind across borders."
     ],
     subServicesHeading: "Our Core NRI Services:",
     subServices: [
@@ -764,7 +764,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/audit_advisory.jpg",
     introduction: [
       "NRIs earning income in India through rent, capital gains, interest, or dividends are generally required to file an Income Tax Return in India.",
-      "At Shantanu & Associates, we ensure accurate determination of your residential status and file your ITR in compliance with the provisions specifically applicable to non-residents."
+      "At Shantanu S & Associates, we ensure accurate determination of your residential status and file your ITR in compliance with the provisions specifically applicable to non-residents."
     ],
     subServicesHeading: "Our NRI Tax Filing Services:",
     subServices: [
@@ -782,7 +782,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/finance_taxation.jpg",
     introduction: [
       "Cross-border transactions, foreign direct investments, and external commercial borrowings are heavily regulated under FEMA. Non-compliance invites severe penalties.",
-      "Shantanu & Associates provides expert guidance on FEMA regulations, assisting individuals and corporations in structuring transactions legally and filing statutory RBI returns."
+      "Shantanu S & Associates provides expert guidance on FEMA regulations, assisting individuals and corporations in structuring transactions legally and filing statutory RBI returns."
     ],
     subServicesHeading: "Our FEMA Services include:",
     subServices: [
@@ -800,7 +800,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/corporate_registration.jpg",
     introduction: [
       "Repatriating funds out of India, whether from the sale of property, inheritance, or NRO account balances, requires specific certifications and banking clearances.",
-      "Shantanu & Associates expedites the remittance process by issuing the mandatory Chartered Accountant certificates and ensuring compliance with the USD 1 Million scheme."
+      "Shantanu S & Associates expedites the remittance process by issuing the mandatory Chartered Accountant certificates and ensuring compliance with the USD 1 Million scheme."
     ],
     subServicesHeading: "Our Repatriation Services:",
     subServices: [
@@ -818,7 +818,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/audit_advisory.jpg",
     introduction: [
       "NRIs and foreign entities often face the risk of being taxed in both India and their country of residence. DTAA treaties provide relief through exemptions or tax credits.",
-      "Shantanu & Associates interprets complex tax treaties to ensure you don't pay tax twice on the same income, optimizing your global tax footprint."
+      "Shantanu S & Associates interprets complex tax treaties to ensure you don't pay tax twice on the same income, optimizing your global tax footprint."
     ],
     subServicesHeading: "Our DTAA Services include:",
     subServices: [
@@ -836,7 +836,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/finance_taxation.jpg",
     introduction: [
       "Real estate transactions involving NRIs attract high TDS rates (up to 23.92%) on the sale value, leading to significant cash flow blockages.",
-      "At Shantanu & Associates, we assist NRIs in minimizing this upfront tax burden by applying for Lower Deduction Certificates and expertly planning the capital gains exemptions."
+      "At Shantanu S & Associates, we assist NRIs in minimizing this upfront tax burden by applying for Lower Deduction Certificates and expertly planning the capital gains exemptions."
     ],
     subServicesHeading: "Our NRI Property Tax Services:",
     subServices: [
@@ -854,7 +854,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/corporate_registration.jpg",
     introduction: [
       "The Companies Act imposes rigorous compliance and reporting requirements on corporate entities. Staying compliant is essential to avoid penalties, director disqualifications, and striking off of the company.",
-      "Shantanu & Associates provides end-to-end corporate secretarial support, acting as your outsourced compliance department to ensure your corporate governance is impeccable."
+      "Shantanu S & Associates provides end-to-end corporate secretarial support, acting as your outsourced compliance department to ensure your corporate governance is impeccable."
     ],
     subServicesHeading: "Our Corporate Law Services:",
     subServices: [
@@ -872,7 +872,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/audit_advisory.jpg",
     introduction: [
       "Every registered company and LLP must file annual returns and financial statements with the ROC, regardless of their operational status or turnover.",
-      "Shantanu & Associates manages the entire annual filing cycle efficiently, ensuring strict adherence to the timelines prescribed by the Ministry of Corporate Affairs."
+      "Shantanu S & Associates manages the entire annual filing cycle efficiently, ensuring strict adherence to the timelines prescribed by the Ministry of Corporate Affairs."
     ],
     subServicesHeading: "Our ROC Filing Services:",
     subServices: [
@@ -890,7 +890,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/finance_taxation.jpg",
     introduction: [
       "The Companies Act dictates strict rules regarding the frequency, quorum, and documentation of Board of Directors meetings and General Meetings.",
-      "Shantanu & Associates assists corporate secretariats in drafting flawless notices, agendas, and minutes in compliance with the Secretarial Standards (SS-1 and SS-2)."
+      "Shantanu S & Associates assists corporate secretariats in drafting flawless notices, agendas, and minutes in compliance with the Secretarial Standards (SS-1 and SS-2)."
     ],
     subServicesHeading: "Our Meeting Compliance Services:",
     subServices: [
@@ -908,7 +908,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/corporate_registration.jpg",
     introduction: [
       "The Ministry of Corporate Affairs mandates annual KYC updates for all directors holding a DIN to maintain transparency and prevent corporate fraud.",
-      "At Shantanu & Associates, we ensure timely filing of DIR-3 KYC for directors, avoiding the deactivation of DIN and the associated high penalty fees."
+      "At Shantanu S & Associates, we ensure timely filing of DIR-3 KYC for directors, avoiding the deactivation of DIN and the associated high penalty fees."
     ],
     subServicesHeading: "Our Director Compliance Services:",
     subServices: [
@@ -926,7 +926,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/audit_advisory.jpg",
     introduction: [
       "Strong corporate governance builds investor confidence, mitigates risk, and establishes a framework for sustainable growth and ethical management.",
-      "Shantanu & Associates provides governance advisory and conducts Secretarial Audits to ensure compliance with the Companies Act, SEBI regulations, and other specific laws."
+      "Shantanu S & Associates provides governance advisory and conducts Secretarial Audits to ensure compliance with the Companies Act, SEBI regulations, and other specific laws."
     ],
     subServicesHeading: "Our Governance Services include:",
     subServices: [
@@ -944,7 +944,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/finance_taxation.jpg",
     introduction: [
       "In a hyper-competitive business environment, achieving sustainable growth requires data-driven strategy, optimal capital allocation, and rigorous risk management.",
-      "Shantanu & Associates partners with management teams to provide strategic insights, transforming complex business challenges into avenues for value creation and scaling."
+      "Shantanu S & Associates partners with management teams to provide strategic insights, transforming complex business challenges into avenues for value creation and scaling."
     ],
     subServicesHeading: "Our Consultancy Verticals:",
     subServices: [
@@ -962,7 +962,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/corporate_registration.jpg",
     introduction: [
       "Growing enterprises often need the financial acumen of a Chief Financial Officer without the overhead of a full-time executive hire.",
-      "Through our Virtual CFO and Business Advisory services, Shantanu & Associates provides high-level financial strategy, cash flow management, and MIS reporting to drive your business forward."
+      "Through our Virtual CFO and Business Advisory services, Shantanu S & Associates provides high-level financial strategy, cash flow management, and MIS reporting to drive your business forward."
     ],
     subServicesHeading: "Our Business Advisory Services:",
     subServices: [
@@ -980,7 +980,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/audit_advisory.jpg",
     introduction: [
       "Mergers and Acquisitions present massive growth opportunities but carry significant execution, legal, and tax risks if not structured correctly.",
-      "Shantanu & Associates offers end-to-end M&A advisory, from identifying synergies to drafting the scheme of arrangement, ensuring a tax-efficient and legally sound transaction."
+      "Shantanu S & Associates offers end-to-end M&A advisory, from identifying synergies to drafting the scheme of arrangement, ensuring a tax-efficient and legally sound transaction."
     ],
     subServicesHeading: "Our M&A Services include:",
     subServices: [
@@ -1016,7 +1016,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/corporate_registration.jpg",
     introduction: [
       "Accurate valuation is critical for regulatory compliance, fundraising, financial reporting, and dispute resolution. It requires a blend of technical finance skills and industry insight.",
-      "Shantanu & Associates provides defensible, technically robust valuation reports by Registered Valuers, accepted by regulators, auditors, and tax authorities alike."
+      "Shantanu S & Associates provides defensible, technically robust valuation reports by Registered Valuers, accepted by regulators, auditors, and tax authorities alike."
     ],
     subServicesHeading: "Our Valuation Services:",
     subServices: [
@@ -1034,7 +1034,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/audit_advisory.jpg",
     introduction: [
       "Securing bank loans, government grants, or PE funding requires a compelling narrative backed by mathematically sound financial projections.",
-      "At Shantanu & Associates, we craft detailed project reports and dynamic financial models that demonstrate the viability of your vision to lenders and investors."
+      "At Shantanu S & Associates, we craft detailed project reports and dynamic financial models that demonstrate the viability of your vision to lenders and investors."
     ],
     subServicesHeading: "Our Strategic Planning Services:",
     subServices: [
@@ -1052,7 +1052,7 @@ const SERVICES: Record<string, ServiceData> = {
     image: "/images/finance_taxation.jpg",
     introduction: [
       "Starting a business in India requires navigating a maze of registrations spanning tax, labor, and municipal laws. Missing a critical registration can stall your operations.",
-      "Shantanu & Associates acts as a single-window solution for entrepreneurs, handling all foundational registrations so you can commence operations rapidly and legally."
+      "Shantanu S & Associates acts as a single-window solution for entrepreneurs, handling all foundational registrations so you can commence operations rapidly and legally."
     ],
     subServicesHeading: "Our Business Setup Services include:",
     subServices: [
@@ -1152,7 +1152,7 @@ export default async function ServicePage(props: { params: Promise<{ slug: strin
               <div className="mt-8 bg-[#032b4e] rounded-2xl p-8 text-center text-white shadow-xl">
                 <h3 className="text-2xl font-bold mb-4">Looking for {service.title} in Bangalore?</h3>
                 <p className="text-slate-300 mb-8">
-                  Get in touch with Shantanu & Associates today for expert, timely, and professional assistance.
+                  Get in touch with Shantanu S & Associates today for expert, timely, and professional assistance.
                 </p>
                 <Link href="/#contact">
                   <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg h-14 rounded-xl transition-all">
@@ -1167,7 +1167,7 @@ export default async function ServicePage(props: { params: Promise<{ slug: strin
 
       {/* Footer (Simple) */}
       <footer className="bg-slate-900 text-slate-400 py-8 text-center border-t border-slate-800">
-        <p>© {new Date().getFullYear()} Shantanu & Associates. All Rights Reserved.</p>
+        <p>© {new Date().getFullYear()} Shantanu S & Associates. All Rights Reserved.</p>
       </footer>
     </main>
   );

@@ -10,7 +10,7 @@ export default function Disclaimer() {
         
         <div className="space-y-6 text-slate-700 leading-relaxed">
           <p>
-            The information contained on this website is for general information purposes only. The information is provided by <strong>CA Shantanu & Associates</strong> and while we endeavour to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose.
+            The information contained on this website is for general information purposes only. The information is provided by <strong>CA Shantanu S & Associates</strong> and while we endeavour to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose.
           </p>
           
           <p>
@@ -22,12 +22,12 @@ export default function Disclaimer() {
           </p>
 
           <p>
-            Through this website, you may be able to link to other websites which are not under the control of CA Shantanu & Associates. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.
+            Through this website, you may be able to link to other websites which are not under the control of CA Shantanu S & Associates. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.
           </p>
 
           <p>
             <strong>Institute of Chartered Accountants of India (ICAI) Regulations:</strong><br />
-            As per the rules of the ICAI, we are not permitted to solicit work or advertise. By accessing this website, you acknowledge that you are seeking information about CA Shantanu & Associates of your own accord and that there has been no form of solicitation, advertisement, or inducement by the firm or its members.
+            As per the rules of the ICAI, we are not permitted to solicit work or advertise. By accessing this website, you acknowledge that you are seeking information about CA Shantanu S & Associates of your own accord and that there has been no form of solicitation, advertisement, or inducement by the firm or its members.
           </p>
         </div>
         
