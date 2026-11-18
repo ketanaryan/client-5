@@ -90,35 +90,33 @@ export default function ServiceCarousel() {
           {visibleServices.map((service) => (
             <div
               key={service.slug}
-              className="rounded-lg overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-blue-300 transition-all flex flex-col"
+              className="rounded-xl overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col"
             >
               {/* Image */}
-              <div className="h-[200px] overflow-hidden relative">
+              <div className="h-[220px] overflow-hidden relative">
                 <Image
                   src={service.img}
                   alt={service.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  className="object-cover transition-transform duration-500 hover:scale-110"
                   loading="lazy"
                 />
               </div>
 
               {/* Content */}
-              <div className="p-7 flex flex-col flex-1 bg-white">
-                <h3 className="font-bold text-xl text-[#032b4e] mb-2 tracking-tight">
+              <div className="p-8 flex flex-col flex-1 bg-white">
+                <h3 className="font-bold text-2xl text-[#032b4e] mb-3">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 text-[14px] leading-relaxed mb-6 flex-1">
+                <p className="text-slate-600 text-[16px] leading-[1.8] mb-8 flex-1">
                   {service.desc}
                 </p>
-                <div>
-                  <Link href={`/services/${service.slug}`}>
-                    <Button className="bg-[#032b4e] hover:bg-blue-900 text-white rounded px-5 py-2 text-xs font-bold transition-colors">
-                      Read More &rarr;
-                    </Button>
-                  </Link>
-                </div>
+                <Link href={`/services/${service.slug}`}>
+                  <Button className="bg-[#032b4e] hover:bg-[#1c3a5e] text-white rounded-md px-5 py-2 text-sm">
+                    Read More
+                  </Button>
+                </Link>
               </div>
             </div>
           ))}

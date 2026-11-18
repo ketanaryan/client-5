@@ -2,20 +2,64 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { submitEnquiry } from "./actions/enquiry"
 import { 
   Building2, Calculator, Landmark, ArrowRight, ShieldCheck, TrendingUp, 
-  Target, ThumbsUp, Handshake, Clock, FileText,
-  Phone, Mail, CheckCircle2, Award, Check
+  Briefcase, Users, Target, ThumbsUp, Handshake, Clock,
+  Globe, BookOpen, PieChart, Monitor, Activity, HardHat, Book, 
+  Plane, ShoppingCart, Home, Anchor, Truck, Car, Film, Factory, FlaskConical, FileText,
+  Star, MapPin, Mail, Phone, Check,
+  Settings
 } from "lucide-react"
 import { Navbar } from "@/components/public/Navbar"
 import ServiceCarousel from "@/components/public/ServiceCarousel"
 import { Footer } from "@/components/public/Footer"
 
+const HERO_SLIDES = [
+  {
+    image: "/images/img_26d96e95a8.jpg",
+    title: "Precision Driven Growth",
+    subtitle: "Delivering strategic financial solutions for emerging startups and established enterprises.",
+    buttonText: "About Us",
+    buttonLink: "/about"
+  },
+  {
+    image: "/images/img_d8e5aff3a2.jpg",
+    title: "Mastery In Taxation",
+    subtitle: "Comprehensive advisory and seamless compliance strategies for direct and indirect taxes.",
+    buttonText: "Click Here",
+    buttonLink: "/#services"
+  },
+  {
+    image: "/images/img_b92d795e53.jpg",
+    title: "Your Catalyst For Success",
+    subtitle: "Dedicated partners accelerating your financial compliance and business scaling.",
+    buttonText: "Know How",
+    buttonLink: "/about"
+  },
+  {
+    image: "/images/img_40577aafaa.jpg",
+    title: "Excellence In Advisory",
+    subtitle: "Uncompromising quality in statutory audit, business structuring, and corporate finance.",
+    buttonText: "Get Started",
+    buttonLink: "/#contact"
+  }
+];
+
 export default function LandingPage() {
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
 
   async function onSubmit(formData: FormData) {
     setLoading(true)
@@ -33,185 +77,114 @@ export default function LandingPage() {
       <Navbar />
 
       <main className="flex-1">
-        {/* 1. HERO SECTION - Clean, Modern, Airy & Sharp */}
-        <section className="relative w-full bg-gradient-to-b from-slate-50/80 via-white to-white py-16 md:py-24 px-6 lg:px-12 border-b border-slate-200/80 overflow-hidden">
-          {/* Subtle modern background grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
-
-          <div className="max-w-[1200px] mx-auto relative z-10">
-            <div className="max-w-3xl space-y-6">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs sm:text-[13px] font-semibold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-blue-600 inline-block"></span>
-                Chartered Accountants &bull; Bengaluru &amp; Pan-India Advisory
-              </div>
-
-              {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight text-[#032b4e] leading-[1.14]">
-                Financial Precision, Tax Advisory &amp; Regulatory Assurance
-              </h1>
-
-              {/* Subtitle */}
-              <p className="text-slate-600 text-base sm:text-lg lg:text-[18px] leading-relaxed font-normal max-w-2xl">
-                Providing structured statutory audits, direct &amp; indirect taxation, company formation, and regulatory advisory for emerging businesses, established enterprises, and business families.
-              </p>
-
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-wrap items-center gap-3">
-                <Link href="#contact">
-                  <Button className="bg-[#032b4e] hover:bg-[#021f38] text-white font-bold px-7 h-11 text-sm rounded shadow-sm transition-all">
-                    Enquire Now <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-
-                <Link href="#services">
-                  <Button variant="outline" className="border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-blue-700 font-bold px-6 h-11 text-sm rounded shadow-sm transition-all">
-                    Our Services
-                  </Button>
-                </Link>
-
-                <Link href="/login">
-                  <Button variant="ghost" className="text-blue-700 hover:text-blue-900 hover:bg-blue-50/60 font-bold px-4 h-11 text-sm rounded transition-all">
-                    Client Portal &rarr;
-                  </Button>
-                </Link>
+        {/* 1. HERO SECTION */}
+        <section className="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center bg-slate-900 overflow-hidden">
+          {HERO_SLIDES.map((slide, idx) => (
+            <div 
+              key={idx} 
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            >
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                sizes="100vw"
+                className="object-cover opacity-50 mix-blend-luminosity"
+                priority={idx === 0}
+                quality={75}
+              />
+              <div className="absolute inset-0 bg-blue-950/60 mix-blend-multiply"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/40"></div>
+              
+              <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto h-full mt-8">
+                <h1 
+                  className={`text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4 uppercase drop-shadow-lg transition-all duration-700 delay-300 ${idx === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                >
+                  {slide.title}
+                </h1>
+                <p 
+                  className={`text-xl md:text-2xl text-white font-medium mb-10 drop-shadow-md max-w-2xl transition-all duration-700 delay-500 ${idx === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                >
+                  {slide.subtitle}
+                </p>
+                <div className={`transition-all duration-700 delay-700 ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+                  <Link href={slide.buttonLink}>
+                    <Button size="lg" className="bg-[#2563eb] hover:bg-blue-700 text-white font-bold px-10 py-7 text-lg rounded-md shadow-[0_4px_14px_0_rgba(21,128,61,0.39)] transition-transform hover:scale-105">
+                      {slide.buttonText}
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
-
-            {/* 4 Practice Pillars Strip - Modern, Clean & Sharp */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14 pt-10 border-t border-slate-200/80">
-              <div className="bg-white p-5 rounded-lg border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
-                <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-sm mb-3">
-                  01
-                </div>
-                <h3 className="font-bold text-[#032b4e] text-[15px] mb-1">Direct Taxation</h3>
-                <p className="text-slate-500 text-xs leading-relaxed">
-                  ITR filings, advance tax planning, TDS compliances, and scrutiny representation.
-                </p>
-              </div>
-
-              <div className="bg-white p-5 rounded-lg border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
-                <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-sm mb-3">
-                  02
-                </div>
-                <h3 className="font-bold text-[#032b4e] text-[15px] mb-1">Indirect Tax (GST)</h3>
-                <p className="text-slate-500 text-xs leading-relaxed">
-                  GST registration, monthly returns, 2B reconciliations, and audit support.
-                </p>
-              </div>
-
-              <div className="bg-white p-5 rounded-lg border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
-                <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-sm mb-3">
-                  03
-                </div>
-                <h3 className="font-bold text-[#032b4e] text-[15px] mb-1">Audit &amp; Assurance</h3>
-                <p className="text-slate-500 text-xs leading-relaxed">
-                  Statutory audit, internal financial controls, tax audit under 44AB, and bank reviews.
-                </p>
-              </div>
-
-              <div className="bg-white p-5 rounded-lg border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
-                <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-700 flex items-center justify-center font-bold text-sm mb-3">
-                  04
-                </div>
-                <h3 className="font-bold text-[#032b4e] text-[15px] mb-1">Corporate &amp; ROC</h3>
-                <p className="text-slate-500 text-xs leading-relaxed">
-                  Company formation, LLP incorporation, annual returns, and secretarial compliance.
-                </p>
-              </div>
-            </div>
+          ))}
+          
+          {/* Carousel Indicators */}
+          <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-20">
+            {HERO_SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
+                  idx === currentSlide 
+                    ? 'bg-transparent border-2 border-blue-500 scale-125' 
+                    : 'bg-white/50 hover:bg-white/80'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </section>
 
-        {/* 2. ABOUT US - Clean, Sharp Modern Presentation */}
+        {/* 2. ABOUT US */}
         <section id="about" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-white">
-          <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-16 items-center">
+          <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-16 items-center">
             <div className="flex-1 space-y-6">
-              <div className="text-blue-700 font-bold uppercase tracking-widest text-xs">PRACTICE OVERVIEW</div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] leading-tight tracking-tight">
-                About Us <span className="block text-xl md:text-2xl text-blue-700 mt-1.5 font-semibold">Chartered Accountants in Bangalore</span>
-              </h2>
-              <p className="text-slate-600 leading-[1.8] text-[15px] sm:text-[16px]">
-                Shantanu &amp; Associates is a professionally managed Chartered Accountancy practice based in Bangalore. We specialize in providing comprehensive financial, taxation, and regulatory solutions for both domestic and international enterprises. Our dynamic team comprises seasoned Chartered Accountants, Company Secretaries, and experienced business consultants.
-              </p>
-              <p className="text-slate-600 leading-[1.8] text-[15px] sm:text-[16px]">
-                By investing time to understand your unique business landscape, our team ensures the delivery of compliant, consistent, and structured solutions across statutory audit, direct and indirect taxation, and corporate secretarial compliances.
-              </p>
-              <div className="pt-2">
-                <Link href="/about">
-                  <Button className="bg-[#032b4e] hover:bg-blue-900 text-white rounded px-7 h-11 shadow-sm font-bold text-sm">
-                    Read More About Firm <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#032b4e] mb-6 leading-tight">
+                  About Us <span className="block text-xl md:text-2xl text-blue-600 mt-2 font-semibold">Chartered Accountants In Bangalore</span>
+                </h2>
+                <p className="text-slate-600 leading-[1.8] text-[16px] md:text-[18px] mb-6">
+                  Shantanu & Associates is a premier, professionally managed Chartered Accountancy firm based in Bangalore. We specialize in providing comprehensive financial, taxation, and regulatory solutions for both domestic and international enterprises. Our dynamic team comprises seasoned Chartered Accountants, Company Secretaries, and experienced business consultants. Supported by state-of-the-art infrastructure, we deliver end-to-end advisory and compliance services designed to drive your business forward.
+                </p>
+                <p className="text-slate-600 leading-[1.8] text-[16px] md:text-[18px] mb-8">
+                  By investing time to deeply understand your unique business landscape, our experts ensure the delivery of high-value, consistent, and efficient solutions. Drawing from our profound expertise in audit, direct and indirect taxation, and corporate compliances, we align our strategies with your financial objectives. Our ultimate mission is to empower you to focus on your core operations while we handle the complexities of financial management, providing personalized services that perfectly match your specific business requirements.
+                </p>
+              <Link href="/about">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-sm px-8 py-6 shadow-md font-bold text-base mt-4 md:mt-0">
+                  Read more
+                </Button>
+              </Link>
             </div>
-
-            {/* Right Card: Clean Executive Practice Card */}
-            <div className="w-full lg:w-[440px] shrink-0">
-              <div className="bg-white rounded-lg p-8 shadow-sm border border-slate-200/90 relative overflow-hidden">
-                <div className="w-full h-1 bg-blue-600 absolute top-0 left-0" />
-                
-                <div className="flex items-center justify-between pb-5 border-b border-slate-100 mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-extrabold text-lg flex items-center justify-center">
-                      CA
-                    </div>
-                    <div>
-                      <h4 className="font-extrabold text-[#032b4e] text-base leading-tight">CA Shantanu</h4>
-                      <p className="text-[11px] text-slate-500 font-medium">Founder &amp; Managing Partner</p>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded">
-                    ICAI Registered
-                  </span>
-                </div>
-
-                <div className="space-y-3 mb-6">
-                  <div className="text-xs text-slate-600 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>B.Com, FCA, DISA (ICAI)</span>
-                  </div>
-                  <div className="text-xs text-slate-600 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>Statutory Audits &amp; Internal Controls</span>
-                  </div>
-                  <div className="text-xs text-slate-600 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>Direct &amp; Indirect Tax Advisory</span>
-                  </div>
-                  <div className="text-xs text-slate-600 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>Corporate Formation &amp; ROC Filings</span>
-                  </div>
-                </div>
-
-                <div className="pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                  <span>Bengaluru Practice Office</span>
-                  <Link href="/about#team" className="font-bold text-blue-700 hover:text-blue-900">
-                    View Profile &rarr;
-                  </Link>
-                </div>
+            <div className="w-full md:w-[500px] shrink-0">
+              <div className="relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/img_b45366581e.jpg"
+                  alt="About Shantanu & Associates"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  className="object-cover"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
         </section>
 
         {/* 3A. CA SERVICES WE OFFER - CAROUSEL */}
-        <section id="services" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-slate-50/60 border-t border-slate-200">
+        <section id="services" className="w-full py-16 md:py-24 px-6 lg:px-12 bg-white border-t border-slate-200">
           <div className="max-w-[1200px] mx-auto mb-12 text-center md:text-left">
-            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">PRACTICE DOMAINS</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] tracking-tight">CA Services We Offer</h2>
+            <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">OUR EXPERTISE</div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight">CA Services We Offer</h2>
           </div>
           <ServiceCarousel />
         </section>
 
         {/* 3B. BUSINESS REGISTRATION */}
         <section className="w-full py-16 px-6 lg:px-12 bg-white">
-          <div className="max-w-[1200px] mx-auto mb-10 text-center md:text-left">
-            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">FOUNDATIONAL COMPLIANCE</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] tracking-tight">Business Registration Services</h2>
+          <div className="max-w-[1200px] mx-auto mb-12 text-center md:text-left">
+            <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">ESSENTIAL COMPLIANCE</div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight">Business Registration Services</h2>
           </div>
-          <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { title: 'Professional Tax Registration', slug: 'professional-tax-registration', img: '/images/img_945b206a01.jpg' },
               { title: 'MSME Udyam Registration', slug: 'msme-udyam-registration', img: '/images/img_c87e20c3b6.jpg' },
@@ -219,69 +192,20 @@ export default function LandingPage() {
               { title: 'RERA Registration', slug: 'rera-registration', img: '/images/img_9c1221ae6f.jpg' },
               { title: 'Shop Act Registration', slug: 'shop-act-registration', img: '/images/img_2974d83ac5.jpg' }
             ].map((srv, i) => (
-              <Link href={`/services/${srv.slug}`} key={i} className="group relative flex flex-col rounded-lg overflow-hidden bg-white shadow-sm border border-slate-200 cursor-pointer hover:border-blue-300 hover:shadow-md transition-all duration-300">
-                <div className="h-[140px] relative overflow-hidden">
+              <Link href={`/services/${srv.slug}`} key={i} className="group relative flex flex-col rounded-2xl overflow-hidden bg-white shadow-lg shadow-blue-900/5 border-2 border-slate-100 cursor-pointer hover:border-blue-200 hover:shadow-[0_12px_40px_rgba(37,99,235,0.15)] hover:-translate-y-1 transition-all duration-500">
+                <div className="h-[150px] relative overflow-hidden">
                   <Image
                     src={srv.img}
                     alt={srv.title}
                     fill
                     sizes="(max-width: 1024px) 50vw, 20vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#032b4e]/85 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#032b4e]/90 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <div className="bg-white p-4 flex-1 flex items-center justify-between">
-                  <h3 className="font-bold text-[#032b4e] text-[14px] leading-snug group-hover:text-blue-700 transition-colors pr-2">{srv.title}</h3>
-                  <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-600 transition-colors shrink-0">
-                    <ArrowRight className="w-3.5 h-3.5 text-blue-600 group-hover:text-white transition-colors" />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* 3C. COMPANY FORMATION */}
-        <section className="w-full pt-12 pb-20 px-6 lg:px-12 bg-white">
-          <div className="max-w-[1200px] mx-auto mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="text-center md:text-left">
-              <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">BUSINESS ENTITIES</div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] tracking-tight mb-2">Company Formation</h2>
-              <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-xl">
-                Incorporate your business with a solid legal foundation. We handle name approval, digital signatures, MOA/AOA drafting, and MCA filing end-to-end.
-              </p>
-            </div>
-            <Link href="/services/corporate-laws" className="flex justify-center md:justify-end">
-              <Button variant="outline" className="rounded px-6 h-11 text-sm border-slate-300 hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50 font-bold text-slate-700 transition-all">
-                View All Structures <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: 'Private Limited', subtitle: 'Most popular for startups & ventures', slug: 'private-limited-company', img: '/images/img_9c5be9fd7a.jpg' },
-              { title: 'One Person Company', subtitle: 'For solo entrepreneurs & directors', slug: 'one-person-company', img: '/images/img_8087159179.jpg' },
-              { title: 'LLP Registration', subtitle: 'Flexible limited liability partnership', slug: 'llp-registration', img: '/images/img_f5258efe70.jpg' },
-              { title: 'Partnership Firm', subtitle: 'Traditional joint venture model', slug: 'partnership-firm-registration', img: '/images/img_4e6adef9f0.jpg' }
-            ].map((srv, i) => (
-              <Link href={`/services/${srv.slug}`} key={i} className="group bg-white border border-slate-200 rounded-lg p-3 shadow-sm hover:border-blue-300 hover:shadow-md transition-all duration-300 flex flex-col">
-                <div className="h-48 w-full rounded overflow-hidden relative mb-4">
-                  <Image
-                    src={srv.img}
-                    alt={srv.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="px-2 pb-2 flex justify-between items-end">
-                  <div>
-                    <h3 className="font-bold text-[#032b4e] text-base tracking-tight mb-1 group-hover:text-blue-700 transition-colors">{srv.title}</h3>
-                    <p className="text-xs font-medium text-slate-500">{srv.subtitle}</p>
-                  </div>
+                <div className="bg-white p-5 flex-1 flex items-center justify-between">
+                  <h3 className="font-bold text-[#032b4e] text-[15px] leading-snug group-hover:text-blue-600 transition-colors pr-2">{srv.title}</h3>
                   <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-600 transition-colors shrink-0">
                     <ArrowRight className="w-4 h-4 text-blue-600 group-hover:text-white transition-colors" />
                   </div>
@@ -291,17 +215,68 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* 3C. COMPANY FORMATION */}
+        <section className="w-full pt-16 pb-24 px-6 lg:px-12 bg-white">
+          <div className="max-w-[1200px] mx-auto mb-14 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="text-center md:text-left">
+              <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">START YOUR JOURNEY</div>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] tracking-tight mb-4">Company Formation</h2>
+              <p className="text-slate-600 text-[16px] md:text-[18px] leading-[1.8] max-w-xl mx-auto md:mx-0">Start your business with a solid legal foundation. We handle the entire incorporation process seamlessly from start to finish.</p>
+            </div>
+            <Link href="/services/business-registration" className="flex justify-center md:justify-end">
+              <Button variant="outline" className="rounded-full px-8 h-14 text-[15px] border-slate-200 hover:border-blue-300 hover:text-blue-700 hover:bg-blue-50 font-bold text-slate-700 transition-all shadow-sm">View All Services <ArrowRight className="w-4 h-4 ml-2" /></Button>
+            </Link>
+          </div>
+          
+          <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'Private Limited', subtitle: 'Most popular for startups', slug: 'private-limited-company', img: '/images/img_9c5be9fd7a.jpg' },
+              { title: 'One Person Company', subtitle: 'For solo entrepreneurs', slug: 'one-person-company', img: '/images/img_8087159179.jpg' },
+              { title: 'LLP Registration', subtitle: 'Flexible partnership model', slug: 'llp-registration', img: '/images/img_f5258efe70.jpg' },
+              { title: 'Partnership Firm', subtitle: 'Traditional joint venture', slug: 'partnership-firm-registration', img: '/images/img_4e6adef9f0.jpg' }
+            ].map((srv, i) => (
+              <Link href={`/services/${srv.slug}`} key={i} className="group relative bg-white border-2 border-slate-100 rounded-[2rem] p-3 shadow-lg shadow-blue-900/5 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 overflow-hidden flex flex-col">
+                <div className="h-56 w-full rounded-3xl overflow-hidden relative mb-5">
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                  <Image
+                    src={srv.img}
+                    alt={srv.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="px-3 pb-4 flex justify-between items-end">
+                  <div>
+                    <h3 className="font-bold text-[#032b4e] text-lg tracking-tight mb-1 group-hover:text-blue-600 transition-colors">{srv.title}</h3>
+                    <p className="text-[14px] font-medium text-slate-500">{srv.subtitle}</p>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-600 transition-colors shrink-0">
+                    <ArrowRight className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 flex justify-center md:hidden">
+            <Link href="/services/business-registration" className="w-full">
+              <Button variant="outline" className="w-full rounded-full h-12 text-[15px] border-slate-200 hover:bg-slate-50 font-medium">View All Services</Button>
+            </Link>
+          </div>
+        </section>
+
         {/* 4. CORE VALUES */}
         <section className="w-full py-16 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto text-center mb-12">
-            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">ETHICAL BENCHMARKS</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] mb-4 tracking-tight">Our Core Values</h2>
-            <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-              Built on transparency, professional independence, and strict adherence to ICAI standards. Every engagement is executed with confidentiality and fiduciary responsibility.
+          <div className="max-w-[1200px] mx-auto text-center mb-16">
+            <div className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4">BELIEFS THAT SHAPE OUR CULTURE</div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#032b4e] mb-6 tracking-tight">Our Core Values</h2>
+            <p className="text-slate-600 text-[16px] md:text-[18px] leading-[1.8] max-w-3xl mx-auto">
+              At the heart of our firm lies a steadfast commitment to transparency, ethical practices, and unwavering integrity. We treat our profession as a calling, ensuring that every client interaction is built on a foundation of absolute trust and mutual respect.
             </p>
           </div>
           
-          <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 justify-items-center">
             {[
               { title: 'Commitment', icon: Target },
               { title: 'Integrity', icon: TrendingUp },
@@ -310,97 +285,192 @@ export default function LandingPage() {
               { title: 'Respect', icon: Handshake },
               { title: 'Time Value', icon: Clock }
             ].map((val, i) => (
-              <div key={i} className="group bg-white flex flex-col items-center text-center gap-4 p-6 rounded-lg shadow-sm border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all duration-300">
-                <div className="w-12 h-12 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                  <val.icon className="w-6 h-6 stroke-[1.75]" />
+              <div key={i} className="group bg-white flex flex-col items-center text-center gap-5 p-8 w-full rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 hover:border-blue-500/40 transition-all duration-300 cursor-pointer">
+                <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                  <val.icon className="w-8 h-8 stroke-[1.5]" />
                 </div>
-                <span className="font-bold text-slate-800 text-sm">{val.title}</span>
+                <span className="font-bold text-slate-900 text-[16px]">{val.title}</span>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 7. CONTACT / ENQUIRY SECTION */}
-        <section id="contact" className="relative w-full py-20 px-6 lg:px-12 bg-[#032b4e] text-white">
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Info */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-400/20">
-                <Phone className="w-3.5 h-3.5" /> Direct Consultation
+        {/* 5. INDUSTRIES */}
+        <section className="w-full py-24 px-6 lg:px-12 bg-white">
+          <div className="max-w-[1200px] mx-auto text-center mb-16">
+            <div className="text-blue-500 font-bold uppercase tracking-widest text-sm mb-3">OUR INDUSTRIES</div>
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">Business We Served</h2>
+          </div>
+          
+          <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-slate-100 shadow-sm">
+            {[
+              { title: 'Information Technology', icon: Monitor, img: '/images/img_040257aafd.jpg' },
+              { title: 'Pharmaceuticals & Healthcare', icon: Activity, img: '/images/finance_taxation.jpg' },
+              { title: 'Engineering & Infra', icon: HardHat, img: '/images/img_5945e74e47.jpg' },
+              { title: 'Education Sector', icon: Book, img: '/images/corporate_registration.jpg' },
+              { title: 'Banking & Financial', icon: Landmark, img: '/images/img_f89b625898.jpg' },
+              { title: 'Import & Export', icon: Plane, img: '/images/img_ba3ceb5181.jpg' },
+              { title: 'E-Commerce & Retail', icon: ShoppingCart, img: '/images/img_eb1c0f1ffb.jpg' },
+              { title: 'Real Estate', icon: Home, img: '/images/img_b2b2b96a7f.jpg' },
+              { title: 'Vessels & Marine', icon: Anchor, img: '/images/audit_advisory.jpg' },
+              { title: 'Logistics Services', icon: Truck, img: '/images/img_cc67e33ce5.jpg' },
+              { title: 'Automobiles Industry', icon: Car, img: '/images/img_8b7a385dd4.jpg' },
+              { title: 'Media & Entertainment', icon: Film, img: '/images/img_1b0592f97b.jpg' },
+              { title: 'Manufacturing', icon: Factory, img: '/images/img_e029799d49.jpg' },
+              { title: 'Non Profit Org', icon: Users, img: '/images/img_d5604c9f88.jpg' },
+              { title: 'Chemical Sector', icon: FlaskConical, img: '/images/img_849418b560.jpg' }
+            ].map((ind, i) => (
+              <Link href="/#contact" key={i} className="group relative p-8 border border-slate-100 flex flex-col items-center justify-center text-center aspect-[4/3] hover:z-10 cursor-pointer bg-white overflow-hidden">
+                {/* Default State: Clean White Background (no ghost image) */}
+                <div className="absolute inset-0 bg-white z-0 group-hover:opacity-0 transition-opacity duration-300" />
+                
+                {/* Hover State: Image fades in and scales */}
+                <Image
+                  src={ind.img}
+                  alt={ind.title}
+                  fill
+                  sizes="(max-width: 1024px) 25vw, 20vw"
+                  className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 z-0"
+                  loading="lazy"
+                />
+                {/* Hover Dark Overlay */}
+                <div className="absolute inset-0 bg-blue-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
+                
+                {/* Content (z-20 keeps it above the image/overlay) */}
+                <div className="relative z-20 flex flex-col items-center">
+                  <ind.icon className="h-10 w-10 text-blue-500 mb-4 group-hover:text-white transition-colors duration-300 stroke-[1.5] group-hover:-translate-y-2 transform" />
+                  <h3 className="font-semibold text-slate-800 text-[14px] leading-snug group-hover:text-white transition-all duration-300 px-2 group-hover:translate-y-1 transform">{ind.title}</h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* 6. HAPPY CLIENTS */}
+        <section className="w-full py-28 bg-[#f8fafc] border-y border-slate-200 overflow-hidden relative">
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+              animation: marquee 40s linear infinite;
+            }
+            .animate-marquee:hover {
+              animation-play-state: paused;
+            }
+          `}} />
+          <div className="max-w-[1200px] mx-auto text-center mb-16 px-6 lg:px-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 tracking-tight">Happy Clients</h2>
+            
+            <div className="inline-flex flex-col items-center justify-center gap-1 bg-white px-8 py-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
+              <span className="font-bold text-xl text-slate-900 tracking-tight">EXCELLENT</span>
+              <div className="flex gap-1 mb-1">
+                {[1,2,3,4,5].map(star => <Star key={star} className="h-6 w-6 fill-yellow-400 text-yellow-400" />)}
               </div>
+              <span className="text-sm text-slate-500 mt-1 font-medium">Based on <strong>100+ reviews</strong></span>
+              <div className="mt-2 text-2xl font-bold text-blue-500 tracking-tighter">Google</div>
+            </div>
+          </div>
+          
+          <div className="relative w-full max-w-[100vw]">
+            {/* Gradient Masks for smooth fading edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-[#f8fafc] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-[#f8fafc] to-transparent z-10 pointer-events-none" />
+            
+            <div className="flex w-[max-content] animate-marquee pb-8 pt-4">
+              {/* Duplicate the array to create the infinite scroll effect */}
+              {[...[
+                { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
+                { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
+                { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
+                { name: 'Sneha Rao', initial: 'S', bg: 'bg-indigo-500', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
+                { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
+                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-emerald-500', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
+              ], ...[
+                { name: 'Haresh Dudani', initial: 'H', bg: 'bg-blue-600', time: '2 years ago', review: 'We recently had the pleasure of working with Mr. Jitesh for my tax filing needs, and I am thoroughly impressed with his professionalism and accuracy...' },
+                { name: 'Sunil Kamble', img: '/images/img_4c2f6fd813.jpg', time: '2 years ago', review: 'One of the leading chartered accountancy firms in Whitefield, Bangalore, is highly regarded for the exceptional support provided by Jitesh Sir and his team.' },
+                { name: 'Parth Patel', img: '/images/img_474bec6fde.jpg', time: '2 years ago', review: 'I have engaged with Jitesh bhai and his team since the past 3 years. They have filed my IT returns. They are very knowledgeable, responsive, and do a...' },
+                { name: 'Sneha Rao', initial: 'S', bg: 'bg-indigo-500', time: '1 year ago', review: 'Extremely professional and prompt service. They handled my GST registration flawlessly without me having to visit any office.' },
+                { name: 'Kiran Desai', img: '/images/img_74a9fa160d.jpg', time: '8 months ago', review: 'The audit was conducted very smoothly. Their attention to detail and guidance on compliance has saved us from several potential penalties.' },
+                { name: 'Aditi Sharma', initial: 'A', bg: 'bg-emerald-500', time: '3 months ago', review: 'Highly recommend! The entire team is very cooperative and they ensure all queries are resolved on priority.' }
+              ]].map((rev, i) => (
+                <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col relative mx-4 w-[400px] shrink-0 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 cursor-grab active:cursor-grabbing group">
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="flex items-center gap-4">
+                      {rev.img ? (
+                        <Image src={rev.img} alt={rev.name} width={52} height={52} className="rounded-full object-cover ring-2 ring-slate-50" loading="lazy" />
+                      ) : (
+                        <div className={`w-[52px] h-[52px] rounded-full ${rev.bg} flex items-center justify-center text-white font-bold text-xl ring-2 ring-slate-50`}>{rev.initial}</div>
+                      )}
+                      <div className="flex flex-col text-left">
+                        <span className="font-bold text-[17px] text-slate-900 leading-tight group-hover:text-blue-600 transition-colors">{rev.name}</span>
+                        <span className="text-[13px] text-slate-500 mt-1">{rev.time}</span>
+                      </div>
+                    </div>
+                    <div className="text-2xl font-bold text-blue-500 tracking-tighter absolute right-6 top-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">G</div>
+                  </div>
+                  <div className="flex gap-1 mb-5">
+                    {[1,2,3,4,5].map(star => <Star key={star} className="h-[16px] w-[16px] fill-yellow-400 text-yellow-400" />)}
+                    <div className="h-[18px] w-[18px] rounded-full bg-blue-500 flex items-center justify-center ml-1"><Check className="h-3 w-3 text-white stroke-[3]" /></div>
+                  </div>
+                  <p className="text-[15px] text-slate-600 leading-relaxed mb-6 flex-1 relative z-10">"{rev.review}"</p>
+                  <button className="text-blue-600 text-[14px] font-semibold text-left hover:text-blue-800 transition-colors flex items-center gap-1">Read more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" /></button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <h2 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight text-white">
-                Have Queries To Discuss? Let&apos;s Connect.
+        {/* 7. CONTACT / QUERIES OVERLAY */}
+        <section id="contact" className="relative w-full py-24 px-6 lg:px-12 bg-slate-900">
+          <Image
+            src="/images/img_adf3301b42.jpg"
+            alt="Contact background"
+            fill
+            sizes="100vw"
+            className="object-cover z-0 mix-blend-overlay opacity-60"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-blue-950/80 z-0"></div>
+          
+          <div className="max-w-[1200px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-white space-y-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-white/40 mb-2">
+                <span className="text-2xl font-bold">24</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight max-w-[15ch]">
+                Do You Have Any Queries To Discuss? Let's Talk.
               </h2>
-
-              <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-                Whether you need advice on company incorporation, GST compliance, or statutory audits, our advisory desk is ready to assist.
-              </p>
-
-              <div className="pt-2 space-y-3">
-                <a 
-                  href="tel:8668555246" 
-                  className="flex items-center gap-3 bg-white/5 hover:bg-white/10 transition-colors border border-white/15 rounded p-4 text-base font-bold text-white w-full sm:w-auto"
-                >
-                  <Phone className="h-5 w-5 text-blue-400 shrink-0" />
-                  <span>Call: 8668555246 / 7219308077</span>
-                </a>
-
-                <a 
-                  href="mailto:shantanus.associates@gmail.com" 
-                  className="flex items-center gap-3 bg-white/5 hover:bg-white/10 transition-colors border border-white/15 rounded p-4 text-sm font-medium text-slate-200"
-                >
-                  <Mail className="h-5 w-5 text-blue-400 shrink-0" />
-                  <span>shantanus.associates@gmail.com</span>
+              <div className="pt-4">
+                <a href="tel:7219308077" className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 transition-colors border border-white/20 rounded-md px-8 py-4 text-xl font-bold backdrop-blur-sm">
+                  <Phone className="h-5 w-5 opacity-70" /> 7219308077
                 </a>
               </div>
             </div>
             
-            {/* Right Form */}
-            <div className="lg:col-span-7 bg-white/5 backdrop-blur-md border border-white/15 rounded-xl p-8 sm:p-10 shadow-2xl">
-              <h3 className="text-xl font-bold text-white mb-2">Send An Enquiry</h3>
-              <p className="text-xs text-slate-300 mb-6">Fill out your details below and our practice desk will get back within 24 hours.</p>
-
-              <form id="enquiry-form" action={onSubmit} className="flex flex-col gap-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">Your Name *</label>
-                    <input 
-                      name="name" 
-                      required 
-                      placeholder="e.g. Rajesh Kumar" 
-                      className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 py-2.5 px-3.5 rounded text-sm outline-none focus:border-blue-400 transition-colors" 
-                    />
+            <div className="bg-transparent">
+              <form id="enquiry-form" action={onSubmit} className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="relative">
+                    <input name="name" required placeholder="Name*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
-                  <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">Phone Number *</label>
-                    <input 
-                      name="phone" 
-                      required 
-                      placeholder="+91 98765 43210" 
-                      className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 py-2.5 px-3.5 rounded text-sm outline-none focus:border-blue-400 transition-colors" 
-                    />
+                  <div className="relative flex items-center">
+                    <span className="absolute left-0 text-white/60 text-lg">IN +91 ▾</span>
+                    <input name="phone" required placeholder="Phone Number*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 pl-20 text-lg outline-none focus:border-blue-400 transition-colors" />
                   </div>
-                </div>
-
-                <div>
-                  <label className="text-xs font-semibold text-slate-300 block mb-1">Email ID *</label>
-                  <input 
-                    name="email" 
-                    type="email" 
-                    required 
-                    placeholder="name@company.com" 
-                    className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 py-2.5 px-3.5 rounded text-sm outline-none focus:border-blue-400 transition-colors" 
-                  />
+                  <div className="relative col-span-1 sm:col-span-2">
+                    <input name="email" type="email" required placeholder="Email ID*" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
+                  </div>
                 </div>
                 
-                <div>
-                  <label className="text-xs font-semibold text-slate-300 block mb-2">Services Interested In:</label>
-                  <div className="flex flex-wrap gap-2">
+                <div className="space-y-3 pt-2">
+                  <p className="text-white/80 text-[16px] font-medium">Services Interested In (Select multiple):</p>
+                  <div className="flex flex-wrap gap-2.5">
                     {["Audit & Assurance", "Company Formation", "Taxation", "NRI Services", "Consultancy", "GST Registration", "Other"].map(srv => (
                       <label key={srv} className="cursor-pointer">
                         <input type="checkbox" name="serviceRequested" value={srv} className="peer sr-only" />
-                        <div className="px-3.5 py-1.5 rounded border border-white/20 text-slate-200 peer-checked:bg-blue-600 peer-checked:border-blue-600 peer-checked:text-white peer-checked:font-semibold transition-all hover:border-white/40 text-xs select-none">
+                        <div className="px-5 py-2 rounded-full border border-white/30 text-white/80 peer-checked:bg-blue-600 peer-checked:border-blue-600 peer-checked:text-white peer-checked:font-medium transition-all hover:border-white/60 text-sm select-none">
                           {srv}
                         </div>
                       </label>
@@ -408,24 +478,13 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                <div>
-                  <label className="text-xs font-semibold text-slate-300 block mb-1">Message or Requirement *</label>
-                  <textarea 
-                    name="message" 
-                    required 
-                    rows={3}
-                    placeholder="Briefly describe your requirements..." 
-                    className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 py-2.5 px-3.5 rounded text-sm outline-none focus:border-blue-400 transition-colors resize-none" 
-                  />
+                <div className="relative pt-2">
+                  <input name="message" required placeholder="Enter Message" className="w-full bg-transparent border-b border-white/30 text-white placeholder:text-white/60 py-3 text-lg outline-none focus:border-blue-400 transition-colors" />
                 </div>
                 
-                <div className="pt-2">
-                  <Button 
-                    type="submit" 
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 h-12 rounded text-sm transition-all shadow-md w-full sm:w-auto" 
-                    disabled={loading}
-                  >
-                    {loading ? "Submitting..." : "Submit Enquiry →"}
+                <div className="pt-4">
+                  <Button type="submit" className="bg-[#0f4a7b] hover:bg-[#0c3c63] text-white font-medium px-10 py-6 rounded-md text-lg transition-colors border border-blue-400/20 shadow-lg w-full sm:w-auto" disabled={loading}>
+                    {loading ? "Submitting..." : "Submit →"}
                   </Button>
                 </div>
               </form>
@@ -439,3 +498,6 @@ export default function LandingPage() {
     </div>
   )
 }
+
+
+

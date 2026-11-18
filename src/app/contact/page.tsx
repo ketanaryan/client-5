@@ -43,7 +43,7 @@ export default function ContactPage() {
       <section className="py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] mb-4">Chartered Accountancy &amp; Advisory Services</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] mb-4">Reach us for Best Chartered Accounting Services</h2>
             <p className="text-slate-600 max-w-3xl leading-relaxed">
               Even though we are a firm of Chartered Accountants in Bangalore, with our services of online consultation and &apos;No Need to Visit&apos; approach for our clients, we act as your CA Near Me for prospective clients located anywhere on the globe.
             </p>
