@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        heading: ["var(--font-heading)", "var(--font-sans)", "Inter", "sans-serif"],
+      },
       colors: {
         border: "var(--border)",
         input: "var(--input)",

@@ -43,27 +43,27 @@ export default function ContactPage() {
       <section className="py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] mb-4">Reach us for Chartered Accounting Services</h2>
-            <p className="text-slate-600 max-w-3xl leading-relaxed">
-              Even though we are a firm of Chartered Accountants in Bangalore, with our services of online consultation and &apos;No Need to Visit&apos; approach for our clients, we act as your CA Near Me for prospective clients located anywhere on the globe.
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B1425] mb-3 tracking-tight">Connect with Our Advisory Desk</h2>
+            <p className="text-slate-600 max-w-3xl leading-relaxed text-[15px]">
+              Headquartered in Bangalore, our firm delivers structured online consultations, statutory compliance, and corporate advisory for clients across India and globally.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Left: Form */}
             <div>
-              <h3 className="text-2xl font-bold text-[#032b4e] mb-2">Send Your Message Us</h3>
-              <p className="text-sm text-slate-500 mb-8">Your email address will not be published. Required fields are marked *</p>
+              <h3 className="text-2xl font-bold text-[#0B1425] mb-2 tracking-tight">Send Us a Message</h3>
+              <p className="text-xs text-slate-500 mb-6">All information provided remains strictly confidential. Required fields are marked *</p>
               
-              <form id="contact-form" action={onSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Input name="name" placeholder="Name *" required className="h-12 bg-slate-50 border-slate-200" />
-                  <Input name="phone" placeholder="Phone *" required type="tel" className="h-12 bg-slate-50 border-slate-200" />
+              <form id="contact-form" action={onSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <Input name="name" placeholder="Full Name *" required className="h-11 bg-slate-50 border-slate-200 rounded-lg text-sm" />
+                  <Input name="phone" placeholder="Phone Number *" required type="tel" className="h-11 bg-slate-50 border-slate-200 rounded-lg text-sm" />
                 </div>
-                <Input name="email" placeholder="Email *" required type="email" className="h-12 bg-slate-50 border-slate-200" />
-                <Textarea name="message" placeholder="Comment *" required className="min-h-[150px] bg-slate-50 border-slate-200" />
-                <Button disabled={loading} type="submit" className="bg-[#0f4a7b] hover:bg-[#0c3c63] text-white px-8 py-6 rounded-md font-bold text-base shadow-sm">
-                  {loading ? "SUBMITTING..." : "SUBMIT"}
+                <Input name="email" placeholder="Email Address *" required type="email" className="h-11 bg-slate-50 border-slate-200 rounded-lg text-sm" />
+                <Textarea name="message" placeholder="Details of your business requirement or query *" required className="min-h-[140px] bg-slate-50 border-slate-200 rounded-lg text-sm resize-none" />
+                <Button disabled={loading} type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-5 rounded-lg font-bold text-sm shadow-sm transition-all">
+                  {loading ? "Submitting..." : "Send Message →"}
                 </Button>
               </form>
             </div>

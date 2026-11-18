@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Navbar } from "@/components/public/Navbar"
+import { Footer } from "@/components/public/Footer"
 import { Button } from "@/components/ui/button"
 import { 
   ChevronRight, CheckCircle2, ShieldCheck, Target, Eye, 
@@ -37,8 +38,8 @@ export default function AboutPage() {
       {/* 1. Main Firm Overview */}
       <section className="w-full py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-[1200px] mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8 border-b border-slate-100 pb-4">
-            About Us–CA In Bangalore
+          <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-6 border-b border-slate-100 pb-4 tracking-tight">
+            About The Practice – Chartered Accountants in Bangalore
           </h2>
           <div className="space-y-6 text-slate-700 text-[16px] leading-[1.8] text-justify">
             <p>
@@ -171,64 +172,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 6. Footer */}
-      <footer className="w-full bg-[#032b4e] text-white pt-16 pb-6">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">ABOUT SHANTANU S &amp; ASSOCIATES</h4>
-            <p className="text-slate-300 text-sm leading-relaxed text-justify">
-              Businesses are changing and we need to keep up! At Shantanu S &amp; Associates, our objective is to create confidence and trust in the economic realm and to deliver high quality professional services across business setup, audits, taxation, and regulatory compliance.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">QUICK LINKS</h4>
-            <ul className="space-y-2 text-sm text-slate-300">
-              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/about" className="text-blue-400 font-medium">About Us</Link></li>
-              <li><Link href="/#services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><Link href="/#contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-              <li><Link href="/login" className="hover:text-white transition-colors">Client Portal</Link></li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">PRACTICE AREAS</h4>
-            <ul className="space-y-2 text-sm text-slate-300">
-              <li><Link href="/services/business-registration" className="hover:text-white transition-colors">Business Registration</Link></li>
-              <li><Link href="/services/corporate-laws" className="hover:text-white transition-colors">Company Formation</Link></li>
-              <li><Link href="/services/audit-and-assurance" className="hover:text-white transition-colors">Audit & Assurance</Link></li>
-              <li><Link href="/services/taxation-services" className="hover:text-white transition-colors">Direct & Indirect Tax</Link></li>
-              <li><Link href="/services/nri-tax-services" className="hover:text-white transition-colors">NRI Tax Services</Link></li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">HEAD OFFICE</h4>
-            <div className="space-y-3 text-sm text-slate-300">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-blue-400 shrink-0 mt-1" />
-                <span>No 1, 2nd Floor, 18th Cross Road, 23rd Main Road, JP Nagar 5th Phase, Bangalore - 560078</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-blue-400 shrink-0" />
-                <a href="tel:8668555246" className="hover:text-white transition-colors">8668555246</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
-                <a href="mailto:shantanus.associates@gmail.com" className="hover:text-white transition-colors">shantanus.associates@gmail.com</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-white/10">
-          <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-            <div>© {new Date().getFullYear()} Shantanu S &amp; Associates. All Rights Reserved.</div>
-            <div>Designed & Developed with AGY AI</div>
-          </div>
-        </div>
-      </footer>
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

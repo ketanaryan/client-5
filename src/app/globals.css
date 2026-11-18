@@ -11,6 +11,13 @@
 }
 
 @layer base {
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
   .theme {
     --font-heading: var(--font-sans);
     --font-sans: var(--font-sans);

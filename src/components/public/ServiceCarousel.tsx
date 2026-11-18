@@ -102,33 +102,36 @@ export default function ServiceCarousel() {
           {visibleServices.map((service) => (
             <div
               key={service.slug}
-              className="rounded-xl overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col"
+              className="rounded-xl overflow-hidden border border-slate-200/90 bg-white shadow-sm hover:border-blue-500 hover:shadow-md transition-all duration-300 flex flex-col group"
             >
               {/* Image */}
-              <div className="h-[220px] overflow-hidden relative">
+              <div className="h-[200px] overflow-hidden relative bg-slate-900">
                 <Image
                   src={service.img}
                   alt={service.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 hover:scale-110"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
               </div>
 
               {/* Content */}
-              <div className="p-8 flex flex-col flex-1 bg-white">
-                <h3 className="font-bold text-2xl text-[#032b4e] mb-3">
+              <div className="p-6 md:p-7 flex flex-col flex-1 bg-white">
+                <h3 className="font-bold text-lg md:text-xl text-slate-900 group-hover:text-blue-600 transition-colors mb-2">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 text-[16px] leading-[1.8] mb-8 flex-1">
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-6 flex-1">
                   {service.desc}
                 </p>
-                <Link href={`/services/${service.slug}`}>
-                  <Button className="bg-[#032b4e] hover:bg-[#1c3a5e] text-white rounded-md px-5 py-2 text-sm">
-                    Read More
-                  </Button>
-                </Link>
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <Link href={`/services/${service.slug}`}>
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-2 text-xs font-semibold shadow-xs transition-colors">
+                      Explore Practice →
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

@@ -194,13 +194,13 @@ export function Navbar() {
 
           <div className="flex items-center gap-2.5">
             <Link href="/#contact">
-              <Button variant="outline" className="border-blue-600 text-blue-700 hover:bg-blue-50 hover:text-blue-800 font-bold rounded-md px-4 shadow-sm text-xs">
+              <Button variant="outline" className="border border-blue-600 text-blue-700 hover:bg-blue-50 font-bold rounded-lg px-4 h-9 shadow-xs text-xs transition-colors">
                 Enquire Now
               </Button>
             </Link>
 
             <Link href="/login">
-              <Button className="bg-[#1e3a8a] hover:bg-blue-800 text-white rounded-md px-5 shadow-sm text-xs font-bold">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-5 h-9 shadow-xs text-xs font-bold transition-colors">
                 Login
               </Button>
             </Link>
