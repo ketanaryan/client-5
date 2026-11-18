@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { submitEnquiry } from "./actions/enquiry"
 import { 
@@ -14,55 +14,8 @@ import { Navbar } from "@/components/public/Navbar"
 import ServiceCarousel from "@/components/public/ServiceCarousel"
 import { Footer } from "@/components/public/Footer"
 
-const HERO_SLIDES = [
-  {
-    image: "/images/img_26d96e95a8.jpg",
-    title: "Precision Financial Architecture & Strategic Compliance",
-    subtitle: "High-value statutory audit, taxation, and corporate regulatory advisory for emerging startups and established enterprises.",
-    buttonText: "Schedule Consultation",
-    buttonLink: "/#contact",
-    secondaryText: "Explore Practice Areas",
-    secondaryLink: "/#services"
-  },
-  {
-    image: "/images/img_d8e5aff3a2.jpg",
-    title: "Strategic Direct & Indirect Tax Advisory",
-    subtitle: "Complete corporate income tax planning, dynamic GST ITC reconciliation, and high-stakes litigation representation.",
-    buttonText: "Explore Tax Practice",
-    buttonLink: "/services/direct-taxation",
-    secondaryText: "About The Firm",
-    secondaryLink: "/about"
-  },
-  {
-    image: "/images/img_b92d795e53.jpg",
-    title: "Corporate Governance & Compliance Desk",
-    subtitle: "End-to-end company incorporation, MCA secretarial filings, and robust internal financial controls under one roof.",
-    buttonText: "Corporate Services",
-    buttonLink: "/services/business-setup-corporate-services",
-    secondaryText: "Contact Desk",
-    secondaryLink: "/#contact"
-  },
-  {
-    image: "/images/img_40577aafaa.jpg",
-    title: "Independent Forensic & Assurance Services",
-    subtitle: "Objective statutory audits, internal risk reviews, forensic investigations, and dispute support aligned with ICAI standards.",
-    buttonText: "Assurance Practice",
-    buttonLink: "/services/audit-and-assurance",
-    secondaryText: "Get In Touch",
-    secondaryLink: "/contact"
-  }
-];
-
 export default function LandingPage() {
   const [loading, setLoading] = useState(false)
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)
-    }, 6000)
-    return () => clearInterval(timer)
-  }, [])
 
   async function onSubmit(formData: FormData) {
     setLoading(true)
@@ -80,70 +33,124 @@ export default function LandingPage() {
       <Navbar />
 
       <main className="flex-1">
-        {/* 1. HERO SECTION */}
-        <section className="relative w-full min-h-[580px] lg:min-h-[640px] flex items-center justify-center bg-[#070e1c] overflow-hidden py-16 sm:py-20">
-          {HERO_SLIDES.map((slide, idx) => (
-            <div 
-              key={idx} 
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-            >
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                sizes="100vw"
-                className="object-cover opacity-30"
-                priority={idx === 0}
-                quality={85}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070e1c] via-[#070e1c]/65 to-[#070e1c]/35"></div>
-              
-              <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto h-full">
-                <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-3.5 py-1.5 rounded-full border border-blue-400/25 mb-6 backdrop-blur-sm">
-                  <ShieldCheck className="h-3.5 w-3.5" />
-                  <span>Chartered Accountants &bull; Bengaluru &amp; Pan-India Practice</span>
+        {/* 1. STATIC EXECUTIVE SPLIT HERO (NO SLIDER) */}
+        <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center justify-center bg-[#070e1c] overflow-hidden py-16 sm:py-20 lg:py-24">
+          <Image
+            src="/images/img_26d96e95a8.jpg"
+            alt="Shantanu S &amp; Associates Chartered Accountants"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-20"
+            priority
+            quality={85}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070e1c] via-[#070e1c]/90 to-[#070e1c]/70"></div>
+          
+          <div className="relative z-10 max-w-[1240px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            {/* Left Column: Core Positioning & Actions */}
+            <div className="lg:col-span-7 flex flex-col items-start text-left">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-3.5 py-1.5 rounded-full border border-blue-400/25 mb-6 backdrop-blur-sm">
+                <ShieldCheck className="h-3.5 w-3.5" />
+                <span>Chartered Accountants &bull; Bengaluru &amp; Pan-India Practice</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold tracking-tight text-white mb-5 leading-[1.14]">
+                Precision Financial Architecture &amp; Strategic Compliance
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-300 font-normal mb-8 max-w-xl leading-relaxed">
+                Delivering high-value statutory audit, proactive taxation architecture, and corporate regulatory advisory for emerging startups and established enterprises.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+                <Link href="/#contact">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 h-12 text-sm rounded-lg shadow-sm hover:shadow-md transition-all w-full sm:w-auto">
+                    Schedule Consultation <ArrowRight className="h-4 w-4 ml-1.5" />
+                  </Button>
+                </Link>
+                <Link href="/#services">
+                  <button className="h-12 px-7 rounded-lg border border-white/25 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm backdrop-blur-sm transition-all shadow-xs flex items-center justify-center w-full sm:w-auto">
+                    Explore Practice Areas
+                  </button>
+                </Link>
+              </div>
+
+              {/* Sub-credibility checklist */}
+              <div className="pt-8 mt-8 border-t border-white/10 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-300">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-400" />
+                  <span>Direct &amp; Indirect Tax</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-400" />
+                  <span>Statutory &amp; Internal Audit</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-400" />
+                  <span>ROC &amp; Corporate Governance</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Executive Practice Desk Card */}
+            <div className="lg:col-span-5 w-full">
+              <div className="bg-white/[0.04] border border-white/15 rounded-2xl p-6 sm:p-7 backdrop-blur-md shadow-2xl">
+                <div className="flex items-center justify-between pb-5 border-b border-white/10">
+                  <div>
+                    <h3 className="text-white font-bold text-base sm:text-lg tracking-tight">Shantanu S &amp; Associates</h3>
+                    <p className="text-blue-400 text-xs font-medium mt-0.5">Chartered Accountants &bull; Practice Desk</p>
+                  </div>
+                  <span className="text-[11px] font-bold text-blue-400 bg-blue-500/15 border border-blue-400/30 px-2.5 py-1 rounded-md uppercase tracking-wider">
+                    CA
+                  </span>
                 </div>
 
-                <h1 
-                  className={`text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold tracking-tight text-white mb-5 leading-[1.14] transition-all duration-700 delay-200 ${idx === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                >
-                  {slide.title}
-                </h1>
-                <p 
-                  className={`text-sm sm:text-base md:text-lg text-slate-300 font-normal mb-8 max-w-2xl leading-relaxed transition-all duration-700 delay-350 ${idx === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                >
-                  {slide.subtitle}
-                </p>
-                <div className={`flex flex-col sm:flex-row items-center gap-3.5 transition-all duration-700 delay-500 ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-                  <Link href={slide.buttonLink}>
-                    <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 h-12 text-sm rounded-lg shadow-sm hover:shadow-md transition-all">
-                      {slide.buttonText} <ArrowRight className="h-4 w-4 ml-1.5" />
-                    </Button>
-                  </Link>
-                  <Link href={slide.secondaryLink}>
-                    <button className="h-12 px-7 rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm backdrop-blur-sm transition-all shadow-xs flex items-center justify-center">
-                      {slide.secondaryText}
-                    </button>
+                <div className="space-y-3.5 py-5">
+                  <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
+                    <div className="w-9 h-9 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center shrink-0 border border-blue-500/20">
+                      <CheckCircle2 className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-sm">End-to-End Compliance</h4>
+                      <p className="text-slate-300 text-xs mt-0.5 leading-relaxed">
+                        GST, Income Tax, TDS, ROC, and Secretarial Filings under one unified roof.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
+                    <div className="w-9 h-9 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center shrink-0 border border-blue-500/20">
+                      <TrendingUp className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-sm">Strategic Corporate Growth</h4>
+                      <p className="text-slate-300 text-xs mt-0.5 leading-relaxed">
+                        Structuring Pvt Ltd, LLP, joint ventures, and cross-border tax efficiencies.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
+                    <div className="w-9 h-9 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center shrink-0 border border-blue-500/20">
+                      <Users className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-sm">Partner-Led Practice</h4>
+                      <p className="text-slate-300 text-xs mt-0.5 leading-relaxed">
+                        Direct engagement with CA Shantanu, ensuring senior attention on every audit and compliance matter.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                  <span className="text-slate-400 font-medium">Direct consultation scheduling</span>
+                  <Link href="/contact" className="font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors">
+                    Book Call <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
             </div>
-          ))}
-          
-          {/* Carousel Indicators */}
-          <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 flex justify-center gap-2.5 z-20">
-            {HERO_SLIDES.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentSlide 
-                    ? 'w-10 bg-blue-500' 
-                    : 'w-3.5 bg-white/30 hover:bg-white/60'
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
           </div>
         </section>
 
