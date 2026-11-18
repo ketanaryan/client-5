@@ -1,10 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Navbar } from "@/components/public/Navbar"
+import { Footer } from "@/components/public/Footer"
 import { Button } from "@/components/ui/button"
 import { 
   ChevronRight, CheckCircle2, ShieldCheck, Target, Eye, 
-  MapPin, Mail, Phone 
+  MapPin, Mail, Phone, Award, UserCheck
 } from "lucide-react"
 
 export default function AboutPage() {
@@ -111,7 +112,8 @@ export default function AboutPage() {
       <section id="team" className="w-full py-20 px-6 lg:px-12 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-14 text-center md:text-left">
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">Meet Our Team</h2>
+            <div className="text-blue-700 font-bold uppercase tracking-widest text-xs mb-2">PRACTICE LEADERSHIP</div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#032b4e] mb-3 tracking-tight">Meet Our Team</h2>
             <p className="text-slate-500 text-[16px]">
               Distinguished leadership with extensive experience across statutory audits, taxation, and corporate governance.
             </p>
@@ -120,26 +122,48 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             {/* Sole Partner */}
             <div className="flex flex-col md:flex-row bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-[400px] md:h-auto md:w-[350px] shrink-0 overflow-hidden bg-slate-100 relative">
-                <Image 
-                  src="/images/img_fe87da49d2.jpg" 
-                  alt="CA Shantanu Sharma" 
-                  fill
-                  sizes="(max-width: 768px) 100vw, 350px"
-                  className="object-cover object-top hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-8 md:p-10 flex flex-col justify-center flex-1 space-y-4">
-                <div>
-                  <h3 className="text-3xl font-bold text-slate-900 mb-2">CA Shantanu Sharma</h3>
-                  <div className="text-blue-700 font-semibold text-sm tracking-wide">
-                    B.Com, FCA, DISA (ICAI) • Founder & Managing Partner
+              {/* Executive Branding Card - Replaced Stock Photo with Sharp "Shantanu" Display */}
+              <div className="h-[320px] md:h-auto md:w-[340px] shrink-0 bg-gradient-to-br from-[#032b4e] via-[#093d6b] to-[#021f38] text-white p-8 flex flex-col justify-between items-center text-center relative overflow-hidden">
+                <div className="absolute -top-12 -right-12 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-blue-400/10 rounded-full blur-2xl pointer-events-none" />
+                
+                <div className="w-full flex items-center justify-between text-xs text-blue-200 font-semibold tracking-wider uppercase">
+                  <span>Founder</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                </div>
+
+                <div className="my-auto py-6 flex flex-col items-center">
+                  <div className="w-20 h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-4 shadow-inner">
+                    <span className="font-extrabold text-3xl text-white tracking-wider">CA</span>
+                  </div>
+                  <h3 className="text-3xl font-extrabold tracking-tight text-white uppercase drop-shadow-sm">
+                    Shantanu
+                  </h3>
+                  <p className="text-blue-200 text-xs font-semibold uppercase tracking-widest mt-1">
+                    Chartered Accountant
+                  </p>
+                  <div className="mt-3 px-3 py-1 rounded bg-white/10 border border-white/15 text-[11px] text-slate-200 font-medium">
+                    Managing Partner
                   </div>
                 </div>
-                <div className="w-12 h-1 bg-blue-500 rounded-full my-4"></div>
+
+                <div className="w-full pt-4 border-t border-white/10 flex items-center justify-center gap-2 text-xs text-blue-200">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>Fellow Chartered Accountant</span>
+                </div>
+              </div>
+
+              {/* Bio Details */}
+              <div className="p-8 md:p-10 flex flex-col justify-center flex-1 space-y-4">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-[#032b4e] mb-1.5 tracking-tight">CA Shantanu</h3>
+                  <div className="text-blue-700 font-semibold text-sm tracking-wide">
+                    B.Com, FCA, DISA (ICAI) • Founder &amp; Managing Partner
+                  </div>
+                </div>
+                <div className="w-12 h-1 bg-blue-600 rounded-full my-3"></div>
                 <p className="text-slate-600 text-[15px] leading-relaxed text-justify">
-                  CA Shantanu Sharma is the Founder and Managing Partner of the Firm. He possesses an all-round professional expertise of more than 15 years in the fields of Statutory Audits, Direct & Indirect Taxation, Corporate Management Consultancy, Internal Audits & Systems Study, Tax Audits, and Project Financing. 
+                  CA Shantanu is the Founder and Managing Partner of the Firm. He possesses an all-round professional expertise of more than 15 years in the fields of Statutory Audits, Direct &amp; Indirect Taxation, Corporate Management Consultancy, Internal Audits &amp; Systems Study, Tax Audits, and Project Financing. 
                 </p>
                 <p className="text-slate-600 text-[15px] leading-relaxed text-justify">
                   Having guided over 500+ enterprises from early-stage inception to enterprise maturity, he is widely recognized for his strategic clarity and proactive regulatory advisory. He has advised numerous mid-market and enterprise clients on structuring joint ventures, inbound international capital, and long-term compliance frameworks.
@@ -155,7 +179,7 @@ export default function AboutPage() {
         <div className="max-w-[1200px] mx-auto">
           <div className="bg-[#032b4e] rounded-xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
             <div className="flex-1 space-y-2">
-              <h3 className="text-2xl md:text-3xl font-bold text-white">
+              <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
                 Looking for a Chartered Accountant in Bangalore?
               </h3>
               <p className="text-slate-300 text-[15px] leading-relaxed">
@@ -163,7 +187,7 @@ export default function AboutPage() {
               </p>
             </div>
             <Link href="/#contact">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-6 text-base rounded-md shadow-md shrink-0">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-6 text-base rounded shadow-md shrink-0">
                 Contact Us
               </Button>
             </Link>
@@ -172,63 +196,7 @@ export default function AboutPage() {
       </section>
 
       {/* 6. Footer */}
-      <footer className="w-full bg-[#032b4e] text-white pt-16 pb-6">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">ABOUT SHANTANU & ASSOCIATES</h4>
-            <p className="text-slate-300 text-sm leading-relaxed text-justify">
-              Businesses are changing and we need to keep up! At Shantanu & Associates, our objective is to create confidence and trust in the economic realm and to deliver the best quality of services across business setup, audits, taxation, and regulatory compliance.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">QUICK LINKS</h4>
-            <ul className="space-y-2 text-sm text-slate-300">
-              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/about" className="text-blue-400 font-medium">About Us</Link></li>
-              <li><Link href="/#services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><Link href="/#contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-              <li><Link href="/login" className="hover:text-white transition-colors">Client Portal</Link></li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">PRACTICE AREAS</h4>
-            <ul className="space-y-2 text-sm text-slate-300">
-              <li><Link href="/services/business-registration" className="hover:text-white transition-colors">Business Registration</Link></li>
-              <li><Link href="/services/corporate-laws" className="hover:text-white transition-colors">Company Formation</Link></li>
-              <li><Link href="/services/audit-and-assurance" className="hover:text-white transition-colors">Audit & Assurance</Link></li>
-              <li><Link href="/services/taxation-services" className="hover:text-white transition-colors">Direct & Indirect Tax</Link></li>
-              <li><Link href="/services/nri-tax-services" className="hover:text-white transition-colors">NRI Tax Services</Link></li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-bold tracking-widest text-[13px] uppercase text-white">HEAD OFFICE</h4>
-            <div className="space-y-3 text-sm text-slate-300">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-blue-400 shrink-0 mt-1" />
-                <span>No 1, 2nd Floor, 18th Cross Road, 23rd Main Road, JP Nagar 5th Phase, Bangalore - 560078</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-blue-400 shrink-0" />
-                <a href="tel:8668555246" className="hover:text-white transition-colors">8668555246</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
-                <a href="mailto:shantanus.associates@gmail.com" className="hover:text-white transition-colors">shantanus.associates@gmail.com</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-white/10">
-          <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-            <div>© {new Date().getFullYear()} Shantanu & Associates. All Rights Reserved.</div>
-            <div>Designed & Developed with AGY AI</div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

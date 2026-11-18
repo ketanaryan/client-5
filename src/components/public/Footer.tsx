@@ -47,16 +47,15 @@ export function Footer() {
             <ul className="space-y-4">
               {[
                 { name: 'Home', href: '/' }, 
-                { name: 'About Us', href: '/about' }, 
+                { name: 'About', href: '/about' }, 
                 { name: 'Services', href: '/#services' }, 
-                { name: 'Knowledge Center', href: '#' }, 
-                { name: 'Career', href: '/#contact' }, 
-                { name: 'Gallery', href: '#' }, 
-                { name: 'Contact Us', href: '/#contact' }
+                { name: 'News & Resources', href: '/news-and-resources' }, 
+                { name: 'Enquire Now', href: '/#contact' }, 
+                { name: 'Client Portal', href: '/login' }
               ].map(l => (
                 <li key={l.name}>
                   <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 transition-colors">
-                    <div className="w-[4px] h-[4px] bg-slate-300 rounded-full"></div> {l.name}
+                    <div className="w-[4px] h-[4px] bg-blue-400 rounded-full"></div> {l.name}
                   </Link>
                 </li>
               ))}
@@ -66,12 +65,14 @@ export function Footer() {
             <h4 className="font-bold tracking-widest text-[13px] uppercase text-white mb-6">COMPANY</h4>
             <ul className="space-y-4">
               {[
-                { name: 'Overview', href: '/about' }, 
-                { name: 'Our Team', href: '/about#team' }
+                { name: 'Firm Profile', href: '/about' }, 
+                { name: 'Practice Leadership', href: '/about#team' },
+                { name: 'News & Resources', href: '/news-and-resources' },
+                { name: 'Contact Us', href: '/contact' }
               ].map(l => (
                 <li key={l.name}>
                   <Link href={l.href} className="text-[13px] text-slate-300 hover:text-white cursor-pointer flex items-center gap-2 transition-colors">
-                    <div className="w-[4px] h-[4px] bg-slate-300 rounded-full"></div> {l.name}
+                    <div className="w-[4px] h-[4px] bg-blue-400 rounded-full"></div> {l.name}
                   </Link>
                 </li>
               ))}
