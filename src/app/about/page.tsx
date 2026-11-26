@@ -120,27 +120,32 @@ export default function AboutPage() {
 
           <div className="max-w-4xl mx-auto">
             {/* Sole Partner */}
-            <div className="flex flex-col md:flex-row bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-[400px] md:h-auto md:w-[350px] shrink-0 overflow-hidden bg-slate-100 relative">
-                <Image 
-                  src="/images/img_fe87da49d2.jpg" 
-                  alt="CA Shantanu Sharma" 
-                  fill
-                  sizes="(max-width: 768px) 100vw, 350px"
-                  className="object-cover object-top hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
+            <div className="flex flex-col md:flex-row bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              {/* Executive Monogram with Letter 'S' (No random person image) */}
+              <div className="min-h-[260px] md:min-h-[360px] md:w-[320px] shrink-0 bg-gradient-to-br from-[#0B1A2F] via-[#0F2744] to-[#1E3A8A] flex flex-col items-center justify-center p-8 relative overflow-hidden select-none">
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
+                
+                <div className="relative z-10 flex flex-col items-center justify-center text-center">
+                  <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-inner mb-4">
+                    <span className="font-serif text-5xl md:text-6xl font-bold text-white tracking-wider">
+                      S
+                    </span>
+                  </div>
+                  <span className="text-white font-semibold text-sm tracking-wide">CA Shantanu S</span>
+                  <span className="text-blue-300/80 text-xs mt-0.5 tracking-wider uppercase font-medium">Founder &bull; Managing Partner</span>
+                </div>
               </div>
+
               <div className="p-8 md:p-10 flex flex-col justify-center flex-1 space-y-4">
                 <div>
-                  <h3 className="text-3xl font-bold text-slate-900 mb-2">CA Shantanu Sharma</h3>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-1.5 tracking-tight">CA Shantanu S</h3>
                   <div className="text-blue-700 font-semibold text-sm tracking-wide">
-                    B.Com, FCA, DISA (ICAI) • Founder & Managing Partner
+                    B.Com, FCA, DISA (ICAI) &bull; Founder &amp; Managing Partner
                   </div>
                 </div>
-                <div className="w-12 h-1 bg-blue-500 rounded-full my-4"></div>
+                <div className="w-12 h-1 bg-blue-600 rounded-full my-2"></div>
                 <p className="text-slate-600 text-[15px] leading-relaxed text-justify">
-                  CA Shantanu Sharma is the Founder and Managing Partner of the Firm. He possesses an all-round professional expertise of more than 15 years in the fields of Statutory Audits, Direct & Indirect Taxation, Corporate Management Consultancy, Internal Audits & Systems Study, Tax Audits, and Project Financing. 
+                  CA Shantanu S is the Founder and Managing Partner of the Firm. He possesses an all-round professional expertise of more than 15 years in the fields of Statutory Audits, Direct &amp; Indirect Taxation, Corporate Management Consultancy, Internal Audits &amp; Systems Study, Tax Audits, and Project Financing. 
                 </p>
                 <p className="text-slate-600 text-[15px] leading-relaxed text-justify">
                   Having guided over 500+ enterprises from early-stage inception to enterprise maturity, he is widely recognized for his strategic clarity and proactive regulatory advisory. He has advised numerous mid-market and enterprise clients on structuring joint ventures, inbound international capital, and long-term compliance frameworks.
