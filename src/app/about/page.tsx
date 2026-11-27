@@ -145,10 +145,10 @@ export default function AboutPage() {
                 </div>
                 <div className="w-12 h-1 bg-blue-600 rounded-full my-2"></div>
                 <p className="text-slate-600 text-[15px] leading-relaxed text-justify">
-                  CA Shantanu S is the Founder and Managing Partner of the Firm. He possesses an all-round professional expertise of more than 15 years in the fields of Statutory Audits, Direct &amp; Indirect Taxation, Corporate Management Consultancy, Internal Audits &amp; Systems Study, Tax Audits, and Project Financing. 
+                  CA Shantanu S is the Founder and Managing Partner of the Firm. He possesses comprehensive professional expertise in the fields of Statutory Audits, Direct &amp; Indirect Taxation, Corporate Management Consultancy, Internal Audits &amp; Systems Study, Tax Audits, and Project Financing. 
                 </p>
                 <p className="text-slate-600 text-[15px] leading-relaxed text-justify">
-                  Having guided over 500+ enterprises from early-stage inception to enterprise maturity, he is widely recognized for his strategic clarity and proactive regulatory advisory. He has advised numerous mid-market and enterprise clients on structuring joint ventures, inbound international capital, and long-term compliance frameworks.
+                  Having guided diverse enterprises from early-stage inception to enterprise maturity, he is widely recognized for his strategic clarity and proactive regulatory advisory. He has advised numerous mid-market and enterprise clients on structuring joint ventures, inbound international capital, and long-term compliance frameworks.
                 </p>
               </div>
             </div>
